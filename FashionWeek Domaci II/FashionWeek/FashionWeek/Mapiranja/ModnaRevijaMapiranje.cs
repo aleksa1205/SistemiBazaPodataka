@@ -1,0 +1,23 @@
+﻿using FashionWeek.Entiteti;
+using FluentNHibernate.Mapping;
+using NHibernate.Cfg.XmlHbmBinding;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FashionWeek.Mapiranja;
+
+public class ModnaRevijaMapiranje : ClassMap<ModnaRevija>
+{
+    public ModnaRevijaMapiranje()
+    {
+        Table("MODNA_REVIJA");
+        Id(x => x.RBR).GeneratedBy.Assigned().Column("RBR_REVIJE");
+
+        Map(x => x.Naziv).Column("NAZIV");
+        Component(x => x.Mesto);
+        Map(x => x.Termin).Column("TERMIN_ODRZAVANJA");
+    }
+}
