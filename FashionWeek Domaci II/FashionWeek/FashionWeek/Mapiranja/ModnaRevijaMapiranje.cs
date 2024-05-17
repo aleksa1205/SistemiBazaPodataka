@@ -19,5 +19,16 @@ public class ModnaRevijaMapiranje : ClassMap<ModnaRevija>
         Map(x => x.Naziv).Column("NAZIV");
         Component(x => x.Mesto);
         Map(x => x.Termin).Column("TERMIN_ODRZAVANJA");
+
+        HasManyToMany(x => x.Manekeni)
+            .Table("NASTUPA_U")
+            .ParentKeyColumn("RBR_REVIJE")
+            .ChildKeyColumn("MBR_MANEKENA")
+            .Cascade.All();
+        HasManyToMany(x => x.Kreatori)
+            .Table("PREDSTAVLJA")
+            .ParentKeyColumn("RBR_REVIJE")
+            .ChildKeyColumn("MBR_KREATORA")
+            .Cascade.All();
     }
 }

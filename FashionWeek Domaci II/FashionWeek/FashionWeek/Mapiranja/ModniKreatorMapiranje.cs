@@ -17,6 +17,13 @@ namespace FashionWeek.Mapiranja
             Abstract();
 
             Map(x => x.ZemljaPorekla).Column("ZEMLJA_POREKLA");
+
+            References(x => x.RadiU).Column("NAZIV_KUCE");
+            HasManyToMany(x => x.Revije)
+                .Table("PREDSTAVLJA")
+                .ParentKeyColumn("MBR_KREATORA")
+                .ChildKeyColumn("RBR_REVIJE")
+                .Cascade.All().Inverse();
         }
     }
 }

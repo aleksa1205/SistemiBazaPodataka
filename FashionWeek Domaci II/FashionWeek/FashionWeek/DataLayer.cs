@@ -12,7 +12,7 @@ namespace FashionWeek;
 
 public class DataLayer
 {
-    private static ISessionFactory _factory = null;
+    private static ISessionFactory _factory = null!;
     private static object _lock = new object();
 
     private static ISessionFactory CreateSession()
@@ -21,7 +21,7 @@ public class DataLayer
         {
             var config = OracleManagedDataClientConfiguration.Oracle10
                 .ConnectionString(str => 
-                str.Is("DATA SOURCE=gislab-oracle.elfak.ni.ac.rs:1521/SBP_PDB;PERSIST SECURITY INFO=True;USER ID=S18826;Password=S18826"));
+                str.Is("DATA SOURCE=gislab-oracle.elfak.ni.ac.rs:1521/SBP_PDB;PERSIST SECURITY INFO=True;USER ID=S18981;Password=S18981"));
             return Fluently.Configure()
                 .Database(config)
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<OsobaMapiranje>())

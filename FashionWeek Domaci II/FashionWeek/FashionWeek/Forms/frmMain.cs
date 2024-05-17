@@ -39,5 +39,52 @@ namespace FashionWeek
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                ModnaRevija m = s.Load<ModnaRevija>(123);
+                MessageBox.Show($"{m.Naziv}");
+                s.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //ERROR
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //throws an exception not found even though that object exists in db
+                ISession s = DataLayer.GetSession();
+                ModnaKuca m = s.Load<ModnaKuca>("Nice Fashion");
+                MessageBox.Show($"{m.Naziv} {m.Osnivac.LicnoIme} {m.Osnivac.Prezime}");
+                s.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                ModnaAgencija m = s.Load<ModnaAgencija>("14074731");
+                MessageBox.Show($"{m.Naziv}");
+                s.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
