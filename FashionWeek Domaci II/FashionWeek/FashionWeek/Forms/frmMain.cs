@@ -86,5 +86,20 @@ namespace FashionWeek
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                Organizator m = s.Load<Organizator>(2);
+                MessageBox.Show($" {m.InformacijeOKolekciji}");
+                s.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

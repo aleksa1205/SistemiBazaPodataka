@@ -12,6 +12,7 @@ public class ModniKreator : Osoba
 
     public virtual ModnaKuca RadiU { get; set; } 
     public virtual IList<ModnaRevija> Revije { get; set; }
+    public virtual Organizator Organizator { get; set; }
 
     public ModniKreator()
     {

@@ -14,6 +14,7 @@ public class ModnaKuca
     public virtual Adresa? Sediste { get; set; }
 
     public virtual IList<ModniKreator> Kreatori { get; set; }
+    public virtual Organizator Organizator { get; set; }
 
     public ModnaKuca()
     {

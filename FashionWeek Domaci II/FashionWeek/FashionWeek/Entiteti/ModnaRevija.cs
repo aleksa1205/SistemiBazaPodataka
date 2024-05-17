@@ -16,6 +16,7 @@ public class ModnaRevija
     public virtual DateTime Termin { get; set; }
     public virtual IList<Maneken> Manekeni { get; set; }
     public virtual IList<ModniKreator> Kreatori { get; set; }
+    public virtual Organizator Organizator { get; set; }
 
     public ModnaRevija()
     {

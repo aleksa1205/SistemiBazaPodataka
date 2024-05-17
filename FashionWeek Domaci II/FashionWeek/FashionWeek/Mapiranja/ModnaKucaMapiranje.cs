@@ -18,7 +18,7 @@ public class ModnaKucaMapiranje : ClassMap<ModnaKuca>
         Component(x => x.Osnivac).ColumnPrefix("OSNIVAC_");
         Component(x => x.Sediste);
 
-        //1:N
         HasMany(x => x.Kreatori).KeyColumn("NAZIV_KUCE");
+        References(x => x.Organizator).Column("ORGANIZATOR_ID");
     }
 }
