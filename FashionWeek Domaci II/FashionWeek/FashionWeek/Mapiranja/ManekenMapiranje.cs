@@ -22,13 +22,12 @@ public class ManekenMapiranje : SubclassMap<Maneken>
         Map(x => x.KonfekcijskiBroj).Column("KONFEKCIJSKI_BROJ");
         Map(x => x.Zanimanje).Column("ZANIMANJE");
 
-        //N:1
         References(x => x.RadiUAgenciji).Column("PIB_AGENCIJE");
-        //N:M
         HasManyToMany(x => x.Revije)
             .Table("NASTUPA_U")
             .ParentKeyColumn("MBR_MANEKENA")
             .ChildKeyColumn("RBR_REVIJE")
             .Cascade.All().Inverse();
+        HasMany(x => x.Casopisi).KeyColumn("MBR_MANEKENA").Cascade.All().Inverse();
     }
 }

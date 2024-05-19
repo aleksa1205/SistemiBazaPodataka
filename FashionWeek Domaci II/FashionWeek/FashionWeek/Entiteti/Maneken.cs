@@ -17,10 +17,12 @@ namespace FashionWeek.Entiteti
 
         public virtual ModnaAgencija RadiUAgenciji { get; set; }
         public virtual IList<ModnaRevija> Revije { get; set; }
+        public virtual IList<Casopis> Casopisi { get; set; }
 
         public Maneken()
         {
             Revije = new List<ModnaRevija>();
+            Casopisi = new List<Casopis>();
         }
     }
 }
