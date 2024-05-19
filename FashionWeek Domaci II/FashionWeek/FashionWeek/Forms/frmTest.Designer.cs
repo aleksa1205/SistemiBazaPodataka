@@ -1,6 +1,6 @@
 ﻿namespace FashionWeek
 {
-    partial class frmMain
+    partial class frmTest
     {
         /// <summary>
         ///  Required designer variable.

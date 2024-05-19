@@ -3,9 +3,9 @@ using NHibernate;
 
 namespace FashionWeek
 {
-    public partial class frmMain : Form
+    public partial class frmTest : Form
     {
-        public frmMain()
+        public frmTest()
         {
             InitializeComponent();
         }
@@ -45,7 +45,7 @@ namespace FashionWeek
             try
             {
                 ISession s = DataLayer.GetSession();
-                ModnaRevija m = s.Load<ModnaRevija>(123);
+                ModnaRevija m = s.Load<ModnaRevija>(1);
                 MessageBox.Show($"{m.Naziv}");
                 s.Close();
             }
@@ -92,7 +92,7 @@ namespace FashionWeek
             try
             {
                 ISession s = DataLayer.GetSession();
-                Organizator m = s.Load<Organizator>(2);
+                Organizator m = s.Load<Organizator>(1);
                 MessageBox.Show($" {m.InformacijeOKolekciji}");
                 s.Close();
             }

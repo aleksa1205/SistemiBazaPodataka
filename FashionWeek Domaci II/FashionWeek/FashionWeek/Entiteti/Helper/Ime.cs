@@ -8,6 +8,6 @@ namespace FashionWeek.Entiteti.Helper;
 
 public class Ime
 {
-    public required string LicnoIme { get; set; }
-    public required string Prezime { get; set; }
+    public string? LicnoIme { get; set; }
+    public string? Prezime { get; set; }
 }

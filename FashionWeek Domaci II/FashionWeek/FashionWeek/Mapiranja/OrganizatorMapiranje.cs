@@ -14,7 +14,7 @@ public class OrganizatorMapiranje : ClassMap<Organizator>
     {
         Table("ORGANIZATOR");
         //menjace se
-        Id(x => x.Id).GeneratedBy.TriggerIdentity();
+        Id(x => x.Id).GeneratedBy.TriggerIdentity().Column("ID");
 
         //bool -> char
         Map(x => x.PrvaRevija).Column("PRVA_REVIJA");

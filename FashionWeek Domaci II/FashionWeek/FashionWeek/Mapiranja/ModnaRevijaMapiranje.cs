@@ -14,7 +14,7 @@ public class ModnaRevijaMapiranje : ClassMap<ModnaRevija>
     public ModnaRevijaMapiranje()
     {
         Table("MODNA_REVIJA");
-        Id(x => x.RBR).GeneratedBy.Assigned().Column("RBR_REVIJE");
+        Id(x => x.RBR).GeneratedBy.TriggerIdentity().Column("RBR_REVIJE");
 
         Map(x => x.Naziv).Column("NAZIV");
         Component(x => x.Mesto);

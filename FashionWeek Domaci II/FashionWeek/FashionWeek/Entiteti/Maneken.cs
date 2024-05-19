@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FashionWeek.Entiteti.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,7 @@ namespace FashionWeek.Entiteti
         public virtual string? Zanimanje { get; set; }
 
         public virtual ModnaAgencija? RadiUAgenciji { get; set; }
-        public virtual IList<ModnaRevija> Revije { get; set; }
-        public virtual IList<Casopis> Casopisi { get; set; }
-
-        public Maneken()
-        {
-            Revije = new List<ModnaRevija>();
-            Casopisi = new List<Casopis>();
-        }
+        public virtual IList<ModnaRevija> Revije { get; set; } = [];
+        public virtual IList<Casopis> Casopisi { get; set; } = [];
     }
 }
