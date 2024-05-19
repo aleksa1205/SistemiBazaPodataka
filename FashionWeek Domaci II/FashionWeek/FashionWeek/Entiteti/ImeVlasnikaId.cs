@@ -9,8 +9,10 @@ namespace FashionWeek.Entiteti;
 
 public class ImeVlasnikaId
 {
-    public virtual ModnaKuca? ModnaKuca { get; set; }
-    public virtual Ime? Ime { get; set; }
+    public virtual required ModnaKuca ModnaKuca { get; set; }
+    //public virtual required Ime Ime { get; set; }
+    public virtual required string LicnoIme { get; set; }
+    public virtual required string Prezime { get; set; }
 
     public override bool Equals(object? obj)
     {
@@ -24,7 +26,7 @@ public class ImeVlasnikaId
         }
 
         ImeVlasnikaId compare = (obj as ImeVlasnikaId)!;
-        return ModnaKuca!.Naziv == compare!.ModnaKuca!.Naziv && Ime == compare!.Ime;
+        return ModnaKuca!.Naziv == compare!.ModnaKuca!.Naziv && LicnoIme == compare!.LicnoIme && Prezime == compare!.Prezime;
     }
 
     public override int GetHashCode()

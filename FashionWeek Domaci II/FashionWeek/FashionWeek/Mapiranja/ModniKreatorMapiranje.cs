@@ -25,6 +25,7 @@ namespace FashionWeek.Mapiranja
                 .ChildKeyColumn("RBR_REVIJE")
                 .Cascade.All().Inverse();
             References(x => x.Organizator).Column("ORGANIZATOR_ID");
+            HasMany(x => x.SpecijalniGosti).KeyColumn("MBR_KREATORA");
         }
     }
 }

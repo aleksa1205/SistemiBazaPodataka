@@ -15,8 +15,8 @@ namespace FashionWeek.Mapiranja
             Table("IMENA_VLASNIKA");
             CompositeId(x => x.Id)
                 .KeyReference(x => x.ModnaKuca, "NAZIV_KUCE")
-                .KeyProperty(x => x.Ime!.LicnoIme, "LICNO_IME")
-                .KeyProperty(x => x.Ime!.Prezime, "PREZIME");
+                .KeyProperty(x => x.LicnoIme, "LICNO_IME")
+                .KeyProperty(x => x.Prezime, "PREZIME");
         }
     }
 }

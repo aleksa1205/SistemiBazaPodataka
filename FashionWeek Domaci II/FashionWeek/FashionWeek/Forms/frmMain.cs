@@ -63,7 +63,7 @@ namespace FashionWeek
                 //throws an exception not found even though that object exists in db
                 ISession s = DataLayer.GetSession();
                 ModnaKuca m = s.Load<ModnaKuca>("Nice Fashion");
-                MessageBox.Show($"{m.Naziv} {m.Osnivac.LicnoIme} {m.Osnivac.Prezime}");
+                MessageBox.Show($"{m.Naziv} {m.Osnivac!.LicnoIme} {m.Osnivac.Prezime}");
                 s.Close();
             }
             catch (Exception ex)

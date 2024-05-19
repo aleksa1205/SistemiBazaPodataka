@@ -23,5 +23,6 @@ public class OrganizatorMapiranje : ClassMap<Organizator>
         HasMany(x => x.Kreatori).KeyColumn("ORGANIZATOR_ID");
         HasMany(x => x.ModneKuce).KeyColumn("ORGANIZATOR_ID");
         HasMany(x => x.ModneRevije).KeyColumn("ORGANIZATOR_ID");
+        HasMany(x => x.SpecijalniGosti).KeyColumn("ORGANIZATOR_ID");
     }
 }
