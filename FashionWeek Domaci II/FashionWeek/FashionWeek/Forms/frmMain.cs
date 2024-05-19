@@ -101,5 +101,22 @@ namespace FashionWeek
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                //Planski baca error!!!
+                ISession s = DataLayer.GetSession();
+                SpecijalanGost m = s.Load<SpecijalanGost>("1904001783462");
+                MessageBox.Show($" {m.Id.ModnaRevija.Naziv}");
+                s.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
