@@ -20,8 +20,9 @@ namespace FashionWeek.Mapiranja
             Component(x => x.Sediste);
             Map(x => x.DatumOsnivanja).Column("DATUM_OSNIVANJA");
 
+            //casacde all
             HasMany(x => x.Manekeni).KeyColumn("PIB_AGENCIJE").Cascade.All().Inverse();
-            HasMany(x => x.Zemlje).KeyColumn("NAZIV_ZEMLJE").Cascade.All().Inverse();
+            HasMany(x => x.Zemlje).KeyColumn("NAZIV_ZEMLJE").Cascade.All();
         }
     }
 }

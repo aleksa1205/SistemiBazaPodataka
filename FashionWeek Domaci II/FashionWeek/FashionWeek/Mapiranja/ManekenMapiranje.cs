@@ -27,7 +27,7 @@ public class ManekenMapiranje : SubclassMap<Maneken>
             .Table("NASTUPA_U")
             .ParentKeyColumn("MBR_MANEKENA")
             .ChildKeyColumn("RBR_REVIJE")
-            .Cascade.All().Inverse();
+            .Cascade.All();
         HasMany(x => x.Casopisi).KeyColumn("MBR_MANEKENA").Cascade.All().Inverse();
     }
 }

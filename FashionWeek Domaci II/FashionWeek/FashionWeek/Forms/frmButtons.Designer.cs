@@ -32,7 +32,9 @@
             btnDodajManekena = new Button();
             btnManekenRadiU = new Button();
             btnManekenNastupaU = new Button();
-            btnDodajIZaposliManekena = new Button();
+            btnManekeniModneAgencije = new Button();
+            btnDodajManekenaIAgenciju = new Button();
+            btnDodajCasopisManekenu = new Button();
             SuspendLayout();
             // 
             // btnUcitajManekena
@@ -75,22 +77,44 @@
             btnManekenNastupaU.UseVisualStyleBackColor = true;
             btnManekenNastupaU.Click += btnManekenNastupaU_Click;
             // 
-            // btnDodajIZaposliManekena
+            // btnManekeniModneAgencije
             // 
-            btnDodajIZaposliManekena.Location = new Point(12, 128);
-            btnDodajIZaposliManekena.Name = "btnDodajIZaposliManekena";
-            btnDodajIZaposliManekena.Size = new Size(203, 23);
-            btnDodajIZaposliManekena.TabIndex = 4;
-            btnDodajIZaposliManekena.Text = "Dodaj i zaposli manekena";
-            btnDodajIZaposliManekena.UseVisualStyleBackColor = true;
-            btnDodajIZaposliManekena.Click += btnDodajIZaposliManekena_Click;
+            btnManekeniModneAgencije.Location = new Point(12, 128);
+            btnManekeniModneAgencije.Name = "btnManekeniModneAgencije";
+            btnManekeniModneAgencije.Size = new Size(203, 23);
+            btnManekeniModneAgencije.TabIndex = 4;
+            btnManekeniModneAgencije.Text = "Manekeni modne agencije (N:1)";
+            btnManekeniModneAgencije.UseVisualStyleBackColor = true;
+            btnManekeniModneAgencije.Click += btnManekeniModneAgencije_Click;
+            // 
+            // btnDodajManekenaIAgenciju
+            // 
+            btnDodajManekenaIAgenciju.Location = new Point(12, 157);
+            btnDodajManekenaIAgenciju.Name = "btnDodajManekenaIAgenciju";
+            btnDodajManekenaIAgenciju.Size = new Size(203, 23);
+            btnDodajManekenaIAgenciju.TabIndex = 5;
+            btnDodajManekenaIAgenciju.Text = "Dodaj Manekena i Agenciju";
+            btnDodajManekenaIAgenciju.UseVisualStyleBackColor = true;
+            btnDodajManekenaIAgenciju.Click += btnDodajManekenaIAgenciju_Click;
+            // 
+            // btnDodajCasopisManekenu
+            // 
+            btnDodajCasopisManekenu.Location = new Point(12, 186);
+            btnDodajCasopisManekenu.Name = "btnDodajCasopisManekenu";
+            btnDodajCasopisManekenu.Size = new Size(203, 42);
+            btnDodajCasopisManekenu.TabIndex = 6;
+            btnDodajCasopisManekenu.Text = "Dodaj casopis manekenu (visevrednosni)";
+            btnDodajCasopisManekenu.UseVisualStyleBackColor = true;
+            btnDodajCasopisManekenu.Click += btnDodajCasopisManekenu_Click;
             // 
             // frmButtons
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(btnDodajIZaposliManekena);
+            Controls.Add(btnDodajCasopisManekenu);
+            Controls.Add(btnDodajManekenaIAgenciju);
+            Controls.Add(btnManekeniModneAgencije);
             Controls.Add(btnManekenNastupaU);
             Controls.Add(btnManekenRadiU);
             Controls.Add(btnDodajManekena);
@@ -106,6 +130,8 @@
         private Button btnDodajManekena;
         private Button btnManekenRadiU;
         private Button btnManekenNastupaU;
-        private Button btnDodajIZaposliManekena;
+        private Button btnManekeniModneAgencije;
+        private Button btnDodajManekenaIAgenciju;
+        private Button btnDodajCasopisManekenu;
     }
 }

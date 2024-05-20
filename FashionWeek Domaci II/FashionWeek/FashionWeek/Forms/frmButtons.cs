@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -41,7 +42,7 @@ namespace FashionWeek.Forms
             }
             finally
             {
-                session!.Close();
+                session?.Close();
             }
         }
 
@@ -77,7 +78,7 @@ namespace FashionWeek.Forms
             }
             finally
             {
-                session!.Close();
+                session?.Close();
             }
         }
 
@@ -99,7 +100,7 @@ namespace FashionWeek.Forms
             }
             finally
             {
-                session!.Close();
+                session?.Close();
             }
         }
 
@@ -127,69 +128,130 @@ namespace FashionWeek.Forms
             }
             finally
             {
-                session!.Close();
+                session?.Close();
             }
         }
 
-        private async void btnDodajIZaposliManekena_Click(object sender, EventArgs e)
+        private async void btnManekeniModneAgencije_Click(object sender, EventArgs e)
         {
-            //Cascade ne funkcionise
             ISession? session = null;
             try
             {
                 session = DataLayer.GetSession();
                 if (session != null)
                 {
-
-                    ModnaAgencija a = new ModnaAgencija
+                    ModnaAgencija a = await session.LoadAsync<ModnaAgencija>("29186528");
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine($"Manekeni modne agencije {a.Naziv}: ");
+                    foreach (var el in a.Manekeni)
                     {
-                        PIB = "55566677",
-                        Naziv = "Goresnjak Agencija",
-                        Inostrana = 'N',
-                        Sediste = new()
-                        {
-                            Drzava = "Srbija",
-                            Grad = "Subotica",
-                            Ulica = "Suboticka 234"
-                        },
-                        DatumOsnivanja=DateTime.Now
-                    };
-                    Maneken m = new Maneken
-                    {
-                        MBR = "7774446665552",
-                        Ime = new()
-                        {
-                            LicnoIme = "Milan",
-                            Prezime = "Milanovic"
-                        },
-                        DatumRodjenja = DateTime.Now,
-                        Pol = 'M',
-                        Visina = 190,
-                        Tezina = 100,
-                        RadiUAgenciji = a
-                    };
-
-                    a.Manekeni.Add(m);
-                    await session!.SaveAsync(a);
-                    await session.SaveAsync(m);
-                    await session.FlushAsync();
-                    //m.RadiUAgenciji = a;
-                    //await session.SaveAsync(m);
-                    StringBuilder sb = new();
-                    sb.AppendLine("Dodata je Modna agencija:");
-                    sb.AppendLine($"{a.PIB}\n{a.Naziv}\n{a.Inostrana}");
-                    sb.AppendLine("I maneken: ");
-                    sb.AppendLine($"{m.MBR} {m.Ime.LicnoIme} {m.Ime.Prezime}\n {m.RadiUAgenciji.Naziv}");
+                        sb.AppendLine($"{el.Ime.LicnoIme} {el.Ime.Prezime}");
+                    }
                     MessageBox.Show(sb.ToString());
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             finally
             {
-                session!.Close();
+                session?.Close();
+            }
+        }
+
+        private async void btnDodajManekenaIAgenciju_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    ModnaAgencija a = new ModnaAgencija
+                    {
+                        PIB = "22222222",
+                        Naziv = "Opr Model Agency",
+                        Inostrana = 'N',
+                        Sediste = new()
+                        {
+                            Drzava = "Srbija",
+                            Grad = "Doljevac",
+                            Ulica = "Donji"
+                        },
+                        DatumOsnivanja = DateTime.Now
+                    };
+                    Maneken m = new Maneken
+                    {
+                        MBR = "5555555555555",
+                        Ime = new()
+                        {
+                            LicnoIme = "Milenko",
+                            Prezime = "Milenkovic"
+                        },
+                        DatumRodjenja = DateTime.Now,
+                        Pol = 'M',
+                        Visina = 200,
+                        Tezina = 102
+                    };
+
+                    await session.SaveAsync(a);
+                    m.RadiUAgenciji = a;
+                    await session.SaveAsync(m);
+                    a.Manekeni.Add(m);
+                    await session.UpdateAsync(a);
+                    await session.FlushAsync();
+
+                    MessageBox.Show($"Modna agencija {a.PIB} {a.Naziv} je dodata u bazu i u nju je zaposljen maneken {m.Ime.LicnoIme} {m.Ime.Prezime}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private async void btnDodajCasopisManekenu_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    string? mbr = "0812993781023";
+                    Maneken m = await session.GetAsync<Maneken>(mbr);
+                    if (m != null)
+                    {
+                        Casopis c = new Casopis()
+                        {
+                            Id = new CasopisId()
+                            {
+                                Maneken = m,
+                                NazivCasopisa = "Mnogo dobar casopis"
+                            }
+                        };
+                        await session.SaveOrUpdateAsync(c);
+                        await session.FlushAsync();
+                        MessageBox.Show($"Dodat je casopis {c.Id.NazivCasopisa} u kome je {c.Id.Maneken.Ime.LicnoIme} {c.Id.Maneken.Ime.Prezime}");
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Maneken sa maticnim brojem {mbr} ne postoji");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
             }
         }
     }

@@ -118,5 +118,56 @@ namespace FashionWeek
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private async void button8_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    ModniKreator k = await session.LoadAsync<ModniKreator>("1005970748392");
+                    ModnaRevija r = await session.LoadAsync<ModnaRevija>(2);
+                    r.Kreatori.Remove(k);
+
+                    await session.FlushAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private async void button9_Click(object sender, EventArgs e)
+        {
+            //1108980587321
+            
+                ISession? session = null;
+                try
+                {
+                    session = DataLayer.GetSession();
+                    if (session != null)
+                    {
+                        Maneken k = await session.LoadAsync<Maneken>("1008000784369");
+                        session?.DeleteAsync(k);
+
+                        await session?.FlushAsync();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    session?.Close();
+                }
+        }
     }
 }
