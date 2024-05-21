@@ -8,7 +8,7 @@ namespace FashionWeek.Entiteti;
 
 public class NazivZemljeId
 {
-    public virtual ModnaAgencija? ModnaAgencija { get; set; }
+    public virtual InostranaAgencija? ModnaAgencija { get; set; }
     public virtual string? NazivZemlje { get; set; }
 
     public override bool Equals(object? obj)

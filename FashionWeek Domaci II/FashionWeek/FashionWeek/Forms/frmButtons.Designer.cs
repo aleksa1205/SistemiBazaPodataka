@@ -50,6 +50,8 @@
             btnFromKreatoriMuskiLINQ = new Button();
             btnObrisiModnuKucu = new Button();
             btnObrisiReviju = new Button();
+            btnDodajDrzavuAgenciji = new Button();
+            btnObrisiZemljuAgenciji = new Button();
             SuspendLayout();
             // 
             // btnUcitajManekena
@@ -264,7 +266,7 @@
             // 
             // btnObrisiReviju
             // 
-            btnObrisiReviju.Location = new Point(428, 128);
+            btnObrisiReviju.Location = new Point(430, 128);
             btnObrisiReviju.Name = "btnObrisiReviju";
             btnObrisiReviju.Size = new Size(203, 23);
             btnObrisiReviju.TabIndex = 22;
@@ -272,11 +274,33 @@
             btnObrisiReviju.UseVisualStyleBackColor = true;
             btnObrisiReviju.Click += btnObrisiReviju_Click;
             // 
+            // btnDodajDrzavuAgenciji
+            // 
+            btnDodajDrzavuAgenciji.Location = new Point(430, 157);
+            btnDodajDrzavuAgenciji.Name = "btnDodajDrzavuAgenciji";
+            btnDodajDrzavuAgenciji.Size = new Size(203, 52);
+            btnDodajDrzavuAgenciji.TabIndex = 23;
+            btnDodajDrzavuAgenciji.Text = "Dodaj drzavu agenciji (visevrednosni)";
+            btnDodajDrzavuAgenciji.UseVisualStyleBackColor = true;
+            btnDodajDrzavuAgenciji.Click += btnDodajDrzavuAgenciji_Click;
+            // 
+            // btnObrisiZemljuAgenciji
+            // 
+            btnObrisiZemljuAgenciji.Location = new Point(430, 215);
+            btnObrisiZemljuAgenciji.Name = "btnObrisiZemljuAgenciji";
+            btnObrisiZemljuAgenciji.Size = new Size(203, 52);
+            btnObrisiZemljuAgenciji.TabIndex = 24;
+            btnObrisiZemljuAgenciji.Text = "Obrisi drzavu agenciji (visevrednosni)";
+            btnObrisiZemljuAgenciji.UseVisualStyleBackColor = true;
+            btnObrisiZemljuAgenciji.Click += btnObrisiZemljuAgenciji_Click;
+            // 
             // frmButtons
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(643, 276);
+            Controls.Add(btnObrisiZemljuAgenciji);
+            Controls.Add(btnDodajDrzavuAgenciji);
             Controls.Add(btnObrisiReviju);
             Controls.Add(btnObrisiModnuKucu);
             Controls.Add(btnFromKreatoriMuskiLINQ);
@@ -329,5 +353,7 @@
         private Button btnFromKreatoriMuskiLINQ;
         private Button btnObrisiModnuKucu;
         private Button btnObrisiReviju;
+        private Button btnDodajDrzavuAgenciji;
+        private Button btnObrisiZemljuAgenciji;
     }
 }

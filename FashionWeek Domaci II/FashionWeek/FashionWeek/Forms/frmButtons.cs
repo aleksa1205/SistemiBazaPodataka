@@ -173,7 +173,7 @@ namespace FashionWeek.Forms
                 session = DataLayer.GetSession();
                 if (session != null)
                 {
-                    ModnaAgencija a = new ModnaAgencija
+                    DomacaAgencija a = new DomacaAgencija
                     {
                         PIB = "22222222",
                         Naziv = "Opr Model Agency",
@@ -729,12 +729,12 @@ namespace FashionWeek.Forms
                     ModnaRevija revija = await session.GetAsync<ModnaRevija>(3);
                     if (revija != null)
                     {
-                        foreach(var man in revija.Manekeni)
+                        foreach (var man in revija.Manekeni)
                         {
                             man.Revije.Remove(revija);
                             await session.UpdateAsync(man);
                         }
-                        foreach(var kreat in revija.Kreatori)
+                        foreach (var kreat in revija.Kreatori)
                         {
                             kreat.Revije.Remove(revija);
                             await session.UpdateAsync(kreat);
@@ -747,7 +747,10 @@ namespace FashionWeek.Forms
 
                         }
                         var org = revija.Organizator;
-                        org.ModneRevije.Remove(revija);
+                        if (org != null)
+                        {
+                            org.ModneRevije.Remove(revija);
+                        }
                         await session.UpdateAsync(org);
                         await session.DeleteAsync(revija);
                         await session.FlushAsync();
@@ -762,6 +765,81 @@ namespace FashionWeek.Forms
                         //    }
                         //}
                         MessageBox.Show($"Obrisana je modna revija {revija.Naziv}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private async void btnDodajDrzavuAgenciji_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    ModnaAgencija agencija = await session.GetAsync<ModnaAgencija>("77141507");
+                    if (agencija is InostranaAgencija)
+                    {
+                        NazivZemlje nz = new NazivZemlje
+                        {
+                            Id = new NazivZemljeId()
+                            {
+                                ModnaAgencija = agencija as InostranaAgencija,
+                                NazivZemlje = "NovaZemlja"
+                            }
+                        };
+                        await session.SaveOrUpdateAsync(nz);
+                        await session.FlushAsync();
+                        MessageBox.Show($"{nz.Id.NazivZemlje} je dodata kao zemlja u kojoj radi {nz.Id.ModnaAgencija.Naziv}");
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Modna agencija nije inostrana i ne moze joj se dodati zemlja!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private async void btnObrisiZemljuAgenciji_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    ModnaAgencija agencija = await session.GetAsync<ModnaAgencija>("77141507");
+                    if (agencija is InostranaAgencija)
+                    {
+                        List<NazivZemlje> nazivi = await (from k in session.Query<NazivZemlje>() select k).ToListAsync();
+                        List<NazivZemlje> izdvojeni = nazivi.Where(x => x.Id.ModnaAgencija == agencija).ToList();
+                        if (izdvojeni.Count != 0)
+                        {
+                            await session.DeleteAsync(izdvojeni[0]);
+                            await session.FlushAsync();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Modna agencija nije inostrana i ne moze joj se izbrisati zemlja!");
                     }
                 }
             }

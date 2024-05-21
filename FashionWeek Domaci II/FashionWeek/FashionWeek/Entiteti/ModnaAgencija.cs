@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FashionWeek.Entiteti
 {
-    public class ModnaAgencija
+    public abstract class ModnaAgencija
     {
         public virtual required string PIB { get; set; }
         public virtual required string Naziv { get; set; }
@@ -16,7 +16,6 @@ namespace FashionWeek.Entiteti
         public virtual DateTime DatumOsnivanja { get; set; }
 
         public virtual IList<Maneken> Manekeni { get; set; } = [];
-        public virtual IList<NazivZemlje> Zemlje { get; set; } = [];
 
     }
 }
