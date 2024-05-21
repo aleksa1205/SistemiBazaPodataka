@@ -20,6 +20,6 @@ public class ModnaKucaMapiranje : ClassMap<ModnaKuca>
 
         HasMany(x => x.Kreatori).KeyColumn("NAZIV_KUCE");
         References(x => x.Organizator).Column("ORGANIZATOR_ID");
-        HasMany(x => x.Vlasnici).KeyColumn("NAZIV_KUCE");
+        HasMany(x => x.Vlasnici).KeyColumn("NAZIV_KUCE").Cascade.All().Inverse();
     }
 }

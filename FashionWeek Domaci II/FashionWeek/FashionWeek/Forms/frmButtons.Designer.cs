@@ -48,6 +48,8 @@
             btnObrisiManekena = new Button();
             btnObrisiManekenaTranscation = new Button();
             btnFromKreatoriMuskiLINQ = new Button();
+            btnObrisiModnuKucu = new Button();
+            btnObrisiReviju = new Button();
             SuspendLayout();
             // 
             // btnUcitajManekena
@@ -250,11 +252,33 @@
             btnFromKreatoriMuskiLINQ.UseVisualStyleBackColor = true;
             btnFromKreatoriMuskiLINQ.Click += btnFromKreatoriMuskiLINQ_Click;
             // 
+            // btnObrisiModnuKucu
+            // 
+            btnObrisiModnuKucu.Location = new Point(430, 99);
+            btnObrisiModnuKucu.Name = "btnObrisiModnuKucu";
+            btnObrisiModnuKucu.Size = new Size(203, 23);
+            btnObrisiModnuKucu.TabIndex = 21;
+            btnObrisiModnuKucu.Text = "Obrisi modnu kucu";
+            btnObrisiModnuKucu.UseVisualStyleBackColor = true;
+            btnObrisiModnuKucu.Click += btnObrisiModnuKucu_Click;
+            // 
+            // btnObrisiReviju
+            // 
+            btnObrisiReviju.Location = new Point(428, 128);
+            btnObrisiReviju.Name = "btnObrisiReviju";
+            btnObrisiReviju.Size = new Size(203, 23);
+            btnObrisiReviju.TabIndex = 22;
+            btnObrisiReviju.Text = "Obrisi modnu reviju";
+            btnObrisiReviju.UseVisualStyleBackColor = true;
+            btnObrisiReviju.Click += btnObrisiReviju_Click;
+            // 
             // frmButtons
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(643, 276);
+            Controls.Add(btnObrisiReviju);
+            Controls.Add(btnObrisiModnuKucu);
             Controls.Add(btnFromKreatoriMuskiLINQ);
             Controls.Add(btnObrisiManekenaTranscation);
             Controls.Add(btnObrisiManekena);
@@ -303,5 +327,7 @@
         private Button btnObrisiManekena;
         private Button btnObrisiManekenaTranscation;
         private Button btnFromKreatoriMuskiLINQ;
+        private Button btnObrisiModnuKucu;
+        private Button btnObrisiReviju;
     }
 }

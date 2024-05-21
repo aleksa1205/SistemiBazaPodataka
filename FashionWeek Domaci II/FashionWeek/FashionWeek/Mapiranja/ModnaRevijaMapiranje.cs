@@ -31,6 +31,6 @@ public class ModnaRevijaMapiranje : ClassMap<ModnaRevija>
             .ChildKeyColumn("MBR_KREATORA")
             .Cascade.All();
         References(x => x.Organizator).Column("ORGANIZATOR_ID");
-        HasMany(x => x.SpecijalniGosti).KeyColumn("RBR_REVIJE");
+        HasMany(x => x.SpecijalniGosti).KeyColumn("RBR_REVIJE").Cascade.All();
     }
 }

@@ -5,6 +5,7 @@ using FashionWeek.Entiteti.Helper;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Linq;
+using NHibernate.Mapping;
 using NHibernate.Util;
 using System;
 using System.CodeDom;
@@ -596,7 +597,7 @@ namespace FashionWeek.Forms
                 session = DataLayer.GetSession();
                 if (session != null)
                 {
-                    Maneken maneken = await session.GetAsync<Maneken>("5555555555555");
+                    Maneken maneken = await session.GetAsync<Maneken>("1008000784369");
                     if (maneken != null)
                     {
                         await session.DeleteAsync(maneken);
@@ -657,11 +658,111 @@ namespace FashionWeek.Forms
 
                     StringBuilder sb = new StringBuilder();
                     sb.AppendLine("Lista muskih modnih kreatora:");
-                    foreach(var kreator in kreatori)
+                    foreach (var kreator in kreatori)
                     {
                         sb.AppendLine($"{kreator.MBR}: {kreator.Ime.LicnoIme} {kreator.Ime.Prezime}");
                     }
                     MessageBox.Show(sb.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private async void btnObrisiModnuKucu_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    ModnaKuca kuca = await session.GetAsync<ModnaKuca>("Europe Fashion Ltd.");
+                    if (kuca != null)
+                    {
+                        List<ModniKreator> kreatori = new List<ModniKreator>(kuca.Kreatori);
+                        foreach (var kreator in kreatori)
+                        {
+                            kreator.RadiU = null;
+                            await session.UpdateAsync(kreator);
+                        }
+                        await session.DeleteAsync(kuca);
+                        await session.FlushAsync();
+
+                        StringBuilder sb = new StringBuilder();
+                        foreach (var kreator in kreatori)
+                        {
+                            sb.AppendLine($"{kreator.MBR}: {kreator.Ime.LicnoIme} {kreator.Ime.Prezime}");
+                            if (kreator.RadiU != null)
+                            {
+                                sb.AppendLine($"{kreator.RadiU.Naziv}");
+                            }
+                        }
+                        MessageBox.Show(sb.ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private async void btnObrisiReviju_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    ModnaRevija revija = await session.GetAsync<ModnaRevija>(3);
+                    if (revija != null)
+                    {
+                        foreach(var man in revija.Manekeni)
+                        {
+                            man.Revije.Remove(revija);
+                            await session.UpdateAsync(man);
+                        }
+                        foreach(var kreat in revija.Kreatori)
+                        {
+                            kreat.Revije.Remove(revija);
+                            await session.UpdateAsync(kreat);
+
+                        }
+                        foreach (var specg in revija.SpecijalniGosti)
+                        {
+                            await session.DeleteAsync(specg);
+                            await session.FlushAsync();
+
+                        }
+                        var org = revija.Organizator;
+                        org.ModneRevije.Remove(revija);
+                        await session.UpdateAsync(org);
+                        await session.DeleteAsync(revija);
+                        await session.FlushAsync();
+
+
+                        //StringBuilder sb = new();
+                        //foreach(var el in revija.Manekeni)
+                        //{
+                        //    foreach(var i in el.Revije)
+                        //    {
+                        //        sb.AppendLine(i.Naziv);
+                        //    }
+                        //}
+                        MessageBox.Show($"Obrisana je modna revija {revija.Naziv}");
+                    }
                 }
             }
             catch(Exception ex)
