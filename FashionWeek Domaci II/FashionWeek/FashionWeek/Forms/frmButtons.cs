@@ -72,7 +72,7 @@ namespace FashionWeek.Forms
                         Tezina = 70,
                         Zanimanje = "Moler"
                     };
-                    await session.SaveOrUpdateAsync(m);
+                    await session.SaveAsync(m);
                     await session.FlushAsync();
                     MessageBox.Show($"Uspesno dodat maneken sa maticnim brojem {m.MBR}");
                 }

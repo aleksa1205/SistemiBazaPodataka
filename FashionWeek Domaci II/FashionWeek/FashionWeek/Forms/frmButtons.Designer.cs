@@ -337,7 +337,6 @@
         private Button btnManekeniModneAgencije;
         private Button btnDodajManekenaIAgenciju;
         private Button btnDodajCasopisManekenu;
-        private Button button1;
         private Button btnDodajManekenaAgenciji;
         private Button btnAzurirajAgenciju;
         private Button btnFromKreatori;
