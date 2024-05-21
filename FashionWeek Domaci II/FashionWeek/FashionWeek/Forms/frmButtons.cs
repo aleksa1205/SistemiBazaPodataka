@@ -3,7 +3,11 @@ using FashionWeek.DTO;
 using FashionWeek.Entiteti;
 using FashionWeek.Entiteti.Helper;
 using NHibernate;
+using NHibernate.Criterion;
+using NHibernate.Linq;
+using NHibernate.Util;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -223,8 +227,7 @@ namespace FashionWeek.Forms
                 session = DataLayer.GetSession();
                 if (session != null)
                 {
-                    string? mbr = "0812993781023";
-                    Maneken m = await session.GetAsync<Maneken>(mbr);
+                    Maneken m = await session.GetAsync<Maneken>("0812993781023");
                     if (m != null)
                     {
                         Casopis c = new Casopis()
@@ -241,11 +244,427 @@ namespace FashionWeek.Forms
                     }
                     else
                     {
-                        MessageBox.Show($"Maneken sa maticnim brojem {mbr} ne postoji");
+                        MessageBox.Show($"Maneken sa maticnim brojem 0812993781023 ne postoji");
                     }
                 }
             }
             catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private async void btnDodajManekenaAgenciji_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    ModnaAgencija a = await session.GetAsync<ModnaAgencija>("55566677");
+                    if (a != null)
+                    {
+                        Maneken m = new Maneken
+                        {
+                            MBR = "2222222222222",
+                            Ime = new Ime
+                            {
+                                LicnoIme = "Covek",
+                                Prezime = "Dobar"
+                            },
+                            Pol = 'Z',
+                            RadiUAgenciji = a
+                        };
+                        await session.SaveOrUpdateAsync(m);
+                        a.Manekeni.Add(m);
+                        await session.UpdateAsync(a);
+                        await session.FlushAsync();
+                        MessageBox.Show($"Maneken {m.Ime.LicnoIme} {m.Ime.Prezime} je dodat u agenciju {a.Naziv}");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Modna agencija sa PIB-om 55566677 ne postoji!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void btnAzurirajAgenciju_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    ModnaAgencija a = await session.GetAsync<ModnaAgencija>("55566677");
+                    if (a != null)
+                    {
+                        StringBuilder sb = new StringBuilder();
+                        sb.AppendLine($"Trenutna lokacija modne agencije {a.Naziv} je:");
+                        sb.AppendLine($"Drzava: {a.Sediste?.Drzava}\nGrad: {a.Sediste?.Grad}\nUlica: {a.Sediste?.Ulica}");
+                        a.Sediste.Drzava = "Doljevac";
+                        a.Sediste.Grad = "Dobar";
+
+                        await session.UpdateAsync(a);
+                        await session.FlushAsync();
+                        await session.RefreshAsync(a);
+
+                        sb.AppendLine("Nova lokacijaje:");
+                        sb.AppendLine($"Drzava: {a.Sediste.Drzava}\nGrad: {a.Sediste.Grad}\nUlica: {a.Sediste.Ulica}");
+                        MessageBox.Show(sb.ToString());
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ne postoji agencija sa PIB-om 55566677");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private async void btnFromKreatori_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    IQuery query = session.CreateQuery("from ModniKreator");
+                    IList<ModniKreator> kreatori = await query.ListAsync<ModniKreator>();
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("Pronadjeni modni kreatori su:");
+                    foreach (var kreator in kreatori)
+                    {
+                        sb.AppendLine($"{kreator.MBR}: {kreator.Ime.LicnoIme} {kreator.Ime.Prezime}");
+                    }
+                    MessageBox.Show(sb.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private async void btnFromKreatoriMuski_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    IQuery query = session.CreateQuery("from ModniKreator as o where o.Pol='M'");
+                    IList<ModniKreator> kreatori = await query.ListAsync<ModniKreator>();
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("Muski modni kreatori: ");
+                    foreach (var kreator in kreatori)
+                    {
+                        sb.AppendLine($"{kreator.MBR}: {kreator.Ime.LicnoIme} {kreator.Ime.Prezime}");
+                    }
+                    MessageBox.Show(sb.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private async void btnSelectModnaRevijaParametar_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    IQuery query = session.CreateQuery("from ModnaRevija as o where o.Mesto.Grad= :grad");
+                    query.SetString("grad", "Nis");
+                    IList<ModnaRevija> revije = await query.ListAsync<ModnaRevija>();
+
+                    StringBuilder sb = new StringBuilder();
+                    foreach (var revija in revije)
+                    {
+                        sb.AppendLine($"{revija.Naziv}");
+                    }
+                    MessageBox.Show(sb.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private async void btnRevijaById_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    IQuery query = session.CreateQuery("select mr from ModnaRevija mr where mr.RBR = 3");
+                    ModnaRevija mr = await query.UniqueResultAsync<ModnaRevija>();
+                    MessageBox.Show($"{mr.RBR} {mr.Naziv}");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private async void btnAgencijaByKriterijum_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    ICriteria criteria = session.CreateCriteria<ModnaAgencija>();
+                    criteria.Add(Restrictions.Eq("Inostrana", 'N'));
+                    criteria.Add(Restrictions.Eq("Sediste.Drzava", "Srbija"));
+                    IList<ModnaAgencija> agencije = await criteria.ListAsync<ModnaAgencija>();
+
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("Agencije koje su iz Srbije i nisu inostrane:");
+                    foreach (var agencija in agencije)
+                    {
+                        sb.AppendLine($"{agencija.PIB}: {agencija.Naziv}");
+                    }
+                    MessageBox.Show(sb.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private async void btnQueryOverModneRevije_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    IList<ModnaRevija> revije = await session.QueryOver<ModnaRevija>().Where(x => x.RBR >= 3).ListAsync<ModnaRevija>();
+
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("Modne revije cije je redni broj veci ili jednak 3: ");
+                    foreach (var revija in revije)
+                    {
+                        sb.AppendLine($"{revija.RBR}: {revija.Naziv}");
+                    }
+                    MessageBox.Show(sb.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private async void btnUpitZaManekene_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    ISQLQuery query = session.CreateSQLQuery("SELECT * FROM MANEKEN");
+                    query.AddEntity(typeof(Maneken));
+                    IList<Maneken> manekeni = await query.ListAsync<Maneken>();
+
+                    StringBuilder sb = new StringBuilder();
+                    foreach (var maneken in manekeni)
+                    {
+                        sb.AppendLine($"{maneken.MBR}: {maneken.Ime.LicnoIme} {maneken.Ime.Prezime} {maneken.Pol}");
+                    }
+                    MessageBox.Show(sb.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private async void btnAzurirajManekena_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            ISession? newSession = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    Maneken m = await session.GetAsync<Maneken>("5555555555555");
+                    if (m != null)
+                    {
+                        MessageBox.Show($"Meneken pre izmene: {m.Ime.LicnoIme} {m.Ime.Prezime}");
+                        session.Close();
+                        session = null;
+                        m.Ime.Prezime = "MnogoDobro";
+
+                        newSession = DataLayer.GetSession();
+                        if (newSession != null)
+                        {
+                            await newSession.UpdateAsync(m);
+                            await newSession.FlushAsync();
+                            MessageBox.Show($"Maneken nakon izmene: {m.Ime.LicnoIme} {m.Ime.Prezime}");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+                newSession?.Close();
+            }
+        }
+
+        private async void btnObrisiManekena_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    Maneken maneken = await session.GetAsync<Maneken>("5555555555555");
+                    if (maneken != null)
+                    {
+                        await session.DeleteAsync(maneken);
+                        await session.FlushAsync();
+                        MessageBox.Show($"Obrisan maneken sa maticnim brojem {maneken.MBR}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private async void btnObrisiManekenaTranscation_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            ITransaction? transaction = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    Maneken maneken = await session.GetAsync<Maneken>("2222222222222");
+                    if (maneken != null)
+                    {
+                        transaction = session.BeginTransaction();
+                        await session.DeleteAsync(maneken);
+                        transaction?.CommitAsync();
+                        MessageBox.Show($"Obrisan maneken sa maticnim brojem {maneken.MBR}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                transaction?.RollbackAsync();
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        private async void btnFromKreatoriMuskiLINQ_Click(object sender, EventArgs e)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    IList<ModniKreator> kreatori = await (from k in session.Query<ModniKreator>() where k.Pol == 'M' select k).ToListAsync();
+
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("Lista muskih modnih kreatora:");
+                    foreach(var kreator in kreatori)
+                    {
+                        sb.AppendLine($"{kreator.MBR}: {kreator.Ime.LicnoIme} {kreator.Ime.Prezime}");
+                    }
+                    MessageBox.Show(sb.ToString());
+                }
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

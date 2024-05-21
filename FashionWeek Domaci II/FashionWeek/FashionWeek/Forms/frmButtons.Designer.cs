@@ -35,6 +35,19 @@
             btnManekeniModneAgencije = new Button();
             btnDodajManekenaIAgenciju = new Button();
             btnDodajCasopisManekenu = new Button();
+            btnDodajManekenaAgenciji = new Button();
+            btnAzurirajAgenciju = new Button();
+            btnFromKreatori = new Button();
+            btnFromKreatoriMuski = new Button();
+            btnSelectModnaRevijaParametar = new Button();
+            btnRevijaById = new Button();
+            btnAgencijaByKriterijum = new Button();
+            btnQueryOverModneRevije = new Button();
+            btnUpitZaManekene = new Button();
+            btnAzurirajManekena = new Button();
+            btnObrisiManekena = new Button();
+            btnObrisiManekenaTranscation = new Button();
+            btnFromKreatoriMuskiLINQ = new Button();
             SuspendLayout();
             // 
             // btnUcitajManekena
@@ -93,7 +106,7 @@
             btnDodajManekenaIAgenciju.Name = "btnDodajManekenaIAgenciju";
             btnDodajManekenaIAgenciju.Size = new Size(203, 23);
             btnDodajManekenaIAgenciju.TabIndex = 5;
-            btnDodajManekenaIAgenciju.Text = "Dodaj Manekena i Agenciju";
+            btnDodajManekenaIAgenciju.Text = "Dodaj manekena i agenciju";
             btnDodajManekenaIAgenciju.UseVisualStyleBackColor = true;
             btnDodajManekenaIAgenciju.Click += btnDodajManekenaIAgenciju_Click;
             // 
@@ -101,17 +114,160 @@
             // 
             btnDodajCasopisManekenu.Location = new Point(12, 186);
             btnDodajCasopisManekenu.Name = "btnDodajCasopisManekenu";
-            btnDodajCasopisManekenu.Size = new Size(203, 42);
+            btnDodajCasopisManekenu.Size = new Size(203, 52);
             btnDodajCasopisManekenu.TabIndex = 6;
             btnDodajCasopisManekenu.Text = "Dodaj casopis manekenu (visevrednosni)";
             btnDodajCasopisManekenu.UseVisualStyleBackColor = true;
             btnDodajCasopisManekenu.Click += btnDodajCasopisManekenu_Click;
             // 
+            // btnDodajManekenaAgenciji
+            // 
+            btnDodajManekenaAgenciji.Location = new Point(12, 244);
+            btnDodajManekenaAgenciji.Name = "btnDodajManekenaAgenciji";
+            btnDodajManekenaAgenciji.Size = new Size(203, 23);
+            btnDodajManekenaAgenciji.TabIndex = 8;
+            btnDodajManekenaAgenciji.Text = "Dodaj manekena agenciji";
+            btnDodajManekenaAgenciji.UseVisualStyleBackColor = true;
+            btnDodajManekenaAgenciji.Click += btnDodajManekenaAgenciji_Click;
+            // 
+            // btnAzurirajAgenciju
+            // 
+            btnAzurirajAgenciju.Location = new Point(221, 12);
+            btnAzurirajAgenciju.Name = "btnAzurirajAgenciju";
+            btnAzurirajAgenciju.Size = new Size(203, 23);
+            btnAzurirajAgenciju.TabIndex = 9;
+            btnAzurirajAgenciju.Text = "Azuriraj agenciju (ne koristi)";
+            btnAzurirajAgenciju.UseVisualStyleBackColor = true;
+            btnAzurirajAgenciju.Click += btnAzurirajAgenciju_Click;
+            // 
+            // btnFromKreatori
+            // 
+            btnFromKreatori.Location = new Point(221, 41);
+            btnFromKreatori.Name = "btnFromKreatori";
+            btnFromKreatori.Size = new Size(203, 23);
+            btnFromKreatori.TabIndex = 10;
+            btnFromKreatori.Text = "Upit za kreatore";
+            btnFromKreatori.UseVisualStyleBackColor = true;
+            btnFromKreatori.Click += btnFromKreatori_Click;
+            // 
+            // btnFromKreatoriMuski
+            // 
+            btnFromKreatoriMuski.Location = new Point(221, 70);
+            btnFromKreatoriMuski.Name = "btnFromKreatoriMuski";
+            btnFromKreatoriMuski.Size = new Size(203, 23);
+            btnFromKreatoriMuski.TabIndex = 11;
+            btnFromKreatoriMuski.Text = "Upit za muske kreatore";
+            btnFromKreatoriMuski.UseVisualStyleBackColor = true;
+            btnFromKreatoriMuski.Click += btnFromKreatoriMuski_Click;
+            // 
+            // btnSelectModnaRevijaParametar
+            // 
+            btnSelectModnaRevijaParametar.Location = new Point(221, 99);
+            btnSelectModnaRevijaParametar.Name = "btnSelectModnaRevijaParametar";
+            btnSelectModnaRevijaParametar.Size = new Size(203, 23);
+            btnSelectModnaRevijaParametar.TabIndex = 12;
+            btnSelectModnaRevijaParametar.Text = "Upit za modnu reviju (parametar)";
+            btnSelectModnaRevijaParametar.UseVisualStyleBackColor = true;
+            btnSelectModnaRevijaParametar.Click += btnSelectModnaRevijaParametar_Click;
+            // 
+            // btnRevijaById
+            // 
+            btnRevijaById.Location = new Point(221, 128);
+            btnRevijaById.Name = "btnRevijaById";
+            btnRevijaById.Size = new Size(203, 23);
+            btnRevijaById.TabIndex = 13;
+            btnRevijaById.Text = "Upit za modnu reviju (unique)";
+            btnRevijaById.UseVisualStyleBackColor = true;
+            btnRevijaById.Click += btnRevijaById_Click;
+            // 
+            // btnAgencijaByKriterijum
+            // 
+            btnAgencijaByKriterijum.Location = new Point(221, 157);
+            btnAgencijaByKriterijum.Name = "btnAgencijaByKriterijum";
+            btnAgencijaByKriterijum.Size = new Size(203, 23);
+            btnAgencijaByKriterijum.TabIndex = 14;
+            btnAgencijaByKriterijum.Text = "Upit za agencije (kriterijum)";
+            btnAgencijaByKriterijum.UseVisualStyleBackColor = true;
+            btnAgencijaByKriterijum.Click += btnAgencijaByKriterijum_Click;
+            // 
+            // btnQueryOverModneRevije
+            // 
+            btnQueryOverModneRevije.Location = new Point(221, 186);
+            btnQueryOverModneRevije.Name = "btnQueryOverModneRevije";
+            btnQueryOverModneRevije.Size = new Size(203, 23);
+            btnQueryOverModneRevije.TabIndex = 15;
+            btnQueryOverModneRevije.Text = "Upit za modne revije (QueryOver)";
+            btnQueryOverModneRevije.UseVisualStyleBackColor = true;
+            btnQueryOverModneRevije.Click += btnQueryOverModneRevije_Click;
+            // 
+            // btnUpitZaManekene
+            // 
+            btnUpitZaManekene.Location = new Point(221, 215);
+            btnUpitZaManekene.Name = "btnUpitZaManekene";
+            btnUpitZaManekene.Size = new Size(203, 23);
+            btnUpitZaManekene.TabIndex = 16;
+            btnUpitZaManekene.Text = "Upit za manekene (NativeSQL)";
+            btnUpitZaManekene.UseVisualStyleBackColor = true;
+            btnUpitZaManekene.Click += btnUpitZaManekene_Click;
+            // 
+            // btnAzurirajManekena
+            // 
+            btnAzurirajManekena.Location = new Point(221, 244);
+            btnAzurirajManekena.Name = "btnAzurirajManekena";
+            btnAzurirajManekena.Size = new Size(203, 23);
+            btnAzurirajManekena.TabIndex = 17;
+            btnAzurirajManekena.Text = "Azuriraj manekena";
+            btnAzurirajManekena.UseVisualStyleBackColor = true;
+            btnAzurirajManekena.Click += btnAzurirajManekena_Click;
+            // 
+            // btnObrisiManekena
+            // 
+            btnObrisiManekena.Location = new Point(430, 12);
+            btnObrisiManekena.Name = "btnObrisiManekena";
+            btnObrisiManekena.Size = new Size(203, 23);
+            btnObrisiManekena.TabIndex = 18;
+            btnObrisiManekena.Text = "Obrisi manekena";
+            btnObrisiManekena.UseVisualStyleBackColor = true;
+            btnObrisiManekena.Click += btnObrisiManekena_Click;
+            // 
+            // btnObrisiManekenaTranscation
+            // 
+            btnObrisiManekenaTranscation.Location = new Point(430, 41);
+            btnObrisiManekenaTranscation.Name = "btnObrisiManekenaTranscation";
+            btnObrisiManekenaTranscation.Size = new Size(203, 23);
+            btnObrisiManekenaTranscation.TabIndex = 19;
+            btnObrisiManekenaTranscation.Text = "Obrisi manekena (Transaction)";
+            btnObrisiManekenaTranscation.UseVisualStyleBackColor = true;
+            btnObrisiManekenaTranscation.Click += btnObrisiManekenaTranscation_Click;
+            // 
+            // btnFromKreatoriMuskiLINQ
+            // 
+            btnFromKreatoriMuskiLINQ.Location = new Point(430, 70);
+            btnFromKreatoriMuskiLINQ.Name = "btnFromKreatoriMuskiLINQ";
+            btnFromKreatoriMuskiLINQ.Size = new Size(203, 23);
+            btnFromKreatoriMuskiLINQ.TabIndex = 20;
+            btnFromKreatoriMuskiLINQ.Text = "Upit za muske kreatore (LINQ)";
+            btnFromKreatoriMuskiLINQ.UseVisualStyleBackColor = true;
+            btnFromKreatoriMuskiLINQ.Click += btnFromKreatoriMuskiLINQ_Click;
+            // 
             // frmButtons
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(643, 276);
+            Controls.Add(btnFromKreatoriMuskiLINQ);
+            Controls.Add(btnObrisiManekenaTranscation);
+            Controls.Add(btnObrisiManekena);
+            Controls.Add(btnAzurirajManekena);
+            Controls.Add(btnUpitZaManekene);
+            Controls.Add(btnQueryOverModneRevije);
+            Controls.Add(btnAgencijaByKriterijum);
+            Controls.Add(btnRevijaById);
+            Controls.Add(btnSelectModnaRevijaParametar);
+            Controls.Add(btnFromKreatoriMuski);
+            Controls.Add(btnFromKreatori);
+            Controls.Add(btnAzurirajAgenciju);
+            Controls.Add(btnDodajManekenaAgenciji);
             Controls.Add(btnDodajCasopisManekenu);
             Controls.Add(btnDodajManekenaIAgenciju);
             Controls.Add(btnManekeniModneAgencije);
@@ -133,5 +289,19 @@
         private Button btnManekeniModneAgencije;
         private Button btnDodajManekenaIAgenciju;
         private Button btnDodajCasopisManekenu;
+        private Button button1;
+        private Button btnDodajManekenaAgenciji;
+        private Button btnAzurirajAgenciju;
+        private Button btnFromKreatori;
+        private Button btnFromKreatoriMuski;
+        private Button btnSelectModnaRevijaParametar;
+        private Button btnRevijaById;
+        private Button btnAgencijaByKriterijum;
+        private Button btnQueryOverModneRevije;
+        private Button btnUpitZaManekene;
+        private Button btnAzurirajManekena;
+        private Button btnObrisiManekena;
+        private Button btnObrisiManekenaTranscation;
+        private Button btnFromKreatoriMuskiLINQ;
     }
 }
