@@ -1,6 +1,6 @@
 ﻿namespace FashionWeek.Forms.Utils.Agencija
 {
-    partial class frmAgencijaManekeni
+    partial class frmNezaposleniManekeni
     {
         /// <summary>
         /// Required designer variable.
@@ -34,9 +34,9 @@
             colPrezime = new ColumnHeader();
             colDatumRodjenja = new ColumnHeader();
             colPol = new ColumnHeader();
-            lblListaManekenaAgencije = new Label();
-            btnOtpustiManekena = new Button();
-            btnIzađi = new Button();
+            lblListaNezaposlenih = new Label();
+            btnOdustani = new Button();
+            btnZaposliManekena = new Button();
             SuspendLayout();
             // 
             // lvManekeni
@@ -53,7 +53,7 @@
             // colMBR
             // 
             colMBR.Text = "MBR";
-            colMBR.Width = 150;
+            colMBR.Width = 100;
             // 
             // colLicnoIme
             // 
@@ -79,51 +79,51 @@
             colPol.TextAlign = HorizontalAlignment.Center;
             colPol.Width = 30;
             // 
-            // lblListaManekenaAgencije
+            // lblListaNezaposlenih
             // 
-            lblListaManekenaAgencije.AutoSize = true;
-            lblListaManekenaAgencije.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblListaManekenaAgencije.Location = new Point(12, 9);
-            lblListaManekenaAgencije.Name = "lblListaManekenaAgencije";
-            lblListaManekenaAgencije.Size = new Size(183, 21);
-            lblListaManekenaAgencije.TabIndex = 3;
-            lblListaManekenaAgencije.Text = "Lista manekena agencije ";
+            lblListaNezaposlenih.AutoSize = true;
+            lblListaNezaposlenih.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblListaNezaposlenih.Location = new Point(12, 9);
+            lblListaNezaposlenih.Name = "lblListaNezaposlenih";
+            lblListaNezaposlenih.Size = new Size(216, 21);
+            lblListaNezaposlenih.TabIndex = 3;
+            lblListaNezaposlenih.Text = "Lista nezaposlenih manekena:";
             // 
-            // btnOtpustiManekena
+            // btnOdustani
             // 
-            btnOtpustiManekena.Enabled = false;
-            btnOtpustiManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnOtpustiManekena.Location = new Point(680, 33);
-            btnOtpustiManekena.Name = "btnOtpustiManekena";
-            btnOtpustiManekena.Size = new Size(161, 30);
-            btnOtpustiManekena.TabIndex = 6;
-            btnOtpustiManekena.Text = "Otpusti manekena";
-            btnOtpustiManekena.UseVisualStyleBackColor = true;
-            btnOtpustiManekena.Click += btnOtpustiManekena_Click;
+            btnOdustani.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnOdustani.Location = new Point(680, 408);
+            btnOdustani.Name = "btnOdustani";
+            btnOdustani.Size = new Size(161, 30);
+            btnOdustani.TabIndex = 4;
+            btnOdustani.Text = "Odustani";
+            btnOdustani.UseVisualStyleBackColor = true;
+            btnOdustani.Click += btnOdustani_Click;
             // 
-            // btnIzađi
+            // btnZaposliManekena
             // 
-            btnIzađi.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnIzađi.Location = new Point(680, 408);
-            btnIzađi.Name = "btnIzađi";
-            btnIzađi.Size = new Size(161, 30);
-            btnIzađi.TabIndex = 7;
-            btnIzađi.Text = "Izađi";
-            btnIzađi.UseVisualStyleBackColor = true;
-            btnIzađi.Click += btnIzađi_Click;
+            btnZaposliManekena.Enabled = false;
+            btnZaposliManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnZaposliManekena.Location = new Point(680, 33);
+            btnZaposliManekena.Name = "btnZaposliManekena";
+            btnZaposliManekena.Size = new Size(161, 30);
+            btnZaposliManekena.TabIndex = 5;
+            btnZaposliManekena.Text = "Zaposli manekena";
+            btnZaposliManekena.UseVisualStyleBackColor = true;
+            btnZaposliManekena.Click += btnZaposliManekena_Click;
             // 
-            // frmAgencijaManekeni
+            // frmNezaposleniManekeni
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(845, 450);
-            Controls.Add(btnIzađi);
-            Controls.Add(btnOtpustiManekena);
-            Controls.Add(lblListaManekenaAgencije);
+            ClientSize = new Size(849, 450);
+            Controls.Add(btnZaposliManekena);
+            Controls.Add(btnOdustani);
+            Controls.Add(lblListaNezaposlenih);
             Controls.Add(lvManekeni);
-            Name = "frmAgencijaManekeni";
-            Text = "AGENCIJA - Manekeni";
-            Load += frmAgencijaManekeni_Load;
+            Name = "frmNezaposleniManekeni";
+            Text = "AGENCIJA - Nezaposleni manekeni";
+            Load += frmNezaposleniManekeni_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -136,8 +136,8 @@
         private ColumnHeader colPrezime;
         private ColumnHeader colDatumRodjenja;
         private ColumnHeader colPol;
-        private Label lblListaManekenaAgencije;
-        private Button btnOtpustiManekena;
-        private Button btnIzađi;
+        private Label lblListaNezaposlenih;
+        private Button btnOdustani;
+        private Button btnZaposliManekena;
     }
 }

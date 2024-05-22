@@ -115,10 +115,6 @@ namespace FashionWeek.Forms.Utils.Agencija
                 MessageBox.Show($"Modna agencija {agencija.PIB}: {agencija.Naziv} je uspešno dodata!");
                 Close();
             }
-            else
-            {
-                MessageBox.Show("Greška pri dodavanju agencije!");
-            }
         }
 
         private void btnOdustani_Click(object sender, EventArgs e)

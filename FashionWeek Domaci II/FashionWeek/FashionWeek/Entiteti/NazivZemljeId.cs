@@ -8,7 +8,7 @@ namespace FashionWeek.Entiteti;
 
 public class NazivZemljeId
 {
-    public virtual InostranaAgencija? ModnaAgencija { get; set; }
+    public virtual InostranaAgencija? InostranaAgencija { get; set; }
     public virtual string? NazivZemlje { get; set; }
 
     public override bool Equals(object? obj)
@@ -23,11 +23,11 @@ public class NazivZemljeId
         }
 
         NazivZemljeId compare = (obj as NazivZemljeId)!;
-        return ModnaAgencija!.PIB == compare!.ModnaAgencija!.PIB && NazivZemlje == compare.NazivZemlje;
+        return InostranaAgencija!.PIB == compare!.InostranaAgencija!.PIB && NazivZemlje == compare.NazivZemlje;
 
     }
     public override int GetHashCode()
     {
-        return ModnaAgencija!.PIB.GetHashCode();
+        return InostranaAgencija!.PIB.GetHashCode();
     }
 }

@@ -24,7 +24,7 @@ namespace FashionWeek.Forms.Utils
         {
             foreach (char ch in number)
             {
-                if (ch <= 0 || ch >= 9)
+                if (!Char.IsDigit(ch))
                 {
                     return false;
                 }
@@ -110,16 +110,8 @@ namespace FashionWeek.Forms.Utils
 
         private void frmAzurirajManekena_Load(object sender, EventArgs e)
         {
-            if (frmManekeni._maneken != null)
-            {
-                Ucitaj();
-                txtMBR.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Greška pri učitavanju manekena!");
-                Close();
-            }
+            Ucitaj();
+            txtMBR.Enabled = false;
         }
 
         private async void btnAzuriraj_Click(object sender, EventArgs e)
@@ -133,10 +125,6 @@ namespace FashionWeek.Forms.Utils
             {
                 MessageBox.Show("Uspešno ažuriran maneken!");
                 Close();
-            }
-            else
-            {
-                MessageBox.Show("Greška pri ažuriranju!");
             }
         }
 

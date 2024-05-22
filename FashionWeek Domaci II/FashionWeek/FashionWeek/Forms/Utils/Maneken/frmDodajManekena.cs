@@ -25,7 +25,7 @@ namespace FashionWeek.Forms.Utils
         {
             foreach (char ch in number)
             {
-                if (ch <= 0 && ch >= 9)
+                if (!Char.IsDigit(ch))
                 {
                     return false;
                 }
@@ -87,45 +87,38 @@ namespace FashionWeek.Forms.Utils
 
         private async void btnSacuvaj_Click(object sender, EventArgs e)
         {
-            try
+            if (!ProveriPolja())
             {
-                if (!ProveriPolja())
-                {
-                    return;
-                }
-                Maneken maneken = await DTOManager.VratiManekena(txtMBR.Text);
-                if (maneken != null)
-                {
-                    MessageBox.Show($"Maneken sa MBR-om {txtMBR.Text} već postoji!");
-                    return;
-                }
-                maneken = new Maneken
-                {
-                    MBR = txtMBR.Text,
-                    Ime = new()
-                    {
-                        LicnoIme = txtIme.Text,
-                        Prezime = txtPrezime.Text
-                    },
-                    DatumRodjenja = dtpDatumRodjenja.Value,
-                    Pol = (cmbPol.SelectedItem!.ToString()!)[0],
-                    Visina = !string.IsNullOrEmpty(txtVisina.Text) ? Int32.Parse(txtVisina.Text) : 0,
-                    Tezina = !string.IsNullOrEmpty(txtTezina.Text) ? Double.Parse(txtTezina.Text) : 0,
-                    BojaOciju =txtBojaOciju.Text,
-                    BojaKose=txtBojaKose.Text,
-                    KonfekcijskiBroj=txtKonfBroj.Text,
-                    Zanimanje=txtZanimanje.Text
-                };
-
-                if (await DTOManager.DodajManekena(maneken))
-                {
-                    MessageBox.Show($"Maneken {maneken.MBR}: {maneken.Ime.LicnoIme} {maneken.Ime.Prezime} uspesno dodat!");
-                    Close();
-                }
+                return;
             }
-            catch (Exception ex)
+            Maneken maneken = await DTOManager.VratiManekena(txtMBR.Text);
+            if (maneken != null)
             {
-                MessageBox.Show("Greška pri dodavanju: " + ex.Message);
+                MessageBox.Show($"Maneken sa MBR-om {txtMBR.Text} već postoji!");
+                return;
+            }
+            maneken = new Maneken
+            {
+                MBR = txtMBR.Text,
+                Ime = new()
+                {
+                    LicnoIme = txtIme.Text,
+                    Prezime = txtPrezime.Text
+                },
+                DatumRodjenja = dtpDatumRodjenja.Value,
+                Pol = (cmbPol.SelectedItem!.ToString()!)[0],
+                Visina = !string.IsNullOrEmpty(txtVisina.Text) ? Int32.Parse(txtVisina.Text) : 0,
+                Tezina = !string.IsNullOrEmpty(txtTezina.Text) ? Double.Parse(txtTezina.Text) : 0,
+                BojaOciju = txtBojaOciju.Text,
+                BojaKose = txtBojaKose.Text,
+                KonfekcijskiBroj = txtKonfBroj.Text,
+                Zanimanje = txtZanimanje.Text
+            };
+
+            if (await DTOManager.DodajManekena(maneken))
+            {
+                MessageBox.Show($"Maneken {maneken.MBR}: {maneken.Ime.LicnoIme} {maneken.Ime.Prezime} uspešno dodat!");
+                Close();
             }
         }
 

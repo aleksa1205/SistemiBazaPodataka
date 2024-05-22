@@ -793,13 +793,13 @@ namespace FashionWeek.Forms
                         {
                             Id = new NazivZemljeId()
                             {
-                                ModnaAgencija = agencija as InostranaAgencija,
+                                InostranaAgencija = agencija as InostranaAgencija,
                                 NazivZemlje = "NovaZemlja"
                             }
                         };
                         await session.SaveOrUpdateAsync(nz);
                         await session.FlushAsync();
-                        MessageBox.Show($"{nz.Id.NazivZemlje} je dodata kao zemlja u kojoj radi {nz.Id.ModnaAgencija!.Naziv}");
+                        MessageBox.Show($"{nz.Id.NazivZemlje} je dodata kao zemlja u kojoj radi {nz.Id.InostranaAgencija!.Naziv}");
 
                     }
                     else
@@ -830,7 +830,7 @@ namespace FashionWeek.Forms
                     if (agencija is InostranaAgencija)
                     {
                         List<NazivZemlje> nazivi = await (from k in session.Query<NazivZemlje>() select k).ToListAsync();
-                        List<NazivZemlje> izdvojeni = nazivi.Where(x => x.Id.ModnaAgencija == agencija).ToList();
+                        List<NazivZemlje> izdvojeni = nazivi.Where(x => x.Id.InostranaAgencija == agencija).ToList();
                         if (izdvojeni.Count != 0)
                         {
                             await session.DeleteAsync(izdvojeni[0]);

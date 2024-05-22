@@ -14,7 +14,7 @@ public class NazivZemljeMapiranje : ClassMap<NazivZemlje>
     {
         Table("NAZIVI_ZEMALJA");
         CompositeId(x => x.Id)
-            .KeyReference(x => x.ModnaAgencija, "PIB_INOSTRANE")
+            .KeyReference(x => x.InostranaAgencija, "PIB_INOSTRANE")
             .KeyProperty(x => x.NazivZemlje, "NAZIV_ZEMLJE");
     }
 }

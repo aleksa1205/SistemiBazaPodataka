@@ -39,8 +39,8 @@
             btnDodajManekena = new Button();
             btnAzurirajManekena = new Button();
             btnObrisiManekena = new Button();
-            btnZaposliManekena = new Button();
             btnRevije = new Button();
+            button1 = new Button();
             SuspendLayout();
             // 
             // lblListaManekena
@@ -67,7 +67,7 @@
             // colMBR
             // 
             colMBR.Text = "MBR";
-            colMBR.Width = 150;
+            colMBR.Width = 100;
             // 
             // colLicnoIme
             // 
@@ -134,22 +134,11 @@
             btnObrisiManekena.UseVisualStyleBackColor = true;
             btnObrisiManekena.Click += btnObrisiManekena_Click;
             // 
-            // btnZaposliManekena
-            // 
-            btnZaposliManekena.Enabled = false;
-            btnZaposliManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnZaposliManekena.Location = new Point(694, 177);
-            btnZaposliManekena.Name = "btnZaposliManekena";
-            btnZaposliManekena.Size = new Size(161, 30);
-            btnZaposliManekena.TabIndex = 5;
-            btnZaposliManekena.Text = "Zaposli manekena";
-            btnZaposliManekena.UseVisualStyleBackColor = true;
-            // 
             // btnRevije
             // 
             btnRevije.Enabled = false;
             btnRevije.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnRevije.Location = new Point(694, 213);
+            btnRevije.Location = new Point(694, 186);
             btnRevije.Name = "btnRevije";
             btnRevije.Size = new Size(161, 30);
             btnRevije.TabIndex = 6;
@@ -157,13 +146,23 @@
             btnRevije.UseVisualStyleBackColor = true;
             btnRevije.Click += btnRevije_Click;
             // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.Location = new Point(694, 408);
+            button1.Name = "button1";
+            button1.Size = new Size(161, 30);
+            button1.TabIndex = 7;
+            button1.Text = "Dodaj manekena";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // frmManekeni
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(867, 450);
+            Controls.Add(button1);
             Controls.Add(btnRevije);
-            Controls.Add(btnZaposliManekena);
             Controls.Add(btnObrisiManekena);
             Controls.Add(btnAzurirajManekena);
             Controls.Add(btnDodajManekena);
@@ -189,7 +188,7 @@
         private Button btnDodajManekena;
         private Button btnAzurirajManekena;
         private Button btnObrisiManekena;
-        private Button btnZaposliManekena;
         private Button btnRevije;
+        private Button button1;
     }
 }

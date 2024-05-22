@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace FashionWeek.Forms.Utils
 {
-    public partial class frmRevije : Form
+    public partial class frmRevijeManekena : Form
     {
-        public frmRevije()
+        public frmRevijeManekena()
         {
             InitializeComponent();
         }

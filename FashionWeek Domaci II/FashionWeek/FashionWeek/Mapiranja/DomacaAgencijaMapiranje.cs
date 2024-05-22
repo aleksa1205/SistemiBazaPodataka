@@ -6,13 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FashionWeek.Mapiranja
+namespace FashionWeek.Mapiranja;
+
+public class DomacaAgencijaMapiranje : SubclassMap<DomacaAgencija>
 {
-    public class DomacaAgencijaMapiranje : SubclassMap<DomacaAgencija>
+    public DomacaAgencijaMapiranje()
     {
-        public DomacaAgencijaMapiranje()
-        {
-            DiscriminatorValue("N");
-        }
+        DiscriminatorValue("N");
     }
 }

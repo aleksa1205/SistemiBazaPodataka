@@ -6,17 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FashionWeek.Mapiranja
+namespace FashionWeek.Mapiranja;
+
+public class ImeVlasnikaMapiranje : ClassMap<ImeVlasnika>
 {
-    public class ImeVlasnikaMapiranje : ClassMap<ImeVlasnika>
+    public ImeVlasnikaMapiranje()
     {
-        public ImeVlasnikaMapiranje()
-        {
-            Table("IMENA_VLASNIKA");
-            CompositeId(x => x.Id)
-                .KeyReference(x => x.ModnaKuca, "NAZIV_KUCE")
-                .KeyProperty(x => x.LicnoIme, "LICNO_IME")
-                .KeyProperty(x => x.Prezime, "PREZIME");
-        }
+        Table("IMENA_VLASNIKA");
+        CompositeId(x => x.Id)
+            .KeyReference(x => x.ModnaKuca, "NAZIV_KUCE")
+            .KeyProperty(x => x.LicnoIme, "LICNO_IME")
+            .KeyProperty(x => x.Prezime, "PREZIME");
     }
 }

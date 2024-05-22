@@ -35,13 +35,15 @@
             // 
             // btnAgencije
             // 
+            btnAgencije.BackColor = SystemColors.MenuHighlight;
             btnAgencije.Font = new Font("Segoe UI", 18F);
+            btnAgencije.ForeColor = Color.Honeydew;
             btnAgencije.Location = new Point(12, 291);
             btnAgencije.Name = "btnAgencije";
             btnAgencije.Size = new Size(150, 65);
             btnAgencije.TabIndex = 0;
             btnAgencije.Text = "AGENCIJE";
-            btnAgencije.UseVisualStyleBackColor = true;
+            btnAgencije.UseVisualStyleBackColor = false;
             btnAgencije.Click += btnAgencije_Click;
             // 
             // btnManekeni

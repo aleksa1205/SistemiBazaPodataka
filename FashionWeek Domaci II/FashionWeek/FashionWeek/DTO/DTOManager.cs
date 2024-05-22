@@ -1,5 +1,6 @@
 ﻿using FashionWeek.Entiteti;
 using NHibernate;
+using NHibernate.Criterion;
 using NHibernate.Exceptions;
 using NHibernate.Linq;
 using NHibernate.Stat;
@@ -14,6 +15,7 @@ namespace FashionWeek.DTO
 {
     public class DTOManager
     {
+
         #region Maneken
         public static async Task<Maneken> VratiManekena(string mbr)
         {
@@ -26,9 +28,9 @@ namespace FashionWeek.DTO
                     Maneken maneken = await session.GetAsync<Maneken>(mbr);
                     return maneken;
                 }
-                throw new Exception("Konekcija sa bazom nije ostvarena!"); 
+                throw new Exception("Konekcija sa bazom nije ostvarena!");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return null!;
@@ -38,10 +40,11 @@ namespace FashionWeek.DTO
                 session?.Close();
             }
         }
+
         public static async Task<IList<ManekenPregled>> VratiManekene()
         {
             ISession? session = null;
-            List<ManekenPregled> listaManekena = new List<ManekenPregled>();           
+            List<ManekenPregled> listaManekena = new List<ManekenPregled>();
             try
             {
                 session = DataLayer.GetSession();
@@ -50,8 +53,8 @@ namespace FashionWeek.DTO
                     ISQLQuery query = session.CreateSQLQuery("SELECT * FROM MANEKEN");
                     query.AddEntity(typeof(Maneken));
                     IList<Maneken> manekeni = await query.ListAsync<Maneken>();
-                   
-                    foreach(var maneken in manekeni)
+
+                    foreach (var maneken in manekeni)
                     {
                         listaManekena.Add(new ManekenPregled(maneken));
                     }
@@ -59,7 +62,7 @@ namespace FashionWeek.DTO
                 }
                 throw new Exception("Greška pri povezivanju sa bazom!");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return listaManekena;
@@ -69,6 +72,39 @@ namespace FashionWeek.DTO
                 session?.Close();
             }
         }
+
+        public static async Task<IList<ManekenPregled>> VratiNezaposleneManeken()
+        {
+            ISession? session = null;
+            List<ManekenPregled> listaManekena = new List<ManekenPregled>();
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    ISQLQuery query = session.CreateSQLQuery("SELECT * FROM MANEKEN WHERE PIB_AGENCIJE IS NULL");
+                    query.AddEntity(typeof(Maneken));
+                    IList<Maneken> manekeni = await query.ListAsync<Maneken>();
+
+                    foreach (var maneken in manekeni)
+                    {
+                        listaManekena.Add(new ManekenPregled(maneken));
+                    }
+                    return listaManekena;
+                }
+                throw new Exception("Greška pri povezivanju sa bazom!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return listaManekena;
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
 
         public static async Task<bool> DodajManekena(Maneken maneken)
         {
@@ -116,6 +152,58 @@ namespace FashionWeek.DTO
                 }
             }
             catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        public static async Task<bool> ZaposliManekena(Maneken maneken, ModnaAgencija agencija)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    maneken.RadiUAgenciji = agencija;
+                    await session.UpdateAsync(maneken);
+                    await session.FlushAsync();
+                    return true;
+                }
+                throw new Exception("Greška pri povezivanju sa bazom!");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        public static async Task<bool> DajOtkazManeken(Maneken maneken)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    maneken.RadiUAgenciji = null;
+                    await session.UpdateAsync(maneken);
+                    await session.FlushAsync();
+                    return true;
+                }
+                throw new Exception("Greška pri povezivanju sa bazom!");
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return false;
@@ -461,6 +549,111 @@ namespace FashionWeek.DTO
             {
                 MessageBox.Show(ex.Message);
                 return listaManekena;
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+        #endregion
+
+        #region NaziviZemalja
+        public static async Task<bool> DodajZemlju(InostranaAgencija agencija, string nazivZemlje)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    ISQLQuery query = session.CreateSQLQuery($"SELECT * FROM NAZIVI_ZEMALJA WHERE PIB_INOSTRANE={agencija.PIB}");
+                    query.AddEntity(typeof(NazivZemlje));
+                    IList<NazivZemlje> nazivZemljeIds = await query.ListAsync<NazivZemlje>();
+                    foreach(var naziv in nazivZemljeIds)
+                    {
+                        if (naziv.Id.NazivZemlje == nazivZemlje)
+                        {
+                            throw new Exception($"{naziv.Id.InostranaAgencija?.Naziv} već posluje u {nazivZemlje}!");
+                        }
+                    }
+
+                    NazivZemlje novaZemlja = new NazivZemlje()
+                    {
+                        Id = new NazivZemljeId
+                        {
+                            InostranaAgencija = agencija,
+                            NazivZemlje = nazivZemlje
+                        }
+                    };
+                    await session.SaveAsync(novaZemlja);
+                    await session.FlushAsync();
+                    return true;
+                }
+                throw new Exception("Greška pri povezivanju sa bazom!");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        public static async Task<bool> ObrisiZemlju(NazivZemlje nazivZemlje)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    await session.DeleteAsync(nazivZemlje);
+                    await session.FlushAsync();
+                    return true;
+                }
+                throw new Exception("Greška pri povezivanju sa bazom!");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+        public static async Task<IList<string>> VratiZemljeUKojimaPoslujeAgencijaPregled(ModnaAgencija agencija)
+        {
+            ISession? session = null;
+            IList<string> listaZemalja = new List<string>();
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    if (agencija is InostranaAgencija)
+                    {
+                        ISQLQuery query = session.CreateSQLQuery($"SELECT * FROM NAZIVI_ZEMALJA WHERE PIB_INOSTRANE={agencija.PIB}");
+                        query.AddEntity(typeof(NazivZemlje));
+                        IList<NazivZemlje> nazivZemljeIds = await query.ListAsync<NazivZemlje>();
+                        foreach (var zemljaId in nazivZemljeIds)
+                        {
+                            listaZemalja.Add(zemljaId.Id.NazivZemlje);
+                        }
+                        return listaZemalja;
+                    }
+                    throw new Exception("Agencija mora biti inostrana!");
+                }
+                throw new Exception("Greška pri povezivanju sa bazom!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return listaZemalja;
             }
             finally
             {

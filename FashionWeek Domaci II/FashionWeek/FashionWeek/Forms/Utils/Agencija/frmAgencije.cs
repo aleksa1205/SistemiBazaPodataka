@@ -20,7 +20,7 @@ namespace FashionWeek.Forms.Utils.Agencija
         public async Task<bool> IsInostrana()
         {
             _modnaAgencija = await DTOManager.VratiModnuAgenciju(lvAgencije.SelectedItems[0].Text);
-            if(_modnaAgencija != null & _modnaAgencija is InostranaAgencija)
+            if (_modnaAgencija != null & _modnaAgencija is InostranaAgencija)
             {
                 return true;
             }
@@ -35,9 +35,10 @@ namespace FashionWeek.Forms.Utils.Agencija
             btnAzurirajAgenciju.Enabled = true;
             btnObrisiAgenciju.Enabled = true;
             btnPrikaziManekene.Enabled = true;
+            btnZaposliManekena.Enabled = true;
             if (await IsInostrana())
             {
-                btnDodajZemlju.Enabled = true;
+                btnZemljePoslovanja.Enabled = true;
             }
         }
 
@@ -46,16 +47,17 @@ namespace FashionWeek.Forms.Utils.Agencija
             btnAzurirajAgenciju.Enabled = false;
             btnObrisiAgenciju.Enabled = false;
             btnPrikaziManekene.Enabled = false;
-            btnDodajZemlju.Enabled = false;
+            btnZemljePoslovanja.Enabled = false;
+            btnZaposliManekena.Enabled = false;
         }
 
         public async void UcitajPodatke()
         {
             lvAgencije.Items.Clear();
-            IList<ModnaAgencijaPregled> listaAgencija = await DTOManager.VratiModneAgencije();
-            foreach (var revija in listaAgencija)
+            IList<ModnaAgencijaPregled> agencije = await DTOManager.VratiModneAgencije();
+            foreach (var agencija in agencije)
             {
-                ListViewItem item = new ListViewItem(new string[] { revija.PIB!, revija.Naziv!, revija.Sediste!.ToString(), revija.DatumOsnivanja.ToShortDateString() });
+                ListViewItem item = new ListViewItem(new string[] { agencija.PIB!, agencija.Naziv!, agencija.Sediste!.ToString(), agencija.DatumOsnivanja.ToShortDateString() });
                 lvAgencije.Items.Add(item);
             }
             lvAgencije.Refresh();
@@ -76,8 +78,11 @@ namespace FashionWeek.Forms.Utils.Agencija
         {
             if (lvAgencije.SelectedItems.Count > 0)
             {
-                //DisableButtons();
                 EnableButtons();
+            }
+            else
+            {
+                DisableButtons();
             }
         }
 
@@ -91,9 +96,17 @@ namespace FashionWeek.Forms.Utils.Agencija
         private async void btnAzurirajAgenciju_Click(object sender, EventArgs e)
         {
             _modnaAgencija = await DTOManager.VratiModnuAgenciju(lvAgencije.SelectedItems[0].Text);
-            frmAzurirajAgenciju frmAzuriraj = new frmAzurirajAgenciju();
-            frmAzuriraj.ShowDialog();
-            UcitajPodatke();
+            if (_modnaAgencija != null)
+            {
+                frmAzurirajAgenciju frmAzuriraj = new frmAzurirajAgenciju();
+                frmAzuriraj.ShowDialog();
+                UcitajPodatke();
+                DisableButtons();
+            }
+            else
+            {
+                MessageBox.Show("Greška pri pribavljanju agencije iz baze!");
+            }
         }
 
         private async void btnObrisiAgenciju_Click(object sender, EventArgs e)
@@ -103,12 +116,12 @@ namespace FashionWeek.Forms.Utils.Agencija
             {
                 await DTOManager.ObrisiModnuAgenciju(_modnaAgencija);
                 MessageBox.Show("Uspešno obrisana agencija!");
-                DisableButtons();
                 UcitajPodatke();
+                DisableButtons();
             }
             else
             {
-                MessageBox.Show("Greška pri brisanju agencije!");
+                MessageBox.Show("Greška pri pribavljanju agencije iz baze!");
             }
         }
 
@@ -117,6 +130,24 @@ namespace FashionWeek.Forms.Utils.Agencija
             _modnaAgencija = await DTOManager.VratiModnuAgenciju(lvAgencije.SelectedItems[0].Text);
             frmAgencijaManekeni frmManekeni = new frmAgencijaManekeni();
             frmManekeni.ShowDialog();
+        }
+
+        private async void btnZemljePoslovanja_Click(object sender, EventArgs e)
+        {
+            _modnaAgencija = await DTOManager.VratiModnuAgenciju(lvAgencije.SelectedItems[0].Text);
+            frmAgencijaNaziviZemalja frmZemlje = new frmAgencijaNaziviZemalja();
+            frmZemlje.ShowDialog();
+        }
+
+        private void btnZaposliManekena_Click(object sender, EventArgs e)
+        {
+            frmNezaposleniManekeni frmNezaposleni = new frmNezaposleniManekeni();
+            frmNezaposleni.ShowDialog();
+        }
+
+        private void btnIzadji_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

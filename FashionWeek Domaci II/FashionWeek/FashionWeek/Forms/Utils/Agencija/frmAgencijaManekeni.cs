@@ -1,4 +1,5 @@
 ﻿using FashionWeek.DTO;
+using FashionWeek.Entiteti;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ namespace FashionWeek.Forms.Utils.Agencija
     public partial class frmAgencijaManekeni : Form
     {
         #region Funkcije
-        public async void Ucitaj()
+        public async void UcitajPodatke()
         {
             lvManekeni.Items.Clear();
             IList<ManekenPregled> listaManekena = await DTOManager.VratiManekeneModneAgencijePregled(frmAgencije._modnaAgencija!);
@@ -35,7 +36,41 @@ namespace FashionWeek.Forms.Utils.Agencija
         private void frmAgencijaManekeni_Load(object sender, EventArgs e)
         {
             lblListaManekenaAgencije.Text += frmAgencije._modnaAgencija?.Naziv;
-            Ucitaj();
+            UcitajPodatke();
         }
+
+        private void lvManekeni_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvManekeni.SelectedItems.Count > 0)
+            {
+                btnOtpustiManekena.Enabled = true;
+            }
+            else
+            {
+                btnOtpustiManekena.Enabled = false;
+            }
+        }
+
+        private async void btnOtpustiManekena_Click(object sender, EventArgs e)
+        {
+            Maneken maneken = await DTOManager.VratiManekena(lvManekeni.SelectedItems[0].Text);
+            if (maneken != null)
+            {
+                await DTOManager.DajOtkazManeken(maneken);
+                MessageBox.Show($"Uspešno otpušten maneken {maneken.Ime.ToString()}");
+                UcitajPodatke();
+                btnOtpustiManekena.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Greška pri pribavljanju manekena iz baze!");
+            }
+        }
+
+        private void btnIzađi_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
     }
 }

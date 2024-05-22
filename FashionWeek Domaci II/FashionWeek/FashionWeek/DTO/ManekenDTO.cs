@@ -11,8 +11,8 @@ namespace FashionWeek.DTO;
 
 public class ManekenPregled
 {
-    public string MBR { get; set; }
-    public Ime Ime { get; set; }
+    public string? MBR { get; set; }
+    public Ime? Ime { get; set; }
     public DateTime DatumRodjenja { get; set; }
     public char Pol { get; set; }
     public ManekenPregled() { }

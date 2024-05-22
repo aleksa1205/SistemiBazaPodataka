@@ -25,7 +25,6 @@ namespace FashionWeek.Forms.Utils
         {
             btnAzurirajManekena.Enabled = true;
             btnObrisiManekena.Enabled = true;
-            btnZaposliManekena.Enabled = true;
             btnRevije.Enabled = true;
         }
 
@@ -33,7 +32,6 @@ namespace FashionWeek.Forms.Utils
         {
             btnAzurirajManekena.Enabled = false;
             btnObrisiManekena.Enabled = false;
-            btnZaposliManekena.Enabled = false;
             btnRevije.Enabled = false;
         }
 
@@ -58,7 +56,14 @@ namespace FashionWeek.Forms.Utils
 
         private void lvManekeni_SelectedIndexChanged(object sender, EventArgs e)
         {
-            EnableButtons();
+            if (lvManekeni.SelectedItems.Count > 0)
+            {
+                EnableButtons();
+            }
+            else
+            {
+                DisableButtons();
+            }
         }
 
         private void btnDodajManekena_Click(object sender, EventArgs e)
@@ -71,16 +76,23 @@ namespace FashionWeek.Forms.Utils
         private async void btnAzurirajManekena_Click(object sender, EventArgs e)
         {
             _maneken = await DTOManager.VratiManekena(lvManekeni.SelectedItems[0].Text);
-            frmAzurirajManekena frmAzuriraj = new frmAzurirajManekena();
-            frmAzuriraj.ShowDialog();
-            DisableButtons();
-            UcitajPodatke();
+            if (_maneken != null)
+            {
+                frmAzurirajManekena frmAzuriraj = new frmAzurirajManekena();
+                frmAzuriraj.ShowDialog();
+                DisableButtons();
+                UcitajPodatke();
+            }
+            else
+            {
+                MessageBox.Show("Greška pri pribavljanju manekena iz baze!");
+            }
         }
 
         private async void btnObrisiManekena_Click(object sender, EventArgs e)
         {
             _maneken = await DTOManager.VratiManekena(lvManekeni.SelectedItems[0].Text);
-            if (_maneken != null) 
+            if (_maneken != null)
             {
                 await DTOManager.ObrisiManekena(_maneken);
                 MessageBox.Show("Uspešno obrisan maneken!");
@@ -89,7 +101,7 @@ namespace FashionWeek.Forms.Utils
             }
             else
             {
-                MessageBox.Show("Greška pri brisanju manekena!");
+                MessageBox.Show("Greška pri pribavljanju manekena iz baze!");
             }
         }
 
@@ -98,12 +110,12 @@ namespace FashionWeek.Forms.Utils
             _maneken = await DTOManager.VratiManekena(lvManekeni.SelectedItems[0].Text);
             if (_maneken != null)
             {
-                frmRevije frmRevije = new frmRevije();
+                frmRevijeManekena frmRevije = new frmRevijeManekena();
                 frmRevije.ShowDialog();
             }
             else
             {
-                MessageBox.Show("Greška pri otvaranju revija manekena!");
+                MessageBox.Show("Greška pri pribavljanju manekena iz baze!");
             }
         }
     }

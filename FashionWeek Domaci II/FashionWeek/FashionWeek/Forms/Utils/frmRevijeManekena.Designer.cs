@@ -1,6 +1,6 @@
 ﻿namespace FashionWeek.Forms.Utils
 {
-    partial class frmRevije
+    partial class frmRevijeManekena
     {
         /// <summary>
         /// Required designer variable.

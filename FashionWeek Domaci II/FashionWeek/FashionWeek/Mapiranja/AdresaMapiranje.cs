@@ -10,7 +10,7 @@ namespace FashionWeek.Mapiranja;
 
 public class AdresaMapiranje : ComponentMap<Adresa>
 {
-    AdresaMapiranje()
+    public AdresaMapiranje()
     {
         Map(x => x.Drzava).Column("DRZAVA");
         Map(x => x.Grad).Column("GRAD");

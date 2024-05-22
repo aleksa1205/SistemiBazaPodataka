@@ -10,7 +10,7 @@ namespace FashionWeek.Mapiranja;
 
 public class OsobaMapiranje : ClassMap<Osoba>
 {
-    OsobaMapiranje()
+    public OsobaMapiranje()
     {
         UseUnionSubclassForInheritanceMapping();
         Id(x => x.MBR).GeneratedBy.Assigned().Column("MBR");

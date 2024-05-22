@@ -36,6 +36,7 @@ namespace FashionWeek.Forms.Utils.Agencija
         public void Procitaj(ModnaAgencija agencija)
         {
             agencija.Naziv = txtNaziv.Text;
+            agencija.DatumOsnivanja = dtpDatumOsnivanja.Value;
             agencija.Sediste.Drzava = txtDrzava.Text;
             agencija.Sediste.Grad = txtGrad.Text;
             agencija.Sediste.Ulica = txtUlica.Text;
@@ -69,10 +70,6 @@ namespace FashionWeek.Forms.Utils.Agencija
             {
                 MessageBox.Show("Uspešno ažurirana modna agencija!");
                 Close();
-            }
-            else
-            {
-                MessageBox.Show("Greška pri ažuriranju!");
             }
         }
 

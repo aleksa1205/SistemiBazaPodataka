@@ -38,7 +38,9 @@
             btnAzurirajAgenciju = new Button();
             btnDodajAgenciju = new Button();
             btnPrikaziManekene = new Button();
-            btnDodajZemlju = new Button();
+            btnZemljePoslovanja = new Button();
+            btnZaposliManekena = new Button();
+            btnIzadji = new Button();
             SuspendLayout();
             // 
             // lblListaAgencija
@@ -132,23 +134,49 @@
             btnPrikaziManekene.UseVisualStyleBackColor = true;
             btnPrikaziManekene.Click += btnPrikaziManekene_Click;
             // 
-            // btnDodajZemlju
+            // btnZemljePoslovanja
             // 
-            btnDodajZemlju.Enabled = false;
-            btnDodajZemlju.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnDodajZemlju.Location = new Point(627, 226);
-            btnDodajZemlju.Name = "btnDodajZemlju";
-            btnDodajZemlju.Size = new Size(161, 30);
-            btnDodajZemlju.TabIndex = 7;
-            btnDodajZemlju.Text = "Dodaj zemlju";
-            btnDodajZemlju.UseVisualStyleBackColor = true;
+            btnZemljePoslovanja.Enabled = false;
+            btnZemljePoslovanja.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnZemljePoslovanja.Location = new Point(627, 226);
+            btnZemljePoslovanja.Name = "btnZemljePoslovanja";
+            btnZemljePoslovanja.Size = new Size(161, 30);
+            btnZemljePoslovanja.TabIndex = 7;
+            btnZemljePoslovanja.Text = "Zemlje poslovanja";
+            btnZemljePoslovanja.UseVisualStyleBackColor = true;
+            btnZemljePoslovanja.Click += btnZemljePoslovanja_Click;
+            // 
+            // btnZaposliManekena
+            // 
+            btnZaposliManekena.Enabled = false;
+            btnZaposliManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnZaposliManekena.Location = new Point(627, 262);
+            btnZaposliManekena.Name = "btnZaposliManekena";
+            btnZaposliManekena.Size = new Size(161, 30);
+            btnZaposliManekena.TabIndex = 8;
+            btnZaposliManekena.Text = "Zaposli manekena";
+            btnZaposliManekena.UseVisualStyleBackColor = true;
+            btnZaposliManekena.Click += btnZaposliManekena_Click;
+            // 
+            // btnIzadji
+            // 
+            btnIzadji.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIzadji.Location = new Point(627, 408);
+            btnIzadji.Name = "btnIzadji";
+            btnIzadji.Size = new Size(161, 30);
+            btnIzadji.TabIndex = 9;
+            btnIzadji.Text = "Izađi";
+            btnIzadji.UseVisualStyleBackColor = true;
+            btnIzadji.Click += btnIzadji_Click;
             // 
             // frmAgencije
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(btnDodajZemlju);
+            Controls.Add(btnIzadji);
+            Controls.Add(btnZaposliManekena);
+            Controls.Add(btnZemljePoslovanja);
             Controls.Add(btnPrikaziManekene);
             Controls.Add(btnDodajAgenciju);
             Controls.Add(btnAzurirajAgenciju);
@@ -174,6 +202,8 @@
         private Button btnAzurirajAgenciju;
         private Button btnDodajAgenciju;
         private Button btnPrikaziManekene;
-        private Button btnDodajZemlju;
+        private Button btnZemljePoslovanja;
+        private Button btnZaposliManekena;
+        private Button btnIzadji;
     }
 }

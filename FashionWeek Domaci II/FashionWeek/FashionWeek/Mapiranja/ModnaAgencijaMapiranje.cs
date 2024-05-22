@@ -6,22 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FashionWeek.Mapiranja
+namespace FashionWeek.Mapiranja;
+
+public class ModnaAgencijaMapiranje : ClassMap<ModnaAgencija>
 {
-    public class ModnaAgencijaMapiranje : ClassMap<ModnaAgencija>
+    public ModnaAgencijaMapiranje()
     {
-        public ModnaAgencijaMapiranje()
-        {
-            Table("MODNA_AGENCIJA");
-            DiscriminateSubClassesOnColumn("INOSTRANA");
-            Id(x => x.PIB).GeneratedBy.Assigned().Column("PIB");
+        Table("MODNA_AGENCIJA");
+        DiscriminateSubClassesOnColumn("INOSTRANA");
+        Id(x => x.PIB).GeneratedBy.Assigned().Column("PIB");
 
-            Map(x => x.Naziv).Column("NAZIV");
-            //Map(x => x.Inostrana).Column("INOSTRANA");
-            Component(x => x.Sediste);
-            Map(x => x.DatumOsnivanja).Column("DATUM_OSNIVANJA");
+        Map(x => x.Naziv).Column("NAZIV");
+        //Map(x => x.Inostrana).Column("INOSTRANA");
+        Component(x => x.Sediste);
+        Map(x => x.DatumOsnivanja).Column("DATUM_OSNIVANJA");
 
-            HasMany(x => x.Manekeni).KeyColumn("PIB_AGENCIJE").Cascade.All().Inverse();
-        }
+        HasMany(x => x.Manekeni).KeyColumn("PIB_AGENCIJE").Cascade.All().Inverse();
     }
 }

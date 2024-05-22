@@ -6,15 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FashionWeek.Mapiranja
-{
-    public class InostranaAgencijaMapiranje : SubclassMap<InostranaAgencija>
-    {
-        public InostranaAgencijaMapiranje()
-        {
-            DiscriminatorValue("Y");
+namespace FashionWeek.Mapiranja;
 
-            HasMany(x => x.Zemlje).KeyColumn("NAZIV_ZEMLJE").Cascade.All();
-        }
+public class InostranaAgencijaMapiranje : SubclassMap<InostranaAgencija>
+{
+    public InostranaAgencijaMapiranje()
+    {
+        DiscriminatorValue("Y");
+
+        HasMany(x => x.Zemlje).KeyColumn("NAZIV_ZEMLJE").Cascade.All();
     }
 }
