@@ -39,6 +39,8 @@
             btnDodajManekena = new Button();
             btnAzurirajManekena = new Button();
             btnObrisiManekena = new Button();
+            btnZaposliManekena = new Button();
+            btnRevije = new Button();
             SuspendLayout();
             // 
             // lblListaManekena
@@ -132,18 +134,43 @@
             btnObrisiManekena.UseVisualStyleBackColor = true;
             btnObrisiManekena.Click += btnObrisiManekena_Click;
             // 
+            // btnZaposliManekena
+            // 
+            btnZaposliManekena.Enabled = false;
+            btnZaposliManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnZaposliManekena.Location = new Point(694, 177);
+            btnZaposliManekena.Name = "btnZaposliManekena";
+            btnZaposliManekena.Size = new Size(161, 30);
+            btnZaposliManekena.TabIndex = 5;
+            btnZaposliManekena.Text = "Zaposli manekena";
+            btnZaposliManekena.UseVisualStyleBackColor = true;
+            // 
+            // btnRevije
+            // 
+            btnRevije.Enabled = false;
+            btnRevije.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRevije.Location = new Point(694, 213);
+            btnRevije.Name = "btnRevije";
+            btnRevije.Size = new Size(161, 30);
+            btnRevije.TabIndex = 6;
+            btnRevije.Text = "Revije";
+            btnRevije.UseVisualStyleBackColor = true;
+            btnRevije.Click += btnRevije_Click;
+            // 
             // frmManekeni
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(867, 450);
+            Controls.Add(btnRevije);
+            Controls.Add(btnZaposliManekena);
             Controls.Add(btnObrisiManekena);
             Controls.Add(btnAzurirajManekena);
             Controls.Add(btnDodajManekena);
             Controls.Add(lvManekeni);
             Controls.Add(lblListaManekena);
             Name = "frmManekeni";
-            Text = "FASHIONWEEK - MANEKENI";
+            Text = "MANEKENI";
             Load += frmManekeni_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -162,5 +189,7 @@
         private Button btnDodajManekena;
         private Button btnAzurirajManekena;
         private Button btnObrisiManekena;
+        private Button btnZaposliManekena;
+        private Button btnRevije;
     }
 }

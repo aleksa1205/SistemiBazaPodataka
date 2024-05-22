@@ -14,15 +14,32 @@ namespace FashionWeek.Forms.Utils
 {
     public partial class frmManekeni : Form
     {
-        public static Maneken _maneken = null!;
+        public static Maneken? _maneken = null;
         public frmManekeni()
         {
             InitializeComponent();
         }
 
         #region Funkcije
+        public void EnableButtons()
+        {
+            btnAzurirajManekena.Enabled = true;
+            btnObrisiManekena.Enabled = true;
+            btnZaposliManekena.Enabled = true;
+            btnRevije.Enabled = true;
+        }
+
+        public void DisableButtons()
+        {
+            btnAzurirajManekena.Enabled = false;
+            btnObrisiManekena.Enabled = false;
+            btnZaposliManekena.Enabled = false;
+            btnRevije.Enabled = false;
+        }
+
         public async void UcitajPodatke()
         {
+            lvManekeni.Items.Clear();
             IList<ManekenPregled> listaManekena = await DTOManager.VratiManekene();
             foreach (var maneken in listaManekena)
             {
@@ -30,34 +47,24 @@ namespace FashionWeek.Forms.Utils
                 lvManekeni.Items.Add(item);
             }
             lvManekeni.Refresh();
-            return;
         }
         #endregion
 
 
         private void frmManekeni_Load(object sender, EventArgs e)
         {
-            try
-            {
-                UcitajPodatke();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            UcitajPodatke();
         }
 
         private void lvManekeni_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnAzurirajManekena.Enabled = true;
-            btnObrisiManekena.Enabled = true;
+            EnableButtons();
         }
 
         private void btnDodajManekena_Click(object sender, EventArgs e)
         {
             frmDodajManekena frmDodaj = new frmDodajManekena();
             frmDodaj.ShowDialog();
-            lvManekeni.Items.Clear();
             UcitajPodatke();
         }
 
@@ -66,27 +73,37 @@ namespace FashionWeek.Forms.Utils
             _maneken = await DTOManager.VratiManekena(lvManekeni.SelectedItems[0].Text);
             frmAzurirajManekena frmAzuriraj = new frmAzurirajManekena();
             frmAzuriraj.ShowDialog();
-            lvManekeni.Items.Clear();
-            btnAzurirajManekena.Enabled = false;
-            btnObrisiManekena.Enabled = false;
+            DisableButtons();
             UcitajPodatke();
         }
 
         private async void btnObrisiManekena_Click(object sender, EventArgs e)
         {
-            try
+            _maneken = await DTOManager.VratiManekena(lvManekeni.SelectedItems[0].Text);
+            if (_maneken != null) 
             {
-                _maneken = await DTOManager.VratiManekena(lvManekeni.SelectedItems[0].Text);
-                DTOManager.ObrisiManekena(_maneken);
+                await DTOManager.ObrisiManekena(_maneken);
                 MessageBox.Show("Uspešno obrisan maneken!");
-                lvManekeni.Items.Clear();
-                btnAzurirajManekena.Enabled = false;
-                btnObrisiManekena.Enabled = false;
+                DisableButtons();
                 UcitajPodatke();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Brisanje greška:" + ex.Message);
+                MessageBox.Show("Greška pri brisanju manekena!");
+            }
+        }
+
+        private async void btnRevije_Click(object sender, EventArgs e)
+        {
+            _maneken = await DTOManager.VratiManekena(lvManekeni.SelectedItems[0].Text);
+            if (_maneken != null)
+            {
+                frmRevije frmRevije = new frmRevije();
+                frmRevije.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Greška pri otvaranju revija manekena!");
             }
         }
     }

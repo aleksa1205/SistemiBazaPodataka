@@ -10,4 +10,9 @@ public class Ime
 {
     public string? LicnoIme { get; set; }
     public string? Prezime { get; set; }
+
+    public override string ToString()
+    {
+        return LicnoIme + ' ' + Prezime;
+    }
 }

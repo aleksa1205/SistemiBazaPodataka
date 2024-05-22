@@ -298,7 +298,7 @@
             Controls.Add(lblPrezime);
             Controls.Add(lblMBR);
             Name = "frmAzurirajManekena";
-            Text = "Ažuriraj manekena";
+            Text = "MANEKEN - Ažuriranje";
             Load += frmAzurirajManekena_Load;
             ResumeLayout(false);
             PerformLayout();

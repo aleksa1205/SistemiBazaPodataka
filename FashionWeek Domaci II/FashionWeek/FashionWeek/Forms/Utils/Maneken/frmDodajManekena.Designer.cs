@@ -58,7 +58,7 @@
             // 
             lblMBR.AutoSize = true;
             lblMBR.BackColor = Color.Red;
-            lblMBR.Location = new Point(12, 18);
+            lblMBR.Location = new Point(12, 9);
             lblMBR.Name = "lblMBR";
             lblMBR.Size = new Size(35, 15);
             lblMBR.TabIndex = 0;
@@ -69,7 +69,7 @@
             // 
             lblPrezime.AutoSize = true;
             lblPrezime.BackColor = Color.Red;
-            lblPrezime.Location = new Point(12, 76);
+            lblPrezime.Location = new Point(12, 70);
             lblPrezime.Name = "lblPrezime";
             lblPrezime.Size = new Size(52, 15);
             lblPrezime.TabIndex = 1;
@@ -80,7 +80,7 @@
             // 
             lblIme.AutoSize = true;
             lblIme.BackColor = Color.Red;
-            lblIme.Location = new Point(12, 47);
+            lblIme.Location = new Point(12, 41);
             lblIme.Name = "lblIme";
             lblIme.Size = new Size(30, 15);
             lblIme.TabIndex = 2;
@@ -90,7 +90,7 @@
             // lblBojaOciju
             // 
             lblBojaOciju.AutoSize = true;
-            lblBojaOciju.Location = new Point(12, 217);
+            lblBojaOciju.Location = new Point(12, 211);
             lblBojaOciju.Name = "lblBojaOciju";
             lblBojaOciju.Size = new Size(62, 15);
             lblBojaOciju.TabIndex = 3;
@@ -100,7 +100,7 @@
             // Tezina
             // 
             Tezina.AutoSize = true;
-            Tezina.Location = new Point(12, 188);
+            Tezina.Location = new Point(12, 182);
             Tezina.Name = "Tezina";
             Tezina.Size = new Size(42, 15);
             Tezina.TabIndex = 4;
@@ -110,7 +110,7 @@
             // lblVisina
             // 
             lblVisina.AutoSize = true;
-            lblVisina.Location = new Point(12, 157);
+            lblVisina.Location = new Point(12, 151);
             lblVisina.Name = "lblVisina";
             lblVisina.Size = new Size(41, 15);
             lblVisina.TabIndex = 5;
@@ -121,7 +121,7 @@
             // 
             lblPol.AutoSize = true;
             lblPol.BackColor = Color.Red;
-            lblPol.Location = new Point(12, 130);
+            lblPol.Location = new Point(12, 124);
             lblPol.Name = "lblPol";
             lblPol.Size = new Size(27, 15);
             lblPol.TabIndex = 6;
@@ -132,7 +132,7 @@
             // 
             lblDatumRodjenja.AutoSize = true;
             lblDatumRodjenja.BackColor = Color.Red;
-            lblDatumRodjenja.Location = new Point(12, 105);
+            lblDatumRodjenja.Location = new Point(12, 99);
             lblDatumRodjenja.Name = "lblDatumRodjenja";
             lblDatumRodjenja.Size = new Size(89, 15);
             lblDatumRodjenja.TabIndex = 7;
@@ -141,28 +141,28 @@
             // 
             // txtMBR
             // 
-            txtMBR.Location = new Point(108, 15);
+            txtMBR.Location = new Point(108, 9);
             txtMBR.Name = "txtMBR";
             txtMBR.Size = new Size(148, 23);
             txtMBR.TabIndex = 8;
             // 
             // txtPrezime
             // 
-            txtPrezime.Location = new Point(108, 73);
+            txtPrezime.Location = new Point(108, 67);
             txtPrezime.Name = "txtPrezime";
             txtPrezime.Size = new Size(116, 23);
             txtPrezime.TabIndex = 10;
             // 
             // txtIme
             // 
-            txtIme.Location = new Point(108, 44);
+            txtIme.Location = new Point(108, 38);
             txtIme.Name = "txtIme";
             txtIme.Size = new Size(116, 23);
             txtIme.TabIndex = 11;
             // 
             // dtpDatumRodjenja
             // 
-            dtpDatumRodjenja.Location = new Point(107, 99);
+            dtpDatumRodjenja.Location = new Point(107, 93);
             dtpDatumRodjenja.Name = "dtpDatumRodjenja";
             dtpDatumRodjenja.Size = new Size(200, 23);
             dtpDatumRodjenja.TabIndex = 12;
@@ -171,49 +171,49 @@
             // 
             cmbPol.FormattingEnabled = true;
             cmbPol.Items.AddRange(new object[] { "M", "Z" });
-            cmbPol.Location = new Point(108, 127);
+            cmbPol.Location = new Point(108, 121);
             cmbPol.Name = "cmbPol";
             cmbPol.Size = new Size(116, 23);
             cmbPol.TabIndex = 14;
             // 
             // txtTezina
             // 
-            txtTezina.Location = new Point(108, 185);
+            txtTezina.Location = new Point(108, 179);
             txtTezina.Name = "txtTezina";
             txtTezina.Size = new Size(116, 23);
             txtTezina.TabIndex = 15;
             // 
             // txtVisina
             // 
-            txtVisina.Location = new Point(108, 156);
+            txtVisina.Location = new Point(108, 150);
             txtVisina.Name = "txtVisina";
             txtVisina.Size = new Size(116, 23);
             txtVisina.TabIndex = 16;
             // 
             // txtBojaOciju
             // 
-            txtBojaOciju.Location = new Point(107, 214);
+            txtBojaOciju.Location = new Point(107, 208);
             txtBojaOciju.Name = "txtBojaOciju";
             txtBojaOciju.Size = new Size(116, 23);
             txtBojaOciju.TabIndex = 17;
             // 
             // txtZanimanje
             // 
-            txtZanimanje.Location = new Point(107, 301);
+            txtZanimanje.Location = new Point(107, 295);
             txtZanimanje.Name = "txtZanimanje";
             txtZanimanje.Size = new Size(116, 23);
             txtZanimanje.TabIndex = 19;
             // 
             // txtBojaKose
             // 
-            txtBojaKose.Location = new Point(108, 243);
+            txtBojaKose.Location = new Point(108, 237);
             txtBojaKose.Name = "txtBojaKose";
             txtBojaKose.Size = new Size(116, 23);
             txtBojaKose.TabIndex = 20;
             // 
             // txtKonfBroj
             // 
-            txtKonfBroj.Location = new Point(108, 272);
+            txtKonfBroj.Location = new Point(108, 266);
             txtKonfBroj.Name = "txtKonfBroj";
             txtKonfBroj.Size = new Size(116, 23);
             txtKonfBroj.TabIndex = 21;
@@ -221,7 +221,7 @@
             // lblZanimanje
             // 
             lblZanimanje.AutoSize = true;
-            lblZanimanje.Location = new Point(12, 304);
+            lblZanimanje.Location = new Point(12, 298);
             lblZanimanje.Name = "lblZanimanje";
             lblZanimanje.Size = new Size(66, 15);
             lblZanimanje.TabIndex = 22;
@@ -231,7 +231,7 @@
             // lblKonfBroj
             // 
             lblKonfBroj.AutoSize = true;
-            lblKonfBroj.Location = new Point(12, 275);
+            lblKonfBroj.Location = new Point(12, 269);
             lblKonfBroj.Name = "lblKonfBroj";
             lblKonfBroj.Size = new Size(50, 15);
             lblKonfBroj.TabIndex = 23;
@@ -241,7 +241,7 @@
             // lblBojaKose
             // 
             lblBojaKose.AutoSize = true;
-            lblBojaKose.Location = new Point(12, 246);
+            lblBojaKose.Location = new Point(12, 240);
             lblBojaKose.Name = "lblBojaKose";
             lblBojaKose.Size = new Size(60, 15);
             lblBojaKose.TabIndex = 24;
@@ -250,7 +250,7 @@
             // 
             // btnSacuvaj
             // 
-            btnSacuvaj.Location = new Point(297, 266);
+            btnSacuvaj.Location = new Point(297, 260);
             btnSacuvaj.Name = "btnSacuvaj";
             btnSacuvaj.Size = new Size(75, 23);
             btnSacuvaj.TabIndex = 25;
@@ -260,7 +260,7 @@
             // 
             // btnOdustani
             // 
-            btnOdustani.Location = new Point(297, 295);
+            btnOdustani.Location = new Point(297, 289);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(75, 23);
             btnOdustani.TabIndex = 26;
@@ -272,7 +272,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(384, 330);
+            ClientSize = new Size(384, 334);
             Controls.Add(btnOdustani);
             Controls.Add(btnSacuvaj);
             Controls.Add(lblBojaKose);
@@ -298,7 +298,7 @@
             Controls.Add(lblPrezime);
             Controls.Add(lblMBR);
             Name = "frmDodajManekena";
-            Text = "Dodaj manekena";
+            Text = "MANEKEN - Dodaj";
             ResumeLayout(false);
             PerformLayout();
         }

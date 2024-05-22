@@ -1,4 +1,5 @@
 ﻿using FashionWeek.Forms.Utils;
+using FashionWeek.Forms.Utils.Agencija;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,12 @@ namespace FashionWeek.Forms
         {
             frmManekeni frmManeken = new frmManekeni();
             frmManeken.ShowDialog();
+        }
+
+        private void btnAgencije_Click(object sender, EventArgs e)
+        {
+            frmAgencije frmAgencije = new frmAgencije();
+            frmAgencije.ShowDialog();
         }
     }
 }

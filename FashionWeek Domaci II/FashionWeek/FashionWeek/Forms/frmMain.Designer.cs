@@ -42,6 +42,7 @@
             btnAgencije.TabIndex = 0;
             btnAgencije.Text = "AGENCIJE";
             btnAgencije.UseVisualStyleBackColor = true;
+            btnAgencije.Click += btnAgencije_Click;
             // 
             // btnManekeni
             // 
