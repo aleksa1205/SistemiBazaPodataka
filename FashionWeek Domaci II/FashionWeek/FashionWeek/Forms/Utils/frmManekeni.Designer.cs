@@ -37,6 +37,8 @@
             colPol = new ColumnHeader();
             colAgencija = new ColumnHeader();
             btnDodajManekena = new Button();
+            btnAzurirajManekena = new Button();
+            btnObrisiManekena = new Button();
             SuspendLayout();
             // 
             // lblListaManekena
@@ -58,6 +60,7 @@
             lvManekeni.TabIndex = 1;
             lvManekeni.UseCompatibleStateImageBehavior = false;
             lvManekeni.View = View.Details;
+            lvManekeni.SelectedIndexChanged += lvManekeni_SelectedIndexChanged;
             // 
             // colMBR
             // 
@@ -90,26 +93,52 @@
             // 
             // colAgencija
             // 
-            colAgencija.Text = "Zaposljen u";
+            colAgencija.Text = "Zaposlen u";
             colAgencija.TextAlign = HorizontalAlignment.Center;
             colAgencija.Width = 130;
             // 
             // btnDodajManekena
             // 
-            btnDodajManekena.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnDodajManekena.Location = new Point(710, 33);
+            btnDodajManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajManekena.Location = new Point(694, 33);
             btnDodajManekena.Name = "btnDodajManekena";
-            btnDodajManekena.Size = new Size(120, 30);
+            btnDodajManekena.Size = new Size(161, 30);
             btnDodajManekena.TabIndex = 2;
             btnDodajManekena.Text = "Dodaj manekena";
             btnDodajManekena.UseVisualStyleBackColor = true;
             btnDodajManekena.Click += btnDodajManekena_Click;
+            // 
+            // btnAzurirajManekena
+            // 
+            btnAzurirajManekena.Enabled = false;
+            btnAzurirajManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAzurirajManekena.Location = new Point(694, 69);
+            btnAzurirajManekena.Name = "btnAzurirajManekena";
+            btnAzurirajManekena.Size = new Size(161, 30);
+            btnAzurirajManekena.TabIndex = 3;
+            btnAzurirajManekena.Text = "Ažuriraj manekena";
+            btnAzurirajManekena.UseVisualStyleBackColor = true;
+            btnAzurirajManekena.Click += btnAzurirajManekena_Click;
+            // 
+            // btnObrisiManekena
+            // 
+            btnObrisiManekena.Enabled = false;
+            btnObrisiManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnObrisiManekena.Location = new Point(694, 105);
+            btnObrisiManekena.Name = "btnObrisiManekena";
+            btnObrisiManekena.Size = new Size(161, 30);
+            btnObrisiManekena.TabIndex = 4;
+            btnObrisiManekena.Text = "Obriši manekena";
+            btnObrisiManekena.UseVisualStyleBackColor = true;
+            btnObrisiManekena.Click += btnObrisiManekena_Click;
             // 
             // frmManekeni
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(867, 450);
+            Controls.Add(btnObrisiManekena);
+            Controls.Add(btnAzurirajManekena);
             Controls.Add(btnDodajManekena);
             Controls.Add(lvManekeni);
             Controls.Add(lblListaManekena);
@@ -131,5 +160,7 @@
         private ColumnHeader colPol;
         private ColumnHeader colAgencija;
         private Button btnDodajManekena;
+        private Button btnAzurirajManekena;
+        private Button btnObrisiManekena;
     }
 }

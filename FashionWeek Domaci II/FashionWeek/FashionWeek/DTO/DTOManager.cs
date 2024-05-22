@@ -1,5 +1,6 @@
 ﻿using FashionWeek.Entiteti;
 using NHibernate;
+using NHibernate.Exceptions;
 using NHibernate.Stat;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,24 @@ namespace FashionWeek.DTO
     public class DTOManager
     {
         #region Maneken
+        public static async Task<Maneken> VratiManekena(string mbr)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    Maneken maneken = await session.GetAsync<Maneken>(mbr);
+                    return maneken;
+                }
+                throw new Exception("Greska pri vraćanju manekena!"); 
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
         public static async Task<IList<ManekenPregled>> VratiManekene()
         {
             ISession? session = null;
@@ -42,36 +61,73 @@ namespace FashionWeek.DTO
             }
         }
 
-        //public static async Task<bool> DodajManekena(Maneken maneken)
-        //{
-        //    ISession? session = null;
-        //    try
-        //    {
-        //        session = DataLayer.GetSession();
-        //        if (session != null)
-        //        {
-        //            Maneken m = await session.GetAsync<Maneken>(maneken.MBR);
-        //            if (m == null)
-        //            {
-        //                await session.SaveAsync(m);
-        //                await session.FlushAsync();
-        //                return true;
-        //            }
-        //            else
-        //            {
-        //                throw new ArgumentException($"Maneken sa maticnim brojem {maneken.MBR} vec postoji!");
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return false;
-        //    }
-        //    finally
-        //    {
-        //        session?.Close();
-        //    }
-        //}
+        public static async Task<bool> DodajManekena(Maneken maneken)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    await session.SaveAsync(maneken);
+                    await session.FlushAsync();
+                    return true;
+                }
+                else
+                {
+                    throw new Exception("Greška pri povezivanju sa bazom!");
+                }
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        public static async Task<bool> AzurirajManekena(Maneken maneken)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    await session.UpdateAsync(maneken);
+                    await session.FlushAsync();
+                    return true;
+                }
+                else
+                {
+                    throw new Exception("Greška pri povezivanju sa bazom!");
+                }
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        public static async void ObrisiManekena(Maneken maneken)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    await session.DeleteAsync(maneken);
+                    await session.FlushAsync();
+                }
+                else
+                {
+                    throw new Exception("Greška pri povezivanju sa bazom!");
+                }
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
         #endregion
     }
 }

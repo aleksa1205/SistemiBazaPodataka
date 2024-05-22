@@ -322,7 +322,7 @@ namespace FashionWeek.Forms
                         StringBuilder sb = new StringBuilder();
                         sb.AppendLine($"Trenutna lokacija modne agencije {a.Naziv} je:");
                         sb.AppendLine($"Drzava: {a.Sediste?.Drzava}\nGrad: {a.Sediste?.Grad}\nUlica: {a.Sediste?.Ulica}");
-                        a.Sediste.Drzava = "Doljevac";
+                        a.Sediste!.Drzava = "Doljevac";
                         a.Sediste.Grad = "Dobar";
 
                         await session.UpdateAsync(a);
@@ -799,7 +799,7 @@ namespace FashionWeek.Forms
                         };
                         await session.SaveOrUpdateAsync(nz);
                         await session.FlushAsync();
-                        MessageBox.Show($"{nz.Id.NazivZemlje} je dodata kao zemlja u kojoj radi {nz.Id.ModnaAgencija.Naziv}");
+                        MessageBox.Show($"{nz.Id.NazivZemlje} je dodata kao zemlja u kojoj radi {nz.Id.ModnaAgencija!.Naziv}");
 
                     }
                     else
