@@ -30,5 +30,11 @@ namespace FashionWeek.Forms
             frmAgencije frmAgencije = new frmAgencije();
             frmAgencije.ShowDialog();
         }
+
+        private void btnRevije_Click(object sender, EventArgs e)
+        {
+            frmRevije frmRevije = new frmRevije();
+            frmRevije.ShowDialog();
+        }
     }
 }

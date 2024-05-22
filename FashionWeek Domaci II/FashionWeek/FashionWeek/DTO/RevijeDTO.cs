@@ -17,19 +17,20 @@ public class ModnaRevijaPregled
 
     public ModnaRevijaPregled() { }
 
-    public ModnaRevijaPregled(int rbr, string naziv, Adresa mesto, DateTime termin)
+    public ModnaRevijaPregled(int rbr, string naziv, Adresa? mesto, DateTime termin)
     {
         RBR = rbr;
         Naziv = naziv;
-        Mesto = mesto;
         Termin = termin;
+        Mesto = mesto;
     }
 
     public ModnaRevijaPregled(ModnaRevija revija)
     {
         RBR = revija.RBR;
         Naziv = revija.Naziv;
-        Mesto = revija.Mesto;
         Termin = revija.Termin;
+
+            Mesto = revija.Mesto;
     }
 }

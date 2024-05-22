@@ -242,7 +242,7 @@ namespace FashionWeek.DTO
             }
         }
 
-        public static async void DodajRevijuManekenu(Maneken maneken, ModnaRevija revija)
+        public static async Task<bool> DodajRevijuManekenu(Maneken maneken, ModnaRevija revija)
         {
             ISession? session = null;
             try
@@ -253,8 +253,14 @@ namespace FashionWeek.DTO
                     maneken.Revije.Add(revija);
                     await session.UpdateAsync(maneken);
                     await session.FlushAsync();
-                    MessageBox.Show($"Manekenu {maneken.Ime.ToString()} je dodata modna revija {revija.Naziv}");
+                    return true;
                 }
+                throw new Exception("Greška pri povezivanju sa bazom!");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
             }
             finally
             {
@@ -262,26 +268,26 @@ namespace FashionWeek.DTO
             }
         }
 
-        //NE RADI
-        public static async void ObrisiRevijuManekenu(Maneken maneken, ModnaRevija revija)
+        public static async Task<bool> ObrisiRevijuManekenu(ModnaRevija revija, Maneken maneken)
         {
             ISession? session = null;
             try
             {
                 session = DataLayer.GetSession();
-                if(session != null)
+                if (session != null)
                 {
-                    int tmp = maneken.Revije.Count;
-                    foreach(var el in maneken.Revije)
                     maneken.Revije.Remove(revija);
+                    //revija.Manekeni.Remove(maneken);
                     await session.UpdateAsync(maneken);
                     await session.FlushAsync();
-                    MessageBox.Show($"Manekenu {maneken.Ime.ToString()} je obrisana modna revija {revija.Naziv}!");
+                    return true;
                 }
+                throw new Exception("Greška pri povezivanju sa bazom!");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Greška pri brisanju revije manekena: " + ex.Message);
+                MessageBox.Show(ex.Message);
+                return false;
             }
             finally
             {
@@ -308,7 +314,13 @@ namespace FashionWeek.DTO
                     {
                         listaRevija.Add(new ModnaRevijaPregled(revija));
                     }
+                    return listaRevija;
                 }
+                throw new Exception("Greška pri povezivanju sa bazom!");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
                 return listaRevija;
             }
             finally
@@ -330,11 +342,17 @@ namespace FashionWeek.DTO
                     IQuery query = session.CreateQuery(strQuery);
                     query.SetParameter("manekenMBR", maneken.MBR);
                     IList<ModnaRevija> revije = await query.ListAsync<ModnaRevija>();
-                    foreach(var revija in revije)
+                    foreach (var revija in revije)
                     {
                         listaRevija.Add(new ModnaRevijaPregled(revija));
                     }
+                    return listaRevija;
                 }
+                throw new Exception("Greška pri povezivanju sa bazom!");
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
                 return listaRevija;
             }
             finally
@@ -360,7 +378,13 @@ namespace FashionWeek.DTO
                     {
                         listaRevija.Add(new ModnaRevijaPregled(revija));
                     }
+                    return listaRevija;
                 }
+                throw new Exception("Greška pri povezivanju sa bazom!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
                 return listaRevija;
             }
             finally
@@ -378,12 +402,89 @@ namespace FashionWeek.DTO
                 if (session != null)
                 {
                     ModnaRevija revija = await session.GetAsync<ModnaRevija>(rbr);
-                    if (revija != null)
-                    {
-                        return revija;
-                    }
+                    return revija;
                 }
-                return null!;
+                throw new Exception("Greška pri povezivanju sa bazom!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        public static async Task<bool> DodajReviju(ModnaRevija revija)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    await session.SaveAsync(revija);
+                    await session.FlushAsync();
+                    return true;
+                }
+                throw new Exception("Greška pri povezivanju sa bazom!");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        public static async Task<bool> AzurirajReviju(ModnaRevija revija)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    await session.UpdateAsync(revija);
+                    await session.FlushAsync();
+                    return true;
+                }
+                throw new Exception("Greška pri povezivanju sa bazom");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                session?.Close();
+            }
+        }
+
+        public static async Task<bool> ObrisiReviju(ModnaRevija revija)
+        {
+            ISession? session = null;
+            try
+            {
+                session = DataLayer.GetSession();
+                if (session != null)
+                {
+                    await session.DeleteAsync(revija);
+                    await session.FlushAsync();
+                    return true;
+                }
+                throw new Exception("Greška pri povezivanju sa bazom");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
             }
             finally
             {

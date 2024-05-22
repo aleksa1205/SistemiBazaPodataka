@@ -37,7 +37,7 @@ namespace FashionWeek.Forms.Utils
         {
             bool checker = true;
             StringBuilder stringBuilder = new StringBuilder();
-            if (String.IsNullOrEmpty(txtMBR.Text))
+            if (string.IsNullOrEmpty(txtMBR.Text))
             {
                 stringBuilder.AppendLine("Polje MBR mora biti popunjeno!");
                 checker = false;

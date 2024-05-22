@@ -30,7 +30,7 @@
         {
             btnAgencije = new Button();
             btnManekeni = new Button();
-            button2 = new Button();
+            btnRevije = new Button();
             SuspendLayout();
             // 
             // btnAgencije
@@ -57,22 +57,23 @@
             btnManekeni.UseVisualStyleBackColor = true;
             btnManekeni.Click += btnManekeni_Click;
             // 
-            // button2
+            // btnRevije
             // 
-            button2.Font = new Font("Segoe UI", 18F);
-            button2.Location = new Point(12, 362);
-            button2.Name = "button2";
-            button2.Size = new Size(150, 65);
-            button2.TabIndex = 2;
-            button2.Text = "REVIJE";
-            button2.UseVisualStyleBackColor = true;
+            btnRevije.Font = new Font("Segoe UI", 18F);
+            btnRevije.Location = new Point(12, 362);
+            btnRevije.Name = "btnRevije";
+            btnRevije.Size = new Size(150, 65);
+            btnRevije.TabIndex = 2;
+            btnRevije.Text = "REVIJE";
+            btnRevije.UseVisualStyleBackColor = true;
+            btnRevije.Click += btnRevije_Click;
             // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button2);
+            Controls.Add(btnRevije);
             Controls.Add(btnManekeni);
             Controls.Add(btnAgencije);
             Name = "frmMain";
@@ -84,6 +85,6 @@
 
         private Button btnAgencije;
         private Button btnManekeni;
-        private Button button2;
+        private Button btnRevije;
     }
 }

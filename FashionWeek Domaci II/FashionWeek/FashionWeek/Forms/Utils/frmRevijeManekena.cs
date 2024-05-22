@@ -20,16 +20,6 @@ namespace FashionWeek.Forms.Utils
         }
 
         #region Funkcije
-        public void EnableButtons()
-        {
-            btnObrisiReviju.Enabled = true;
-        }
-
-        public void DisableButtons()
-        {
-            btnObrisiReviju.Enabled = false;
-        }
-
         public async void UcitajPodatke()
         {
             IList<ModnaRevijaPregled> listaRevija = await DTOManager.VratiModneRevijaManekena(frmManekeni._maneken);
@@ -48,7 +38,6 @@ namespace FashionWeek.Forms.Utils
             {
                 lblRevije.Text += frmManekeni._maneken.Ime.ToString() + ':';
                 UcitajPodatke();
-                DisableButtons();
             }
             catch (Exception ex)
             {
@@ -58,16 +47,36 @@ namespace FashionWeek.Forms.Utils
 
         private void lvRevije_SelectedIndexChanged(object sender, EventArgs e)
         {
-            EnableButtons();
+            if (lvRevije.SelectedItems.Count > 0)
+            {
+                btnObrisiReviju.Enabled = true;
+            }
+            else
+            {
+                btnObrisiReviju.Enabled = false;
+            }
         }
+
+        private void btnDodajReviju_Click(object sender, EventArgs e)
+        {
+        }
+
         private async void btnObrisiReviju_Click(object sender, EventArgs e)
         {
             ModnaRevija revija = await DTOManager.VratiModnuReviju(Int32.Parse(lvRevije.SelectedItems[0].Text));
-            Maneken maneken = await DTOManager.VratiManekena(frmManekeni._maneken.MBR);
-            DTOManager.ObrisiRevijuManekenu(maneken, revija);
-        }
-        private void btnDodajReviju_Click(object sender, EventArgs e)
-        {
+            if (revija != null)
+            {
+                if(await DTOManager.ObrisiRevijuManekenu(revija, frmManekeni._maneken))
+                {
+                    MessageBox.Show($"Revija {revija.Naziv} je obrisana iz spiska revija manekena!");
+                    UcitajPodatke();
+                    btnObrisiReviju.Enabled = false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Greška pri pribavljanju manekena i revije iz baze!");
+            }
         }
 
         private void btnOdustani_Click(object sender, EventArgs e)

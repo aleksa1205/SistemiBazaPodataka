@@ -18,7 +18,7 @@ public class ModnaAgencijaPregled
 
     #region Constructors
     public ModnaAgencijaPregled() { }
-    public ModnaAgencijaPregled(string pib, string naziv, Adresa sediste, DateTime datumOsnivanja)
+    public ModnaAgencijaPregled(string pib, string naziv, Adresa? sediste, DateTime datumOsnivanja)
     {
         PIB = pib;
         Naziv = naziv;
@@ -29,14 +29,7 @@ public class ModnaAgencijaPregled
     {
         PIB = agencija.PIB;
         Naziv = agencija.Naziv;
-        if (agencija.Sediste == null)
-        {
-            Sediste = new Adresa();
-        }
-        else
-        {
-            Sediste = agencija.Sediste;
-        }
+        Sediste = agencija.Sediste;
         DatumOsnivanja = agencija.DatumOsnivanja;
     }
     #endregion

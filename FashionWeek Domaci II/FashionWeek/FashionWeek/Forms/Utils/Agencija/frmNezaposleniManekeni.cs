@@ -39,6 +39,7 @@ namespace FashionWeek.Forms.Utils.Agencija
         }
 
         private void lvManekeni_SelectedIndexChanged(object sender, EventArgs e)
+
         {
             if (lvManekeni.SelectedItems.Count > 0)
             {

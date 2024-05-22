@@ -118,7 +118,7 @@
             btnOdustani.UseVisualStyleBackColor = true;
             btnOdustani.Click += btnOdustani_Click;
             // 
-            // frmRevije
+            // frmRevijeManekena
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -128,8 +128,8 @@
             Controls.Add(btnDodajReviju);
             Controls.Add(lvRevije);
             Controls.Add(lblRevije);
-            Name = "frmRevije";
-            Text = "Revije manekena";
+            Name = "frmRevijeManekena";
+            Text = "MANEKEN - Revije";
             Load += frmRevije_Load;
             ResumeLayout(false);
             PerformLayout();

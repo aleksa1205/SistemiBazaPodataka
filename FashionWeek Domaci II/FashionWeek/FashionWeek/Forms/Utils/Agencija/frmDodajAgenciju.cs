@@ -87,11 +87,6 @@ namespace FashionWeek.Forms.Utils.Agencija
                     Inostrana = 'N',
                     DatumOsnivanja = dtpDatumOsnivanja.Value,
                     Sediste = new Adresa()
-                    {
-                        Drzava = txtDrzava.Text,
-                        Grad = txtGrad.Text,
-                        Ulica = txtUlica.Text
-                    }
                 };
             }
             else
@@ -102,15 +97,14 @@ namespace FashionWeek.Forms.Utils.Agencija
                     Naziv = txtNaziv.Text,
                     Inostrana = 'Y',
                     DatumOsnivanja = dtpDatumOsnivanja.Value,
-                    Sediste = new Adresa() 
-                    {
-                        Drzava = txtDrzava.Text,
-                        Grad = txtGrad.Text,
-                        Ulica = txtUlica.Text
-                    }
+                    Sediste = new Adresa()
                 };
             }
-            if(await DTOManager.DodajModnuAgenciju(agencija))
+            agencija.Sediste.Drzava = txtDrzava.Text;
+            agencija.Sediste.Grad = txtGrad.Text;
+            agencija.Sediste.Ulica = txtUlica.Text;
+
+            if (await DTOManager.DodajModnuAgenciju(agencija))
             {
                 MessageBox.Show($"Modna agencija {agencija.PIB}: {agencija.Naziv} je uspešno dodata!");
                 Close();
