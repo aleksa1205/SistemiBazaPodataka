@@ -10,11 +10,11 @@ namespace FashionWeek.DTO;
 
 public class ModnaAgencijaPregled
 {
-    public string? PIB { get; set; }
-    public string? Naziv { get; set; }
-    public char Inostrana { get; set; }
-    public Adresa? Sediste { get; set; }
-    public DateTime DatumOsnivanja { get; set; }
+    public string PIB;
+    public string Naziv;
+    public char Inostrana;
+    public Adresa? Sediste;
+    public DateTime DatumOsnivanja;
 
     #region Constructors
     public ModnaAgencijaPregled() { }
@@ -31,6 +31,40 @@ public class ModnaAgencijaPregled
         Naziv = agencija.Naziv;
         Sediste = agencija.Sediste;
         DatumOsnivanja = agencija.DatumOsnivanja;
+    }
+    #endregion
+}
+
+public class ModnaAgencijaBasic
+{
+    public string PIB;
+    public string Naziv;
+    public char Inostrana;
+    public Adresa Sediste;
+    public DateTime DatumOsnivanja;
+    public virtual IList<ManekenBasic> Manekeni { get; set; } = [];
+
+    #region Constructors
+    public ModnaAgencijaBasic() { }
+    public ModnaAgencijaBasic(string pib, string naziv, char inostrana, Adresa sediste, DateTime datumOsnivanja)
+    {
+        PIB = pib;
+        Naziv = naziv;
+        Inostrana = inostrana;
+        Sediste = sediste;
+        DatumOsnivanja = datumOsnivanja;
+    }
+    public ModnaAgencijaBasic(ModnaAgencija agencija)
+    {
+        PIB = agencija.PIB;
+        Naziv = agencija.Naziv;
+        Inostrana = agencija.Inostrana;
+        Sediste = agencija.Sediste;
+        DatumOsnivanja = agencija.DatumOsnivanja;
+        foreach(var maneken in agencija.Manekeni)
+        {
+            Manekeni.Add(new ManekenBasic(maneken));
+        }
     }
     #endregion
 }

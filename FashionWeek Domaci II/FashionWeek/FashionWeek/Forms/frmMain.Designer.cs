@@ -31,6 +31,7 @@
             btnAgencije = new Button();
             btnManekeni = new Button();
             btnRevije = new Button();
+            btnKreatori = new Button();
             SuspendLayout();
             // 
             // btnAgencije
@@ -48,13 +49,15 @@
             // 
             // btnManekeni
             // 
+            btnManekeni.BackColor = SystemColors.MenuHighlight;
             btnManekeni.Font = new Font("Segoe UI", 18F);
+            btnManekeni.ForeColor = Color.Snow;
             btnManekeni.Location = new Point(12, 220);
             btnManekeni.Name = "btnManekeni";
             btnManekeni.Size = new Size(150, 65);
             btnManekeni.TabIndex = 1;
             btnManekeni.Text = "MANEKENI";
-            btnManekeni.UseVisualStyleBackColor = true;
+            btnManekeni.UseVisualStyleBackColor = false;
             btnManekeni.Click += btnManekeni_Click;
             // 
             // btnRevije
@@ -68,11 +71,23 @@
             btnRevije.UseVisualStyleBackColor = true;
             btnRevije.Click += btnRevije_Click;
             // 
+            // btnKreatori
+            // 
+            btnKreatori.Font = new Font("Segoe UI", 18F);
+            btnKreatori.Location = new Point(168, 362);
+            btnKreatori.Name = "btnKreatori";
+            btnKreatori.Size = new Size(150, 65);
+            btnKreatori.TabIndex = 3;
+            btnKreatori.Text = "KREATORI";
+            btnKreatori.UseVisualStyleBackColor = true;
+            btnKreatori.Click += btnKreatori_Click;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnKreatori);
             Controls.Add(btnRevije);
             Controls.Add(btnManekeni);
             Controls.Add(btnAgencije);
@@ -86,5 +101,6 @@
         private Button btnAgencije;
         private Button btnManekeni;
         private Button btnRevije;
+        private Button btnKreatori;
     }
 }

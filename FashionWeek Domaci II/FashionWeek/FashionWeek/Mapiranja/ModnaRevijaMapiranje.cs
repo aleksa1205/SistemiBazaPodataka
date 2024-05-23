@@ -24,7 +24,7 @@ public class ModnaRevijaMapiranje : ClassMap<ModnaRevija>
             .Table("NASTUPA_U")
             .ParentKeyColumn("RBR_REVIJE")
             .ChildKeyColumn("MBR_MANEKENA")
-            .Cascade.All();
+            .Cascade.All().Inverse();
         HasManyToMany(x => x.Kreatori)
             .Table("PREDSTAVLJA")
             .ParentKeyColumn("RBR_REVIJE")

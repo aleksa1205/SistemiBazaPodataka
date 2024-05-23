@@ -11,18 +11,20 @@ namespace FashionWeek.DTO;
 
 public class ManekenPregled
 {
-    public string? MBR { get; set; }
-    public Ime? Ime { get; set; }
-    public DateTime DatumRodjenja { get; set; }
-    public char Pol { get; set; }
+    public string MBR;
+    public Ime Ime;
+    public DateTime DatumRodjenja;
+    public char Pol;
+    public string RadiU;
     public ManekenPregled() { }
 
-    public ManekenPregled(string mbr, Ime ime, DateTime datumRodjenja, char pol)
+    public ManekenPregled(string mbr, Ime ime, DateTime datumRodjenja, char pol, string radiu)
     {
         MBR = mbr;
         Ime = ime;
         DatumRodjenja = datumRodjenja;
         Pol = pol;
+        RadiU = radiu;
     }
 
     public ManekenPregled(Maneken maneken)
@@ -31,21 +33,50 @@ public class ManekenPregled
         Ime = maneken.Ime;
         DatumRodjenja = maneken.DatumRodjenja;
         Pol = maneken.Pol;
+        RadiU = maneken.RadiUAgenciji.Naziv;
+    }
+}
+
+public class ManekenNezaposlenPregled
+{
+    public string MBR;
+    public Ime Ime;
+    public DateTime DatumRodjenja;
+    public char Pol;
+    public string Zanimanje;
+    public ManekenNezaposlenPregled() { }
+
+    public ManekenNezaposlenPregled(string mbr, Ime ime, DateTime datumRodjenja, char pol, string zanimanje)
+    {
+        MBR = mbr;
+        Ime = ime;
+        DatumRodjenja = datumRodjenja;
+        Pol = pol;
+        Zanimanje = zanimanje;
+    }
+
+    public ManekenNezaposlenPregled(Maneken maneken)
+    {
+        MBR = maneken.MBR;
+        Ime = maneken.Ime;
+        DatumRodjenja = maneken.DatumRodjenja;
+        Pol = maneken.Pol;
+        Zanimanje = maneken.Zanimanje;
     }
 }
 
 public class ManekenBasic
 {
-    public string MBR { get; set; }
-    public Ime Ime { get; set; }
-    public DateTime DatumRodjenja { get; set; }
-    public char Pol { get; set; }
-    public int Visina { get; set; }
-    public double Tezina { get; set; }
-    public string? BojaOciju { get; set; }
-    public string? BojaKose { get; set; }
-    public string? KonfekcijskiBroj { get; set; }
-    public string? Zanimanje { get; set; }
+    public string MBR;
+    public Ime Ime;
+    public DateTime DatumRodjenja;
+    public char Pol;
+    public int Visina;
+    public double Tezina;
+    public string BojaOciju;
+    public string BojaKose;
+    public string KonfekcijskiBroj;
+    public string Zanimanje;
     //virtual?
     public virtual ModnaAgencija? RadiUAgenciji { get; set; }
     public virtual IList<ModnaRevija> Revije { get; set; }
