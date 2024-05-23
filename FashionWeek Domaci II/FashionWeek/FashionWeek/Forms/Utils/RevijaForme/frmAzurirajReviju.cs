@@ -16,22 +16,34 @@ namespace FashionWeek.Forms.Utils.RevijaForme;
 
 public partial class frmAzurirajReviju : Form
 {
+    public ModnaRevijaBasic? revija = null;
     #region Funkcije
-    public void Ucitaj()
+    public async void Ucitaj()
     {
-        txtRBR.Text = frmRevije._revija.RBR.ToString();
-        txtNaziv.Text = frmRevije._revija.Naziv;
-        dtpTermin.Value = frmRevije._revija.Termin;
-        txtDrzava.Text = frmRevije._revija.Mesto?.Drzava;
-        txtGrad.Text = frmRevije._revija.Mesto?.Grad;
-        txtUlica.Text = frmRevije._revija.Mesto?.Ulica;
+        revija = await DTOManager.VratiModnuReviju(frmRevije._rbrRevije);
+        if (revija != null)
+        {
+            txtRBR.Text = revija.RBR.ToString();
+            txtNaziv.Text = revija.Naziv;
+            dtpTermin.Value = revija.Termin;
+            txtDrzava.Text = revija.Mesto?.Drzava;
+            txtGrad.Text = revija.Mesto?.Grad;
+            txtUlica.Text = revija.Mesto?.Ulica;
+        }
+        else
+        {
+            MessageBox.Show("Greška pri učitavanju modne revije!");
+        }
     }
 
-    public void Procitaj(ModnaRevija revija)
+    public void Procitaj()
     {
-        revija.Naziv = txtNaziv.Text;
+        revija!.Naziv = txtNaziv.Text;
         revija.Termin = dtpTermin.Value;
-        revija.Mesto = new Adresa(txtDrzava.Text, txtGrad.Text, txtUlica.Text);
+        revija.Mesto.Drzava=txtDrzava.Text;
+        revija.Mesto.Grad = txtGrad.Text;
+        revija.Mesto.Ulica = txtUlica.Text;
+
     }
     #endregion
 
@@ -42,7 +54,7 @@ public partial class frmAzurirajReviju : Form
 
     private void frmAzurirajReviju_Load(object sender, EventArgs e)
     {
-        if (frmRevije._revija != null)
+        if (frmRevije._rbrRevije != null)
         {
             Ucitaj();
         }
@@ -60,8 +72,8 @@ public partial class frmAzurirajReviju : Form
             MessageBox.Show("Polje naziv ne sme biti prazno!");
             return;
         }
-        Procitaj(frmRevije._revija);
-        if (await DTOManager.AzurirajReviju(frmRevije._revija))
+        Procitaj();
+        if (await DTOManager.AzurirajReviju(revija))
         {
             MessageBox.Show("Revija uspešno ažurirana!");
             Close();

@@ -26,7 +26,7 @@ public partial class frmDodajZemlju : Form
             MessageBox.Show("Naziv zemlje ne sme biti prazan!");
             return;
         }
-        if (await DTOManager.DodajZemlju(frmAgencije._modnaAgencija as InostranaAgencija, txtNazivZemlje.Text))
+        if (await DTOManager.DodajZemlju(frmAgencije._modnaAgencijaPIB!, txtNazivZemlje.Text))
         {
             MessageBox.Show("Uspešno dodata zemlja!");
             Close();

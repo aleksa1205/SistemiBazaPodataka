@@ -19,7 +19,7 @@ public partial class frmUcesniciRevije : Form
     public async void UcitajPodatke()
     {
         lvManekeni.Items.Clear();
-        IList<ManekenPregled> manekeni = await DTOManager.VratiManekeneModneRevije(frmRevije._revija);
+        IList<ManekenPregled> manekeni = await DTOManager.VratiManekeneModneRevije(frmRevije._rbrRevije);
         foreach (var maneken in manekeni)
         {
             ListViewItem item = new ListViewItem(new string[] { maneken.MBR, maneken.Ime.LicnoIme, maneken.Ime.Prezime, maneken.DatumRodjenja.ToShortDateString(), maneken.Pol.ToString() });
@@ -35,7 +35,7 @@ public partial class frmUcesniciRevije : Form
 
     private void frmUcesniciRevije_Load(object sender, EventArgs e)
     {
-        lblRevija.Text += frmRevije._revija.Naziv;
+        //lblRevija.Text += frmRevije._revija.Naziv;
         UcitajPodatke();
     }
 
@@ -61,7 +61,7 @@ public partial class frmUcesniciRevije : Form
     private async void btnObrisiManekena_Click(object sender, EventArgs e)
     {
 
-        if (await DTOManager.ObrisiRevijuManekenu(lvManekeni.SelectedItems[0].Text, frmRevije._revija.RBR))
+        if (await DTOManager.ObrisiRevijuManekenu(lvManekeni.SelectedItems[0].Text, frmRevije._rbrRevije))
         {
             MessageBox.Show("Uspešno obrisan maneken!");
             UcitajPodatke();

@@ -1,51 +1,56 @@
-﻿using FashionWeek.Entiteti;
-using FashionWeek.Entiteti.Helper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FashionWeek.DTO;
+﻿namespace FashionWeek.DTO;
 
 public class ModnaRevijaPregled
 {
-    public int RBR;
-    public string Naziv;
-    public Adresa? Mesto;
-    public DateTime Termin;
+    public int RBR { get; set; }
+    public string Naziv { get; set; }
+    public Adresa? Mesto { get; set; }
+    public DateTime Termin { get; set; }
 
-    public ModnaRevijaPregled() { }
-
+    #region Constructors
     public ModnaRevijaPregled(int rbr, string naziv, Adresa? mesto, DateTime termin)
     {
         RBR = rbr;
         Naziv = naziv;
         Termin = termin;
-        Mesto = mesto != null ? new Adresa(mesto) : new Adresa();
+        Mesto = mesto;
     }
-
     public ModnaRevijaPregled(ModnaRevija revija)
     {
         RBR = revija.RBR;
         Naziv = revija.Naziv;
+        Mesto = revija.Mesto;
         Termin = revija.Termin;
-        Mesto = revija.Mesto != null ? new Adresa(revija.Mesto) : new Adresa();
     }
+    #endregion
 }
 
 public class ModnaRevijaBasic
 {
-    public int RBR;
-    public string Naziv;
-    public Adresa Mesto;
-    public DateTime Termin;
-    public virtual IList<ManekenBasic> Manekeni { get; set; }
-    public virtual IList<ModniKreatorBasic> Kreatori { get; set; }
-    //organizator
-    //specijalnigosti
+    public int RBR { get; set; }
+    public string? Naziv { get; set; }
+    public Adresa? Mesto { get; set; }
+    public DateTime Termin { get; set; }
+    public IList<ManekenBasic> Manekeni { get; set; } = [];
+    public IList<ModniKreatorBasic> Kreatori { get; set; } = [];
+    public OrganizatorBasic? Organizator { get; set; }
+    public IList<SpecijalanGostBasic> SpecijalniGosti { get; set; } = [];
 
     #region Constructors
-
+    public ModnaRevijaBasic() { }
+    public ModnaRevijaBasic(int rbr, string naziv, Adresa mesto, DateTime termin)
+    {
+        RBR = rbr;
+        Naziv = naziv;
+        Mesto = mesto;
+        Termin = termin;
+    }
+    public ModnaRevijaBasic(ModnaRevija revija)
+    {
+        RBR = revija.RBR;
+        Naziv = revija.Naziv;
+        Mesto = revija.Mesto;
+        Termin = revija.Termin;
+    }
     #endregion
 }

@@ -1,23 +1,14 @@
-﻿using FashionWeek.Entiteti;
-using FashionWeek.Entiteti.Helper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
-
-namespace FashionWeek.DTO;
+﻿namespace FashionWeek.DTO;
 
 public class ManekenPregled
 {
-    public string MBR;
-    public Ime Ime;
-    public DateTime DatumRodjenja;
-    public char Pol;
-    public string RadiU;
-    public ManekenPregled() { }
+    public string MBR { get; set; }
+    public Ime Ime { get; set; }
+    public DateTime DatumRodjenja { get; set; }
+    public char Pol { get; set; }
+    public string? RadiU { get; set; }
 
+    #region Constructors
     public ManekenPregled(string mbr, Ime ime, DateTime datumRodjenja, char pol, string radiu)
     {
         MBR = mbr;
@@ -33,19 +24,20 @@ public class ManekenPregled
         Ime = maneken.Ime;
         DatumRodjenja = maneken.DatumRodjenja;
         Pol = maneken.Pol;
-        RadiU = maneken.RadiUAgenciji.Naziv;
+        //RadiU = maneken.RadiUAgenciji?.Naziv;
     }
+    #endregion
 }
 
 public class ManekenNezaposlenPregled
 {
-    public string MBR;
-    public Ime Ime;
-    public DateTime DatumRodjenja;
-    public char Pol;
-    public string Zanimanje;
-    public ManekenNezaposlenPregled() { }
+    public string MBR { get; set; }
+    public Ime Ime { get; set; }
+    public DateTime DatumRodjenja { get; set; }
+    public char Pol { get; set; }
+    public string? Zanimanje { get; set; }
 
+    #region Constructors
     public ManekenNezaposlenPregled(string mbr, Ime ime, DateTime datumRodjenja, char pol, string zanimanje)
     {
         MBR = mbr;
@@ -54,7 +46,6 @@ public class ManekenNezaposlenPregled
         Pol = pol;
         Zanimanje = zanimanje;
     }
-
     public ManekenNezaposlenPregled(Maneken maneken)
     {
         MBR = maneken.MBR;
@@ -63,32 +54,28 @@ public class ManekenNezaposlenPregled
         Pol = maneken.Pol;
         Zanimanje = maneken.Zanimanje;
     }
+    #endregion
 }
 
 public class ManekenBasic
 {
-    public string MBR;
-    public Ime Ime;
-    public DateTime DatumRodjenja;
-    public char Pol;
-    public int Visina;
-    public double Tezina;
-    public string BojaOciju;
-    public string BojaKose;
-    public string KonfekcijskiBroj;
-    public string Zanimanje;
-    //virtual?
-    public virtual ModnaAgencija? RadiUAgenciji { get; set; }
-    public virtual IList<ModnaRevija> Revije { get; set; }
-    public virtual IList<Casopis> Casopisi { get; set; }
+    public string MBR { get; set; }
+    public Ime Ime { get; set; }
+    public DateTime DatumRodjenja { get; set; }
+    public char Pol { get; set; }
+    public int Visina { get; set; }
+    public double Tezina { get; set; }
+    public string? BojaOciju { get; set; }
+    public string? BojaKose { get; set; }
+    public string? KonfekcijskiBroj { get; set; }
+    public string? Zanimanje { get; set; }
+    public ModnaAgencijaBasic? RadiUAgenciji { get; set; }
+    public IList<ModnaRevijaBasic> Revije { get; set; } = [];
+    public IList<CasopisBasic> Casopisi { get; set; } = [];
 
-    public ManekenBasic()
-    {
-        Revije = new List<ModnaRevija>();
-        Casopisi = new List<Casopis>();
-    }
-
-    public ManekenBasic(string mbr, Ime ime, DateTime datumRodjenja, char pol, int visina, double tezina, string bojaOciju, string bojaKose, string konfBroj, string zanimanje) : this()
+    #region Constructors
+    public ManekenBasic() { }
+    public ManekenBasic(string mbr, Ime ime, DateTime datumRodjenja, char pol, int visina, double tezina, string bojaOciju, string bojaKose, string konfBroj, string zanimanje)
     {
         MBR = mbr;
         Ime = ime;
@@ -101,7 +88,6 @@ public class ManekenBasic
         KonfekcijskiBroj = konfBroj;
         Zanimanje = zanimanje;
     }
-
     public ManekenBasic(Maneken maneken)
     {
         MBR = maneken.MBR;
@@ -114,8 +100,6 @@ public class ManekenBasic
         BojaKose = maneken.BojaKose;
         KonfekcijskiBroj = maneken.KonfekcijskiBroj;
         Zanimanje = maneken.Zanimanje;
-        RadiUAgenciji = maneken.RadiUAgenciji;
-        Revije = new List<ModnaRevija>(maneken.Revije);
-        Casopisi = new List<Casopis>(maneken.Casopisi);
     }
+    #endregion
 }

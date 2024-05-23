@@ -62,13 +62,15 @@
             // 
             // btnRevije
             // 
+            btnRevije.BackColor = SystemColors.MenuHighlight;
             btnRevije.Font = new Font("Segoe UI", 18F);
+            btnRevije.ForeColor = Color.Cornsilk;
             btnRevije.Location = new Point(12, 362);
             btnRevije.Name = "btnRevije";
             btnRevije.Size = new Size(150, 65);
             btnRevije.TabIndex = 2;
             btnRevije.Text = "REVIJE";
-            btnRevije.UseVisualStyleBackColor = true;
+            btnRevije.UseVisualStyleBackColor = false;
             btnRevije.Click += btnRevije_Click;
             // 
             // btnKreatori

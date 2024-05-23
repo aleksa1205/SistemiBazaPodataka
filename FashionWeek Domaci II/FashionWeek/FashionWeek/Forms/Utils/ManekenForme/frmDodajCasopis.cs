@@ -25,7 +25,7 @@ namespace FashionWeek.Forms.Utils.ManekenForme
                 MessageBox.Show("Naziv časopisa mora biti popunjen!");
                 return;
             }
-            if(await DTOManager.DodajCasopis(frmManekeni._maneken, txtNazivCasopisa.Text))
+            if(await DTOManager.DodajCasopis(frmManekeni._manekenMBR!, txtNazivCasopisa.Text))
             {
                 MessageBox.Show("Uspešno dodat časopis!");
                 Close();

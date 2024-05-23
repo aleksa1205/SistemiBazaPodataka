@@ -15,30 +15,43 @@ namespace FashionWeek.Forms.Utils.AgencijaForme;
 
 public partial class frmAzurirajAgenciju : Form
 {
+    ModnaAgencijaBasic? modnaAgencija = null;
     #region Funkcije
-    public void Ucitaj()
+    public async void Ucitaj()
     {
-        txtPIB.Text = frmAgencije._modnaAgencija?.PIB;
-        txtNaziv.Text = frmAgencije._modnaAgencija?.Naziv;
-        dtpDatumOsnivanja.Value = frmAgencije._modnaAgencija!.DatumOsnivanja;
-        txtDrzava.Text = frmAgencije._modnaAgencija.Sediste?.Drzava;
-        txtGrad.Text = frmAgencije._modnaAgencija.Sediste?.Grad;
-        txtUlica.Text = frmAgencije._modnaAgencija.Sediste?.Ulica;
-        if (frmAgencije._modnaAgencija is InostranaAgencija)
+        modnaAgencija = await DTOManager.VratiModnuAgenciju(frmAgencije._modnaAgencijaPIB);
+        if (modnaAgencija != null)
         {
-            rbInostrana.Checked = true;
+            txtPIB.Text = modnaAgencija.PIB;
+            txtNaziv.Text = modnaAgencija.Naziv;
+            dtpDatumOsnivanja.Value = modnaAgencija.DatumOsnivanja;
+            txtDrzava.Text = modnaAgencija.Sediste?.Drzava;
+            txtGrad.Text = modnaAgencija.Sediste?.Grad;
+            txtUlica.Text = modnaAgencija.Sediste?.Ulica;
+            if (modnaAgencija is InostranaAgencijaBasic)
+            {
+                rbInostrana.Checked = true;
+            }
+            else
+            {
+                rbDomaca.Checked = true;
+            }
         }
         else
         {
-            rbDomaca.Checked = true;
+            MessageBox.Show("Greška pri učitavanju modne agencije!");
+            Close();
         }
     }
 
-    public void Procitaj(ModnaAgencija agencija)
+    public void Procitaj()
     {
-        agencija.Naziv = txtNaziv.Text;
-        agencija.DatumOsnivanja = dtpDatumOsnivanja.Value;
-        agencija.Sediste = new Adresa(txtDrzava.Text, txtGrad.Text, txtUlica.Text);
+        modnaAgencija!.Naziv = txtNaziv.Text;
+        modnaAgencija.DatumOsnivanja = dtpDatumOsnivanja.Value;
+        modnaAgencija.Sediste.Drzava = txtDrzava.Text;
+        modnaAgencija.Sediste.Grad = txtGrad.Text;
+        modnaAgencija.Sediste.Ulica = txtUlica.Text;
+
     }
     #endregion
 
@@ -49,23 +62,21 @@ public partial class frmAzurirajAgenciju : Form
 
     private void frmAzurirajAgenciju_Load(object sender, EventArgs e)
     {
-        if (frmAgencije._modnaAgencija != null)
-        {
-            Ucitaj();
-            txtPIB.Enabled = false;
-            gbTip.Enabled = false;
-        }
-        else
-        {
-            MessageBox.Show("Greška pri učitavanju modne agencije!");
-            Close();
-        }
+
+        Ucitaj();
+        txtPIB.Enabled = false;
+        gbTip.Enabled = false;
     }
 
     private async void btnSacuvaj_Click(object sender, EventArgs e)
     {
-        Procitaj(frmAgencije._modnaAgencija);
-        if(await DTOManager.AzurirajModnuAgenciju(frmAgencije._modnaAgencija))
+        if (string.IsNullOrEmpty(txtNaziv.Text))
+        {
+            MessageBox.Show("Polje naziv mora biti popunjeno!");
+            return;
+        }
+        Procitaj();
+        if(await DTOManager.AzurirajModnuAgenciju(modnaAgencija!))
         {
             MessageBox.Show("Uspešno ažurirana modna agencija!");
             Close();

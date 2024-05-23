@@ -14,7 +14,7 @@ namespace FashionWeek.Forms.Utils.ManekenForme;
 
 public partial class frmManekeni : Form
 {
-    public static Entiteti.Maneken? _maneken = null;
+    public static string? _manekenMBR = null;
 
     #region Funkcije
     public void EnableButtons()
@@ -51,17 +51,16 @@ public partial class frmManekeni : Form
         InitializeComponent();
     }
 
-
     private void frmManekeni_Load(object sender, EventArgs e)
     {
         UcitajPodatke();
     }
 
-    private async void lvManekeni_SelectedIndexChanged(object sender, EventArgs e)
+    private void lvManekeni_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (lvManekeni.SelectedItems.Count > 0)
         {
-            _maneken = await DTOManager.VratiManekena(lvManekeni.SelectedItems[0].Text);
+            _manekenMBR = lvManekeni.SelectedItems[0].Text;
             EnableButtons();
         }
         else
@@ -79,45 +78,27 @@ public partial class frmManekeni : Form
 
     private void btnAzurirajManekena_Click(object sender, EventArgs e)
     {
-        if (_maneken != null)
-        {
-            frmAzurirajManekena frmAzuriraj = new frmAzurirajManekena();
-            frmAzuriraj.ShowDialog();
-            DisableButtons();
-            UcitajPodatke();
-        }
-        else
-        {
-            MessageBox.Show("Greška pri pribavljanju manekena iz baze!");
-        }
+
+        frmAzurirajManekena frmAzuriraj = new frmAzurirajManekena();
+        frmAzuriraj.ShowDialog();
+        DisableButtons();
+        UcitajPodatke();
     }
 
     private async void btnObrisiManekena_Click(object sender, EventArgs e)
     {
-        if (_maneken != null)
+        if (await DTOManager.ObrisiManekena(_manekenMBR!))
         {
-            await DTOManager.ObrisiManekena(_maneken);
             MessageBox.Show("Uspešno obrisan maneken!");
-            DisableButtons();
             UcitajPodatke();
-        }
-        else
-        {
-            MessageBox.Show("Greška pri pribavljanju manekena iz baze!");
+            DisableButtons();
         }
     }
 
     private void btnRevije_Click(object sender, EventArgs e)
     {
-        if (_maneken != null)
-        {
-            frmRevijeManekena frmRevije = new frmRevijeManekena();
-            frmRevije.ShowDialog();
-        }
-        else
-        {
-            MessageBox.Show("Greška pri pribavljanju manekena iz baze!");
-        }
+        frmRevijeManekena frmRevije = new frmRevijeManekena();
+        frmRevije.ShowDialog();
     }
 
     private void btnCasopisi_Click(object sender, EventArgs e)

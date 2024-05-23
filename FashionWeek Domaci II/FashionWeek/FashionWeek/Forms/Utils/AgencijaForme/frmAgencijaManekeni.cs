@@ -18,7 +18,7 @@ public partial class frmAgencijaManekeni : Form
     public async void UcitajPodatke()
     {
         lvManekeni.Items.Clear();
-        IList<ManekenPregled> listaManekena = await DTOManager.VratiManekeneModneAgencijePregled(frmAgencije._modnaAgencija!);
+        IList<ManekenPregled> listaManekena = await DTOManager.VratiManekeneModneAgencije(frmAgencije._modnaAgencijaPIB!);
         foreach (var maneken in listaManekena)
         {
             ListViewItem item = new ListViewItem(new string[] { maneken.MBR!, maneken.Ime?.LicnoIme!, maneken.Ime?.Prezime!, maneken.DatumRodjenja.ToShortDateString(), maneken.Pol.ToString() });
@@ -35,7 +35,7 @@ public partial class frmAgencijaManekeni : Form
 
     private void frmAgencijaManekeni_Load(object sender, EventArgs e)
     {
-        lblListaManekenaAgencije.Text += frmAgencije._modnaAgencija?.Naziv;
+        //lblListaManekenaAgencije.Text += frmAgencije._modnaAgencija?.Naziv;
         UcitajPodatke();
     }
 
@@ -51,22 +51,21 @@ public partial class frmAgencijaManekeni : Form
         }
     }
 
+    private void btnZaposliManekena_Click(object sender, EventArgs e)
+    {
+        frmNezaposleniManekeni frmNezaposleni = new frmNezaposleniManekeni();
+        frmNezaposleni.ShowDialog();
+        UcitajPodatke();
+        btnOtpustiManekena.Enabled = false;
+    }
+
     private async void btnOtpustiManekena_Click(object sender, EventArgs e)
     {
-        //PROMENI
-        Maneken maneken = await DTOManager.VratiManekena(lvManekeni.SelectedItems[0].Text);
-        if (maneken != null)
+        if (await DTOManager.DajOtkazManeken(lvManekeni.SelectedItems[0].Text))
         {
-            if (await DTOManager.DajOtkazManeken(maneken))
-            {
-                MessageBox.Show($"Uspešno otpušten maneken {maneken.Ime.ToString()}");
-                UcitajPodatke();
-                btnOtpustiManekena.Enabled = false;
-            }
-        }
-        else
-        {
-            MessageBox.Show("Greška pri pribavljanju manekena iz baze!");
+            MessageBox.Show("Uspešno otpušten maneken!");
+            UcitajPodatke();
+            btnOtpustiManekena.Enabled = false;
         }
     }
 
@@ -74,4 +73,5 @@ public partial class frmAgencijaManekeni : Form
     {
         Close();
     }
+
 }

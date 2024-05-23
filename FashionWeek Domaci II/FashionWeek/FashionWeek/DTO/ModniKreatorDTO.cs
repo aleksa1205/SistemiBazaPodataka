@@ -1,13 +1,6 @@
-﻿using FashionWeek.Entiteti;
-using FashionWeek.Entiteti.Helper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FashionWeek.Entiteti.Helper;
 
 namespace FashionWeek.DTO;
-
 public class ModniKreatorPregled
 {
     public string MBR { get; set; }
@@ -17,8 +10,7 @@ public class ModniKreatorPregled
     public string? ZemljaPorekla { get; set; }
     public string? RadiU { get; set; }
 
-    public ModniKreatorPregled() { }
-
+    #region Constructors
     public ModniKreatorPregled(string mbr, Ime ime, DateTime datumRodjenja, char pol, string? zemljaPorekla, string? radiU)
     {
         MBR = mbr;
@@ -37,23 +29,38 @@ public class ModniKreatorPregled
         ZemljaPorekla = kreator.ZemljaPorekla;
         RadiU = kreator.RadiU?.Naziv;
     }
+    #endregion
 }
 
 public class ModniKreatorBasic
 {
-    public virtual required string MBR { get; set; }
-    public virtual required Ime Ime { get; set; }
-    public virtual DateTime DatumRodjenja { get; set; }
-    public virtual char Pol { get; set; }
-    public virtual string? ZemljaPorekla { get; set; }
+    public string MBR { get; set; }
+    public Ime Ime { get; set; }
+    public DateTime DatumRodjenja { get; set; }
+    public char Pol { get; set; }
+    public string? ZemljaPorekla { get; set; }
+    public ModnaKucaBasic? RadiU { get; set; }
+    public OrganizatorBasic? Organizator { get; set; }
+    public IList<ModnaRevijaBasic> Revije { get; set; } = [];
+    public IList<SpecijalanGost> SpecijalniGosti { get; set; } = [];
 
-    public virtual ModnaKuca? RadiU { get; set; }
-    public virtual Organizator? Organizator { get; set; }
-    public virtual IList<ModnaRevija> Revije { get; set; } 
-    public virtual IList<SpecijalanGost> SpecijalniGosti { get; set; } = [];
-
-    public ModniKreatorBasic()
+    #region Constuctors
+    public ModniKreatorBasic() { }
+    public ModniKreatorBasic(string mbr, Ime ime, DateTime datumRodjenja, char pol, string zemljaPorekla)
     {
-        Revije = new List<ModnaRevija>();
+        MBR = mbr;
+        Ime = ime;
+        DatumRodjenja = datumRodjenja;
+        Pol = pol;
+        ZemljaPorekla = zemljaPorekla;
     }
+    public ModniKreatorBasic(ModniKreator kreator)
+    {
+        MBR = kreator.MBR;
+        Ime = kreator.Ime;
+        DatumRodjenja = kreator.DatumRodjenja;
+        Pol = kreator.Pol;
+        ZemljaPorekla = kreator.ZemljaPorekla;
+    }
+    #endregion
 }

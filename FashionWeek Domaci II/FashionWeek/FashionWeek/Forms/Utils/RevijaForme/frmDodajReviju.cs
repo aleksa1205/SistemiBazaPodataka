@@ -27,7 +27,7 @@ public partial class frmDodajReviju : Form
             MessageBox.Show("Polje naziv ne sme biti prazno!");
             return;
         }
-        ModnaRevija revija = new ModnaRevija()
+        ModnaRevijaBasic revija = new ModnaRevijaBasic()
         {
             Naziv = txtNaziv.Text,
             Termin = dtpTermin.Value,

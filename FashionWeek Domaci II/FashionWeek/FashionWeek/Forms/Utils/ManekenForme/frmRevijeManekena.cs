@@ -23,7 +23,7 @@ public partial class frmRevijeManekena : Form
     public async void UcitajPodatke()
     {
         lvRevije.Items.Clear();
-        IList<ModnaRevijaPregled> listaRevija = await DTOManager.VratiModneRevijaManekena(frmManekeni._maneken);
+        IList<ModnaRevijaPregled> listaRevija = await DTOManager.VratiModneRevijaManekena(frmManekeni._manekenMBR!);
         foreach (var revija in listaRevija)
         {
             ListViewItem item = new ListViewItem(new string[] { revija.RBR.ToString(), revija.Naziv, revija.Mesto!.ToString(), revija.Termin.ToShortDateString() });
@@ -35,15 +35,9 @@ public partial class frmRevijeManekena : Form
 
     private void frmRevije_Load(object sender, EventArgs e)
     {
-        try
-        {
-            lblRevije.Text += frmManekeni._maneken.Ime.ToString() + ':';
-            UcitajPodatke();
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(ex.Message);
-        }
+
+        //lblRevije.Text += frmManekeni._maneken.Ime.ToString() + ':';
+        UcitajPodatke();
     }
 
     private void lvRevije_SelectedIndexChanged(object sender, EventArgs e)
@@ -68,7 +62,7 @@ public partial class frmRevijeManekena : Form
 
     private async void btnObrisiReviju_Click(object sender, EventArgs e)
     {
-        if(await DTOManager.ObrisiRevijuManekenu(frmManekeni._maneken.MBR, Int32.Parse(lvRevije.SelectedItems[0].Text)))
+        if(await DTOManager.ObrisiRevijuManekenu(frmManekeni._manekenMBR!, Int32.Parse(lvRevije.SelectedItems[0].Text)))
         {
             MessageBox.Show("Uspešno obrisana revija manekenu!");
             UcitajPodatke();

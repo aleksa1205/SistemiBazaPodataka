@@ -72,15 +72,15 @@ public partial class frmDodajAgenciju : Form
         {
             return;
         }
-        ModnaAgencija agencija = await DTOManager.VratiModnuAgenciju(txtPIB.Text);
-        if (agencija != null)
+        ModnaAgencijaBasic? modnaAgencija = await DTOManager.VratiModnuAgenciju(txtPIB.Text);
+        if (modnaAgencija != null)
         {
             MessageBox.Show($"Modna agencija sa PIB-om {txtPIB.Text} već postoji!");
             return;
         }
         if (rbDomaca.Checked)
         {
-            agencija = new DomacaAgencija
+            modnaAgencija = new DomacaAgencijaBasic
             {
                 PIB = txtPIB.Text,
                 Naziv = txtNaziv.Text,
@@ -91,7 +91,7 @@ public partial class frmDodajAgenciju : Form
         }
         else
         {
-            agencija = new InostranaAgencija
+            modnaAgencija = new InostranaAgencijaBasic
             {
                 PIB = txtPIB.Text,
                 Naziv = txtNaziv.Text,
@@ -100,13 +100,13 @@ public partial class frmDodajAgenciju : Form
                 Sediste = new Adresa()
             };
         }
-        agencija.Sediste.Drzava = txtDrzava.Text;
-        agencija.Sediste.Grad = txtGrad.Text;
-        agencija.Sediste.Ulica = txtUlica.Text;
+        modnaAgencija.Sediste.Drzava = txtDrzava.Text;
+        modnaAgencija.Sediste.Grad = txtGrad.Text;
+        modnaAgencija.Sediste.Ulica = txtUlica.Text;
 
-        if (await DTOManager.DodajModnuAgenciju(agencija))
+        if (await DTOManager.DodajModnuAgenciju(modnaAgencija))
         {
-            MessageBox.Show($"Modna agencija {agencija.PIB}: {agencija.Naziv} je uspešno dodata!");
+            MessageBox.Show($"Modna agencija {modnaAgencija.PIB}: {modnaAgencija.Naziv} je uspešno dodata!");
             Close();
         }
     }

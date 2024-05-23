@@ -39,7 +39,6 @@
             btnDodajAgenciju = new Button();
             btnPrikaziManekene = new Button();
             btnZemljePoslovanja = new Button();
-            btnZaposliManekena = new Button();
             btnIzadji = new Button();
             SuspendLayout();
             // 
@@ -130,7 +129,7 @@
             btnPrikaziManekene.Name = "btnPrikaziManekene";
             btnPrikaziManekene.Size = new Size(161, 30);
             btnPrikaziManekene.TabIndex = 6;
-            btnPrikaziManekene.Text = "Prikaži zaposlene";
+            btnPrikaziManekene.Text = "Zaposleni";
             btnPrikaziManekene.UseVisualStyleBackColor = true;
             btnPrikaziManekene.Click += btnPrikaziManekene_Click;
             // 
@@ -145,18 +144,6 @@
             btnZemljePoslovanja.Text = "Zemlje poslovanja";
             btnZemljePoslovanja.UseVisualStyleBackColor = true;
             btnZemljePoslovanja.Click += btnZemljePoslovanja_Click;
-            // 
-            // btnZaposliManekena
-            // 
-            btnZaposliManekena.Enabled = false;
-            btnZaposliManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnZaposliManekena.Location = new Point(627, 262);
-            btnZaposliManekena.Name = "btnZaposliManekena";
-            btnZaposliManekena.Size = new Size(161, 30);
-            btnZaposliManekena.TabIndex = 8;
-            btnZaposliManekena.Text = "Zaposli manekena";
-            btnZaposliManekena.UseVisualStyleBackColor = true;
-            btnZaposliManekena.Click += btnZaposliManekena_Click;
             // 
             // btnIzadji
             // 
@@ -175,7 +162,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(btnIzadji);
-            Controls.Add(btnZaposliManekena);
             Controls.Add(btnZemljePoslovanja);
             Controls.Add(btnPrikaziManekene);
             Controls.Add(btnDodajAgenciju);
@@ -203,7 +189,6 @@
         private Button btnDodajAgenciju;
         private Button btnPrikaziManekene;
         private Button btnZemljePoslovanja;
-        private Button btnZaposliManekena;
         private Button btnIzadji;
     }
 }

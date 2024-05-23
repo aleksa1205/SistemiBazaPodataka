@@ -18,5 +18,4 @@ public class ModnaRevija
     public virtual IList<ModniKreator> Kreatori { get; set; } = [];
     public virtual Organizator? Organizator { get; set; }
     public virtual IList<SpecijalanGost> SpecijalniGosti { get; set; } = [];
-
 }

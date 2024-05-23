@@ -1,16 +1,4 @@
-﻿using FashionWeek.DTO;
-using FashionWeek.Entiteti;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace FashionWeek.Forms.Utils.ManekenForme;
+﻿namespace FashionWeek.Forms.Utils.ManekenForme;
 
 public partial class frmNaziviCasopisaManekena : Form
 {
@@ -18,7 +6,7 @@ public partial class frmNaziviCasopisaManekena : Form
     public async void UcitajPodatke()
     {
         lvCasopisi.Items.Clear();
-        IList<string> casopisi = await DTOManager.VratiCasopiseManekena(frmManekeni._maneken);
+        IList<string> casopisi = await DTOManager.VratiCasopiseManekena(frmManekeni._manekenMBR!);
         foreach (var casopis in casopisi)
         {
             lvCasopisi.Items.Add(new ListViewItem(casopis));
@@ -33,7 +21,7 @@ public partial class frmNaziviCasopisaManekena : Form
 
     private void frmNaziviCasopisaManekena_Load(object sender, EventArgs e)
     {
-        lblManeken.Text = frmManekeni._maneken.Ime.ToString();
+        //lblManeken.Text = frmManekeni._maneken.Ime.ToString();
         UcitajPodatke();
     }
 
@@ -59,15 +47,7 @@ public partial class frmNaziviCasopisaManekena : Form
 
     private async void btnObrisiCasopis_Click(object sender, EventArgs e)
     {
-        Casopis casopis = new Casopis()
-        {
-            Id = new CasopisId()
-            {
-                Maneken = frmManekeni._maneken,
-                NazivCasopisa = lvCasopisi.SelectedItems[0].Text
-            }
-        };
-        if (await DTOManager.ObrisiCasopis(casopis))
+        if (await DTOManager.ObrisiCasopis(frmManekeni._manekenMBR!, lvCasopisi.SelectedItems[0].Text))
         {
             MessageBox.Show("Uspešno obrisan časopis!");
             UcitajPodatke();

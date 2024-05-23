@@ -1,30 +1,20 @@
-﻿using FashionWeek.Entiteti;
-using FashionWeek.Entiteti.Helper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FashionWeek.DTO;
+﻿namespace FashionWeek.DTO;
 
 public class ModnaAgencijaPregled
 {
-    public string PIB;
-    public string Naziv;
-    public char Inostrana;
-    public Adresa? Sediste;
-    public DateTime DatumOsnivanja;
+    public string PIB { get; set; }
+    public string Naziv { get; set; }
+    public Adresa? Sediste { get; set; }
+    public DateTime DatumOsnivanja { get; set; }
 
     #region Constructors
-    public ModnaAgencijaPregled() { }
     public ModnaAgencijaPregled(string pib, string naziv, Adresa? sediste, DateTime datumOsnivanja)
     {
         PIB = pib;
         Naziv = naziv;
         Sediste = sediste;
         DatumOsnivanja = datumOsnivanja;
-    }    
+    }
     public ModnaAgencijaPregled(ModnaAgencija agencija)
     {
         PIB = agencija.PIB;
@@ -37,12 +27,12 @@ public class ModnaAgencijaPregled
 
 public class ModnaAgencijaBasic
 {
-    public string PIB;
-    public string Naziv;
-    public char Inostrana;
-    public Adresa Sediste;
-    public DateTime DatumOsnivanja;
-    public virtual IList<ManekenBasic> Manekeni { get; set; } = [];
+    public string PIB { get; set; }
+    public string Naziv { get; set; }
+    public char Inostrana { get; set; }
+    public Adresa? Sediste { get; set; }
+    public DateTime DatumOsnivanja { get; set; }
+    public List<ManekenBasic> Manekeni { get; set; } = [];
 
     #region Constructors
     public ModnaAgencijaBasic() { }
@@ -61,10 +51,7 @@ public class ModnaAgencijaBasic
         Inostrana = agencija.Inostrana;
         Sediste = agencija.Sediste;
         DatumOsnivanja = agencija.DatumOsnivanja;
-        foreach(var maneken in agencija.Manekeni)
-        {
-            Manekeni.Add(new ManekenBasic(maneken));
-        }
+        Manekeni.AddRange(agencija.Manekeni.Select(maneken => new ManekenBasic(maneken)));
     }
     #endregion
 }

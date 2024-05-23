@@ -91,13 +91,13 @@ public partial class frmDodajManekena : Form
         {
             return;
         }
-        Maneken maneken = await DTOManager.VratiManekena(txtMBR.Text);
+        ManekenBasic? maneken = await DTOManager.VratiManekena(txtMBR.Text);
         if (maneken != null)
         {
             MessageBox.Show($"Maneken sa MBR-om {txtMBR.Text} već postoji!");
             return;
         }
-        maneken = new Maneken
+        maneken = new ManekenBasic
         {
             MBR = txtMBR.Text,
             Ime = new()

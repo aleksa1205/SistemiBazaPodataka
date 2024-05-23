@@ -43,21 +43,21 @@ public partial class frmNezaposleniManekeni : Form
     {
         if (lvManekeni.SelectedItems.Count > 0)
         {
-            btnZaposliManekena.Enabled = true;
+            btnZaposli.Enabled = true;
         }
         else
         {
-            btnZaposliManekena.Enabled = false;
+            btnZaposli.Enabled = false;
         }
     }
 
-    private async void btnZaposliManekena_Click(object sender, EventArgs e)
+    private async void btnZaposli_Click(object sender, EventArgs e)
     {
-        if (await DTOManager.ZaposliManekena(lvManekeni.SelectedItems[0].Text, frmAgencije._modnaAgencija.PIB))
+        if (await DTOManager.ZaposliManekena(lvManekeni.SelectedItems[0].Text, frmAgencije._modnaAgencijaPIB))
         {
-                MessageBox.Show("Maneken je uspešno zapošljen!");
-                UcitajPodatke();
-                btnZaposliManekena.Enabled = false;
+            MessageBox.Show("Maneken je uspešno zapošljen!");
+            UcitajPodatke();
+            btnZaposli.Enabled = false;
         }
     }
 

@@ -34,10 +34,10 @@
             colPrezime = new ColumnHeader();
             colDatumRodjenja = new ColumnHeader();
             colPol = new ColumnHeader();
+            colZanimanje = new ColumnHeader();
             lblListaNezaposlenih = new Label();
             btnOdustani = new Button();
-            btnZaposliManekena = new Button();
-            colZanimanje = new ColumnHeader();
+            btnZaposli = new Button();
             SuspendLayout();
             // 
             // lvManekeni
@@ -80,6 +80,12 @@
             colPol.TextAlign = HorizontalAlignment.Center;
             colPol.Width = 30;
             // 
+            // colZanimanje
+            // 
+            colZanimanje.Text = "Zanimanje";
+            colZanimanje.TextAlign = HorizontalAlignment.Center;
+            colZanimanje.Width = 80;
+            // 
             // lblListaNezaposlenih
             // 
             lblListaNezaposlenih.AutoSize = true;
@@ -101,30 +107,24 @@
             btnOdustani.UseVisualStyleBackColor = true;
             btnOdustani.Click += btnOdustani_Click;
             // 
-            // btnZaposliManekena
+            // btnZaposli
             // 
-            btnZaposliManekena.Enabled = false;
-            btnZaposliManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnZaposliManekena.Location = new Point(680, 33);
-            btnZaposliManekena.Name = "btnZaposliManekena";
-            btnZaposliManekena.Size = new Size(161, 30);
-            btnZaposliManekena.TabIndex = 5;
-            btnZaposliManekena.Text = "Zaposli manekena";
-            btnZaposliManekena.UseVisualStyleBackColor = true;
-            btnZaposliManekena.Click += btnZaposliManekena_Click;
-            // 
-            // colZanimanje
-            // 
-            colZanimanje.Text = "Zanimanje";
-            colZanimanje.TextAlign = HorizontalAlignment.Center;
-            colZanimanje.Width = 80;
+            btnZaposli.Enabled = false;
+            btnZaposli.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnZaposli.Location = new Point(680, 33);
+            btnZaposli.Name = "btnZaposli";
+            btnZaposli.Size = new Size(161, 30);
+            btnZaposli.TabIndex = 5;
+            btnZaposli.Text = "Zaposli";
+            btnZaposli.UseVisualStyleBackColor = true;
+            btnZaposli.Click += btnZaposli_Click;
             // 
             // frmNezaposleniManekeni
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(849, 450);
-            Controls.Add(btnZaposliManekena);
+            Controls.Add(btnZaposli);
             Controls.Add(btnOdustani);
             Controls.Add(lblListaNezaposlenih);
             Controls.Add(lvManekeni);
@@ -145,7 +145,7 @@
         private ColumnHeader colPol;
         private Label lblListaNezaposlenih;
         private Button btnOdustani;
-        private Button btnZaposliManekena;
+        private Button btnZaposli;
         private ColumnHeader colZanimanje;
     }
 }

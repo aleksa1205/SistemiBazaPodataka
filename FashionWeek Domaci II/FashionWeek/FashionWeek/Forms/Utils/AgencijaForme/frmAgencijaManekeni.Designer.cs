@@ -37,6 +37,7 @@
             lblListaManekenaAgencije = new Label();
             btnOtpustiManekena = new Button();
             btnIzadji = new Button();
+            btnZaposliManekena = new Button();
             SuspendLayout();
             // 
             // lvManekeni
@@ -93,7 +94,7 @@
             // 
             btnOtpustiManekena.Enabled = false;
             btnOtpustiManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnOtpustiManekena.Location = new Point(680, 33);
+            btnOtpustiManekena.Location = new Point(680, 69);
             btnOtpustiManekena.Name = "btnOtpustiManekena";
             btnOtpustiManekena.Size = new Size(161, 30);
             btnOtpustiManekena.TabIndex = 6;
@@ -112,11 +113,23 @@
             btnIzadji.UseVisualStyleBackColor = true;
             btnIzadji.Click += btnIzadji_Click;
             // 
+            // btnZaposliManekena
+            // 
+            btnZaposliManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnZaposliManekena.Location = new Point(680, 33);
+            btnZaposliManekena.Name = "btnZaposliManekena";
+            btnZaposliManekena.Size = new Size(161, 30);
+            btnZaposliManekena.TabIndex = 9;
+            btnZaposliManekena.Text = "Zaposli manekena";
+            btnZaposliManekena.UseVisualStyleBackColor = true;
+            btnZaposliManekena.Click += btnZaposliManekena_Click;
+            // 
             // frmAgencijaManekeni
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(845, 450);
+            Controls.Add(btnZaposliManekena);
             Controls.Add(btnIzadji);
             Controls.Add(btnOtpustiManekena);
             Controls.Add(lblListaManekenaAgencije);
@@ -139,5 +152,6 @@
         private Label lblListaManekenaAgencije;
         private Button btnOtpustiManekena;
         private Button btnIzadji;
+        private Button btnZaposliManekena;
     }
 }

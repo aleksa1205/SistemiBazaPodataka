@@ -17,7 +17,7 @@ namespace FashionWeek.Forms.Utils.Revija;
 
 public partial class frmRevije : Form
 {
-    public static ModnaRevija _revija = null;
+    public static int? _rbrRevije = null;
     #region Funkcije
     public void EnableButtons()
     {
@@ -39,7 +39,7 @@ public partial class frmRevije : Form
         IList<ModnaRevijaPregled> revije = await DTOManager.VratiModneRevije();
         foreach (var revija in revije)
         {
-            ListViewItem item = new ListViewItem(new string[] { revija.RBR.ToString(), revija.Naziv, revija.Mesto.ToString(), revija.Termin.ToShortDateString() });
+            ListViewItem item = new ListViewItem(new string[] { revija.RBR.ToString(), revija.Naziv, revija.Mesto?.ToString(), revija.Termin.ToShortDateString() });
             lvRevije.Items.Add(item);
         }
         lvRevije.Refresh();
@@ -60,6 +60,7 @@ public partial class frmRevije : Form
     {
         if (lvRevije.SelectedItems.Count > 0)
         {
+            _rbrRevije = Int32.Parse(lvRevije.SelectedItems[0].Text);
             EnableButtons();
         }
         else
@@ -75,51 +76,30 @@ public partial class frmRevije : Form
         UcitajPodatke();
     }
 
-    private async void btnAzurirajReviju_Click(object sender, EventArgs e)
+    private void btnAzurirajReviju_Click(object sender, EventArgs e)
     {
-        _revija = await DTOManager.VratiModnuReviju(Int32.Parse(lvRevije.SelectedItems[0].Text));
-        if (_revija != null)
-        {
-            frmAzurirajReviju frmAzuriraj = new frmAzurirajReviju();
-            frmAzuriraj.ShowDialog();
-            UcitajPodatke();
-            DisableButtons();
-        }
-        else
-        {
-            MessageBox.Show("Greška pri pribavljanju revije iz baze!");
-        }
+        frmAzurirajReviju frmAzuriraj = new frmAzurirajReviju();
+        frmAzuriraj.ShowDialog();
+        UcitajPodatke();
+        DisableButtons();
     }
 
     private async void btnObrisiReviju_Click(object sender, EventArgs e)
     {
-        _revija = await DTOManager.VratiModnuReviju(Int32.Parse(lvRevije.SelectedItems[0].Text));
-        if (_revija != null)
+        if (await DTOManager.ObrisiReviju(_rbrRevije))
         {
-            await DTOManager.ObrisiReviju(_revija);
             MessageBox.Show("Uspešno obrisana revija!");
             UcitajPodatke();
             DisableButtons();
         }
-        else
-        {
-            MessageBox.Show("Greška pri pribavljanju revije iz baze!");
-        }
     }
 
-    private async void btnUcesnici_Click(object sender, EventArgs e)
+    private void btnUcesnici_Click(object sender, EventArgs e)
     {
-        _revija = await DTOManager.VratiModnuReviju(Int32.Parse(lvRevije.SelectedItems[0].Text));
-        if (_revija != null)
-        {
-            frmUcesniciRevije frmUcesniciRevije = new frmUcesniciRevije();
-            frmUcesniciRevije.ShowDialog();
-            DisableButtons();
-        }
-        else
-        {
-            MessageBox.Show("Greška pri pribavljanju revije iz baze!");
-        }
+
+        frmUcesniciRevije frmUcesniciRevije = new frmUcesniciRevije();
+        frmUcesniciRevije.ShowDialog();
+        DisableButtons();
     }
 
     private void btnIzadji_Click(object sender, EventArgs e)

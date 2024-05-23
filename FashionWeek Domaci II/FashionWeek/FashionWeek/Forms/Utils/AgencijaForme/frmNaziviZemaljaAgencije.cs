@@ -18,7 +18,7 @@ public partial class frmNaziviZemaljaAgencije : Form
     public async void UcitajPodatke()
     {
         lvZemlje.Items.Clear();
-        IList<string> listaZemalja = await DTOManager.VratiZemljeUKojimaPoslujeAgencijaPregled(frmAgencije._modnaAgencija);
+        IList<string> listaZemalja = await DTOManager.VratiZemljeUKojimaPoslujeAgencijaPregled(frmAgencije._modnaAgencijaPIB!);
         foreach (var zemlja in listaZemalja)
         {
             ListViewItem item = new ListViewItem(zemlja);
@@ -34,7 +34,7 @@ public partial class frmNaziviZemaljaAgencije : Form
 
     private void frmAgencijeZemlje_Load(object sender, EventArgs e)
     {
-        lblNazivAgencije.Text = frmAgencije._modnaAgencija?.Naziv;
+        //lblNazivAgencije.Text = frmAgencije._modnaAgencija?.Naziv;
         UcitajPodatke();
     }
 
@@ -59,15 +59,8 @@ public partial class frmNaziviZemaljaAgencije : Form
 
     private async void btnObrisiZemlju_Click(object sender, EventArgs e)
     {
-        NazivZemlje zemlja = new NazivZemlje()
-        {
-            Id = new NazivZemljeId()
-            {
-                InostranaAgencija = frmAgencije._modnaAgencija as InostranaAgencija,
-                NazivZemlje = lvZemlje.SelectedItems[0].Text
-            }
-        };
-        if (await DTOManager.ObrisiZemlju(zemlja))
+
+        if (await DTOManager.ObrisiZemlju(frmAgencije._modnaAgencijaPIB!, lvZemlje.SelectedItems[0].Text))
         {
             MessageBox.Show("Uspešno obrisana zemlja!");
             UcitajPodatke();

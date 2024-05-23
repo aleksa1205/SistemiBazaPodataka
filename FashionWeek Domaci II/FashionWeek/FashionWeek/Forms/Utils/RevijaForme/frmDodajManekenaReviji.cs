@@ -18,7 +18,7 @@ namespace FashionWeek.Forms.Utils.RevijaForme
         public async void UcitajPodatke()
         {
             lvManekeni.Items.Clear();
-            IList<ManekenPregled> listaManekena = await DTOManager.VratiManekenKojeNisuNaModnojReviji(frmRevije._revija);
+            IList<ManekenPregled> listaManekena = await DTOManager.VratiManekeneKojeNisuNaModnojReviji(frmRevije._rbrRevije);
             foreach (var maneken in listaManekena)
             {
                 ListViewItem item = new ListViewItem(new string[] { maneken.MBR, maneken.Ime?.LicnoIme!, maneken.Ime?.Prezime!, maneken.DatumRodjenja.ToShortDateString(), maneken.Pol.ToString() });
@@ -34,7 +34,7 @@ namespace FashionWeek.Forms.Utils.RevijaForme
 
         private void frmDodajManekenaReviji_Load(object sender, EventArgs e)
         {
-            lblListaManekena.Text += frmRevije._revija.Naziv + ':';
+            //lblListaManekena.Text += frmRevije._revija.Naziv + ':';
             UcitajPodatke();
         }
 
@@ -52,7 +52,7 @@ namespace FashionWeek.Forms.Utils.RevijaForme
 
         private async void btnDodajManekena_Click(object sender, EventArgs e)
         {
-            if(await DTOManager.DodajRevijuManekenu(lvManekeni.SelectedItems[0].Text, frmRevije._revija.RBR))
+            if(await DTOManager.DodajRevijuManekenu(lvManekeni.SelectedItems[0].Text, frmRevije._rbrRevije))
             {
                 MessageBox.Show("Uspešno dodat maneken!");
                 UcitajPodatke();
