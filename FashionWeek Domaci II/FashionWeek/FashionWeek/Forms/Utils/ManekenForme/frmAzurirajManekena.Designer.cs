@@ -178,6 +178,7 @@
             // 
             // txtMBR
             // 
+            txtMBR.Enabled = false;
             txtMBR.Location = new Point(108, 6);
             txtMBR.Name = "txtMBR";
             txtMBR.Size = new Size(148, 23);

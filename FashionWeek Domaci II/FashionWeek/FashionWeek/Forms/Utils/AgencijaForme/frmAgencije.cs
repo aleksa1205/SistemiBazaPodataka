@@ -15,6 +15,7 @@ namespace FashionWeek.Forms.Utils.AgencijaForme;
 public partial class frmAgencije : Form
 {
     public static string? _modnaAgencijaPIB = null;
+    public static string? _nazivModneAgencije = null;
 
     #region Funkcije
     public async void EnableButtons()
@@ -64,6 +65,7 @@ public partial class frmAgencije : Form
         if (lvAgencije.SelectedItems.Count > 0)
         {
             _modnaAgencijaPIB = lvAgencije.SelectedItems[0].Text;
+            _nazivModneAgencije = lvAgencije.SelectedItems[0].SubItems[1].Text;
             EnableButtons();
         }
         else

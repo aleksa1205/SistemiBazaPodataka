@@ -133,7 +133,7 @@
             // 
             txtNaziv.Location = new Point(117, 38);
             txtNaziv.Name = "txtNaziv";
-            txtNaziv.Size = new Size(116, 23);
+            txtNaziv.Size = new Size(258, 23);
             txtNaziv.TabIndex = 61;
             // 
             // txtPIB

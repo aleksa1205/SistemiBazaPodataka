@@ -35,7 +35,7 @@ public partial class frmAgencijaManekeni : Form
 
     private void frmAgencijaManekeni_Load(object sender, EventArgs e)
     {
-        //lblListaManekenaAgencije.Text += frmAgencije._modnaAgencija?.Naziv;
+        lblListaManekenaAgencije.Text += frmAgencije._nazivModneAgencije;
         UcitajPodatke();
     }
 

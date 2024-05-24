@@ -36,7 +36,7 @@ public partial class frmRevijeManekena : Form
     private void frmRevije_Load(object sender, EventArgs e)
     {
 
-        //lblRevije.Text += frmManekeni._maneken.Ime.ToString() + ':';
+        lblRevije.Text += frmManekeni._imeManekena + ':';
         UcitajPodatke();
     }
 

@@ -15,6 +15,7 @@ namespace FashionWeek.Forms.Utils.ManekenForme;
 public partial class frmManekeni : Form
 {
     public static string? _manekenMBR = null;
+    public static string? _imeManekena = null;
 
     #region Funkcije
     public void EnableButtons()
@@ -61,6 +62,7 @@ public partial class frmManekeni : Form
         if (lvManekeni.SelectedItems.Count > 0)
         {
             _manekenMBR = lvManekeni.SelectedItems[0].Text;
+            _imeManekena = lvManekeni.SelectedItems[0].SubItems[1].Text + ' ' + lvManekeni.SelectedItems[0].SubItems[2].Text;
             EnableButtons();
         }
         else

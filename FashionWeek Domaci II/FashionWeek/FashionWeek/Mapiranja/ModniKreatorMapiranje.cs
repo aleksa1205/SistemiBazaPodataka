@@ -23,7 +23,7 @@ public class ModniKreatorMapiranje : SubclassMap<ModniKreator>
             .Table("PREDSTAVLJA")
             .ParentKeyColumn("MBR_KREATORA")
             .ChildKeyColumn("RBR_REVIJE")
-            .Cascade.All();
+            .Cascade.All().Inverse();
         References(x => x.Organizator).Column("ORGANIZATOR_ID");
         HasMany(x => x.SpecijalniGosti).KeyColumn("MBR_KREATORA");
     }

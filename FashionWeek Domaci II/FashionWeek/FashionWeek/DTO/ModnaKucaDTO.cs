@@ -3,8 +3,8 @@
 public class ModnaKucaPregled
 {
     public string Naziv { get; set; }
-    public Ime Osnivac { get; set; }
-    public Adresa Sediste { get; set; }
+    public Ime? Osnivac { get; set; }
+    public Adresa? Sediste { get; set; }
 
     #region Constructors
     public ModnaKucaPregled(string naziv, Ime osnivac, Adresa sediste)
@@ -12,6 +12,12 @@ public class ModnaKucaPregled
         Naziv = naziv;
         Osnivac = osnivac;
         Sediste = sediste;
+    }
+    public ModnaKucaPregled(ModnaKuca modnaKuca)
+    {
+        Naziv = modnaKuca.Naziv;
+        Osnivac = modnaKuca.Osnivac;
+        Sediste = modnaKuca.Sediste;
     }
     #endregion
 }
@@ -32,6 +38,12 @@ public class ModnaKucaBasic
         Naziv = naziv;
         Osnivac = osnivac;
         Sediste = sediste;
+    }
+    public ModnaKucaBasic(ModnaKuca modnaKuca)
+    {
+        Naziv = modnaKuca.Naziv;
+        Osnivac = modnaKuca.Osnivac;
+        Sediste = modnaKuca.Sediste;
     }
     #endregion
 }

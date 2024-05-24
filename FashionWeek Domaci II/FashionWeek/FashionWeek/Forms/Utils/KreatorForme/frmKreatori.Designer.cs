@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnCasopisi = new Button();
             btnIzadji = new Button();
             btnRevije = new Button();
             btnObrisiKreatora = new Button();
@@ -45,17 +44,6 @@
             lblListaKreatora = new Label();
             SuspendLayout();
             // 
-            // btnCasopisi
-            // 
-            btnCasopisi.Enabled = false;
-            btnCasopisi.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCasopisi.Location = new Point(726, 222);
-            btnCasopisi.Name = "btnCasopisi";
-            btnCasopisi.Size = new Size(161, 30);
-            btnCasopisi.TabIndex = 16;
-            btnCasopisi.Text = "Časopisi";
-            btnCasopisi.UseVisualStyleBackColor = true;
-            // 
             // btnIzadji
             // 
             btnIzadji.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -65,6 +53,7 @@
             btnIzadji.TabIndex = 15;
             btnIzadji.Text = "Izađi";
             btnIzadji.UseVisualStyleBackColor = true;
+            btnIzadji.Click += btnIzadji_Click;
             // 
             // btnRevije
             // 
@@ -76,6 +65,7 @@
             btnRevije.TabIndex = 14;
             btnRevije.Text = "Revije";
             btnRevije.UseVisualStyleBackColor = true;
+            btnRevije.Click += btnRevije_Click;
             // 
             // btnObrisiKreatora
             // 
@@ -87,6 +77,7 @@
             btnObrisiKreatora.TabIndex = 13;
             btnObrisiKreatora.Text = "Obriši kreatora";
             btnObrisiKreatora.UseVisualStyleBackColor = true;
+            btnObrisiKreatora.Click += btnObrisiKreatora_Click;
             // 
             // btnAzurirajKreatora
             // 
@@ -98,6 +89,7 @@
             btnAzurirajKreatora.TabIndex = 12;
             btnAzurirajKreatora.Text = "Ažuriraj kreatora";
             btnAzurirajKreatora.UseVisualStyleBackColor = true;
+            btnAzurirajKreatora.Click += btnAzurirajKreatora_Click;
             // 
             // btnDodajKreatora
             // 
@@ -108,6 +100,7 @@
             btnDodajKreatora.TabIndex = 11;
             btnDodajKreatora.Text = "Dodaj kreatora";
             btnDodajKreatora.UseVisualStyleBackColor = true;
+            btnDodajKreatora.Click += btnDodajKreatora_Click;
             // 
             // lvKreatori
             // 
@@ -176,7 +169,6 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(899, 450);
-            Controls.Add(btnCasopisi);
             Controls.Add(btnIzadji);
             Controls.Add(btnRevije);
             Controls.Add(btnObrisiKreatora);
@@ -185,15 +177,13 @@
             Controls.Add(lvKreatori);
             Controls.Add(lblListaKreatora);
             Name = "frmKreatori";
-            Text = "KREATORI";
+            Text = "KREATOR";
             Load += frmKreatori_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Button btnCasopisi;
         private Button btnIzadji;
         private Button btnRevije;
         private Button btnObrisiKreatora;

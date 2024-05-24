@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FashionWeek.Forms.Utils.Revija;
 using FashionWeek.Forms.Utils.KreatorForme;
+using FashionWeek.Forms.Utils.KucaForme;
 
 namespace FashionWeek.Forms;
 
@@ -44,5 +45,11 @@ public partial class frmMain : Form
     {
         frmKreatori frmKreatori = new frmKreatori();
         frmKreatori.ShowDialog();
+    }
+
+    private void btnModneKuce_Click(object sender, EventArgs e)
+    {
+        frmModneKuce frmModneKuce = new frmModneKuce();
+        frmModneKuce.ShowDialog();
     }
 }

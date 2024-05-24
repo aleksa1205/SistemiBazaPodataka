@@ -67,7 +67,7 @@ public partial class frmAzurirajManekena : Form
         return checker;
     }
 
-    public async void Ucitaj()
+    private async void Ucitaj()
     {
         maneken = await DTOManager.VratiManekena(frmManekeni._manekenMBR!);
         if(maneken != null)
@@ -91,7 +91,7 @@ public partial class frmAzurirajManekena : Form
         }
     }
 
-    public void Procitaj()
+    private void Procitaj()
     {
         maneken.Ime.LicnoIme = txtIme.Text;
         maneken.Ime.Prezime = txtPrezime.Text;
@@ -109,7 +109,6 @@ public partial class frmAzurirajManekena : Form
     private void frmAzurirajManekena_Load(object sender, EventArgs e)
     {
         Ucitaj();
-        txtMBR.Enabled = false;
     }
 
     private async void btnAzuriraj_Click(object sender, EventArgs e)

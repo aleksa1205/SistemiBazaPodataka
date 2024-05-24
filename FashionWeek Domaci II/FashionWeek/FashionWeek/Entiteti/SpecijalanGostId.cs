@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FashionWeek.Entiteti;
+﻿namespace FashionWeek.Entiteti;
 
 public class SpecijalanGostId
 {
@@ -12,6 +6,7 @@ public class SpecijalanGostId
     public virtual required ModnaRevija ModnaRevija { get; set; }
     public virtual required Organizator Organizator { get; set; }
 
+    #region Overrides
     public override bool Equals(object? obj)
     {
         if(obj == null)
@@ -31,4 +26,5 @@ public class SpecijalanGostId
     {
         return ModnaRevija.RBR.GetHashCode() + ModniKreator.MBR.GetHashCode() + Organizator.Id.GetHashCode();
     }
+    #endregion
 }

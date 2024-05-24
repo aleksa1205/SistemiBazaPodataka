@@ -111,4 +111,23 @@ public static class Helper
         kreator.ZemljaPorekla = updateKreator.ZemljaPorekla;
     }
     #endregion
+
+    #region ModnaKuca
+    public static ModnaKuca NewModnaKuca(ModnaKucaBasic modnaKuca)
+    {
+        ModnaKuca newModnaKuca = new ModnaKuca
+        {
+            Naziv = modnaKuca.Naziv,
+            Osnivac = modnaKuca.Osnivac,
+            Sediste = modnaKuca.Sediste
+        };
+        return newModnaKuca;
+    }
+    
+    public static void UpdateModnaKuca(ModnaKuca kuca, ModnaKucaBasic updateKuca)
+    {
+        kuca.Osnivac = updateKuca.Osnivac;
+        kuca.Sediste = updateKuca.Sediste;
+    }
+    #endregion
 }

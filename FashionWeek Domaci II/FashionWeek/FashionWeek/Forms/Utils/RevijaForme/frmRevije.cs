@@ -1,29 +1,16 @@
-﻿using FashionWeek.DTO;
-using FashionWeek.Entiteti;
-using FashionWeek.Forms.Utils.Revija;
-using FashionWeek.Forms.Utils.RevijaForme;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace FashionWeek.Forms.Utils.Revija;
+﻿namespace FashionWeek.Forms.Utils.Revija;
 
 public partial class frmRevije : Form
 {
     public static int? _rbrRevije = null;
+    public static string? _nazivRevije = null;
     #region Funkcije
     public void EnableButtons()
     {
         btnAzurirajReviju.Enabled = true;
         btnObrisiReviju.Enabled = true;
         btnUcesnici.Enabled = true;
+        btnKreatori.Enabled = true;
     }
 
     public void DisableButtons()
@@ -31,6 +18,7 @@ public partial class frmRevije : Form
         btnAzurirajReviju.Enabled = false;
         btnObrisiReviju.Enabled = false;
         btnUcesnici.Enabled = false;
+        btnKreatori.Enabled = false;
     }
 
     public async void UcitajPodatke()
@@ -61,6 +49,7 @@ public partial class frmRevije : Form
         if (lvRevije.SelectedItems.Count > 0)
         {
             _rbrRevije = Int32.Parse(lvRevije.SelectedItems[0].Text);
+            _nazivRevije = lvRevije.SelectedItems[0].SubItems[1].Text;
             EnableButtons();
         }
         else

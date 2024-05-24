@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FashionWeek.Entiteti;
+﻿namespace FashionWeek.Entiteti;
 
 public class NazivZemljeId
 {
     public virtual InostranaAgencija? InostranaAgencija { get; set; }
     public virtual string? NazivZemlje { get; set; }
 
+    #region Overrides
     public override bool Equals(object? obj)
     {
         if (obj == null)
@@ -30,4 +25,5 @@ public class NazivZemljeId
     {
         return InostranaAgencija!.PIB.GetHashCode();
     }
+    #endregion
 }

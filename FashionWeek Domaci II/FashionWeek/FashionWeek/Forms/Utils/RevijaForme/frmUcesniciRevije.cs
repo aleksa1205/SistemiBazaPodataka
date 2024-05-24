@@ -35,7 +35,7 @@ public partial class frmUcesniciRevije : Form
 
     private void frmUcesniciRevije_Load(object sender, EventArgs e)
     {
-        //lblRevija.Text += frmRevije._revija.Naziv;
+        lblRevija.Text += frmRevije._nazivRevije;
         UcitajPodatke();
     }
 

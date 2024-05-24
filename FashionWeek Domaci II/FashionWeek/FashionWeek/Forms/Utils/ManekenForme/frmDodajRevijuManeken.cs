@@ -34,7 +34,7 @@ namespace FashionWeek.Forms.Utils.ManekenForme
 
         private void frmDodajRevijuManeken_Load(object sender, EventArgs e)
         {
-            //lblListaRevija.Text += frmManekeni._maneken.Ime.ToString() + ':';
+            lblListaRevija.Text += frmManekeni._imeManekena + ':';
             UcitajPodatke();
         }
 

@@ -21,7 +21,7 @@ public partial class frmNaziviCasopisaManekena : Form
 
     private void frmNaziviCasopisaManekena_Load(object sender, EventArgs e)
     {
-        //lblManeken.Text = frmManekeni._maneken.Ime.ToString();
+        lblManeken.Text = frmManekeni._imeManekena;
         UcitajPodatke();
     }
 

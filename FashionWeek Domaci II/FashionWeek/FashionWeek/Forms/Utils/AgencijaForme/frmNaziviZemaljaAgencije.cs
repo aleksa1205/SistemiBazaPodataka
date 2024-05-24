@@ -34,7 +34,7 @@ public partial class frmNaziviZemaljaAgencije : Form
 
     private void frmAgencijeZemlje_Load(object sender, EventArgs e)
     {
-        //lblNazivAgencije.Text = frmAgencije._modnaAgencija?.Naziv;
+        lblNazivAgencije.Text = frmAgencije._nazivModneAgencije;
         UcitajPodatke();
     }
 

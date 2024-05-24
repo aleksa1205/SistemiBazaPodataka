@@ -39,6 +39,7 @@
             btnAzurirajReviju = new Button();
             btnDodajReviju = new Button();
             btnUcesnici = new Button();
+            btnKreatori = new Button();
             SuspendLayout();
             // 
             // lvRevije
@@ -144,11 +145,23 @@
             btnUcesnici.UseVisualStyleBackColor = true;
             btnUcesnici.Click += btnUcesnici_Click;
             // 
+            // btnKreatori
+            // 
+            btnKreatori.Enabled = false;
+            btnKreatori.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnKreatori.Location = new Point(592, 213);
+            btnKreatori.Name = "btnKreatori";
+            btnKreatori.Size = new Size(161, 30);
+            btnKreatori.TabIndex = 11;
+            btnKreatori.Text = "Kreatori";
+            btnKreatori.UseVisualStyleBackColor = true;
+            // 
             // frmRevije
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(761, 413);
+            Controls.Add(btnKreatori);
             Controls.Add(btnUcesnici);
             Controls.Add(btnDodajReviju);
             Controls.Add(btnAzurirajReviju);
@@ -176,5 +189,6 @@
         private Button btnAzurirajReviju;
         private Button btnDodajReviju;
         private Button btnUcesnici;
+        private Button btnKreatori;
     }
 }
