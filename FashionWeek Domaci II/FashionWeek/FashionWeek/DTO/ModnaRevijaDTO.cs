@@ -1,4 +1,6 @@
-﻿namespace FashionWeek.DTO;
+﻿using System.Linq;
+
+namespace FashionWeek.DTO;
 
 public class ModnaRevijaPregled
 {
@@ -31,10 +33,10 @@ public class ModnaRevijaBasic
     public string? Naziv { get; set; }
     public Adresa? Mesto { get; set; }
     public DateTime Termin { get; set; }
-    public IList<ManekenBasic> Manekeni { get; set; } = [];
-    public IList<ModniKreatorBasic> Kreatori { get; set; } = [];
+    public List<ManekenBasic> Manekeni { get; set; } = [];
+    public List<ModniKreatorBasic> Kreatori { get; set; } = [];
     public OrganizatorBasic? Organizator { get; set; }
-    public IList<SpecijalanGostBasic> SpecijalniGosti { get; set; } = [];
+    public List<SpecijalanGostBasic> SpecijalniGosti { get; set; } = [];
 
     #region Constructors
     public ModnaRevijaBasic() { }

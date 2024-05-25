@@ -61,6 +61,7 @@
             btnIzadji.TabIndex = 15;
             btnIzadji.Text = "Izađi";
             btnIzadji.UseVisualStyleBackColor = true;
+            btnIzadji.Click += btnIzadji_Click;
             // 
             // btnModniKreatori
             // 
@@ -72,6 +73,7 @@
             btnModniKreatori.TabIndex = 14;
             btnModniKreatori.Text = "Zaposleni";
             btnModniKreatori.UseVisualStyleBackColor = true;
+            btnModniKreatori.Click += btnModniKreatori_Click;
             // 
             // btnObrisiModnuKucu
             // 

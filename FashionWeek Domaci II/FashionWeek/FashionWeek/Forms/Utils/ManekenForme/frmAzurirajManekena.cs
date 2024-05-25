@@ -2,10 +2,11 @@
 
 public partial class frmAzurirajManekena : Form
 {
-    public static ManekenBasic? maneken = null;
-    public frmAzurirajManekena()
+    private ManekenBasic _maneken;
+    public frmAzurirajManekena(ManekenBasic maneken)
     {
         InitializeComponent();
+        _maneken = maneken;
     }
 
     #region Funkcije
@@ -67,43 +68,34 @@ public partial class frmAzurirajManekena : Form
         return checker;
     }
 
-    private async void Ucitaj()
+    private void Ucitaj()
     {
-        maneken = await DTOManager.VratiManekena(frmManekeni._manekenMBR!);
-        if(maneken != null)
-        {
-            txtMBR.Text = maneken.MBR;
-            txtIme.Text = maneken.Ime.LicnoIme;
-            txtPrezime.Text = maneken?.Ime.Prezime;
-            dtpDatumRodjenja.Value = maneken!.DatumRodjenja;
-            cmbPol.SelectedIndex = cmbPol.FindString(maneken.Pol.ToString());
-            txtVisina.Text = maneken.Visina.ToString();
-            txtTezina.Text = maneken.Tezina.ToString();
-            txtBojaOciju.Text = maneken.BojaOciju;
-            txtBojaKose.Text = maneken.BojaKose;
-            txtKonfBroj.Text = maneken.KonfekcijskiBroj;
-            txtZanimanje.Text = maneken.Zanimanje;
-        }
-        else
-        {
-            MessageBox.Show("Greška pri učitavanju manekena!");
-            Close();
-        }
+        txtMBR.Text = _maneken.MBR;
+        txtIme.Text = _maneken.Ime.LicnoIme;
+        txtPrezime.Text = _maneken.Ime.Prezime;
+        dtpDatumRodjenja.Value = _maneken!.DatumRodjenja;
+        cmbPol.SelectedIndex = cmbPol.FindString(_maneken.Pol.ToString());
+        txtVisina.Text = _maneken.Visina.ToString();
+        txtTezina.Text = _maneken.Tezina.ToString();
+        txtBojaOciju.Text = _maneken.BojaOciju;
+        txtBojaKose.Text = _maneken.BojaKose;
+        txtKonfBroj.Text = _maneken.KonfekcijskiBroj;
+        txtZanimanje.Text = _maneken.Zanimanje;
     }
 
     private void Procitaj()
     {
-        maneken.Ime.LicnoIme = txtIme.Text;
-        maneken.Ime.Prezime = txtPrezime.Text;
-        maneken.DatumRodjenja = dtpDatumRodjenja.Value;
-        maneken.Pol = cmbPol.SelectedItem.ToString()[0];
-        maneken.Visina = int.Parse(txtVisina.Text);
-        maneken.Tezina = double.Parse(txtTezina.Text);
-        maneken.BojaOciju = txtBojaOciju.Text;
-        maneken.BojaKose = txtBojaKose.Text;
-        maneken.KonfekcijskiBroj = txtKonfBroj.Text;
-        maneken.Zanimanje = txtZanimanje.Text;
-    }
+        _maneken!.Ime.LicnoIme = txtIme.Text;
+        _maneken.Ime.Prezime = txtPrezime.Text;
+        _maneken.DatumRodjenja = dtpDatumRodjenja.Value;
+        _maneken.Pol = cmbPol.SelectedItem.ToString()[0];
+        _maneken.Visina = int.Parse(txtVisina.Text);
+        _maneken.Tezina = double.Parse(txtTezina.Text);
+        _maneken.BojaOciju = txtBojaOciju.Text;
+        _maneken.BojaKose = txtBojaKose.Text;
+        _maneken.KonfekcijskiBroj = txtKonfBroj.Text;
+        _maneken.Zanimanje = txtZanimanje.Text;
+    }   
     #endregion
 
     private void frmAzurirajManekena_Load(object sender, EventArgs e)
@@ -118,9 +110,9 @@ public partial class frmAzurirajManekena : Form
             return;
         }
         Procitaj();
-        if (await DTOManager.AzurirajManekena(maneken!))
+        if (await DTOManager.AzurirajManekena(_maneken!))
         {
-            MessageBox.Show("Uspešno ažuriran maneken!");
+            MessageBox.Show($"Uspešno ažuriran maneken {_maneken!.Ime.ToString()}!");
             Close();
         }
     }

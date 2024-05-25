@@ -2,7 +2,14 @@
 
 public partial class frmAzurirajKreatora : Form
 {
-    public static ModniKreatorBasic? kreator = null;
+    private ModniKreatorBasic _kreator;
+
+    public frmAzurirajKreatora(ModniKreatorBasic kreator)
+    {
+        InitializeComponent();
+        _kreator = kreator;
+    }
+
     #region Funkcije
     private bool ProveriPolja()
     {
@@ -30,39 +37,25 @@ public partial class frmAzurirajKreatora : Form
         return checker;
     }
 
-    private async void Ucitaj()
+    private void Ucitaj()
     {
-        kreator = await DTOManager.VratiModnogKreatora(frmKreatori._kreatorMBR!);
-        if (kreator != null)
-        {
-            txtMBR.Text = kreator.MBR;
-            txtIme.Text = kreator.Ime.LicnoIme;
-            txtPrezime.Text = kreator.Ime.Prezime;
-            dtpDatumRodjenja.Value = kreator.DatumRodjenja;
-            cmbPol.SelectedIndex = cmbPol.FindString(kreator.Pol.ToString());
-            txtZemljaPorekla.Text = kreator.ZemljaPorekla;
-        }
-        else
-        {
-            MessageBox.Show("Greška pri učitavanju modnog kreatora!");
-            Close();
-        }
+        txtMBR.Text = _kreator.MBR;
+        txtIme.Text = _kreator.Ime.LicnoIme;
+        txtPrezime.Text = _kreator.Ime.Prezime;
+        dtpDatumRodjenja.Value = _kreator.DatumRodjenja;
+        cmbPol.SelectedIndex = cmbPol.FindString(_kreator.Pol.ToString());
+        txtZemljaPorekla.Text = _kreator.ZemljaPorekla;
     }
 
     private void Procitaj()
     {
-        kreator.Ime.LicnoIme = txtIme.Text;
-        kreator.Ime.Prezime = txtPrezime.Text;
-        kreator.DatumRodjenja = dtpDatumRodjenja.Value;
-        kreator.Pol = cmbPol.SelectedItem.ToString()[0];
-        kreator.ZemljaPorekla = txtZemljaPorekla.Text;
+        _kreator.Ime.LicnoIme = txtIme.Text;
+        _kreator.Ime.Prezime = txtPrezime.Text;
+        _kreator.DatumRodjenja = dtpDatumRodjenja.Value;
+        _kreator.Pol = cmbPol.SelectedItem.ToString()[0];
+        _kreator.ZemljaPorekla = txtZemljaPorekla.Text;
     }
     #endregion
-
-    public frmAzurirajKreatora()
-    {
-        InitializeComponent();
-    }
 
     private void frmAzurirajKreatora_Load(object sender, EventArgs e)
     {
@@ -76,7 +69,7 @@ public partial class frmAzurirajKreatora : Form
             return;
         }
         Procitaj();
-        if(await DTOManager.AzurirajModnogKreatora(kreator!))
+        if(await DTOManager.AzurirajModnogKreatora(_kreator!))
         {
             MessageBox.Show("Uspešno ažuriran modni kreator!");
             Close();

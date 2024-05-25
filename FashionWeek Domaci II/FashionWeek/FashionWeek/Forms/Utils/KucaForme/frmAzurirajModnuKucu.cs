@@ -2,35 +2,30 @@
 
 public partial class frmAzurirajModnuKucu : Form
 {
-    ModnaKucaBasic? modnaKuca = null;
-    #region Funkcije
-    private async void Ucitaj()
+    private ModnaKucaBasic _kuca;
+
+    public frmAzurirajModnuKucu(ModnaKucaBasic kuca)
     {
-        modnaKuca = await DTOManager.VratiModnuKucu(frmModneKuce._nazivModneKuce!);
-        if (modnaKuca != null)
-        {
-            txtNaziv.Text = modnaKuca.Naziv;
-            txtIme.Text = modnaKuca.Osnivac.LicnoIme;
-            txtPrezime.Text = modnaKuca.Osnivac.Prezime;
-            txtDrzava.Text = modnaKuca.Sediste?.Drzava;
-            txtGrad.Text = modnaKuca.Sediste?.Grad;
-            txtUlica.Text = modnaKuca.Sediste?.Ulica;
-        }
-        else
-        {
-            MessageBox.Show("Greška pri učitavanju modne kuće!");
-            Close();
-        }
+        InitializeComponent();
+        _kuca = kuca;
+    }
+
+    #region Funkcije
+    private void Ucitaj()
+    {
+        txtNaziv.Text = _kuca.Naziv;
+        txtIme.Text = _kuca.Osnivac.LicnoIme;
+        txtPrezime.Text = _kuca.Osnivac.Prezime;
+        txtDrzava.Text = _kuca.Sediste?.Drzava;
+        txtGrad.Text = _kuca.Sediste?.Grad;
+        txtUlica.Text = _kuca.Sediste?.Ulica;
+
     }
     private void Procitaj()
     {
-        modnaKuca!.Sediste = new Adresa(txtDrzava.Text, txtGrad.Text, txtUlica.Text);;
+        _kuca!.Sediste = new Adresa(txtDrzava.Text, txtGrad.Text, txtUlica.Text); ;
     }
     #endregion
-    public frmAzurirajModnuKucu()
-    {
-        InitializeComponent();
-    }
 
     private void frmAzurirajModnuKucu_Load(object sender, EventArgs e)
     {
@@ -40,9 +35,9 @@ public partial class frmAzurirajModnuKucu : Form
     private async void btnAzuriraj_Click(object sender, EventArgs e)
     {
         Procitaj();
-        if(await DTOManager.AzurirajModnuKucu(modnaKuca))
+        if(await DTOManager.AzurirajModnuKucu(_kuca))
         {
-            MessageBox.Show("Modna kuća uspešno ažuriana!");
+            MessageBox.Show($"Modna kuća {_kuca.Naziv} uspešno ažurirana!");
             Close();
         }
     }

@@ -1,35 +1,27 @@
-﻿using FashionWeek.DTO;
-using FashionWeek.Entiteti;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace FashionWeek.Forms.Utils.AgencijaForme;
+﻿namespace FashionWeek.Forms.Utils.AgencijaForme;
 
 public partial class frmAgencije : Form
 {
-    public static string? _modnaAgencijaPIB = null;
-    public static string? _nazivModneAgencije = null;
+    private ModnaAgencijaBasic? _agencija = null;
+
+    public frmAgencije()
+    {
+        InitializeComponent();
+    }
 
     #region Funkcije
-    public async void EnableButtons()
+    private async void EnableButtons()
     {
         btnAzurirajAgenciju.Enabled = true;
         btnObrisiAgenciju.Enabled = true;
         btnPrikaziManekene.Enabled = true;
-        if (await DTOManager.IsInostrana(_modnaAgencijaPIB!))
+        if (await DTOManager.IsInostrana(_agencija!.PIB))
         {
             btnZemljePoslovanja.Enabled = true;
         }
     }
 
-    public void DisableButtons()
+    private void DisableButtons()
     {
         btnAzurirajAgenciju.Enabled = false;
         btnObrisiAgenciju.Enabled = false;
@@ -37,7 +29,7 @@ public partial class frmAgencije : Form
         btnZemljePoslovanja.Enabled = false;
     }
 
-    public async void UcitajPodatke()
+    private async void UcitajPodatke()
     {
         lvAgencije.Items.Clear();
         IList<ModnaAgencijaPregled> agencije = await DTOManager.VratiModneAgencije();
@@ -50,22 +42,16 @@ public partial class frmAgencije : Form
     }
     #endregion
 
-    public frmAgencije()
-    {
-        InitializeComponent();
-    }
-
     private void frmAgencije_Load(object sender, EventArgs e)
     {
         UcitajPodatke();
     }
 
-    private void lvAgencije_SelectedIndexChanged(object sender, EventArgs e)
+    private async void lvAgencije_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (lvAgencije.SelectedItems.Count > 0)
         {
-            _modnaAgencijaPIB = lvAgencije.SelectedItems[0].Text;
-            _nazivModneAgencije = lvAgencije.SelectedItems[0].SubItems[1].Text;
+            _agencija = await DTOManager.VratiModnuAgenciju(lvAgencije.SelectedItems[0].Text);
             EnableButtons();
         }
         else
@@ -79,38 +65,41 @@ public partial class frmAgencije : Form
         frmDodajAgenciju frmDodajAgenciju = new frmDodajAgenciju();
         frmDodajAgenciju.ShowDialog();
         UcitajPodatke();
-        DisableButtons();
+        lvAgencije.SelectedItems.Clear();
     }
 
     private void btnAzurirajAgenciju_Click(object sender, EventArgs e)
     {
-        frmAzurirajAgenciju frmAzuriraj = new frmAzurirajAgenciju();
+        frmAzurirajAgenciju frmAzuriraj = new frmAzurirajAgenciju(_agencija!);
         frmAzuriraj.ShowDialog();
         UcitajPodatke();
-        DisableButtons();
+        lvAgencije.SelectedItems.Clear();
     }
 
     private async void btnObrisiAgenciju_Click(object sender, EventArgs e)
     {
 
-        if (await DTOManager.ObrisiModnuAgenciju(_modnaAgencijaPIB!))
+        if (await DTOManager.ObrisiModnuAgenciju(_agencija!.PIB!))
         {
-            MessageBox.Show("Uspešno obrisana agencija!");
+            MessageBox.Show($"Uspešno obrisana agencija {_agencija.Naziv}!");
+            _agencija = null;
             UcitajPodatke();
-            DisableButtons();
+            lvAgencije.SelectedItems.Clear();
         }
     }
 
     private void btnPrikaziManekene_Click(object sender, EventArgs e)
     {
-        frmAgencijaManekeni frmManekeni = new frmAgencijaManekeni();
+        frmAgencijaManekeni frmManekeni = new frmAgencijaManekeni(_agencija);
         frmManekeni.ShowDialog();
+        lvAgencije.SelectedItems.Clear();
     }
 
     private void btnZemljePoslovanja_Click(object sender, EventArgs e)
     {
-        frmNaziviZemaljaAgencije frmZemlje = new frmNaziviZemaljaAgencije();
+        frmNaziviZemaljaAgencije frmZemlje = new frmNaziviZemaljaAgencije(_agencija);
         frmZemlje.ShowDialog();
+        lvAgencije.SelectedItems.Clear();
     }
 
     private void btnIzadji_Click(object sender, EventArgs e)

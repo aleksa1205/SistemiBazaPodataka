@@ -27,9 +27,9 @@ public class ModnaKucaBasic
     public string? Naziv { get; set; }
     public Ime? Osnivac { get; set; }
     public Adresa? Sediste { get; set; }
-    public IList<ModniKreatorBasic> Kreatori { get; set; } = [];
+    public List<ModniKreatorBasic> Kreatori { get; set; } = [];
     public OrganizatorBasic? Organizator { get; set; }
-    public IList<ImeVlasnikaBasic> Vlasnici { get; set; } = [];
+    public List<ImeVlasnikaBasic> Vlasnici { get; set; } = [];
 
     #region Constructors
     public ModnaKucaBasic() { }

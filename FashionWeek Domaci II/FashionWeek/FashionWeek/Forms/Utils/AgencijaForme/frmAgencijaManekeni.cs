@@ -1,24 +1,20 @@
-﻿using FashionWeek.DTO;
-using FashionWeek.Entiteti;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace FashionWeek.Forms.Utils.AgencijaForme;
+﻿namespace FashionWeek.Forms.Utils.AgencijaForme;
 
 public partial class frmAgencijaManekeni : Form
 {
+    private ModnaAgencijaBasic _agencija;
+
+    public frmAgencijaManekeni(ModnaAgencijaBasic agencija)
+    {
+        InitializeComponent();
+        _agencija = agencija;
+    }
+
     #region Funkcije
     public async void UcitajPodatke()
     {
         lvManekeni.Items.Clear();
-        IList<ManekenPregled> listaManekena = await DTOManager.VratiManekeneModneAgencije(frmAgencije._modnaAgencijaPIB!);
+        IList<ManekenPregled> listaManekena = await DTOManager.VratiManekeneModneAgencije(_agencija.PIB);
         foreach (var maneken in listaManekena)
         {
             ListViewItem item = new ListViewItem(new string[] { maneken.MBR!, maneken.Ime?.LicnoIme!, maneken.Ime?.Prezime!, maneken.DatumRodjenja.ToShortDateString(), maneken.Pol.ToString() });
@@ -28,14 +24,9 @@ public partial class frmAgencijaManekeni : Form
     }
     #endregion
 
-    public frmAgencijaManekeni()
-    {
-        InitializeComponent();
-    }
-
     private void frmAgencijaManekeni_Load(object sender, EventArgs e)
     {
-        lblListaManekenaAgencije.Text += frmAgencije._nazivModneAgencije;
+        lblListaManekenaAgencije.Text += _agencija.Naziv + ':';
         UcitajPodatke();
     }
 
@@ -53,7 +44,7 @@ public partial class frmAgencijaManekeni : Form
 
     private void btnZaposliManekena_Click(object sender, EventArgs e)
     {
-        frmNezaposleniManekeni frmNezaposleni = new frmNezaposleniManekeni();
+        frmNezaposleniManekeni frmNezaposleni = new frmNezaposleniManekeni(_agencija.PIB);
         frmNezaposleni.ShowDialog();
         UcitajPodatke();
         btnOtpustiManekena.Enabled = false;
@@ -63,7 +54,7 @@ public partial class frmAgencijaManekeni : Form
     {
         if (await DTOManager.DajOtkazManeken(lvManekeni.SelectedItems[0].Text))
         {
-            MessageBox.Show("Uspešno otpušten maneken!");
+            MessageBox.Show($"Uspešno otpušten maneken {lvManekeni.SelectedItems[0].SubItems[1].Text} {lvManekeni.SelectedItems[0].SubItems[2].Text}!");
             UcitajPodatke();
             btnOtpustiManekena.Enabled = false;
         }

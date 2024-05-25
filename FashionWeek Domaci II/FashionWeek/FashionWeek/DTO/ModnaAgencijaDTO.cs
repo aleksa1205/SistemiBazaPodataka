@@ -51,7 +51,6 @@ public class ModnaAgencijaBasic
         Inostrana = agencija.Inostrana;
         Sediste = agencija.Sediste;
         DatumOsnivanja = agencija.DatumOsnivanja;
-        Manekeni.AddRange(agencija.Manekeni.Select(maneken => new ManekenBasic(maneken)));
     }
     #endregion
 }

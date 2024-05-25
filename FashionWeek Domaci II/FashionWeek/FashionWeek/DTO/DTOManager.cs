@@ -1,12 +1,11 @@
-﻿using NHibernate.Stat;
-
-namespace FashionWeek.DTO;
+﻿namespace FashionWeek.DTO;
 
 public class DTOManager
 {
 
     #region Maneken
-    public static async Task<ManekenBasic?> VratiManekena(string mbr)
+
+    public static async Task<ManekenBasic?> VratiManekenaBasic(string mbr)
     {
         ISession? session = null;
         try
@@ -182,10 +181,7 @@ public class DTOManager
                 IQuery query = session.CreateQuery(strQuery);
                 query.SetParameter("manekenMBR", mbrManekena);
                 IList<ModnaRevija> revije = await query.ListAsync<ModnaRevija>();
-                foreach(var el in revije)
-                {
-                    listaRevija.Add(new ModnaRevijaPregled(el));
-                }
+                listaRevija.AddRange(revije.Select(revija => new ModnaRevijaPregled(revija)));
                 return listaRevija;
             }
             throw new Exception("Greška pri povezivanju sa bazom!");
@@ -325,14 +321,14 @@ public class DTOManager
             {
                 Maneken maneken = await session.GetAsync<Maneken>(manekenMBR);
                 ModnaRevija revija = await session.GetAsync<ModnaRevija>(revijaRBR);
-                if (maneken != null && revija != null)
+                if (maneken!=null && revija != null)
                 {
                     maneken.Revije.Add(revija);
                     await session.UpdateAsync(maneken);
                     await session.FlushAsync();
                     return true;
                 }
-                throw new Exception("Greška pri pribavljanju manekena i revije!");
+                throw new Exception("Greška pri pribavljanju manekena ili revije!");
             }
             throw new Exception("Greška pri povezivanju sa bazom!");
         }
@@ -347,7 +343,7 @@ public class DTOManager
         }
     }
 
-    public static async Task<bool> ObrisiRevijuManekenu(string mbrManekena, int? rbrRevije)
+    public static async Task<bool> ObrisiRevijuManekenu(string manekenMBR, int? rbrRevije)
     {
         ISession? session = null;
         try
@@ -355,7 +351,7 @@ public class DTOManager
             session = DataLayer.GetSession();
             if (session != null)
             {
-                Maneken maneken = await session.GetAsync<Maneken>(mbrManekena);
+                Maneken maneken = await session.GetAsync<Maneken>(manekenMBR);
                 ModnaRevija revija = await session.GetAsync<ModnaRevija>(rbrRevije);
                 if (maneken != null && revija != null)
                 {
@@ -364,7 +360,7 @@ public class DTOManager
                     await session.FlushAsync();
                     return true;
                 }
-                throw new Exception("Greška pri pribavljanju manekena i revije!");
+                throw new Exception("Greška pri pribavljanju revije ili manekena!");
             }
             throw new Exception("Greška pri povezivanju sa bazom!");
         }
@@ -619,6 +615,36 @@ public class DTOManager
         {
             MessageBox.Show(ex.Message);
             return false;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
+
+    public static async Task<IList<ModniKreatorPregled>> VratiModneKreatoreModneRevije(int rbrRevije)
+    {
+        ISession? session = null;
+        List<ModniKreatorPregled> listaKreatora = [];
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                string strQuery = "select m from ModniKreator m join m.Revije mr where mr.RBR= :rbrRevije";
+                IQuery query = session.CreateQuery(strQuery);
+                query.SetParameter("rbrRevije", rbrRevije);
+                IList<ModniKreator> kreatori = await query.ListAsync<ModniKreator>();
+                listaKreatora.AddRange(kreatori.Select(kreator => new ModniKreatorPregled(kreator)));
+                return listaKreatora;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return listaKreatora;
         }
         finally
         {
@@ -920,7 +946,7 @@ public class DTOManager
     #endregion
 
     #region NaziviCasopisa
-    public static async Task<bool> DodajCasopis(string mbrManekena, string nazivCasopisa)
+    public static async Task<bool> DodajCasopis(string manekenMBR, string nazivCasopis)
     {
         ISession? session = null;
         try
@@ -928,26 +954,23 @@ public class DTOManager
             session = DataLayer.GetSession();
             if (session != null)
             {
-                Maneken maneken = await session.LoadAsync<Maneken>(mbrManekena);
-                ISQLQuery query = session.CreateSQLQuery($"SELECT NAZIV_CASOPISA FROM NAZIVI_CASOPISA WHERE MBR_MANEKENA={mbrManekena}");
-                IList<string> casopisi = await query.ListAsync<string>();
-                foreach (var casopis in casopisi)
+                Maneken maneken = await session.LoadAsync<Maneken>(manekenMBR);
+                foreach(var tmp in maneken.Casopisi)
                 {
-                    if (casopis == nazivCasopisa)
+                    if (tmp.Id.NazivCasopisa == nazivCasopis)
                     {
-                        throw new Exception($"{maneken.Ime.ToString()} je već u časopisu {nazivCasopisa}!");
+                        throw new Exception($"Maneken {maneken.Ime.ToString()} je već u časopisu {nazivCasopis}!");
                     }
                 }
-
-                Casopis noviCasopis = new Casopis()
+                Casopis casopis = new Casopis()
                 {
                     Id = new CasopisId()
                     {
                         Maneken = maneken,
-                        NazivCasopisa = nazivCasopisa
+                        NazivCasopisa = nazivCasopis
                     }
                 };
-                await session.SaveAsync(noviCasopis);
+                await session.SaveAsync(casopis);
                 await session.FlushAsync();
                 return true;
             }
@@ -964,7 +987,7 @@ public class DTOManager
         }
     }
 
-    public static async Task<bool> ObrisiCasopis(string mbrManekena, string nazivCasopisa)
+    public static async Task<bool> ObrisiCasopis(string manekenMBR, string nazivCasopisa)
     {
         ISession? session = null;
         try
@@ -972,15 +995,13 @@ public class DTOManager
             session = DataLayer.GetSession();
             if (session != null)
             {
-                Maneken maneken = await session.LoadAsync<Maneken>(mbrManekena);
-                Casopis casopis = new Casopis()
+                Maneken maneken = await session.LoadAsync<Maneken>(manekenMBR);
+                CasopisId id = new CasopisId()
                 {
-                    Id = new CasopisId()
-                    {
-                        Maneken = maneken,
-                        NazivCasopisa = nazivCasopisa
-                    }
+                    Maneken = maneken,
+                    NazivCasopisa = nazivCasopisa
                 };
+                Casopis casopis = await session.LoadAsync<Casopis>(id);
                 await session.DeleteAsync(casopis);
                 await session.FlushAsync();
                 return true;
@@ -1103,6 +1124,62 @@ public class DTOManager
         }
     }
 
+    public static async Task<bool> DodajModnuKucuModnomKreatoru(string mbrKreatora, string nazivKuce)
+    {
+        ISession? session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                ModniKreator kreator = await session.LoadAsync<ModniKreator>(mbrKreatora);
+                ModnaKuca kuca = await session.LoadAsync<ModnaKuca>(nazivKuce);
+                kreator.RadiU = kuca;
+                await session.UpdateAsync(kreator);
+                await session.FlushAsync();
+                return true;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return false;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
+
+    public static async Task<bool> ObrisiModnuKucuModnomKreatoru(string mbrKreatora, string nazivKuce)
+    {
+        ISession? session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                ModniKreator kreator = await session.LoadAsync<ModniKreator>(mbrKreatora);
+                ModnaKuca kuca = await session.LoadAsync<ModnaKuca>(nazivKuce);
+                kreator.RadiU = null;
+                await session.UpdateAsync(kreator);
+                await session.FlushAsync();
+                return true;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return false;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
+
     public static async Task<IList<ModniKreatorPregled>> VratiModneKreatore()
     {
         ISession? session = null;
@@ -1113,6 +1190,34 @@ public class DTOManager
             if (session != null)
             {
                 ISQLQuery query = session.CreateSQLQuery("SELECT * FROM MODNI_KREATOR");
+                query.AddEntity(typeof(ModniKreator));
+                IList<ModniKreator> kreatori = await query.ListAsync<ModniKreator>();
+                listaKreatora.AddRange(kreatori.Select(kreator => new ModniKreatorPregled(kreator)));
+                return listaKreatora;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return listaKreatora;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
+
+    public static async Task<IList<ModniKreatorPregled>> VratiNezaposleneModneKreatore()
+    {
+        ISession? session = DataLayer.GetSession();
+        List<ModniKreatorPregled> listaKreatora = [];
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                ISQLQuery query = session.CreateSQLQuery("SELECT * FROM MODNI_KREATOR WHERE NAZIV_KUCE IS NULL");
                 query.AddEntity(typeof(ModniKreator));
                 IList<ModniKreator> kreatori = await query.ListAsync<ModniKreator>();
                 listaKreatora.AddRange(kreatori.Select(kreator => new ModniKreatorPregled(kreator)));
@@ -1303,10 +1408,11 @@ public class DTOManager
             session = DataLayer.GetSession();
             if (session != null)
             {
+
                 ISQLQuery query = session.CreateSQLQuery("SELECT * FROM MODNA_KUCA");
                 query.AddEntity(typeof(ModnaKuca));
                 IList<ModnaKuca> modneKuce = await query.ListAsync<ModnaKuca>();
-                listaModnihKuca.AddRange(modneKuce.Select(modnaKuca => new ModnaKucaPregled(modnaKuca)));
+                listaModnihKuca.AddRange(modneKuce.Select(kuca => new ModnaKucaPregled(kuca)));
                 return listaModnihKuca;
             }
             throw new Exception("Greška pri povezivanju sa bazom!");
@@ -1321,5 +1427,35 @@ public class DTOManager
             session?.Close();
         }
     }
+
+    public static async Task<IList<ModniKreatorPregled>> VratiModneKreatoreModneKuce(string nazivModneKuce)
+    {
+        ISession? session = null;
+        List<ModniKreatorPregled> listaKreatora = [];
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                string strQuery = "select mk from ModniKreator mk join mk.RadiU k where k.Naziv= :nazivKuce";
+                IQuery query = session.CreateQuery(strQuery);
+                query.SetParameter("nazivKuce", nazivModneKuce);
+                IList<ModniKreator> kreatori = await query.ListAsync<ModniKreator>();
+                listaKreatora.AddRange(kreatori.Select(kreator => new ModniKreatorPregled(kreator)));
+                return listaKreatora;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return listaKreatora;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
+
     #endregion
 }

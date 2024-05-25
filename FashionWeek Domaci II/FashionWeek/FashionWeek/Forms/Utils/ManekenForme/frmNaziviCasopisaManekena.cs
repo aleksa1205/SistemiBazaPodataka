@@ -2,26 +2,29 @@
 
 public partial class frmNaziviCasopisaManekena : Form
 {
+    private ManekenBasic _maneken;
+    public frmNaziviCasopisaManekena(ManekenBasic maneken)
+    {
+        _maneken = maneken;
+        InitializeComponent();
+    }
+
     #region Funkcije
-    public async void UcitajPodatke()
+    private async void UcitajPodatke()
     {
         lvCasopisi.Items.Clear();
-        IList<string> casopisi = await DTOManager.VratiCasopiseManekena(frmManekeni._manekenMBR!);
-        foreach (var casopis in casopisi)
+        var listeCasopisa = await DTOManager.VratiCasopiseManekena(_maneken.MBR);
+        foreach (var casopis in listeCasopisa)
         {
             lvCasopisi.Items.Add(new ListViewItem(casopis));
         }
         lvCasopisi.Refresh();
     }
     #endregion
-    public frmNaziviCasopisaManekena()
-    {
-        InitializeComponent();
-    }
 
     private void frmNaziviCasopisaManekena_Load(object sender, EventArgs e)
     {
-        lblManeken.Text = frmManekeni._imeManekena;
+        lblManeken.Text = _maneken.Ime.ToString();
         UcitajPodatke();
     }
 
@@ -39,7 +42,7 @@ public partial class frmNaziviCasopisaManekena : Form
 
     private void btnDodajCasopis_Click(object sender, EventArgs e)
     {
-        frmDodajCasopis frmDodaj = new frmDodajCasopis();
+        frmDodajCasopis frmDodaj = new frmDodajCasopis(_maneken.MBR);
         frmDodaj.ShowDialog();
         UcitajPodatke();
         btnObrisiCasopis.Enabled = false;
@@ -47,11 +50,11 @@ public partial class frmNaziviCasopisaManekena : Form
 
     private async void btnObrisiCasopis_Click(object sender, EventArgs e)
     {
-        if (await DTOManager.ObrisiCasopis(frmManekeni._manekenMBR!, lvCasopisi.SelectedItems[0].Text))
+        if (await DTOManager.ObrisiCasopis(_maneken.MBR, lvCasopisi.SelectedItems[0].Text))
         {
-            MessageBox.Show("Uspešno obrisan časopis!");
+            MessageBox.Show($"Uspešno obrisan časopis {lvCasopisi.SelectedItems[0].Text}!");
             UcitajPodatke();
-            btnObrisiCasopis.Enabled = false;
+            lvCasopisi.SelectedItems.Clear();
         }
     }
 

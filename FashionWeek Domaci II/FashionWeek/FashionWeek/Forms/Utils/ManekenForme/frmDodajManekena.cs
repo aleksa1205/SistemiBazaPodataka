@@ -1,17 +1,4 @@
-﻿using FashionWeek.DTO;
-using FashionWeek.Entiteti;
-using NHibernate;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace FashionWeek.Forms.Utils.ManekenForme;
+﻿namespace FashionWeek.Forms.Utils.ManekenForme;
 
 public partial class frmDodajManekena : Form
 {
@@ -91,13 +78,12 @@ public partial class frmDodajManekena : Form
         {
             return;
         }
-        ManekenBasic? maneken = await DTOManager.VratiManekena(txtMBR.Text);
-        if (maneken != null)
+        if (await DTOManager.VratiManekenaBasic(txtMBR.Text) != null)
         {
             MessageBox.Show($"Maneken sa MBR-om {txtMBR.Text} već postoji!");
             return;
         }
-        maneken = new ManekenBasic
+        ManekenBasic maneken = new ManekenBasic
         {
             MBR = txtMBR.Text,
             Ime = new()

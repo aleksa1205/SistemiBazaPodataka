@@ -2,10 +2,15 @@
 
 public partial class frmRevije : Form
 {
-    public static int? _rbrRevije = null;
-    public static string? _nazivRevije = null;
+    private ModnaRevijaBasic? _revija = null;
+
+    public frmRevije()
+    {
+        InitializeComponent();
+    }
+
     #region Funkcije
-    public void EnableButtons()
+    private void EnableButtons()
     {
         btnAzurirajReviju.Enabled = true;
         btnObrisiReviju.Enabled = true;
@@ -13,7 +18,7 @@ public partial class frmRevije : Form
         btnKreatori.Enabled = true;
     }
 
-    public void DisableButtons()
+    private void DisableButtons()
     {
         btnAzurirajReviju.Enabled = false;
         btnObrisiReviju.Enabled = false;
@@ -21,7 +26,7 @@ public partial class frmRevije : Form
         btnKreatori.Enabled = false;
     }
 
-    public async void UcitajPodatke()
+    private async void UcitajPodatke()
     {
         lvRevije.Items.Clear();
         IList<ModnaRevijaPregled> revije = await DTOManager.VratiModneRevije();
@@ -34,22 +39,16 @@ public partial class frmRevije : Form
     }
     #endregion
 
-    public frmRevije()
-    {
-        InitializeComponent();
-    }
-
     private void frmRevije_Load(object sender, EventArgs e)
     {
         UcitajPodatke();
     }
 
-    private void lvRevije_SelectedIndexChanged(object sender, EventArgs e)
+    private async void lvRevije_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (lvRevije.SelectedItems.Count > 0)
         {
-            _rbrRevije = Int32.Parse(lvRevije.SelectedItems[0].Text);
-            _nazivRevije = lvRevije.SelectedItems[0].SubItems[1].Text;
+            _revija = await DTOManager.VratiModnuReviju(Int32.Parse(lvRevije.SelectedItems[0].Text));
             EnableButtons();
         }
         else
@@ -63,36 +62,46 @@ public partial class frmRevije : Form
         frmDodajReviju revija = new frmDodajReviju();
         revija.ShowDialog();
         UcitajPodatke();
+        lvRevije.SelectedItems.Clear();
     }
 
     private void btnAzurirajReviju_Click(object sender, EventArgs e)
     {
-        frmAzurirajReviju frmAzuriraj = new frmAzurirajReviju();
+        frmAzurirajReviju frmAzuriraj = new frmAzurirajReviju(_revija);
         frmAzuriraj.ShowDialog();
         UcitajPodatke();
-        DisableButtons();
+        lvRevije.SelectedItems.Clear();
     }
 
     private async void btnObrisiReviju_Click(object sender, EventArgs e)
     {
-        if (await DTOManager.ObrisiReviju(_rbrRevije))
+        if (await DTOManager.ObrisiReviju(_revija.RBR))
         {
-            MessageBox.Show("Uspešno obrisana revija!");
+            MessageBox.Show($"Uspešno obrisana revija {_revija.Naziv}!");
+            _revija = null;
             UcitajPodatke();
-            DisableButtons();
+            lvRevije.SelectedItems.Clear();
         }
     }
 
     private void btnUcesnici_Click(object sender, EventArgs e)
     {
 
-        frmUcesniciRevije frmUcesniciRevije = new frmUcesniciRevije();
+        frmUcesniciRevije frmUcesniciRevije = new frmUcesniciRevije(_revija);
         frmUcesniciRevije.ShowDialog();
-        DisableButtons();
+        lvRevije.SelectedItems.Clear();
+    }
+
+    private void btnKreatori_Click(object sender, EventArgs e)
+    {
+        frmKreatoriRevije frmKreatori = new frmKreatoriRevije(_revija);
+        frmKreatori.ShowDialog();
+        lvRevije.SelectedItems.Clear();
     }
 
     private void btnIzadji_Click(object sender, EventArgs e)
     {
         Close();
     }
+
 }

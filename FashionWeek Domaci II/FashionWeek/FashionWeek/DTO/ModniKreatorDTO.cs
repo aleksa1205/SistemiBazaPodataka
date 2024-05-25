@@ -41,8 +41,8 @@ public class ModniKreatorBasic
     public string? ZemljaPorekla { get; set; }
     public ModnaKucaBasic? RadiU { get; set; }
     public OrganizatorBasic? Organizator { get; set; }
-    public IList<ModnaRevijaBasic> Revije { get; set; } = [];
-    public IList<SpecijalanGost> SpecijalniGosti { get; set; } = [];
+    public List<ModnaRevijaBasic> Revije { get; set; } = [];
+    public List<SpecijalanGostBasic> SpecijalniGosti { get; set; } = [];
 
     #region Constuctors
     public ModniKreatorBasic() { }

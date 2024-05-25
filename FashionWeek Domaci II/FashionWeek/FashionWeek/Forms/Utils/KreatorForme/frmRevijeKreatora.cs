@@ -2,11 +2,19 @@
 
 public partial class frmRevijeKreatora : Form
 {
+    private ModniKreatorBasic _kreator;
+
+    public frmRevijeKreatora(ModniKreatorBasic kreator)
+    {
+        InitializeComponent();
+        _kreator = kreator;
+    }
+
     #region Funkcije
     private async void UcitajPodatke()
     {
         lvRevije.Items.Clear();
-        var revije = await DTOManager.VratiModneRevijeModnogKreatora(frmKreatori._kreatorMBR!);
+        var revije = await DTOManager.VratiModneRevijeModnogKreatora(_kreator.MBR);
         foreach (var revija in revije)
         {
             ListViewItem item = new ListViewItem(new string[] { revija.RBR.ToString(), revija.Naziv, revija.Mesto?.ToString(), revija.Termin.ToShortDateString() });
@@ -15,14 +23,10 @@ public partial class frmRevijeKreatora : Form
         lvRevije.Refresh();
     }
     #endregion
-    public frmRevijeKreatora()
-    {
-        InitializeComponent();
-    }
 
     private void frmRevijeKreatora_Load(object sender, EventArgs e)
     {
-        lblRevije.Text += frmKreatori._imeKreatora;
+        lblRevije.Text += _kreator.Ime.ToString() + ':';
         UcitajPodatke();
     }
 
@@ -40,18 +44,19 @@ public partial class frmRevijeKreatora : Form
 
     private void btnDodajReviju_Click(object sender, EventArgs e)
     {
-        frmDodajRevijuKreatoru frmDodajReviju = new frmDodajRevijuKreatoru();
+        frmDodajRevijuKreatoru frmDodajReviju = new frmDodajRevijuKreatoru(_kreator);
         frmDodajReviju.ShowDialog();
         UcitajPodatke();
+        lvRevije.SelectedItems.Clear();
     }
 
     private async void btnObrisiReviju_Click(object sender, EventArgs e)
     {
-        if (await DTOManager.ObrisiModnogKreatoraReviji(Int32.Parse(lvRevije.SelectedItems[0].Text), frmKreatori._kreatorMBR!))
+        if (await DTOManager.ObrisiModnogKreatoraReviji(Int32.Parse(lvRevije.SelectedItems[0].Text), _kreator.MBR))
         {
             MessageBox.Show("Uspešno uklonjen kreator sa revije!");
             UcitajPodatke();
-            btnObrisiReviju.Enabled = false;
+            lvRevije.SelectedItems.Clear();
         }
     }
 

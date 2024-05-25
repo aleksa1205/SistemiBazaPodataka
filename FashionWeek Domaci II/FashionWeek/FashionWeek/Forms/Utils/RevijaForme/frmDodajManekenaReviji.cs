@@ -1,68 +1,59 @@
-﻿using FashionWeek.DTO;
-using FashionWeek.Forms.Utils.Revija;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿namespace FashionWeek.Forms.Utils.RevijaForme;
 
-namespace FashionWeek.Forms.Utils.RevijaForme
+public partial class frmDodajManekenaReviji : Form
 {
-    public partial class frmDodajManekenaReviji : Form
+    private ModnaRevijaBasic _revija;
+
+    public frmDodajManekenaReviji(ModnaRevijaBasic revija)
     {
-        #region Funkcije
-        public async void UcitajPodatke()
-        {
-            lvManekeni.Items.Clear();
-            IList<ManekenPregled> listaManekena = await DTOManager.VratiManekeneKojeNisuNaModnojReviji(frmRevije._rbrRevije);
-            foreach (var maneken in listaManekena)
-            {
-                ListViewItem item = new ListViewItem(new string[] { maneken.MBR, maneken.Ime?.LicnoIme!, maneken.Ime?.Prezime!, maneken.DatumRodjenja.ToShortDateString(), maneken.Pol.ToString() });
-                lvManekeni.Items.Add(item);
-            }
-            lvManekeni.Refresh();
-        }
-        #endregion
-        public frmDodajManekenaReviji()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+        _revija = revija;
+    }
 
-        private void frmDodajManekenaReviji_Load(object sender, EventArgs e)
+    #region Funkcije
+    private async void UcitajPodatke()
+    {
+        lvManekeni.Items.Clear();
+        IList<ManekenPregled> listaManekena = await DTOManager.VratiManekeneKojeNisuNaModnojReviji(_revija.RBR);
+        foreach (var maneken in listaManekena)
         {
-            //lblListaManekena.Text += frmRevije._revija.Naziv + ':';
+            ListViewItem item = new ListViewItem(new string[] { maneken.MBR, maneken.Ime?.LicnoIme!, maneken.Ime?.Prezime!, maneken.DatumRodjenja.ToShortDateString(), maneken.Pol.ToString() });
+            lvManekeni.Items.Add(item);
+        }
+        lvManekeni.Refresh();
+    }
+    #endregion
+
+    private void frmDodajManekenaReviji_Load(object sender, EventArgs e)
+    {
+        lblListaManekena.Text += _revija.Naziv + ':';
+        UcitajPodatke();
+    }
+
+    private void lvManekeni_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (lvManekeni.SelectedItems.Count > 0)
+        {
+            btnDodajManekena.Enabled = true;
+        }
+        else
+        {
+            btnDodajManekena.Enabled = false;
+        }
+    }
+
+    private async void btnDodajManekena_Click(object sender, EventArgs e)
+    {
+        if(await DTOManager.DodajRevijuManekenu(lvManekeni.SelectedItems[0].Text, _revija.RBR))
+        {
+            MessageBox.Show($"Uspešno dodat maneken {lvManekeni.SelectedItems[0].SubItems[1].Text} {lvManekeni.SelectedItems[0].SubItems[2].Text}!");
             UcitajPodatke();
+            lvManekeni.SelectedItems.Clear();
         }
+    }
 
-        private void lvManekeni_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lvManekeni.SelectedItems.Count > 0)
-            {
-                btnDodajManekena.Enabled = true;
-            }
-            else
-            {
-                btnDodajManekena.Enabled = false;
-            }
-        }
-
-        private async void btnDodajManekena_Click(object sender, EventArgs e)
-        {
-            if(await DTOManager.DodajRevijuManekenu(lvManekeni.SelectedItems[0].Text, frmRevije._rbrRevije))
-            {
-                MessageBox.Show("Uspešno dodat maneken!");
-                UcitajPodatke();
-                btnDodajManekena.Enabled = false;
-            }
-        }
-
-        private void btnOdustani_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+    private void btnOdustani_Click(object sender, EventArgs e)
+    {
+        Close();
     }
 }

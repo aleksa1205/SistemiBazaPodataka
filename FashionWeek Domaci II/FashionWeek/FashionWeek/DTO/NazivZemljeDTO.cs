@@ -20,6 +20,11 @@ public class NazivZemljeIdBasic
 
     #region Constructors
     public NazivZemljeIdBasic() { }
+    public NazivZemljeIdBasic(NazivZemljeId Id)
+    {
+        InostranaAgencija = new(Id.InostranaAgencija!);
+        NazivZemlje = Id.NazivZemlje!;
+    }
     #endregion
 }
 

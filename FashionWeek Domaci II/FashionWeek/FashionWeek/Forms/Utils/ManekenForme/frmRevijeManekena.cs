@@ -1,29 +1,19 @@
-﻿using FashionWeek.DTO;
-using FashionWeek.Entiteti;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace FashionWeek.Forms.Utils.ManekenForme;
+﻿namespace FashionWeek.Forms.Utils.ManekenForme;
 
 public partial class frmRevijeManekena : Form
 {
-    public frmRevijeManekena()
+    private ManekenBasic _maneken;
+    public frmRevijeManekena(ManekenBasic maneken)
     {
         InitializeComponent();
+        _maneken = maneken;
     }
 
     #region Funkcije
-    public async void UcitajPodatke()
+    private async void UcitajPodatke()
     {
         lvRevije.Items.Clear();
-        IList<ModnaRevijaPregled> listaRevija = await DTOManager.VratiModneRevijaManekena(frmManekeni._manekenMBR!);
+        IList<ModnaRevijaPregled> listaRevija = await DTOManager.VratiModneRevijaManekena(_maneken.MBR);
         foreach (var revija in listaRevija)
         {
             ListViewItem item = new ListViewItem(new string[] { revija.RBR.ToString(), revija.Naziv, revija.Mesto!.ToString(), revija.Termin.ToShortDateString() });
@@ -36,7 +26,7 @@ public partial class frmRevijeManekena : Form
     private void frmRevije_Load(object sender, EventArgs e)
     {
 
-        lblRevije.Text += frmManekeni._imeManekena + ':';
+        lblRevije.Text += _maneken.Ime.ToString() + ':';
         UcitajPodatke();
     }
 
@@ -54,19 +44,19 @@ public partial class frmRevijeManekena : Form
 
     private void btnDodajReviju_Click(object sender, EventArgs e)
     {
-        frmDodajRevijuManeken frmDodaj = new frmDodajRevijuManeken();
+        frmDodajRevijuManeken frmDodaj = new frmDodajRevijuManeken(_maneken);
         frmDodaj.ShowDialog();
         UcitajPodatke();
-        btnObrisiReviju.Enabled = false;
+        lvRevije.SelectedItems.Clear();
     }
 
     private async void btnObrisiReviju_Click(object sender, EventArgs e)
     {
-        if(await DTOManager.ObrisiRevijuManekenu(frmManekeni._manekenMBR!, Int32.Parse(lvRevije.SelectedItems[0].Text)))
+        if(await DTOManager.ObrisiRevijuManekenu(_maneken.MBR, Int32.Parse(lvRevije.SelectedItems[0].Text)))
         {
-            MessageBox.Show("Uspešno obrisana revija manekenu!");
+            MessageBox.Show($"Uspešno obrisana revija {lvRevije.SelectedItems[0].SubItems[1].Text} manekenu {_maneken.Ime.ToString()}!");
             UcitajPodatke();
-            btnObrisiReviju.Enabled = false;
+            lvRevije.SelectedItems.Clear();
         }
     }
 

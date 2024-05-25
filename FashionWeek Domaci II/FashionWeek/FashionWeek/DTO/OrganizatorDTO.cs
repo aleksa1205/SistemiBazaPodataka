@@ -20,10 +20,10 @@ public class OrganizatorBasic
     public int Id { get; set; }
     public char PrvaRevija { get; set; }
     public string? InformacijeOKolekciji { get; set; }
-    public IList<ModniKreatorBasic> Kreatori { get; set; } = [];
-    public IList<ModnaKucaBasic> ModneKuce { get; set; } = [];
-    public IList<ModnaRevijaBasic> ModneRevije { get; set; } = [];
-    public IList<SpecijalanGostBasic> SpecijalniGosti { get; set; } = [];
+    public List<ModniKreatorBasic> Kreatori { get; set; } = [];
+    public List<ModnaKucaBasic> ModneKuce { get; set; } = [];
+    public List<ModnaRevijaBasic> ModneRevije { get; set; } = [];
+    public List<SpecijalanGostBasic> SpecijalniGosti { get; set; } = [];
 
     #region Constructors
     public OrganizatorBasic() { }
@@ -32,6 +32,12 @@ public class OrganizatorBasic
         Id = id;
         PrvaRevija = prvaRevija;
         InformacijeOKolekciji = infoOKolekciji;
+    }
+    public OrganizatorBasic(Organizator organizator) 
+    {
+        Id = organizator.Id;
+        PrvaRevija = organizator.PrvaRevija;
+        InformacijeOKolekciji = organizator.InformacijeOKolekciji;
     }
     #endregion
 }

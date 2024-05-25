@@ -70,8 +70,8 @@ public class ManekenBasic
     public string? KonfekcijskiBroj { get; set; }
     public string? Zanimanje { get; set; }
     public ModnaAgencijaBasic? RadiUAgenciji { get; set; }
-    public IList<ModnaRevijaBasic> Revije { get; set; } = [];
-    public IList<CasopisBasic> Casopisi { get; set; } = [];
+    public List<ModnaRevijaBasic> Revije { get; set; } = [];
+    public List<CasopisBasic> Casopisi { get; set; } = [];
 
     #region Constructors
     public ManekenBasic() { }

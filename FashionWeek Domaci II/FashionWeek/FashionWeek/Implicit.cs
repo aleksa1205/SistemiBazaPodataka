@@ -9,6 +9,8 @@ global using FashionWeek.Entiteti.Helper;
 global using FashionWeek.DTO;
 global using FashionWeek.Forms.Utils.RevijaForme;
 global using FashionWeek.Forms.Utils.AgencijaForme;
+global using FashionWeek.Forms.Utils.Revija;
+
 
 
 global using NHibernate;

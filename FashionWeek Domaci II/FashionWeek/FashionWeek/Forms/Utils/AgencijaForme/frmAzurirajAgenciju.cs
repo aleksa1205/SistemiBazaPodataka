@@ -1,68 +1,44 @@
-﻿using FashionWeek.DTO;
-using FashionWeek.Entiteti;
-using FashionWeek.Entiteti.Helper;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace FashionWeek.Forms.Utils.AgencijaForme;
+﻿namespace FashionWeek.Forms.Utils.AgencijaForme;
 
 public partial class frmAzurirajAgenciju : Form
 {
-    ModnaAgencijaBasic? modnaAgencija = null;
-    #region Funkcije
-    public async void Ucitaj()
+    private ModnaAgencijaBasic _agencija;
+
+    public frmAzurirajAgenciju(ModnaAgencijaBasic agencija)
     {
-        modnaAgencija = await DTOManager.VratiModnuAgenciju(frmAgencije._modnaAgencijaPIB);
-        if (modnaAgencija != null)
+        InitializeComponent();
+        _agencija = agencija;
+    }
+
+    #region Funkcije
+    private void Ucitaj()
+    {
+        txtPIB.Text = _agencija.PIB;
+        txtNaziv.Text = _agencija.Naziv;
+        dtpDatumOsnivanja.Value = _agencija.DatumOsnivanja;
+        txtDrzava.Text = _agencija.Sediste?.Drzava;
+        txtGrad.Text = _agencija.Sediste?.Grad;
+        txtUlica.Text = _agencija.Sediste?.Ulica;
+        if (_agencija is InostranaAgencijaBasic)
         {
-            txtPIB.Text = modnaAgencija.PIB;
-            txtNaziv.Text = modnaAgencija.Naziv;
-            dtpDatumOsnivanja.Value = modnaAgencija.DatumOsnivanja;
-            txtDrzava.Text = modnaAgencija.Sediste?.Drzava;
-            txtGrad.Text = modnaAgencija.Sediste?.Grad;
-            txtUlica.Text = modnaAgencija.Sediste?.Ulica;
-            if (modnaAgencija is InostranaAgencijaBasic)
-            {
-                rbInostrana.Checked = true;
-            }
-            else
-            {
-                rbDomaca.Checked = true;
-            }
+            rbInostrana.Checked = true;
         }
         else
         {
-            MessageBox.Show("Greška pri učitavanju modne agencije!");
-            Close();
+            rbDomaca.Checked = true;
         }
     }
 
-    public void Procitaj()
+    private void Procitaj()
     {
-        modnaAgencija!.Naziv = txtNaziv.Text;
-        modnaAgencija.DatumOsnivanja = dtpDatumOsnivanja.Value;
-        modnaAgencija.Sediste.Drzava = txtDrzava.Text;
-        modnaAgencija.Sediste.Grad = txtGrad.Text;
-        modnaAgencija.Sediste.Ulica = txtUlica.Text;
-
+        _agencija!.Naziv = txtNaziv.Text;
+        _agencija.DatumOsnivanja = dtpDatumOsnivanja.Value;
+        _agencija.Sediste = new(txtDrzava.Text, txtGrad.Text, txtUlica.Text);
     }
     #endregion
 
-    public frmAzurirajAgenciju()
-    {
-        InitializeComponent();
-    }
-
     private void frmAzurirajAgenciju_Load(object sender, EventArgs e)
     {
-
         Ucitaj();
         txtPIB.Enabled = false;
         gbTip.Enabled = false;
@@ -76,7 +52,7 @@ public partial class frmAzurirajAgenciju : Form
             return;
         }
         Procitaj();
-        if(await DTOManager.AzurirajModnuAgenciju(modnaAgencija!))
+        if(await DTOManager.AzurirajModnuAgenciju(_agencija))
         {
             MessageBox.Show("Uspešno ažurirana modna agencija!");
             Close();

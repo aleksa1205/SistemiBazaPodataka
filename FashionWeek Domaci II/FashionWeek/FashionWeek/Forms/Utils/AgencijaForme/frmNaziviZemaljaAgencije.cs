@@ -1,24 +1,20 @@
-﻿using FashionWeek.DTO;
-using FashionWeek.Entiteti;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace FashionWeek.Forms.Utils.AgencijaForme;
+﻿namespace FashionWeek.Forms.Utils.AgencijaForme;
 
 public partial class frmNaziviZemaljaAgencije : Form
 {
+    private ModnaAgencijaBasic _agencija;
+
+    public frmNaziviZemaljaAgencije(ModnaAgencijaBasic agencija)
+    {
+        InitializeComponent();
+        _agencija = agencija;
+    }
+
     #region Funkcije
-    public async void UcitajPodatke()
+    private async void UcitajPodatke()
     {
         lvZemlje.Items.Clear();
-        IList<string> listaZemalja = await DTOManager.VratiZemljeUKojimaPoslujeAgencijaPregled(frmAgencije._modnaAgencijaPIB!);
+        IList<string> listaZemalja = await DTOManager.VratiZemljeUKojimaPoslujeAgencijaPregled(_agencija.PIB);
         foreach (var zemlja in listaZemalja)
         {
             ListViewItem item = new ListViewItem(zemlja);
@@ -27,14 +23,10 @@ public partial class frmNaziviZemaljaAgencije : Form
         lvZemlje.Refresh();
     }
     #endregion
-    public frmNaziviZemaljaAgencije()
-    {
-        InitializeComponent();
-    }
 
     private void frmAgencijeZemlje_Load(object sender, EventArgs e)
     {
-        lblNazivAgencije.Text = frmAgencije._nazivModneAgencije;
+        lblNazivAgencije.Text = _agencija.Naziv;
         UcitajPodatke();
     }
 
@@ -52,7 +44,7 @@ public partial class frmNaziviZemaljaAgencije : Form
 
     private void btnDodajZemlju_Click(object sender, EventArgs e)
     {
-        frmDodajZemlju frmDodajZemlju = new frmDodajZemlju();
+        frmDodajZemlju frmDodajZemlju = new frmDodajZemlju(_agencija.PIB);
         frmDodajZemlju.ShowDialog();
         UcitajPodatke();
     }
@@ -60,7 +52,7 @@ public partial class frmNaziviZemaljaAgencije : Form
     private async void btnObrisiZemlju_Click(object sender, EventArgs e)
     {
 
-        if (await DTOManager.ObrisiZemlju(frmAgencije._modnaAgencijaPIB!, lvZemlje.SelectedItems[0].Text))
+        if (await DTOManager.ObrisiZemlju(_agencija.PIB, lvZemlje.SelectedItems[0].Text))
         {
             MessageBox.Show("Uspešno obrisana zemlja!");
             UcitajPodatke();

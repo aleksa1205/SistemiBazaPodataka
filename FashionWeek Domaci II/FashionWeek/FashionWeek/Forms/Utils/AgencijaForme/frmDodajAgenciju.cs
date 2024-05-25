@@ -1,21 +1,12 @@
-﻿using FashionWeek.DTO;
-using FashionWeek.Entiteti;
-using FashionWeek.Entiteti.Helper;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace FashionWeek.Forms.Utils.AgencijaForme;
+﻿namespace FashionWeek.Forms.Utils.AgencijaForme;
 
 public partial class frmDodajAgenciju : Form
 {
+    public frmDodajAgenciju()
+    {
+        InitializeComponent();
+    }
+
     #region Funkcije
     private bool ProveriBrojeve(string numbers)
     {
@@ -60,11 +51,6 @@ public partial class frmDodajAgenciju : Form
         return checker;
     }
     #endregion
-
-    public frmDodajAgenciju()
-    {
-        InitializeComponent();
-    }
 
     private async void btnSacuvaj_Click(object sender, EventArgs e)
     {

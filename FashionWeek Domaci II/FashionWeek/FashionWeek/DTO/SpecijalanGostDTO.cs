@@ -21,6 +21,12 @@ public class SpecijalanGostIdBasic
 
     #region Constructors
     public SpecijalanGostIdBasic() { }
+    public SpecijalanGostIdBasic(SpecijalanGostId Id) 
+    {
+        ModniKreator = new ModniKreatorBasic(Id.ModniKreator);
+        ModnaRevija = new ModnaRevijaBasic(Id.ModnaRevija);
+        Organizator = new OrganizatorBasic(Id.Organizator);
+    }
     #endregion
 }
 

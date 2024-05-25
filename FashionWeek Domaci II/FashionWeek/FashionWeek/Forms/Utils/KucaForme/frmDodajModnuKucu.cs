@@ -2,6 +2,11 @@
 
 public partial class frmDodajModnuKucu : Form
 {
+    public frmDodajModnuKucu()
+    {
+        InitializeComponent();
+    }
+
     #region Funkcije
     private bool ProveriPolja()
     {
@@ -27,10 +32,6 @@ public partial class frmDodajModnuKucu : Form
         return checker;
     }
     #endregion
-    public frmDodajModnuKucu()
-    {
-        InitializeComponent();
-    }
 
     private async void btnSacuvaj_Click(object sender, EventArgs e)
     {

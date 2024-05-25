@@ -1,6 +1,6 @@
 ﻿namespace FashionWeek.Forms.Utils.RevijaForme
 {
-    partial class frmKreatoriRevije
+    partial class frmDodajKreatoraReviji
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             btnIzadji = new Button();
-            btnObrisiKreatora = new Button();
             btnDodajKreatora = new Button();
             lvKreatori = new ListView();
             colMBR = new ColumnHeader();
@@ -48,22 +47,9 @@
             btnIzadji.Location = new Point(726, 408);
             btnIzadji.Name = "btnIzadji";
             btnIzadji.Size = new Size(161, 30);
-            btnIzadji.TabIndex = 22;
+            btnIzadji.TabIndex = 27;
             btnIzadji.Text = "Izađi";
             btnIzadji.UseVisualStyleBackColor = true;
-            btnIzadji.Click += btnIzadji_Click;
-            // 
-            // btnObrisiKreatora
-            // 
-            btnObrisiKreatora.Enabled = false;
-            btnObrisiKreatora.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnObrisiKreatora.Location = new Point(726, 69);
-            btnObrisiKreatora.Name = "btnObrisiKreatora";
-            btnObrisiKreatora.Size = new Size(161, 30);
-            btnObrisiKreatora.TabIndex = 20;
-            btnObrisiKreatora.Text = "Obriši kreatora";
-            btnObrisiKreatora.UseVisualStyleBackColor = true;
-            btnObrisiKreatora.Click += btnObrisiKreatora_Click;
             // 
             // btnDodajKreatora
             // 
@@ -71,10 +57,9 @@
             btnDodajKreatora.Location = new Point(726, 33);
             btnDodajKreatora.Name = "btnDodajKreatora";
             btnDodajKreatora.Size = new Size(161, 30);
-            btnDodajKreatora.TabIndex = 18;
+            btnDodajKreatora.TabIndex = 25;
             btnDodajKreatora.Text = "Dodaj kreatora";
             btnDodajKreatora.UseVisualStyleBackColor = true;
-            btnDodajKreatora.Click += btnDodajKreatora_Click;
             // 
             // lvKreatori
             // 
@@ -82,10 +67,9 @@
             lvKreatori.Location = new Point(12, 33);
             lvKreatori.Name = "lvKreatori";
             lvKreatori.Size = new Size(708, 405);
-            lvKreatori.TabIndex = 17;
+            lvKreatori.TabIndex = 24;
             lvKreatori.UseCompatibleStateImageBehavior = false;
             lvKreatori.View = View.Details;
-            lvKreatori.SelectedIndexChanged += lvKreatori_SelectedIndexChanged;
             // 
             // colMBR
             // 
@@ -134,23 +118,21 @@
             lblListaKreatora.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblListaKreatora.Location = new Point(11, 9);
             lblListaKreatora.Name = "lblListaKreatora";
-            lblListaKreatora.Size = new Size(150, 21);
-            lblListaKreatora.TabIndex = 16;
-            lblListaKreatora.Text = "Lista kreatora revije ";
+            lblListaKreatora.Size = new Size(229, 21);
+            lblListaKreatora.TabIndex = 23;
+            lblListaKreatora.Text = "Lista kreatora koji nisu na reviji ";
             // 
-            // frmKreatoriRevije
+            // frmDodajKreatoraReviji
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(899, 450);
             Controls.Add(btnIzadji);
-            Controls.Add(btnObrisiKreatora);
             Controls.Add(btnDodajKreatora);
             Controls.Add(lvKreatori);
             Controls.Add(lblListaKreatora);
-            Name = "frmKreatoriRevije";
-            Text = "REVIJA - Spisak kreatora";
-            Load += frmKreatoriRevije_Load;
+            Name = "frmDodajKreatoraReviji";
+            Text = "frmDodajKreatoraReviji";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -158,7 +140,6 @@
         #endregion
 
         private Button btnIzadji;
-        private Button btnObrisiKreatora;
         private Button btnDodajKreatora;
         private ListView lvKreatori;
         private ColumnHeader colMBR;

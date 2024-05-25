@@ -2,7 +2,13 @@
 
 public partial class frmModneKuce : Form
 {
-    public static string? _nazivModneKuce = null;
+    private ModnaKucaBasic? _kuca = null;
+
+    public frmModneKuce()
+    {
+        InitializeComponent();
+    }
+
     #region Funkcije
     private async void UcitajPodatke()
     {
@@ -30,21 +36,17 @@ public partial class frmModneKuce : Form
         btnVlasnici.Enabled = false;
     }
     #endregion
-    public frmModneKuce()
-    {
-        InitializeComponent();
-    }
 
     private void frmModneKuce_Load(object sender, EventArgs e)
     {
         UcitajPodatke();
     }
 
-    private void lvModneKuce_SelectedIndexChanged(object sender, EventArgs e)
+    private async void lvModneKuce_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (lvModneKuce.SelectedItems.Count > 0)
         {
-            _nazivModneKuce = lvModneKuce.SelectedItems[0].Text;
+            _kuca = await DTOManager.VratiModnuKucu(lvModneKuce.SelectedItems[0].Text);
             EnableButtons();
         }
         else
@@ -58,24 +60,35 @@ public partial class frmModneKuce : Form
         frmDodajModnuKucu frmDodaj = new frmDodajModnuKucu();
         frmDodaj.ShowDialog();
         UcitajPodatke();
-        DisableButtons();
+        lvModneKuce.SelectedItems.Clear();
     }
 
     private void btnAzurirajModnuKucu_Click(object sender, EventArgs e)
     {
-        frmAzurirajModnuKucu frmAzuriraj = new frmAzurirajModnuKucu();
+        frmAzurirajModnuKucu frmAzuriraj = new frmAzurirajModnuKucu(_kuca);
         frmAzuriraj.ShowDialog();
         UcitajPodatke();
-        DisableButtons();
+        lvModneKuce.SelectedItems.Clear();
     }
 
     private async void btnObrisiModnuKucu_Click(object sender, EventArgs e)
     {
-        if(await DTOManager.ObrisiModnuKucu(_nazivModneKuce))
+        if (await DTOManager.ObrisiModnuKucu(_kuca.Naziv))
         {
-            MessageBox.Show("Uspešno obrisana modna kuća!");
+            MessageBox.Show($"Uspešno obrisana modna kuća {_kuca.Naziv}!");
             UcitajPodatke();
-            DisableButtons();
+            lvModneKuce.SelectedItems.Clear();
         }
+    }
+
+    private void btnModniKreatori_Click(object sender, EventArgs e)
+    {
+        frmKreatoriModneKuce frmKreatori = new frmKreatoriModneKuce(_kuca);
+        frmKreatori.ShowDialog();
+    }
+
+    private void btnIzadji_Click(object sender, EventArgs e)
+    {
+        Close();
     }
 }

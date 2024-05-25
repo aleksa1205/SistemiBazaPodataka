@@ -2,24 +2,29 @@
 
 public partial class frmKreatori : Form
 {
-    public static string? _kreatorMBR = null;
-    public static string? _imeKreatora = null;
+    private ModniKreatorBasic? _kreator = null;
+
+    public frmKreatori()
+    {
+        InitializeComponent();
+    }
+
     #region Funkcije
-    public void EnableButtons()
+    private void EnableButtons()
     {
         btnAzurirajKreatora.Enabled = true;
         btnObrisiKreatora.Enabled = true;
         btnRevije.Enabled = true;
     }
 
-    public void DisableButtons()
+    private void DisableButtons()
     {
         btnAzurirajKreatora.Enabled = false;
         btnObrisiKreatora.Enabled = false;
         btnRevije.Enabled = false;
     }
 
-    public async void UcitajPodatke()
+    private async void UcitajPodatke()
     {
         lvKreatori.Items.Clear();
         IList<ModniKreatorPregled> kreatori = await DTOManager.VratiModneKreatore();
@@ -31,22 +36,17 @@ public partial class frmKreatori : Form
         lvKreatori.Refresh();
     }
     #endregion
-    public frmKreatori()
-    {
-        InitializeComponent();
-    }
 
     private void frmKreatori_Load(object sender, EventArgs e)
     {
         UcitajPodatke();
     }
 
-    private void lvKreatori_SelectedIndexChanged(object sender, EventArgs e)
+    private async void lvKreatori_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (lvKreatori.SelectedItems.Count > 0)
         {
-            _kreatorMBR = lvKreatori.SelectedItems[0].Text;
-            _imeKreatora = lvKreatori.SelectedItems[0].SubItems[1].Text + ' ' +lvKreatori.SelectedItems[0].SubItems[2].Text;
+            _kreator = await DTOManager.VratiModnogKreatora(lvKreatori.SelectedItems[0].Text);
             EnableButtons();
         }
         else
@@ -60,32 +60,33 @@ public partial class frmKreatori : Form
         frmDodajKreatora frmDodajKreatora = new frmDodajKreatora();
         frmDodajKreatora.ShowDialog();
         UcitajPodatke();
-        DisableButtons();
+        lvKreatori.SelectedItems.Clear();
     }
 
     private void btnAzurirajKreatora_Click(object sender, EventArgs e)
     {
-        frmAzurirajKreatora frmAzuriraj = new frmAzurirajKreatora();
+        frmAzurirajKreatora frmAzuriraj = new frmAzurirajKreatora(_kreator);
         frmAzuriraj.ShowDialog();
         UcitajPodatke();
-        DisableButtons();
+        lvKreatori.SelectedItems.Clear();
     }
 
     private async void btnObrisiKreatora_Click(object sender, EventArgs e)
     {
-        if (await DTOManager.ObrisiModnogKreatora(frmKreatori._kreatorMBR!))
+        if (await DTOManager.ObrisiModnogKreatora(_kreator.MBR!))
         {
             MessageBox.Show("Uspešno obrisan modni kreator!");
             UcitajPodatke();
-            DisableButtons();
+            _kreator = null;
+            lvKreatori.SelectedItems.Clear();
         }
     }
 
     private void btnRevije_Click(object sender, EventArgs e)
     {
-        frmRevijeKreatora frmRevije = new frmRevijeKreatora();
+        frmRevijeKreatora frmRevije = new frmRevijeKreatora(_kreator);
         frmRevije.ShowDialog();
-        DisableButtons();
+        lvKreatori.SelectedItems.Clear();
     }
 
     private void btnIzadji_Click(object sender, EventArgs e)

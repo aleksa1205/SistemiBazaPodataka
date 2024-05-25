@@ -1,21 +1,17 @@
-﻿using FashionWeek.DTO;
-using FashionWeek.Entiteti;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace FashionWeek.Forms.Utils.AgencijaForme;
+﻿namespace FashionWeek.Forms.Utils.AgencijaForme;
 
 public partial class frmNezaposleniManekeni : Form
 {
+    private string _agencijaPIB;
+
+    public frmNezaposleniManekeni(string agencijaPIB)
+    {
+        InitializeComponent();
+        _agencijaPIB = agencijaPIB;
+    }
+
     #region Funkcije
-    public async void UcitajPodatke()
+    private async void UcitajPodatke()
     {
         lvManekeni.Items.Clear();
         IList<ManekenNezaposlenPregled> manekeni = await DTOManager.VratiNezaposleneManeken();
@@ -27,11 +23,6 @@ public partial class frmNezaposleniManekeni : Form
         lvManekeni.Refresh();
     }
     #endregion
-
-    public frmNezaposleniManekeni()
-    {
-        InitializeComponent();
-    }
 
     private void frmNezaposleniManekeni_Load(object sender, EventArgs e)
     {
@@ -53,9 +44,9 @@ public partial class frmNezaposleniManekeni : Form
 
     private async void btnZaposli_Click(object sender, EventArgs e)
     {
-        if (await DTOManager.ZaposliManekena(lvManekeni.SelectedItems[0].Text, frmAgencije._modnaAgencijaPIB))
+        if (await DTOManager.ZaposliManekena(lvManekeni.SelectedItems[0].Text, _agencijaPIB))
         {
-            MessageBox.Show("Maneken je uspešno zapošljen!");
+            MessageBox.Show($"Maneken {lvManekeni.SelectedItems[0].SubItems[1].Text} {lvManekeni.SelectedItems[0].SubItems[2].Text} je uspešno zapošljen!");
             UcitajPodatke();
             btnZaposli.Enabled = false;
         }

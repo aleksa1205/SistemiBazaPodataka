@@ -21,6 +21,12 @@ public class ImeVlasnikaIdBasic
 
     #region Constuctors
     public ImeVlasnikaIdBasic() { }
+    public ImeVlasnikaIdBasic(ImeVlasnikaId Id)
+    {
+        ModnaKuca = new ModnaKucaBasic(Id.ModnaKuca);
+        LicnoIme = Id.LicnoIme;
+        Prezime = Id.Prezime;
+    }
     #endregion
 }
 public class ImeVlasnikaBasic

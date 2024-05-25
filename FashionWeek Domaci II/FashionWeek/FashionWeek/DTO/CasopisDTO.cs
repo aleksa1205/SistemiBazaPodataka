@@ -20,6 +20,11 @@ public class CasopisIdBasic
 
     #region Constructors
     public CasopisIdBasic() { }
+    public CasopisIdBasic(CasopisId Id)
+    {
+        Maneken = new ManekenBasic(Id.Maneken);
+        NazivCasopisa = Id.NazivCasopisa;
+    }
     #endregion
 }
 

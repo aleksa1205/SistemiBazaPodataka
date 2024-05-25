@@ -155,6 +155,7 @@
             btnKreatori.TabIndex = 11;
             btnKreatori.Text = "Kreatori";
             btnKreatori.UseVisualStyleBackColor = true;
+            btnKreatori.Click += btnKreatori_Click;
             // 
             // frmRevije
             // 

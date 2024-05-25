@@ -2,6 +2,11 @@
 
 public partial class frmDodajKreatora : Form
 {
+    public frmDodajKreatora()
+    {
+        InitializeComponent();
+    }
+
     #region Funkcije
     private bool ProveriBrojeve(string number)
     {
@@ -55,10 +60,6 @@ public partial class frmDodajKreatora : Form
         return checker;
     }
     #endregion
-    public frmDodajKreatora()
-    {
-        InitializeComponent();
-    }
 
     private async void btnSacuvaj_Click(object sender, EventArgs e)
     {

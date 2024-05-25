@@ -1,17 +1,4 @@
-﻿using FashionWeek.DTO;
-using FashionWeek.Entiteti;
-using FashionWeek.Entiteti.Helper;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace FashionWeek.Forms.Utils.RevijaForme;
+﻿namespace FashionWeek.Forms.Utils.RevijaForme;
 
 public partial class frmDodajReviju : Form
 {
@@ -33,9 +20,6 @@ public partial class frmDodajReviju : Form
             Termin = dtpTermin.Value,
             Mesto = new Adresa(txtDrzava.Text, txtGrad.Text, txtUlica.Text)
         };
-        //revija.Mesto.Drzava = txtDrzava.Text;
-        //revija.Mesto.Grad = txtGrad.Text;
-        //revija.Mesto.Ulica = txtUlica.Text;
 
         if (await DTOManager.DodajReviju(revija))
         {
