@@ -44,36 +44,42 @@
             // 
             // btnIzadji
             // 
+            btnIzadji.BackColor = SystemColors.MenuHighlight;
             btnIzadji.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIzadji.ForeColor = Color.White;
             btnIzadji.Location = new Point(726, 408);
             btnIzadji.Name = "btnIzadji";
             btnIzadji.Size = new Size(161, 30);
             btnIzadji.TabIndex = 22;
             btnIzadji.Text = "Izađi";
-            btnIzadji.UseVisualStyleBackColor = true;
+            btnIzadji.UseVisualStyleBackColor = false;
             btnIzadji.Click += btnIzadji_Click;
             // 
             // btnObrisiKreatora
             // 
+            btnObrisiKreatora.BackColor = SystemColors.MenuHighlight;
             btnObrisiKreatora.Enabled = false;
             btnObrisiKreatora.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnObrisiKreatora.ForeColor = Color.White;
             btnObrisiKreatora.Location = new Point(726, 69);
             btnObrisiKreatora.Name = "btnObrisiKreatora";
             btnObrisiKreatora.Size = new Size(161, 30);
             btnObrisiKreatora.TabIndex = 20;
             btnObrisiKreatora.Text = "Obriši kreatora";
-            btnObrisiKreatora.UseVisualStyleBackColor = true;
+            btnObrisiKreatora.UseVisualStyleBackColor = false;
             btnObrisiKreatora.Click += btnObrisiKreatora_Click;
             // 
             // btnDodajKreatora
             // 
+            btnDodajKreatora.BackColor = SystemColors.MenuHighlight;
             btnDodajKreatora.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajKreatora.ForeColor = Color.White;
             btnDodajKreatora.Location = new Point(726, 33);
             btnDodajKreatora.Name = "btnDodajKreatora";
             btnDodajKreatora.Size = new Size(161, 30);
             btnDodajKreatora.TabIndex = 18;
             btnDodajKreatora.Text = "Dodaj kreatora";
-            btnDodajKreatora.UseVisualStyleBackColor = true;
+            btnDodajKreatora.UseVisualStyleBackColor = false;
             btnDodajKreatora.Click += btnDodajKreatora_Click;
             // 
             // lvKreatori

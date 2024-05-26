@@ -42,13 +42,25 @@ public partial class frmSpecijalniGosti : Form
         }
     }
 
+    private void btnDodajNoveSpecijalneGoste_Click(object sender, EventArgs e)
+    {
+        frmDodajSpecijalnogGosta frmDodaj = new frmDodajSpecijalnogGosta(_revija);
+        frmDodaj.ShowDialog();
+        UcitajPodatke();
+        lvOrganizatori.SelectedItems.Clear();
+    }
+
     private async void btnObrisiGosta_Click(object sender, EventArgs e)
     {
         if (await DTOManager.ObrisiSpecijalnogGosta(_revija.RBR, _revija.Organizator.Id, lvOrganizatori.SelectedItems[0].Text))
-        {         
+        {
             MessageBox.Show("Uspešno obrisan specijalni gost!");
             UcitajPodatke();
-            lvOrganizatori.SelectedItems.Clear();
         }
+    }
+
+    private void btnOdustani_Click(object sender, EventArgs e)
+    {
+        Close();
     }
 }

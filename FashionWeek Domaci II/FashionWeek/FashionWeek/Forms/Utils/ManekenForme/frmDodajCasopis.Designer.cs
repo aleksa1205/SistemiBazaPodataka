@@ -35,24 +35,28 @@
             // 
             // btnOdustani
             // 
+            btnOdustani.BackColor = SystemColors.MenuHighlight;
             btnOdustani.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnOdustani.ForeColor = Color.White;
             btnOdustani.Location = new Point(42, 80);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(164, 30);
             btnOdustani.TabIndex = 12;
             btnOdustani.Text = "Odustani";
-            btnOdustani.UseVisualStyleBackColor = true;
+            btnOdustani.UseVisualStyleBackColor = false;
             btnOdustani.Click += btnOdustani_Click;
             // 
             // btnDodajCasopis
             // 
+            btnDodajCasopis.BackColor = SystemColors.MenuHighlight;
             btnDodajCasopis.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajCasopis.ForeColor = Color.White;
             btnDodajCasopis.Location = new Point(42, 46);
             btnDodajCasopis.Name = "btnDodajCasopis";
             btnDodajCasopis.Size = new Size(164, 30);
             btnDodajCasopis.TabIndex = 11;
             btnDodajCasopis.Text = "Dodaj časopis";
-            btnDodajCasopis.UseVisualStyleBackColor = true;
+            btnDodajCasopis.UseVisualStyleBackColor = false;
             btnDodajCasopis.Click += btnDodajCasopis_Click;
             // 
             // txtNazivCasopisa

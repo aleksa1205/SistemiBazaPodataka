@@ -42,24 +42,28 @@
             // 
             // btnDodajZemlju
             // 
+            btnDodajZemlju.BackColor = SystemColors.MenuHighlight;
             btnDodajZemlju.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajZemlju.ForeColor = Color.White;
             btnDodajZemlju.Location = new Point(32, 46);
             btnDodajZemlju.Name = "btnDodajZemlju";
             btnDodajZemlju.Size = new Size(164, 30);
             btnDodajZemlju.TabIndex = 8;
             btnDodajZemlju.Text = "Dodaj zemlju";
-            btnDodajZemlju.UseVisualStyleBackColor = true;
+            btnDodajZemlju.UseVisualStyleBackColor = false;
             btnDodajZemlju.Click += btnDodajZemlju_Click;
             // 
             // btnOdustani
             // 
+            btnOdustani.BackColor = SystemColors.MenuHighlight;
             btnOdustani.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnOdustani.ForeColor = Color.White;
             btnOdustani.Location = new Point(32, 80);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(164, 30);
             btnOdustani.TabIndex = 9;
             btnOdustani.Text = "Odustani";
-            btnOdustani.UseVisualStyleBackColor = true;
+            btnOdustani.UseVisualStyleBackColor = false;
             btnOdustani.Click += btnOdustani_Click;
             // 
             // frmDodajZemlju

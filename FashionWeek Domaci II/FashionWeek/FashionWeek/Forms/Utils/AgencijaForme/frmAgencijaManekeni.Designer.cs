@@ -34,6 +34,11 @@
             colPrezime = new ColumnHeader();
             colDatumRodjenja = new ColumnHeader();
             colPol = new ColumnHeader();
+            colVisina = new ColumnHeader();
+            colTezina = new ColumnHeader();
+            colBojaOciju = new ColumnHeader();
+            colBojaKose = new ColumnHeader();
+            colKonfBroj = new ColumnHeader();
             lblListaManekenaAgencije = new Label();
             btnOtpustiManekena = new Button();
             btnIzadji = new Button();
@@ -42,10 +47,10 @@
             // 
             // lvManekeni
             // 
-            lvManekeni.Columns.AddRange(new ColumnHeader[] { colMBR, colLicnoIme, colPrezime, colDatumRodjenja, colPol });
+            lvManekeni.Columns.AddRange(new ColumnHeader[] { colMBR, colLicnoIme, colPrezime, colDatumRodjenja, colPol, colVisina, colTezina, colBojaOciju, colBojaKose, colKonfBroj });
             lvManekeni.Location = new Point(12, 33);
             lvManekeni.Name = "lvManekeni";
-            lvManekeni.Size = new Size(662, 405);
+            lvManekeni.Size = new Size(824, 405);
             lvManekeni.TabIndex = 2;
             lvManekeni.UseCompatibleStateImageBehavior = false;
             lvManekeni.View = View.Details;
@@ -80,6 +85,34 @@
             colPol.TextAlign = HorizontalAlignment.Center;
             colPol.Width = 30;
             // 
+            // colVisina
+            // 
+            colVisina.Text = "Visina";
+            colVisina.TextAlign = HorizontalAlignment.Center;
+            // 
+            // colTezina
+            // 
+            colTezina.Text = "Težina";
+            colTezina.TextAlign = HorizontalAlignment.Center;
+            // 
+            // colBojaOciju
+            // 
+            colBojaOciju.Text = "Boja očiju";
+            colBojaOciju.TextAlign = HorizontalAlignment.Center;
+            colBojaOciju.Width = 80;
+            // 
+            // colBojaKose
+            // 
+            colBojaKose.Text = "Boja kose";
+            colBojaKose.TextAlign = HorizontalAlignment.Center;
+            colBojaKose.Width = 80;
+            // 
+            // colKonfBroj
+            // 
+            colKonfBroj.Text = "Konfekcijski broj";
+            colKonfBroj.TextAlign = HorizontalAlignment.Center;
+            colKonfBroj.Width = 100;
+            // 
             // lblListaManekenaAgencije
             // 
             lblListaManekenaAgencije.AutoSize = true;
@@ -92,43 +125,49 @@
             // 
             // btnOtpustiManekena
             // 
+            btnOtpustiManekena.BackColor = SystemColors.MenuHighlight;
             btnOtpustiManekena.Enabled = false;
             btnOtpustiManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnOtpustiManekena.Location = new Point(680, 69);
+            btnOtpustiManekena.ForeColor = Color.White;
+            btnOtpustiManekena.Location = new Point(842, 69);
             btnOtpustiManekena.Name = "btnOtpustiManekena";
             btnOtpustiManekena.Size = new Size(161, 30);
             btnOtpustiManekena.TabIndex = 6;
             btnOtpustiManekena.Text = "Otpusti manekena";
-            btnOtpustiManekena.UseVisualStyleBackColor = true;
+            btnOtpustiManekena.UseVisualStyleBackColor = false;
             btnOtpustiManekena.Click += btnOtpustiManekena_Click;
             // 
             // btnIzadji
             // 
+            btnIzadji.BackColor = SystemColors.MenuHighlight;
             btnIzadji.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnIzadji.Location = new Point(680, 408);
+            btnIzadji.ForeColor = Color.White;
+            btnIzadji.Location = new Point(842, 408);
             btnIzadji.Name = "btnIzadji";
             btnIzadji.Size = new Size(161, 30);
             btnIzadji.TabIndex = 7;
             btnIzadji.Text = "Izađi";
-            btnIzadji.UseVisualStyleBackColor = true;
+            btnIzadji.UseVisualStyleBackColor = false;
             btnIzadji.Click += btnIzadji_Click;
             // 
             // btnZaposliManekena
             // 
+            btnZaposliManekena.BackColor = SystemColors.MenuHighlight;
             btnZaposliManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnZaposliManekena.Location = new Point(680, 33);
+            btnZaposliManekena.ForeColor = Color.White;
+            btnZaposliManekena.Location = new Point(842, 33);
             btnZaposliManekena.Name = "btnZaposliManekena";
             btnZaposliManekena.Size = new Size(161, 30);
             btnZaposliManekena.TabIndex = 9;
             btnZaposliManekena.Text = "Zaposli manekena";
-            btnZaposliManekena.UseVisualStyleBackColor = true;
+            btnZaposliManekena.UseVisualStyleBackColor = false;
             btnZaposliManekena.Click += btnZaposliManekena_Click;
             // 
             // frmAgencijaManekeni
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(845, 450);
+            ClientSize = new Size(1010, 450);
             Controls.Add(btnZaposliManekena);
             Controls.Add(btnIzadji);
             Controls.Add(btnOtpustiManekena);
@@ -153,5 +192,10 @@
         private Button btnOtpustiManekena;
         private Button btnIzadji;
         private Button btnZaposliManekena;
+        private ColumnHeader colVisina;
+        private ColumnHeader colTezina;
+        private ColumnHeader colBojaOciju;
+        private ColumnHeader colBojaKose;
+        private ColumnHeader colKonfBroj;
     }
 }

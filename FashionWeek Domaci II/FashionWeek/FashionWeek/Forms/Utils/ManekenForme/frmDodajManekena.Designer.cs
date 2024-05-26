@@ -250,22 +250,26 @@
             // 
             // btnSacuvaj
             // 
+            btnSacuvaj.BackColor = SystemColors.MenuHighlight;
+            btnSacuvaj.ForeColor = Color.White;
             btnSacuvaj.Location = new Point(297, 260);
             btnSacuvaj.Name = "btnSacuvaj";
             btnSacuvaj.Size = new Size(75, 23);
             btnSacuvaj.TabIndex = 25;
             btnSacuvaj.Text = "Sačuvaj";
-            btnSacuvaj.UseVisualStyleBackColor = true;
+            btnSacuvaj.UseVisualStyleBackColor = false;
             btnSacuvaj.Click += btnSacuvaj_Click;
             // 
             // btnOdustani
             // 
+            btnOdustani.BackColor = SystemColors.MenuHighlight;
+            btnOdustani.ForeColor = Color.White;
             btnOdustani.Location = new Point(297, 289);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(75, 23);
             btnOdustani.TabIndex = 26;
             btnOdustani.Text = "Odustani";
-            btnOdustani.UseVisualStyleBackColor = true;
+            btnOdustani.UseVisualStyleBackColor = false;
             btnOdustani.Click += btnOdustani_Click;
             // 
             // frmDodajManekena

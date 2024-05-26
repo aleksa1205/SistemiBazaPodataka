@@ -46,60 +46,70 @@
             // 
             // btnIzadji
             // 
+            btnIzadji.BackColor = SystemColors.MenuHighlight;
             btnIzadji.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIzadji.ForeColor = Color.White;
             btnIzadji.Location = new Point(726, 408);
             btnIzadji.Name = "btnIzadji";
             btnIzadji.Size = new Size(161, 30);
             btnIzadji.TabIndex = 15;
             btnIzadji.Text = "Izađi";
-            btnIzadji.UseVisualStyleBackColor = true;
+            btnIzadji.UseVisualStyleBackColor = false;
             btnIzadji.Click += btnIzadji_Click;
             // 
             // btnRevije
             // 
+            btnRevije.BackColor = SystemColors.MenuHighlight;
             btnRevije.Enabled = false;
             btnRevije.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRevije.ForeColor = Color.White;
             btnRevije.Location = new Point(726, 186);
             btnRevije.Name = "btnRevije";
             btnRevije.Size = new Size(161, 30);
             btnRevije.TabIndex = 14;
             btnRevije.Text = "Revije";
-            btnRevije.UseVisualStyleBackColor = true;
+            btnRevije.UseVisualStyleBackColor = false;
             btnRevije.Click += btnRevije_Click;
             // 
             // btnObrisiKreatora
             // 
+            btnObrisiKreatora.BackColor = SystemColors.MenuHighlight;
             btnObrisiKreatora.Enabled = false;
             btnObrisiKreatora.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnObrisiKreatora.ForeColor = Color.White;
             btnObrisiKreatora.Location = new Point(726, 105);
             btnObrisiKreatora.Name = "btnObrisiKreatora";
             btnObrisiKreatora.Size = new Size(161, 30);
             btnObrisiKreatora.TabIndex = 13;
             btnObrisiKreatora.Text = "Obriši kreatora";
-            btnObrisiKreatora.UseVisualStyleBackColor = true;
+            btnObrisiKreatora.UseVisualStyleBackColor = false;
             btnObrisiKreatora.Click += btnObrisiKreatora_Click;
             // 
             // btnAzurirajKreatora
             // 
+            btnAzurirajKreatora.BackColor = SystemColors.MenuHighlight;
             btnAzurirajKreatora.Enabled = false;
             btnAzurirajKreatora.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAzurirajKreatora.ForeColor = Color.White;
             btnAzurirajKreatora.Location = new Point(726, 69);
             btnAzurirajKreatora.Name = "btnAzurirajKreatora";
             btnAzurirajKreatora.Size = new Size(161, 30);
             btnAzurirajKreatora.TabIndex = 12;
             btnAzurirajKreatora.Text = "Ažuriraj kreatora";
-            btnAzurirajKreatora.UseVisualStyleBackColor = true;
+            btnAzurirajKreatora.UseVisualStyleBackColor = false;
             btnAzurirajKreatora.Click += btnAzurirajKreatora_Click;
             // 
             // btnDodajKreatora
             // 
+            btnDodajKreatora.BackColor = SystemColors.MenuHighlight;
             btnDodajKreatora.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajKreatora.ForeColor = Color.White;
             btnDodajKreatora.Location = new Point(726, 33);
             btnDodajKreatora.Name = "btnDodajKreatora";
             btnDodajKreatora.Size = new Size(161, 30);
             btnDodajKreatora.TabIndex = 11;
             btnDodajKreatora.Text = "Dodaj kreatora";
-            btnDodajKreatora.UseVisualStyleBackColor = true;
+            btnDodajKreatora.UseVisualStyleBackColor = false;
             btnDodajKreatora.Click += btnDodajKreatora_Click;
             // 
             // lvOrganizatori

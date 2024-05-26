@@ -34,6 +34,9 @@
             btnKreatori = new Button();
             btnModneKuce = new Button();
             btnOrganizatori = new Button();
+            pictureBox1 = new PictureBox();
+            lblHeading = new Label();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btnAgencije
@@ -41,7 +44,7 @@
             btnAgencije.BackColor = SystemColors.MenuHighlight;
             btnAgencije.Font = new Font("Segoe UI", 18F);
             btnAgencije.ForeColor = Color.Honeydew;
-            btnAgencije.Location = new Point(12, 291);
+            btnAgencije.Location = new Point(12, 379);
             btnAgencije.Name = "btnAgencije";
             btnAgencije.Size = new Size(150, 65);
             btnAgencije.TabIndex = 0;
@@ -54,7 +57,7 @@
             btnManekeni.BackColor = SystemColors.MenuHighlight;
             btnManekeni.Font = new Font("Segoe UI", 18F);
             btnManekeni.ForeColor = Color.Snow;
-            btnManekeni.Location = new Point(12, 220);
+            btnManekeni.Location = new Point(447, 381);
             btnManekeni.Name = "btnManekeni";
             btnManekeni.Size = new Size(150, 65);
             btnManekeni.TabIndex = 1;
@@ -67,9 +70,9 @@
             btnRevije.BackColor = SystemColors.MenuHighlight;
             btnRevije.Font = new Font("Segoe UI", 18F);
             btnRevije.ForeColor = Color.Cornsilk;
-            btnRevije.Location = new Point(12, 362);
+            btnRevije.Location = new Point(177, 456);
             btnRevije.Name = "btnRevije";
-            btnRevije.Size = new Size(150, 65);
+            btnRevije.Size = new Size(264, 65);
             btnRevije.TabIndex = 2;
             btnRevije.Text = "REVIJE";
             btnRevije.UseVisualStyleBackColor = false;
@@ -77,42 +80,69 @@
             // 
             // btnKreatori
             // 
+            btnKreatori.BackColor = SystemColors.MenuHighlight;
             btnKreatori.Font = new Font("Segoe UI", 18F);
-            btnKreatori.Location = new Point(168, 362);
+            btnKreatori.ForeColor = Color.White;
+            btnKreatori.Location = new Point(447, 456);
             btnKreatori.Name = "btnKreatori";
-            btnKreatori.Size = new Size(150, 65);
+            btnKreatori.Size = new Size(150, 69);
             btnKreatori.TabIndex = 3;
             btnKreatori.Text = "KREATORI";
-            btnKreatori.UseVisualStyleBackColor = true;
+            btnKreatori.UseVisualStyleBackColor = false;
             btnKreatori.Click += btnKreatori_Click;
             // 
             // btnModneKuce
             // 
+            btnModneKuce.BackColor = SystemColors.MenuHighlight;
             btnModneKuce.Font = new Font("Segoe UI", 18F);
-            btnModneKuce.Location = new Point(168, 276);
+            btnModneKuce.ForeColor = Color.White;
+            btnModneKuce.Location = new Point(12, 456);
             btnModneKuce.Name = "btnModneKuce";
-            btnModneKuce.Size = new Size(150, 80);
+            btnModneKuce.Size = new Size(150, 65);
             btnModneKuce.TabIndex = 4;
-            btnModneKuce.Text = "MODNE KUCE";
-            btnModneKuce.UseVisualStyleBackColor = true;
+            btnModneKuce.Text = "KUĆE";
+            btnModneKuce.UseVisualStyleBackColor = false;
             btnModneKuce.Click += btnModneKuce_Click;
             // 
             // btnOrganizatori
             // 
+            btnOrganizatori.BackColor = SystemColors.MenuHighlight;
             btnOrganizatori.Font = new Font("Segoe UI", 18F);
-            btnOrganizatori.Location = new Point(168, 190);
+            btnOrganizatori.ForeColor = Color.White;
+            btnOrganizatori.Location = new Point(177, 379);
             btnOrganizatori.Name = "btnOrganizatori";
-            btnOrganizatori.Size = new Size(150, 80);
+            btnOrganizatori.Size = new Size(264, 65);
             btnOrganizatori.TabIndex = 5;
             btnOrganizatori.Text = "ORGANIZATORI";
-            btnOrganizatori.UseVisualStyleBackColor = true;
+            btnOrganizatori.UseVisualStyleBackColor = false;
             btnOrganizatori.Click += btnOrganizatori_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.logoRed;
+            pictureBox1.Location = new Point(195, 71);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(221, 231);
+            pictureBox1.TabIndex = 6;
+            pictureBox1.TabStop = false;
+            // 
+            // lblHeading
+            // 
+            lblHeading.AutoSize = true;
+            lblHeading.Font = new Font("Segoe UI", 32F, FontStyle.Bold);
+            lblHeading.Location = new Point(140, 9);
+            lblHeading.Name = "lblHeading";
+            lblHeading.Size = new Size(330, 59);
+            lblHeading.TabIndex = 7;
+            lblHeading.Text = "FASHIONWEEK";
             // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(609, 533);
+            Controls.Add(lblHeading);
+            Controls.Add(pictureBox1);
             Controls.Add(btnOrganizatori);
             Controls.Add(btnModneKuce);
             Controls.Add(btnKreatori);
@@ -121,7 +151,9 @@
             Controls.Add(btnAgencije);
             Name = "frmMain";
             Text = "FASHIONWEEK";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -132,5 +164,7 @@
         private Button btnKreatori;
         private Button btnModneKuce;
         private Button btnOrganizatori;
+        private PictureBox pictureBox1;
+        private Label lblHeading;
     }
 }

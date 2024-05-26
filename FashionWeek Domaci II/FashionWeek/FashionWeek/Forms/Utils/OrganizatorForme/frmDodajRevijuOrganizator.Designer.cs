@@ -85,25 +85,29 @@
             // 
             // btnDodajReviju
             // 
+            btnDodajReviju.BackColor = SystemColors.MenuHighlight;
             btnDodajReviju.Enabled = false;
             btnDodajReviju.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajReviju.ForeColor = Color.White;
             btnDodajReviju.Location = new Point(592, 33);
             btnDodajReviju.Name = "btnDodajReviju";
             btnDodajReviju.Size = new Size(161, 30);
             btnDodajReviju.TabIndex = 20;
             btnDodajReviju.Text = "Dodaj reviju";
-            btnDodajReviju.UseVisualStyleBackColor = true;
+            btnDodajReviju.UseVisualStyleBackColor = false;
             btnDodajReviju.Click += btnDodajReviju_Click;
             // 
             // btnIzadji
             // 
+            btnIzadji.BackColor = SystemColors.MenuHighlight;
             btnIzadji.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIzadji.ForeColor = Color.White;
             btnIzadji.Location = new Point(592, 375);
             btnIzadji.Name = "btnIzadji";
             btnIzadji.Size = new Size(161, 30);
             btnIzadji.TabIndex = 18;
             btnIzadji.Text = "Izađi";
-            btnIzadji.UseVisualStyleBackColor = true;
+            btnIzadji.UseVisualStyleBackColor = false;
             btnIzadji.Click += btnIzadji_Click;
             // 
             // frmDodajRevijuOrganizator

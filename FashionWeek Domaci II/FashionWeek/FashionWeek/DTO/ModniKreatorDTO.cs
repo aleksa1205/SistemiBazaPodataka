@@ -30,6 +30,26 @@ public class ModniKreatorPregled
         RadiU = kreator.RadiU?.Naziv;
     }
     #endregion
+
+    #region Overrides
+    public override bool Equals(object? obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+        if(ReferenceEquals(this, obj)) 
+        {
+            return true;
+        }
+        ModniKreatorPregled compare = (obj as ModniKreatorPregled)!;
+        return MBR == compare.MBR;
+    }
+    public override int GetHashCode()
+    {
+        return MBR.GetHashCode();
+    }
+    #endregion
 }
 
 public class ModniKreatorBasic

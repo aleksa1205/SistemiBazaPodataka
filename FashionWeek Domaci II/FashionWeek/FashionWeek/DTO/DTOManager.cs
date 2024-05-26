@@ -624,7 +624,7 @@ public class DTOManager
         }
     }
 
-    public static async Task<IList<ModniKreatorPregled>> VratiModneKreatoreModneRevije(int rbrRevije)
+    public static async Task<List<ModniKreatorPregled>> VratiModneKreatoreModneRevije(int rbrRevije)
     {
         ISession? session = null;
         List<ModniKreatorPregled> listaKreatora = [];
@@ -1211,7 +1211,7 @@ public class DTOManager
         }
     }
 
-    public static async Task<IList<ModniKreatorPregled>> VratiModneKreatore()
+    public static async Task<List<ModniKreatorPregled>> VratiModneKreatore()
     {
         ISession? session = null;
         List<ModniKreatorPregled> listaKreatora = new List<ModniKreatorPregled>();
@@ -1917,7 +1917,7 @@ public class DTOManager
         }
     }
 
-    public static async Task<IList<ModniKreatorPregled>> VratiSpecijalneGoste(int rbrRevije)
+    public static async Task<List<ModniKreatorPregled>> VratiSpecijalneGoste(int rbrRevije)
     {
         ISession? session = null;
         List<ModniKreatorPregled> listaGostiju = [];
@@ -1943,29 +1943,60 @@ public class DTOManager
         }
     }
 
-    //public static async Task<IList<ModniKreatorPregled>> VratiMoguceSpecijalneGoste(int rbrRevije)
-    //{
-    //    ISession? session = null;
-    //    List<ModniKreatorPregled> listaKreatora = [];
-    //    try
-    //    {
-    //        session = DataLayer.GetSession();
-    //        if (session != null)
-    //        {
-    //            //vrati sve kreatore
-    //            //vrati specijalne goste revije
-    //            //except 
-    //        }
-    //        throw new Exception("Greška pri povezivanju sa bazom!");
-    //    }
-    //    catch(Exception ex)
-    //    {
+    public static async Task<List<ModniKreatorPregled>> VratiMoguceSpecijalneGoste(int rbrRevije)
+   {
+        ISession? session = null;
+        List<ModniKreatorPregled> listaKreatora = [];
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                //vrati sve kreatore
+                List<ModniKreatorPregled> sviKreatori = await VratiModneKreatore();
+                //vrati specijalne goste revije
+                List<ModniKreatorPregled> specijalniGosti = await VratiSpecijalneGoste(rbrRevije);
+                listaKreatora = sviKreatori.Except(specijalniGosti).ToList();
+                //listaKreatora = novaLista.Union(sviKreatori).Union(novaLista).OrderBy(p => p).ToList();
+                return listaKreatora;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return listaKreatora;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
 
-    //    }
-    //    finally
-    //    {
-
-    //    }
-    //}
+    public static async Task<List<ModniKreatorPregled>> VratiSpecijalneGosteOrganizatora(int organizatorId)
+    {
+        List<ModniKreatorPregled> listaKreatora = [];
+        ISession? session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                Organizator organizator = await session.LoadAsync<Organizator>(organizatorId);
+                listaKreatora.AddRange(organizator.SpecijalniGosti.Select(gost => new ModniKreatorPregled(gost.Id.ModniKreator)));
+                return listaKreatora;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch(Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return listaKreatora;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
     #endregion
 }

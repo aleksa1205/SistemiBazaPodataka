@@ -38,8 +38,8 @@
             colRadiU = new ColumnHeader();
             lblSpecijalniGosti = new Label();
             btnObrisiGosta = new Button();
-            button1 = new Button();
-            button2 = new Button();
+            btnDodajNoveSpecijalneGoste = new Button();
+            btnIzadji = new Button();
             SuspendLayout();
             // 
             // lvOrganizatori
@@ -106,45 +106,51 @@
             // 
             // btnObrisiGosta
             // 
+            btnObrisiGosta.BackColor = SystemColors.MenuHighlight;
             btnObrisiGosta.Enabled = false;
             btnObrisiGosta.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnObrisiGosta.ForeColor = Color.White;
             btnObrisiGosta.Location = new Point(727, 69);
             btnObrisiGosta.Name = "btnObrisiGosta";
             btnObrisiGosta.Size = new Size(161, 30);
             btnObrisiGosta.TabIndex = 13;
             btnObrisiGosta.Text = "Obriši gosta";
-            btnObrisiGosta.UseVisualStyleBackColor = true;
+            btnObrisiGosta.UseVisualStyleBackColor = false;
             btnObrisiGosta.Click += btnObrisiGosta_Click;
             // 
-            // button1
+            // btnDodajNoveSpecijalneGoste
             // 
-            button1.Enabled = false;
-            button1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(727, 33);
-            button1.Name = "button1";
-            button1.Size = new Size(161, 30);
-            button1.TabIndex = 14;
-            button1.Text = "Dodaj manekena";
-            button1.UseVisualStyleBackColor = true;
+            btnDodajNoveSpecijalneGoste.BackColor = SystemColors.MenuHighlight;
+            btnDodajNoveSpecijalneGoste.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajNoveSpecijalneGoste.ForeColor = Color.White;
+            btnDodajNoveSpecijalneGoste.Location = new Point(727, 33);
+            btnDodajNoveSpecijalneGoste.Name = "btnDodajNoveSpecijalneGoste";
+            btnDodajNoveSpecijalneGoste.Size = new Size(161, 30);
+            btnDodajNoveSpecijalneGoste.TabIndex = 14;
+            btnDodajNoveSpecijalneGoste.Text = "Dodaj gosta";
+            btnDodajNoveSpecijalneGoste.UseVisualStyleBackColor = false;
+            btnDodajNoveSpecijalneGoste.Click += btnDodajNoveSpecijalneGoste_Click;
             // 
-            // button2
+            // btnIzadji
             // 
-            button2.Enabled = false;
-            button2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.Location = new Point(726, 408);
-            button2.Name = "button2";
-            button2.Size = new Size(161, 30);
-            button2.TabIndex = 15;
-            button2.Text = "Dodaj manekena";
-            button2.UseVisualStyleBackColor = true;
+            btnIzadji.BackColor = SystemColors.MenuHighlight;
+            btnIzadji.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIzadji.ForeColor = Color.White;
+            btnIzadji.Location = new Point(726, 408);
+            btnIzadji.Name = "btnIzadji";
+            btnIzadji.Size = new Size(161, 30);
+            btnIzadji.TabIndex = 15;
+            btnIzadji.Text = "Izađi";
+            btnIzadji.UseVisualStyleBackColor = false;
+            btnIzadji.Click += btnOdustani_Click;
             // 
             // frmSpecijalniGosti
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(894, 450);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnIzadji);
+            Controls.Add(btnDodajNoveSpecijalneGoste);
             Controls.Add(btnObrisiGosta);
             Controls.Add(lvOrganizatori);
             Controls.Add(lblSpecijalniGosti);
@@ -167,7 +173,7 @@
         private ColumnHeader colRadiU;
         private Label lblSpecijalniGosti;
         private Button btnObrisiGosta;
-        private Button button1;
-        private Button button2;
+        private Button btnDodajNoveSpecijalneGoste;
+        private Button btnIzadji;
     }
 }

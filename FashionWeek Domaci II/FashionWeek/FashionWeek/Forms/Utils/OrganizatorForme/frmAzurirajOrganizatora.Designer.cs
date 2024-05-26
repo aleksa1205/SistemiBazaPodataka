@@ -43,24 +43,28 @@
             // 
             // btnOdustani
             // 
+            btnOdustani.BackColor = SystemColors.MenuHighlight;
             btnOdustani.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnOdustani.ForeColor = Color.White;
             btnOdustani.Location = new Point(316, 170);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(164, 30);
             btnOdustani.TabIndex = 24;
             btnOdustani.Text = "Odustani";
-            btnOdustani.UseVisualStyleBackColor = true;
+            btnOdustani.UseVisualStyleBackColor = false;
             btnOdustani.Click += btnOdustani_Click;
             // 
             // btnAzuriraj
             // 
+            btnAzuriraj.BackColor = SystemColors.MenuHighlight;
             btnAzuriraj.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAzuriraj.Location = new Point(12, 170);
+            btnAzuriraj.ForeColor = Color.White;
+            btnAzuriraj.Location = new Point(0, 170);
             btnAzuriraj.Name = "btnAzuriraj";
             btnAzuriraj.Size = new Size(164, 30);
             btnAzuriraj.TabIndex = 23;
             btnAzuriraj.Text = "Ažuriraj";
-            btnAzuriraj.UseVisualStyleBackColor = true;
+            btnAzuriraj.UseVisualStyleBackColor = false;
             btnAzuriraj.Click += btnAzuriraj_Click;
             // 
             // gpRevija

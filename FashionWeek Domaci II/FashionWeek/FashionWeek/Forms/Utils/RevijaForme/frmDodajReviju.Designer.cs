@@ -51,22 +51,26 @@
             // 
             // btnOdustani
             // 
+            btnOdustani.BackColor = SystemColors.MenuHighlight;
+            btnOdustani.ForeColor = Color.White;
             btnOdustani.Location = new Point(300, 118);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(75, 23);
             btnOdustani.TabIndex = 66;
             btnOdustani.Text = "Odustani";
-            btnOdustani.UseVisualStyleBackColor = true;
+            btnOdustani.UseVisualStyleBackColor = false;
             btnOdustani.Click += btnOdustani_Click;
             // 
             // btnSacuvaj
             // 
+            btnSacuvaj.BackColor = SystemColors.MenuHighlight;
+            btnSacuvaj.ForeColor = Color.White;
             btnSacuvaj.Location = new Point(300, 92);
             btnSacuvaj.Name = "btnSacuvaj";
             btnSacuvaj.Size = new Size(75, 23);
             btnSacuvaj.TabIndex = 65;
             btnSacuvaj.Text = "Sačuvaj";
-            btnSacuvaj.UseVisualStyleBackColor = true;
+            btnSacuvaj.UseVisualStyleBackColor = false;
             btnSacuvaj.Click += btnSacuvaj_Click;
             // 
             // txtGrad

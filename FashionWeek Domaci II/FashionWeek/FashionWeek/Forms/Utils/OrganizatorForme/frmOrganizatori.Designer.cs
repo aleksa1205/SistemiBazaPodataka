@@ -38,64 +38,75 @@
             colPrvaRevija = new ColumnHeader();
             colInfo = new ColumnHeader();
             lblListaOrganizatora = new Label();
+            btnSpecijalniGosti = new Button();
             SuspendLayout();
             // 
             // btnIzadji
             // 
+            btnIzadji.BackColor = SystemColors.MenuHighlight;
             btnIzadji.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIzadji.ForeColor = Color.White;
             btnIzadji.Location = new Point(604, 408);
             btnIzadji.Name = "btnIzadji";
             btnIzadji.Size = new Size(161, 30);
             btnIzadji.TabIndex = 22;
             btnIzadji.Text = "Izađi";
-            btnIzadji.UseVisualStyleBackColor = true;
+            btnIzadji.UseVisualStyleBackColor = false;
             btnIzadji.Click += btnIzadji_Click;
             // 
             // btnRevije
             // 
+            btnRevije.BackColor = SystemColors.MenuHighlight;
             btnRevije.Enabled = false;
             btnRevije.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRevije.ForeColor = Color.White;
             btnRevije.Location = new Point(604, 186);
             btnRevije.Name = "btnRevije";
             btnRevije.Size = new Size(161, 30);
             btnRevije.TabIndex = 21;
             btnRevije.Text = "Revije";
-            btnRevije.UseVisualStyleBackColor = true;
+            btnRevije.UseVisualStyleBackColor = false;
             btnRevije.Click += btnRevije_Click;
             // 
             // btnObrisiOrganiztora
             // 
+            btnObrisiOrganiztora.BackColor = SystemColors.MenuHighlight;
             btnObrisiOrganiztora.Enabled = false;
             btnObrisiOrganiztora.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnObrisiOrganiztora.ForeColor = Color.White;
             btnObrisiOrganiztora.Location = new Point(604, 105);
             btnObrisiOrganiztora.Name = "btnObrisiOrganiztora";
             btnObrisiOrganiztora.Size = new Size(161, 30);
             btnObrisiOrganiztora.TabIndex = 20;
             btnObrisiOrganiztora.Text = "Obriši organizatora";
-            btnObrisiOrganiztora.UseVisualStyleBackColor = true;
+            btnObrisiOrganiztora.UseVisualStyleBackColor = false;
             btnObrisiOrganiztora.Click += btnObrisiOrganiztora_Click;
             // 
             // btnAzurirajOrganizatora
             // 
+            btnAzurirajOrganizatora.BackColor = SystemColors.MenuHighlight;
             btnAzurirajOrganizatora.Enabled = false;
             btnAzurirajOrganizatora.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAzurirajOrganizatora.ForeColor = Color.White;
             btnAzurirajOrganizatora.Location = new Point(604, 69);
             btnAzurirajOrganizatora.Name = "btnAzurirajOrganizatora";
             btnAzurirajOrganizatora.Size = new Size(161, 30);
             btnAzurirajOrganizatora.TabIndex = 19;
             btnAzurirajOrganizatora.Text = "Ažuriraj organizatora";
-            btnAzurirajOrganizatora.UseVisualStyleBackColor = true;
+            btnAzurirajOrganizatora.UseVisualStyleBackColor = false;
             btnAzurirajOrganizatora.Click += btnAzurirajOrganizatora_Click;
             // 
             // btnDodajOrganizatora
             // 
+            btnDodajOrganizatora.BackColor = SystemColors.MenuHighlight;
             btnDodajOrganizatora.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajOrganizatora.ForeColor = Color.White;
             btnDodajOrganizatora.Location = new Point(604, 33);
             btnDodajOrganizatora.Name = "btnDodajOrganizatora";
             btnDodajOrganizatora.Size = new Size(161, 30);
             btnDodajOrganizatora.TabIndex = 18;
             btnDodajOrganizatora.Text = "Dodaj organizatora";
-            btnDodajOrganizatora.UseVisualStyleBackColor = true;
+            btnDodajOrganizatora.UseVisualStyleBackColor = false;
             btnDodajOrganizatora.Click += btnDodajOrganizatora_Click;
             // 
             // lvOrganizatori
@@ -136,11 +147,26 @@
             lblListaOrganizatora.TabIndex = 16;
             lblListaOrganizatora.Text = "Lista organizatora:";
             // 
+            // btnSpecijalniGosti
+            // 
+            btnSpecijalniGosti.BackColor = SystemColors.MenuHighlight;
+            btnSpecijalniGosti.Enabled = false;
+            btnSpecijalniGosti.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSpecijalniGosti.ForeColor = Color.White;
+            btnSpecijalniGosti.Location = new Point(604, 222);
+            btnSpecijalniGosti.Name = "btnSpecijalniGosti";
+            btnSpecijalniGosti.Size = new Size(161, 30);
+            btnSpecijalniGosti.TabIndex = 23;
+            btnSpecijalniGosti.Text = "Specijalni gosti";
+            btnSpecijalniGosti.UseVisualStyleBackColor = false;
+            btnSpecijalniGosti.Click += btnSpecijalniGosti_Click;
+            // 
             // frmOrganizatori
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(771, 450);
+            Controls.Add(btnSpecijalniGosti);
             Controls.Add(btnIzadji);
             Controls.Add(btnRevije);
             Controls.Add(btnObrisiOrganiztora);
@@ -167,5 +193,6 @@
         private ColumnHeader colId;
         private ColumnHeader colPrvaRevija;
         private ColumnHeader colInfo;
+        private Button btnSpecijalniGosti;
     }
 }

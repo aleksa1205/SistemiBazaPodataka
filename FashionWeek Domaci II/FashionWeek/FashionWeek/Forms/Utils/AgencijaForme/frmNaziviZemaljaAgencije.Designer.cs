@@ -65,36 +65,42 @@
             // 
             // btnIzadji
             // 
+            btnIzadji.BackColor = SystemColors.MenuHighlight;
             btnIzadji.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIzadji.ForeColor = Color.White;
             btnIzadji.Location = new Point(190, 444);
             btnIzadji.Name = "btnIzadji";
             btnIzadji.Size = new Size(161, 30);
             btnIzadji.TabIndex = 6;
             btnIzadji.Text = "Izađi";
-            btnIzadji.UseVisualStyleBackColor = true;
+            btnIzadji.UseVisualStyleBackColor = false;
             btnIzadji.Click += btnIzadji_Click;
             // 
             // btnDodajZemlju
             // 
+            btnDodajZemlju.BackColor = SystemColors.MenuHighlight;
             btnDodajZemlju.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajZemlju.ForeColor = Color.White;
             btnDodajZemlju.Location = new Point(190, 69);
             btnDodajZemlju.Name = "btnDodajZemlju";
             btnDodajZemlju.Size = new Size(161, 30);
             btnDodajZemlju.TabIndex = 7;
             btnDodajZemlju.Text = "Dodaj zemlju";
-            btnDodajZemlju.UseVisualStyleBackColor = true;
+            btnDodajZemlju.UseVisualStyleBackColor = false;
             btnDodajZemlju.Click += btnDodajZemlju_Click;
             // 
             // btnObrisiZemlju
             // 
+            btnObrisiZemlju.BackColor = SystemColors.MenuHighlight;
             btnObrisiZemlju.Enabled = false;
             btnObrisiZemlju.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnObrisiZemlju.ForeColor = Color.White;
             btnObrisiZemlju.Location = new Point(190, 105);
             btnObrisiZemlju.Name = "btnObrisiZemlju";
             btnObrisiZemlju.Size = new Size(161, 30);
             btnObrisiZemlju.TabIndex = 8;
             btnObrisiZemlju.Text = "Obriši zemlju";
-            btnObrisiZemlju.UseVisualStyleBackColor = true;
+            btnObrisiZemlju.UseVisualStyleBackColor = false;
             btnObrisiZemlju.Click += btnObrisiZemlju_Click;
             // 
             // lblNazivAgencije

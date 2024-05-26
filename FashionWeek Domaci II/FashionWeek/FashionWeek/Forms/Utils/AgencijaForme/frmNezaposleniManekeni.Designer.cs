@@ -45,7 +45,7 @@
             lvManekeni.Columns.AddRange(new ColumnHeader[] { colMBR, colLicnoIme, colPrezime, colDatumRodjenja, colPol, colZanimanje });
             lvManekeni.Location = new Point(12, 33);
             lvManekeni.Name = "lvManekeni";
-            lvManekeni.Size = new Size(662, 405);
+            lvManekeni.Size = new Size(477, 405);
             lvManekeni.TabIndex = 2;
             lvManekeni.UseCompatibleStateImageBehavior = false;
             lvManekeni.View = View.Details;
@@ -98,32 +98,36 @@
             // 
             // btnOdustani
             // 
+            btnOdustani.BackColor = SystemColors.MenuHighlight;
             btnOdustani.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnOdustani.Location = new Point(680, 408);
+            btnOdustani.ForeColor = Color.White;
+            btnOdustani.Location = new Point(495, 408);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(161, 30);
             btnOdustani.TabIndex = 4;
             btnOdustani.Text = "Odustani";
-            btnOdustani.UseVisualStyleBackColor = true;
+            btnOdustani.UseVisualStyleBackColor = false;
             btnOdustani.Click += btnOdustani_Click;
             // 
             // btnZaposli
             // 
+            btnZaposli.BackColor = SystemColors.MenuHighlight;
             btnZaposli.Enabled = false;
             btnZaposli.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnZaposli.Location = new Point(680, 33);
+            btnZaposli.ForeColor = Color.White;
+            btnZaposli.Location = new Point(495, 33);
             btnZaposli.Name = "btnZaposli";
             btnZaposli.Size = new Size(161, 30);
             btnZaposli.TabIndex = 5;
             btnZaposli.Text = "Zaposli";
-            btnZaposli.UseVisualStyleBackColor = true;
+            btnZaposli.UseVisualStyleBackColor = false;
             btnZaposli.Click += btnZaposli_Click;
             // 
             // frmNezaposleniManekeni
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(849, 450);
+            ClientSize = new Size(667, 450);
             Controls.Add(btnZaposli);
             Controls.Add(btnOdustani);
             Controls.Add(lblListaNezaposlenih);

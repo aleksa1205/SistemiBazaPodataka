@@ -50,36 +50,42 @@
             // 
             // btnObrisiVlasnika
             // 
+            btnObrisiVlasnika.BackColor = SystemColors.MenuHighlight;
             btnObrisiVlasnika.Enabled = false;
             btnObrisiVlasnika.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnObrisiVlasnika.ForeColor = Color.White;
             btnObrisiVlasnika.Location = new Point(262, 104);
             btnObrisiVlasnika.Name = "btnObrisiVlasnika";
             btnObrisiVlasnika.Size = new Size(161, 30);
             btnObrisiVlasnika.TabIndex = 14;
             btnObrisiVlasnika.Text = "Obriši vlasnika";
-            btnObrisiVlasnika.UseVisualStyleBackColor = true;
+            btnObrisiVlasnika.UseVisualStyleBackColor = false;
             btnObrisiVlasnika.Click += btnObrisiVlasnika_Click;
             // 
             // btnDodajVlasnika
             // 
+            btnDodajVlasnika.BackColor = SystemColors.MenuHighlight;
             btnDodajVlasnika.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajVlasnika.ForeColor = Color.White;
             btnDodajVlasnika.Location = new Point(262, 68);
             btnDodajVlasnika.Name = "btnDodajVlasnika";
             btnDodajVlasnika.Size = new Size(161, 30);
             btnDodajVlasnika.TabIndex = 13;
             btnDodajVlasnika.Text = "Dodaj vlasnika";
-            btnDodajVlasnika.UseVisualStyleBackColor = true;
+            btnDodajVlasnika.UseVisualStyleBackColor = false;
             btnDodajVlasnika.Click += btnDodajVlasnika_Click;
             // 
             // btnIzadji
             // 
+            btnIzadji.BackColor = SystemColors.MenuHighlight;
             btnIzadji.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIzadji.ForeColor = Color.White;
             btnIzadji.Location = new Point(262, 443);
             btnIzadji.Name = "btnIzadji";
             btnIzadji.Size = new Size(161, 30);
             btnIzadji.TabIndex = 12;
             btnIzadji.Text = "Izađi";
-            btnIzadji.UseVisualStyleBackColor = true;
+            btnIzadji.UseVisualStyleBackColor = false;
             btnIzadji.Click += btnIzadji_Click;
             // 
             // lvVlasnici

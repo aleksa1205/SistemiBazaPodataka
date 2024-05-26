@@ -9,15 +9,25 @@ public class ManekenPregled
     public DateTime DatumRodjenja { get; set; }
     public char Pol { get; set; }
     public string? RadiU { get; set; }
+    public int Visina { get; set; }
+    public double Tezina { get; set; }
+    public string? BojaOciju { get; set; }
+    public string? BojaKose { get; set; }
+    public string? KonfekcijskiBroj { get; set; }
 
     #region Constructors
-    public ManekenPregled(string mbr, Ime ime, DateTime datumRodjenja, char pol, string radiu)
+    public ManekenPregled(string mbr, Ime ime, DateTime datumRodjenja, char pol, string radiu, int visina, double tezeina, string bojaOicju, string bojaKose, string konfBroj)
     {
         MBR = mbr;
         Ime = ime;
         DatumRodjenja = datumRodjenja;
         Pol = pol;
         RadiU = radiu;
+        Visina = visina;
+        Tezina = tezeina;
+        BojaOciju = bojaOicju;
+        BojaKose = bojaKose;
+        KonfekcijskiBroj = konfBroj;
     }
 
     public ManekenPregled(Maneken maneken)
@@ -26,7 +36,12 @@ public class ManekenPregled
         Ime = maneken.Ime;
         DatumRodjenja = maneken.DatumRodjenja;
         Pol = maneken.Pol;
-        //RadiU = maneken.RadiUAgenciji?.Naziv;
+        RadiU = maneken.RadiUAgenciji?.Naziv;
+        Visina = maneken.Visina;
+        Tezina = maneken.Tezina;
+        BojaOciju = maneken.BojaOciju;
+        BojaKose = maneken.BojaKose;
+        KonfekcijskiBroj = maneken.KonfekcijskiBroj;
     }
     #endregion
 }

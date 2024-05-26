@@ -49,36 +49,42 @@
             // 
             // btnObrisiCasopis
             // 
+            btnObrisiCasopis.BackColor = SystemColors.MenuHighlight;
             btnObrisiCasopis.Enabled = false;
             btnObrisiCasopis.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnObrisiCasopis.ForeColor = Color.White;
             btnObrisiCasopis.Location = new Point(170, 105);
             btnObrisiCasopis.Name = "btnObrisiCasopis";
             btnObrisiCasopis.Size = new Size(161, 30);
             btnObrisiCasopis.TabIndex = 14;
             btnObrisiCasopis.Text = "Obriši časopis";
-            btnObrisiCasopis.UseVisualStyleBackColor = true;
+            btnObrisiCasopis.UseVisualStyleBackColor = false;
             btnObrisiCasopis.Click += btnObrisiCasopis_Click;
             // 
             // btnDodajCasopis
             // 
+            btnDodajCasopis.BackColor = SystemColors.MenuHighlight;
             btnDodajCasopis.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajCasopis.ForeColor = Color.White;
             btnDodajCasopis.Location = new Point(170, 69);
             btnDodajCasopis.Name = "btnDodajCasopis";
             btnDodajCasopis.Size = new Size(161, 30);
             btnDodajCasopis.TabIndex = 13;
             btnDodajCasopis.Text = "Dodaj časopis";
-            btnDodajCasopis.UseVisualStyleBackColor = true;
+            btnDodajCasopis.UseVisualStyleBackColor = false;
             btnDodajCasopis.Click += btnDodajCasopis_Click;
             // 
             // btnOdustani
             // 
+            btnOdustani.BackColor = SystemColors.MenuHighlight;
             btnOdustani.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnOdustani.ForeColor = Color.White;
             btnOdustani.Location = new Point(170, 444);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(161, 30);
             btnOdustani.TabIndex = 12;
             btnOdustani.Text = "Odustani";
-            btnOdustani.UseVisualStyleBackColor = true;
+            btnOdustani.UseVisualStyleBackColor = false;
             btnOdustani.Click += btnOdustani_Click;
             // 
             // lvCasopisi

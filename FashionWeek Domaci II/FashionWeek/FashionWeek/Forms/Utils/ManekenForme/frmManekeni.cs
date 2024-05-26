@@ -32,7 +32,7 @@ public partial class frmManekeni : Form
         IList<ManekenPregled> listaManekena = await DTOManager.VratiManekene();
         foreach (var maneken in listaManekena)
         {
-            ListViewItem item = new ListViewItem(new string[] { maneken.MBR, maneken.Ime?.LicnoIme!, maneken.Ime?.Prezime!, maneken.DatumRodjenja.ToShortDateString(), maneken.Pol.ToString() });
+            ListViewItem item = new ListViewItem(new string[] { maneken.MBR!, maneken.Ime?.LicnoIme!, maneken.Ime?.Prezime!, maneken.DatumRodjenja.ToShortDateString(), maneken.Pol.ToString(), maneken.RadiU, maneken.Visina.ToString(), maneken.Tezina.ToString(), maneken.BojaOciju, maneken.BojaKose, maneken.KonfekcijskiBroj });
             lvManekeni.Items.Add(item);
         }
         lvManekeni.Refresh();

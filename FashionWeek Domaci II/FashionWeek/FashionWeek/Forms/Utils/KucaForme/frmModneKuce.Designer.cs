@@ -43,72 +43,84 @@
             // 
             // btnVlasnici
             // 
+            btnVlasnici.BackColor = SystemColors.MenuHighlight;
             btnVlasnici.Enabled = false;
             btnVlasnici.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnVlasnici.ForeColor = Color.White;
             btnVlasnici.Location = new Point(624, 222);
             btnVlasnici.Name = "btnVlasnici";
             btnVlasnici.Size = new Size(161, 30);
             btnVlasnici.TabIndex = 16;
             btnVlasnici.Text = "Vlasnici";
-            btnVlasnici.UseVisualStyleBackColor = true;
+            btnVlasnici.UseVisualStyleBackColor = false;
             btnVlasnici.Click += btnVlasnici_Click;
             // 
             // btnIzadji
             // 
+            btnIzadji.BackColor = SystemColors.MenuHighlight;
             btnIzadji.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIzadji.ForeColor = Color.White;
             btnIzadji.Location = new Point(624, 408);
             btnIzadji.Name = "btnIzadji";
             btnIzadji.Size = new Size(161, 30);
             btnIzadji.TabIndex = 15;
             btnIzadji.Text = "Izađi";
-            btnIzadji.UseVisualStyleBackColor = true;
+            btnIzadji.UseVisualStyleBackColor = false;
             btnIzadji.Click += btnIzadji_Click;
             // 
             // btnModniKreatori
             // 
+            btnModniKreatori.BackColor = SystemColors.MenuHighlight;
             btnModniKreatori.Enabled = false;
             btnModniKreatori.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnModniKreatori.ForeColor = Color.White;
             btnModniKreatori.Location = new Point(624, 186);
             btnModniKreatori.Name = "btnModniKreatori";
             btnModniKreatori.Size = new Size(161, 30);
             btnModniKreatori.TabIndex = 14;
             btnModniKreatori.Text = "Zaposleni";
-            btnModniKreatori.UseVisualStyleBackColor = true;
+            btnModniKreatori.UseVisualStyleBackColor = false;
             btnModniKreatori.Click += btnModniKreatori_Click;
             // 
             // btnObrisiModnuKucu
             // 
+            btnObrisiModnuKucu.BackColor = SystemColors.MenuHighlight;
             btnObrisiModnuKucu.Enabled = false;
             btnObrisiModnuKucu.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnObrisiModnuKucu.ForeColor = Color.White;
             btnObrisiModnuKucu.Location = new Point(624, 105);
             btnObrisiModnuKucu.Name = "btnObrisiModnuKucu";
             btnObrisiModnuKucu.Size = new Size(161, 30);
             btnObrisiModnuKucu.TabIndex = 13;
             btnObrisiModnuKucu.Text = "Obriši modnu kuću";
-            btnObrisiModnuKucu.UseVisualStyleBackColor = true;
+            btnObrisiModnuKucu.UseVisualStyleBackColor = false;
             btnObrisiModnuKucu.Click += btnObrisiModnuKucu_Click;
             // 
             // btnAzurirajModnuKucu
             // 
+            btnAzurirajModnuKucu.BackColor = SystemColors.MenuHighlight;
             btnAzurirajModnuKucu.Enabled = false;
             btnAzurirajModnuKucu.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAzurirajModnuKucu.ForeColor = Color.White;
             btnAzurirajModnuKucu.Location = new Point(624, 69);
             btnAzurirajModnuKucu.Name = "btnAzurirajModnuKucu";
             btnAzurirajModnuKucu.Size = new Size(161, 30);
             btnAzurirajModnuKucu.TabIndex = 12;
             btnAzurirajModnuKucu.Text = "Ažuriraj modnu kuću";
-            btnAzurirajModnuKucu.UseVisualStyleBackColor = true;
+            btnAzurirajModnuKucu.UseVisualStyleBackColor = false;
             btnAzurirajModnuKucu.Click += btnAzurirajModnuKucu_Click;
             // 
             // btnDodajModnuKucu
             // 
+            btnDodajModnuKucu.BackColor = SystemColors.MenuHighlight;
             btnDodajModnuKucu.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajModnuKucu.ForeColor = Color.White;
             btnDodajModnuKucu.Location = new Point(624, 33);
             btnDodajModnuKucu.Name = "btnDodajModnuKucu";
             btnDodajModnuKucu.Size = new Size(161, 30);
             btnDodajModnuKucu.TabIndex = 11;
             btnDodajModnuKucu.Text = "Dodaj modnu kuću";
-            btnDodajModnuKucu.UseVisualStyleBackColor = true;
+            btnDodajModnuKucu.UseVisualStyleBackColor = false;
             btnDodajModnuKucu.Click += btnDodajModnuKucu_Click;
             // 
             // lvModneKuce

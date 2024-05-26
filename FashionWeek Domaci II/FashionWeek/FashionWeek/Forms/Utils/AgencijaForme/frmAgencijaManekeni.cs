@@ -17,7 +17,7 @@ public partial class frmAgencijaManekeni : Form
         IList<ManekenPregled> listaManekena = await DTOManager.VratiManekeneModneAgencije(_agencija.PIB);
         foreach (var maneken in listaManekena)
         {
-            ListViewItem item = new ListViewItem(new string[] { maneken.MBR!, maneken.Ime?.LicnoIme!, maneken.Ime?.Prezime!, maneken.DatumRodjenja.ToShortDateString(), maneken.Pol.ToString() });
+            ListViewItem item = new ListViewItem(new string[] { maneken.MBR!, maneken.Ime?.LicnoIme!, maneken.Ime?.Prezime!, maneken.DatumRodjenja.ToShortDateString(), maneken.Pol.ToString(), maneken.Visina.ToString(), maneken.Tezina.ToString(), maneken.BojaOciju, maneken.BojaKose, maneken.KonfekcijskiBroj });
             lvManekeni.Items.Add(item);
         }
         lvManekeni.Refresh();

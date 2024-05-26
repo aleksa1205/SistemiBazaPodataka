@@ -25,12 +25,14 @@ public partial class frmOrganizatori : Form
         btnAzurirajOrganizatora.Enabled = true;
         btnObrisiOrganiztora.Enabled = true;
         btnRevije.Enabled = true;
+        btnSpecijalniGosti.Enabled = true;
     }
     private void DisableButtons()
     {
         btnAzurirajOrganizatora.Enabled = false;
         btnObrisiOrganiztora.Enabled = false;
         btnRevije.Enabled = false;
+        btnSpecijalniGosti.Enabled = false;
     }
     #endregion
 
@@ -89,5 +91,12 @@ public partial class frmOrganizatori : Form
     private void btnIzadji_Click(object sender, EventArgs e)
     {
         Close();
+    }
+
+    private void btnSpecijalniGosti_Click(object sender, EventArgs e)
+    {
+        frmSpecijalniGostiOrgnizatora frmSpecijalniGosti = new frmSpecijalniGostiOrgnizatora(_organizator);
+        frmSpecijalniGosti.Show();
+        lvOrganizatori.SelectedItems.Clear();
     }
 }

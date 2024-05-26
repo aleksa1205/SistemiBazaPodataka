@@ -41,36 +41,42 @@
             // 
             // btnDodajReviju
             // 
+            btnDodajReviju.BackColor = SystemColors.MenuHighlight;
             btnDodajReviju.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajReviju.ForeColor = Color.White;
             btnDodajReviju.Location = new Point(592, 33);
             btnDodajReviju.Name = "btnDodajReviju";
             btnDodajReviju.Size = new Size(161, 30);
             btnDodajReviju.TabIndex = 17;
             btnDodajReviju.Text = "Dodaj reviju";
-            btnDodajReviju.UseVisualStyleBackColor = true;
+            btnDodajReviju.UseVisualStyleBackColor = false;
             btnDodajReviju.Click += btnDodajReviju_Click;
             // 
             // btnObrisiReviju
             // 
+            btnObrisiReviju.BackColor = SystemColors.MenuHighlight;
             btnObrisiReviju.Enabled = false;
             btnObrisiReviju.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnObrisiReviju.ForeColor = Color.White;
             btnObrisiReviju.Location = new Point(591, 69);
             btnObrisiReviju.Name = "btnObrisiReviju";
             btnObrisiReviju.Size = new Size(161, 30);
             btnObrisiReviju.TabIndex = 15;
             btnObrisiReviju.Text = "Obriši reviju";
-            btnObrisiReviju.UseVisualStyleBackColor = true;
+            btnObrisiReviju.UseVisualStyleBackColor = false;
             btnObrisiReviju.Click += btnObrisiReviju_Click_1;
             // 
             // btnIzadji
             // 
+            btnIzadji.BackColor = SystemColors.MenuHighlight;
             btnIzadji.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIzadji.ForeColor = Color.White;
             btnIzadji.Location = new Point(592, 375);
             btnIzadji.Name = "btnIzadji";
             btnIzadji.Size = new Size(161, 30);
             btnIzadji.TabIndex = 14;
             btnIzadji.Text = "Izađi";
-            btnIzadji.UseVisualStyleBackColor = true;
+            btnIzadji.UseVisualStyleBackColor = false;
             btnIzadji.Click += btnIzadji_Click;
             // 
             // lblRevije

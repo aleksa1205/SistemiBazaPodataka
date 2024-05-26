@@ -88,72 +88,84 @@
             // 
             // btnObrisiAgenciju
             // 
+            btnObrisiAgenciju.BackColor = SystemColors.MenuHighlight;
             btnObrisiAgenciju.Enabled = false;
             btnObrisiAgenciju.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnObrisiAgenciju.ForeColor = Color.White;
             btnObrisiAgenciju.Location = new Point(627, 105);
             btnObrisiAgenciju.Name = "btnObrisiAgenciju";
             btnObrisiAgenciju.Size = new Size(161, 30);
             btnObrisiAgenciju.TabIndex = 3;
             btnObrisiAgenciju.Text = "Obriši agenciju";
-            btnObrisiAgenciju.UseVisualStyleBackColor = true;
+            btnObrisiAgenciju.UseVisualStyleBackColor = false;
             btnObrisiAgenciju.Click += btnObrisiAgenciju_Click;
             // 
             // btnAzurirajAgenciju
             // 
+            btnAzurirajAgenciju.BackColor = SystemColors.MenuHighlight;
             btnAzurirajAgenciju.Enabled = false;
             btnAzurirajAgenciju.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAzurirajAgenciju.ForeColor = Color.White;
             btnAzurirajAgenciju.Location = new Point(627, 69);
             btnAzurirajAgenciju.Name = "btnAzurirajAgenciju";
             btnAzurirajAgenciju.Size = new Size(161, 30);
             btnAzurirajAgenciju.TabIndex = 4;
             btnAzurirajAgenciju.Text = "Ažuriraj agenciju";
-            btnAzurirajAgenciju.UseVisualStyleBackColor = true;
+            btnAzurirajAgenciju.UseVisualStyleBackColor = false;
             btnAzurirajAgenciju.Click += btnAzurirajAgenciju_Click;
             // 
             // btnDodajAgenciju
             // 
+            btnDodajAgenciju.BackColor = SystemColors.MenuHighlight;
             btnDodajAgenciju.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajAgenciju.ForeColor = Color.White;
             btnDodajAgenciju.Location = new Point(627, 33);
             btnDodajAgenciju.Name = "btnDodajAgenciju";
             btnDodajAgenciju.Size = new Size(161, 30);
             btnDodajAgenciju.TabIndex = 5;
             btnDodajAgenciju.Text = "Dodaj agenciju";
-            btnDodajAgenciju.UseVisualStyleBackColor = true;
+            btnDodajAgenciju.UseVisualStyleBackColor = false;
             btnDodajAgenciju.Click += btnDodajAgenciju_Click;
             // 
             // btnPrikaziManekene
             // 
+            btnPrikaziManekene.BackColor = SystemColors.MenuHighlight;
             btnPrikaziManekene.Enabled = false;
             btnPrikaziManekene.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnPrikaziManekene.ForeColor = Color.White;
             btnPrikaziManekene.Location = new Point(627, 190);
             btnPrikaziManekene.Name = "btnPrikaziManekene";
             btnPrikaziManekene.Size = new Size(161, 30);
             btnPrikaziManekene.TabIndex = 6;
             btnPrikaziManekene.Text = "Zaposleni";
-            btnPrikaziManekene.UseVisualStyleBackColor = true;
+            btnPrikaziManekene.UseVisualStyleBackColor = false;
             btnPrikaziManekene.Click += btnPrikaziManekene_Click;
             // 
             // btnZemljePoslovanja
             // 
+            btnZemljePoslovanja.BackColor = SystemColors.MenuHighlight;
             btnZemljePoslovanja.Enabled = false;
             btnZemljePoslovanja.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnZemljePoslovanja.ForeColor = Color.White;
             btnZemljePoslovanja.Location = new Point(627, 226);
             btnZemljePoslovanja.Name = "btnZemljePoslovanja";
             btnZemljePoslovanja.Size = new Size(161, 30);
             btnZemljePoslovanja.TabIndex = 7;
             btnZemljePoslovanja.Text = "Zemlje poslovanja";
-            btnZemljePoslovanja.UseVisualStyleBackColor = true;
+            btnZemljePoslovanja.UseVisualStyleBackColor = false;
             btnZemljePoslovanja.Click += btnZemljePoslovanja_Click;
             // 
             // btnIzadji
             // 
+            btnIzadji.BackColor = SystemColors.MenuHighlight;
             btnIzadji.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIzadji.ForeColor = Color.White;
             btnIzadji.Location = new Point(627, 408);
             btnIzadji.Name = "btnIzadji";
             btnIzadji.Size = new Size(161, 30);
             btnIzadji.TabIndex = 9;
             btnIzadji.Text = "Izađi";
-            btnIzadji.UseVisualStyleBackColor = true;
+            btnIzadji.UseVisualStyleBackColor = false;
             btnIzadji.Click += btnIzadji_Click;
             // 
             // frmAgencije

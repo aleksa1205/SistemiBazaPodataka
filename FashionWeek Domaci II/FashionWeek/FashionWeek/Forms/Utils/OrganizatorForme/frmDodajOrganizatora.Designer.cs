@@ -103,24 +103,28 @@
             // 
             // btnOdustani
             // 
+            btnOdustani.BackColor = SystemColors.MenuHighlight;
             btnOdustani.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnOdustani.ForeColor = Color.White;
             btnOdustani.Location = new Point(308, 143);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(164, 30);
             btnOdustani.TabIndex = 18;
             btnOdustani.Text = "Odustani";
-            btnOdustani.UseVisualStyleBackColor = true;
+            btnOdustani.UseVisualStyleBackColor = false;
             btnOdustani.Click += btnOdustani_Click_1;
             // 
             // btnDodajOrganizatora
             // 
+            btnDodajOrganizatora.BackColor = SystemColors.MenuHighlight;
             btnDodajOrganizatora.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajOrganizatora.ForeColor = Color.White;
             btnDodajOrganizatora.Location = new Point(12, 143);
             btnDodajOrganizatora.Name = "btnDodajOrganizatora";
             btnDodajOrganizatora.Size = new Size(164, 30);
             btnDodajOrganizatora.TabIndex = 17;
             btnDodajOrganizatora.Text = "Sačuvaj";
-            btnDodajOrganizatora.UseVisualStyleBackColor = true;
+            btnDodajOrganizatora.UseVisualStyleBackColor = false;
             btnDodajOrganizatora.Click += btnDodajOrganizatora_Click;
             // 
             // frmDodajOrganizatora

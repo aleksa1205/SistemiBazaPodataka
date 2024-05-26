@@ -86,36 +86,42 @@
             // 
             // btnDodajReviju
             // 
+            btnDodajReviju.BackColor = SystemColors.MenuHighlight;
             btnDodajReviju.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajReviju.ForeColor = Color.White;
             btnDodajReviju.Location = new Point(603, 33);
             btnDodajReviju.Name = "btnDodajReviju";
             btnDodajReviju.Size = new Size(161, 30);
             btnDodajReviju.TabIndex = 3;
             btnDodajReviju.Text = "Dodaj reviju";
-            btnDodajReviju.UseVisualStyleBackColor = true;
+            btnDodajReviju.UseVisualStyleBackColor = false;
             btnDodajReviju.Click += btnDodajReviju_Click;
             // 
             // btnObrisiReviju
             // 
+            btnObrisiReviju.BackColor = SystemColors.MenuHighlight;
             btnObrisiReviju.Enabled = false;
             btnObrisiReviju.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnObrisiReviju.ForeColor = Color.White;
             btnObrisiReviju.Location = new Point(603, 69);
             btnObrisiReviju.Name = "btnObrisiReviju";
             btnObrisiReviju.Size = new Size(161, 30);
             btnObrisiReviju.TabIndex = 4;
             btnObrisiReviju.Text = "Obriši reviju";
-            btnObrisiReviju.UseVisualStyleBackColor = true;
+            btnObrisiReviju.UseVisualStyleBackColor = false;
             btnObrisiReviju.Click += btnObrisiReviju_Click;
             // 
             // btnOdustani
             // 
+            btnOdustani.BackColor = SystemColors.MenuHighlight;
             btnOdustani.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnOdustani.ForeColor = Color.White;
             btnOdustani.Location = new Point(603, 376);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(161, 30);
             btnOdustani.TabIndex = 5;
             btnOdustani.Text = "Odustani";
-            btnOdustani.UseVisualStyleBackColor = true;
+            btnOdustani.UseVisualStyleBackColor = false;
             btnOdustani.Click += btnOdustani_Click;
             // 
             // frmRevijeManekena

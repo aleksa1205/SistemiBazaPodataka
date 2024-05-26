@@ -1,6 +1,6 @@
-﻿namespace FashionWeek.Forms.Utils.RevijaForme
+﻿namespace FashionWeek.Forms.Utils.OrganizatorForme
 {
-    partial class frmDodajKreatoraReviji
+    partial class frmSpecijalniGostiOrgnizatora
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnIzadji = new Button();
-            btnDodajKreatora = new Button();
-            lvKreatori = new ListView();
+            lvOrganizatori = new ListView();
             colMBR = new ColumnHeader();
             colLicnoIme = new ColumnHeader();
             colPrezime = new ColumnHeader();
@@ -38,46 +36,19 @@
             colPol = new ColumnHeader();
             colZemljaPorekla = new ColumnHeader();
             colRadiU = new ColumnHeader();
-            lblListaKreatora = new Label();
+            lblSpecijalniGosti = new Label();
+            btnIzadji = new Button();
             SuspendLayout();
             // 
-            // btnIzadji
+            // lvOrganizatori
             // 
-            btnIzadji.BackColor = SystemColors.MenuHighlight;
-            btnIzadji.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnIzadji.ForeColor = Color.White;
-            btnIzadji.Location = new Point(726, 408);
-            btnIzadji.Name = "btnIzadji";
-            btnIzadji.Size = new Size(161, 30);
-            btnIzadji.TabIndex = 27;
-            btnIzadji.Text = "Izađi";
-            btnIzadji.UseVisualStyleBackColor = false;
-            btnIzadji.Click += btnIzadji_Click;
-            // 
-            // btnDodajKreatora
-            // 
-            btnDodajKreatora.BackColor = SystemColors.MenuHighlight;
-            btnDodajKreatora.Enabled = false;
-            btnDodajKreatora.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnDodajKreatora.ForeColor = Color.White;
-            btnDodajKreatora.Location = new Point(726, 33);
-            btnDodajKreatora.Name = "btnDodajKreatora";
-            btnDodajKreatora.Size = new Size(161, 30);
-            btnDodajKreatora.TabIndex = 25;
-            btnDodajKreatora.Text = "Dodaj kreatora";
-            btnDodajKreatora.UseVisualStyleBackColor = false;
-            btnDodajKreatora.Click += btnDodajKreatora_Click;
-            // 
-            // lvKreatori
-            // 
-            lvKreatori.Columns.AddRange(new ColumnHeader[] { colMBR, colLicnoIme, colPrezime, colDatumRodjenja, colPol, colZemljaPorekla, colRadiU });
-            lvKreatori.Location = new Point(12, 33);
-            lvKreatori.Name = "lvKreatori";
-            lvKreatori.Size = new Size(708, 405);
-            lvKreatori.TabIndex = 24;
-            lvKreatori.UseCompatibleStateImageBehavior = false;
-            lvKreatori.View = View.Details;
-            lvKreatori.SelectedIndexChanged += lvKreatori_SelectedIndexChanged;
+            lvOrganizatori.Columns.AddRange(new ColumnHeader[] { colMBR, colLicnoIme, colPrezime, colDatumRodjenja, colPol, colZemljaPorekla, colRadiU });
+            lvOrganizatori.Location = new Point(13, 33);
+            lvOrganizatori.Name = "lvOrganizatori";
+            lvOrganizatori.Size = new Size(708, 405);
+            lvOrganizatori.TabIndex = 14;
+            lvOrganizatori.UseCompatibleStateImageBehavior = false;
+            lvOrganizatori.View = View.Details;
             // 
             // colMBR
             // 
@@ -120,37 +91,47 @@
             colRadiU.TextAlign = HorizontalAlignment.Center;
             colRadiU.Width = 180;
             // 
-            // lblListaKreatora
+            // lblSpecijalniGosti
             // 
-            lblListaKreatora.AutoSize = true;
-            lblListaKreatora.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblListaKreatora.Location = new Point(11, 9);
-            lblListaKreatora.Name = "lblListaKreatora";
-            lblListaKreatora.Size = new Size(229, 21);
-            lblListaKreatora.TabIndex = 23;
-            lblListaKreatora.Text = "Lista kreatora koji nisu na reviji ";
+            lblSpecijalniGosti.AutoSize = true;
+            lblSpecijalniGosti.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSpecijalniGosti.Location = new Point(12, 9);
+            lblSpecijalniGosti.Name = "lblSpecijalniGosti";
+            lblSpecijalniGosti.Size = new Size(266, 21);
+            lblSpecijalniGosti.TabIndex = 13;
+            lblSpecijalniGosti.Text = "Lista specijalnih gostiju organizatora ";
             // 
-            // frmDodajKreatoraReviji
+            // btnIzadji
+            // 
+            btnIzadji.BackColor = SystemColors.MenuHighlight;
+            btnIzadji.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIzadji.ForeColor = Color.White;
+            btnIzadji.Location = new Point(296, 444);
+            btnIzadji.Name = "btnIzadji";
+            btnIzadji.Size = new Size(161, 30);
+            btnIzadji.TabIndex = 15;
+            btnIzadji.Text = "Izađi";
+            btnIzadji.UseVisualStyleBackColor = false;
+            btnIzadji.Click += btnIzadji_Click;
+            // 
+            // frmSpecijalniGostiOrgnizatora
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(899, 450);
+            ClientSize = new Size(754, 478);
             Controls.Add(btnIzadji);
-            Controls.Add(btnDodajKreatora);
-            Controls.Add(lvKreatori);
-            Controls.Add(lblListaKreatora);
-            Name = "frmDodajKreatoraReviji";
-            Text = "REVIJA - Dodeli kreatora";
-            Load += frmDodajKreatoraReviji_Load;
+            Controls.Add(lvOrganizatori);
+            Controls.Add(lblSpecijalniGosti);
+            Name = "frmSpecijalniGostiOrgnizatora";
+            Text = "ORGANIZATOR - Specijalni gosti";
+            Load += frmSpecijalniGostiOrgnizatora_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button btnIzadji;
-        private Button btnDodajKreatora;
-        private ListView lvKreatori;
+        private ListView lvOrganizatori;
         private ColumnHeader colMBR;
         private ColumnHeader colLicnoIme;
         private ColumnHeader colPrezime;
@@ -158,6 +139,7 @@
         private ColumnHeader colPol;
         private ColumnHeader colZemljaPorekla;
         private ColumnHeader colRadiU;
-        private Label lblListaKreatora;
+        private Label lblSpecijalniGosti;
+        private Button btnIzadji;
     }
 }

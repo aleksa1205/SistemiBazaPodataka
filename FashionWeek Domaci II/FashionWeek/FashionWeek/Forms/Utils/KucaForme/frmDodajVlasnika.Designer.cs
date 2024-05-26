@@ -38,23 +38,27 @@
             // 
             // btnOdustani
             // 
+            btnOdustani.BackColor = SystemColors.MenuHighlight;
             btnOdustani.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnOdustani.ForeColor = Color.White;
             btnOdustani.Location = new Point(67, 98);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(164, 30);
             btnOdustani.TabIndex = 12;
             btnOdustani.Text = "Odustani";
-            btnOdustani.UseVisualStyleBackColor = true;
+            btnOdustani.UseVisualStyleBackColor = false;
             // 
             // btnDodajVlasnika
             // 
+            btnDodajVlasnika.BackColor = SystemColors.MenuHighlight;
             btnDodajVlasnika.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajVlasnika.ForeColor = Color.White;
             btnDodajVlasnika.Location = new Point(67, 64);
             btnDodajVlasnika.Name = "btnDodajVlasnika";
             btnDodajVlasnika.Size = new Size(164, 30);
             btnDodajVlasnika.TabIndex = 11;
             btnDodajVlasnika.Text = "Dodaj vlasnika";
-            btnDodajVlasnika.UseVisualStyleBackColor = true;
+            btnDodajVlasnika.UseVisualStyleBackColor = false;
             btnDodajVlasnika.Click += btnDodajVlasnika_Click;
             // 
             // txtPrezime

@@ -92,22 +92,26 @@
             // 
             // btnOdustani
             // 
+            btnOdustani.BackColor = SystemColors.MenuHighlight;
+            btnOdustani.ForeColor = Color.White;
             btnOdustani.Location = new Point(249, 152);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(75, 23);
             btnOdustani.TabIndex = 80;
             btnOdustani.Text = "Odustani";
-            btnOdustani.UseVisualStyleBackColor = true;
+            btnOdustani.UseVisualStyleBackColor = false;
             btnOdustani.Click += btnOdustani_Click;
             // 
             // btnAzuriraj
             // 
+            btnAzuriraj.BackColor = SystemColors.MenuHighlight;
+            btnAzuriraj.ForeColor = Color.White;
             btnAzuriraj.Location = new Point(249, 123);
             btnAzuriraj.Name = "btnAzuriraj";
             btnAzuriraj.Size = new Size(75, 23);
             btnAzuriraj.TabIndex = 79;
             btnAzuriraj.Text = "Ažuriraj";
-            btnAzuriraj.UseVisualStyleBackColor = true;
+            btnAzuriraj.UseVisualStyleBackColor = false;
             btnAzuriraj.Click += btnAzuriraj_Click;
             // 
             // txtGrad

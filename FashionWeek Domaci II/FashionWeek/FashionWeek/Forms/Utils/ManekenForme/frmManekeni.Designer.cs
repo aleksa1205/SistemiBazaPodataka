@@ -29,19 +29,24 @@
         private void InitializeComponent()
         {
             lblListaManekena = new Label();
-            lvManekeni = new ListView();
-            colMBR = new ColumnHeader();
-            colLicnoIme = new ColumnHeader();
-            colPrezime = new ColumnHeader();
-            colDatumRodjenja = new ColumnHeader();
-            colPol = new ColumnHeader();
-            colAgencija = new ColumnHeader();
             btnDodajManekena = new Button();
             btnAzurirajManekena = new Button();
             btnObrisiManekena = new Button();
             btnRevije = new Button();
             btnIzadji = new Button();
             btnCasopisi = new Button();
+            lvManekeni = new ListView();
+            colMBR = new ColumnHeader();
+            colLicnoIme = new ColumnHeader();
+            colPrezime = new ColumnHeader();
+            colDatumRodjenja = new ColumnHeader();
+            colPol = new ColumnHeader();
+            colVisina = new ColumnHeader();
+            colTezina = new ColumnHeader();
+            colBojaOciju = new ColumnHeader();
+            colBojaKose = new ColumnHeader();
+            colKonfBroj = new ColumnHeader();
+            colZaposlen = new ColumnHeader();
             SuspendLayout();
             // 
             // lblListaManekena
@@ -54,21 +59,102 @@
             lblListaManekena.TabIndex = 0;
             lblListaManekena.Text = "Lista manekena:";
             // 
+            // btnDodajManekena
+            // 
+            btnDodajManekena.BackColor = SystemColors.MenuHighlight;
+            btnDodajManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDodajManekena.ForeColor = Color.White;
+            btnDodajManekena.Location = new Point(991, 33);
+            btnDodajManekena.Name = "btnDodajManekena";
+            btnDodajManekena.Size = new Size(161, 30);
+            btnDodajManekena.TabIndex = 2;
+            btnDodajManekena.Text = "Dodaj manekena";
+            btnDodajManekena.UseVisualStyleBackColor = false;
+            btnDodajManekena.Click += btnDodajManekena_Click;
+            // 
+            // btnAzurirajManekena
+            // 
+            btnAzurirajManekena.BackColor = SystemColors.MenuHighlight;
+            btnAzurirajManekena.Enabled = false;
+            btnAzurirajManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAzurirajManekena.ForeColor = Color.White;
+            btnAzurirajManekena.Location = new Point(991, 68);
+            btnAzurirajManekena.Name = "btnAzurirajManekena";
+            btnAzurirajManekena.Size = new Size(161, 30);
+            btnAzurirajManekena.TabIndex = 3;
+            btnAzurirajManekena.Text = "Ažuriraj manekena";
+            btnAzurirajManekena.UseVisualStyleBackColor = false;
+            btnAzurirajManekena.Click += btnAzurirajManekena_Click;
+            // 
+            // btnObrisiManekena
+            // 
+            btnObrisiManekena.BackColor = SystemColors.MenuHighlight;
+            btnObrisiManekena.Enabled = false;
+            btnObrisiManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnObrisiManekena.ForeColor = Color.White;
+            btnObrisiManekena.Location = new Point(991, 104);
+            btnObrisiManekena.Name = "btnObrisiManekena";
+            btnObrisiManekena.Size = new Size(161, 30);
+            btnObrisiManekena.TabIndex = 4;
+            btnObrisiManekena.Text = "Obriši manekena";
+            btnObrisiManekena.UseVisualStyleBackColor = false;
+            btnObrisiManekena.Click += btnObrisiManekena_Click;
+            // 
+            // btnRevije
+            // 
+            btnRevije.BackColor = SystemColors.MenuHighlight;
+            btnRevije.Enabled = false;
+            btnRevije.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRevije.ForeColor = Color.White;
+            btnRevije.Location = new Point(991, 185);
+            btnRevije.Name = "btnRevije";
+            btnRevije.Size = new Size(161, 30);
+            btnRevije.TabIndex = 6;
+            btnRevije.Text = "Revije";
+            btnRevije.UseVisualStyleBackColor = false;
+            btnRevije.Click += btnRevije_Click;
+            // 
+            // btnIzadji
+            // 
+            btnIzadji.BackColor = SystemColors.MenuHighlight;
+            btnIzadji.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnIzadji.ForeColor = Color.White;
+            btnIzadji.Location = new Point(991, 407);
+            btnIzadji.Name = "btnIzadji";
+            btnIzadji.Size = new Size(161, 30);
+            btnIzadji.TabIndex = 7;
+            btnIzadji.Text = "Izađi";
+            btnIzadji.UseVisualStyleBackColor = false;
+            btnIzadji.Click += btnIzadji_Click;
+            // 
+            // btnCasopisi
+            // 
+            btnCasopisi.BackColor = SystemColors.MenuHighlight;
+            btnCasopisi.Enabled = false;
+            btnCasopisi.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCasopisi.ForeColor = Color.White;
+            btnCasopisi.Location = new Point(991, 221);
+            btnCasopisi.Name = "btnCasopisi";
+            btnCasopisi.Size = new Size(161, 30);
+            btnCasopisi.TabIndex = 8;
+            btnCasopisi.Text = "Časopisi";
+            btnCasopisi.UseVisualStyleBackColor = false;
+            btnCasopisi.Click += btnCasopisi_Click;
+            // 
             // lvManekeni
             // 
-            lvManekeni.Columns.AddRange(new ColumnHeader[] { colMBR, colLicnoIme, colPrezime, colDatumRodjenja, colPol, colAgencija });
-            lvManekeni.Location = new Point(13, 33);
+            lvManekeni.Columns.AddRange(new ColumnHeader[] { colMBR, colLicnoIme, colPrezime, colDatumRodjenja, colPol, colZaposlen, colVisina, colTezina, colBojaOciju, colBojaKose, colKonfBroj });
+            lvManekeni.Location = new Point(12, 33);
             lvManekeni.Name = "lvManekeni";
-            lvManekeni.Size = new Size(662, 405);
-            lvManekeni.TabIndex = 1;
+            lvManekeni.Size = new Size(973, 405);
+            lvManekeni.TabIndex = 9;
             lvManekeni.UseCompatibleStateImageBehavior = false;
             lvManekeni.View = View.Details;
-            lvManekeni.SelectedIndexChanged += lvManekeni_SelectedIndexChanged;
             // 
             // colMBR
             // 
             colMBR.Text = "MBR";
-            colMBR.Width = 100;
+            colMBR.Width = 150;
             // 
             // colLicnoIme
             // 
@@ -94,94 +180,57 @@
             colPol.TextAlign = HorizontalAlignment.Center;
             colPol.Width = 30;
             // 
-            // colAgencija
+            // colVisina
             // 
-            colAgencija.Text = "Zaposlen u";
-            colAgencija.TextAlign = HorizontalAlignment.Center;
-            colAgencija.Width = 130;
+            colVisina.DisplayIndex = 5;
+            colVisina.Text = "Visina";
+            colVisina.TextAlign = HorizontalAlignment.Center;
             // 
-            // btnDodajManekena
+            // colTezina
             // 
-            btnDodajManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnDodajManekena.Location = new Point(694, 33);
-            btnDodajManekena.Name = "btnDodajManekena";
-            btnDodajManekena.Size = new Size(161, 30);
-            btnDodajManekena.TabIndex = 2;
-            btnDodajManekena.Text = "Dodaj manekena";
-            btnDodajManekena.UseVisualStyleBackColor = true;
-            btnDodajManekena.Click += btnDodajManekena_Click;
+            colTezina.DisplayIndex = 6;
+            colTezina.Text = "Težina";
+            colTezina.TextAlign = HorizontalAlignment.Center;
             // 
-            // btnAzurirajManekena
+            // colBojaOciju
             // 
-            btnAzurirajManekena.Enabled = false;
-            btnAzurirajManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAzurirajManekena.Location = new Point(694, 69);
-            btnAzurirajManekena.Name = "btnAzurirajManekena";
-            btnAzurirajManekena.Size = new Size(161, 30);
-            btnAzurirajManekena.TabIndex = 3;
-            btnAzurirajManekena.Text = "Ažuriraj manekena";
-            btnAzurirajManekena.UseVisualStyleBackColor = true;
-            btnAzurirajManekena.Click += btnAzurirajManekena_Click;
+            colBojaOciju.DisplayIndex = 7;
+            colBojaOciju.Text = "Boja očiju";
+            colBojaOciju.TextAlign = HorizontalAlignment.Center;
+            colBojaOciju.Width = 80;
             // 
-            // btnObrisiManekena
+            // colBojaKose
             // 
-            btnObrisiManekena.Enabled = false;
-            btnObrisiManekena.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnObrisiManekena.Location = new Point(694, 105);
-            btnObrisiManekena.Name = "btnObrisiManekena";
-            btnObrisiManekena.Size = new Size(161, 30);
-            btnObrisiManekena.TabIndex = 4;
-            btnObrisiManekena.Text = "Obriši manekena";
-            btnObrisiManekena.UseVisualStyleBackColor = true;
-            btnObrisiManekena.Click += btnObrisiManekena_Click;
+            colBojaKose.DisplayIndex = 8;
+            colBojaKose.Text = "Boja kose";
+            colBojaKose.TextAlign = HorizontalAlignment.Center;
+            colBojaKose.Width = 80;
             // 
-            // btnRevije
+            // colKonfBroj
             // 
-            btnRevije.Enabled = false;
-            btnRevije.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnRevije.Location = new Point(694, 186);
-            btnRevije.Name = "btnRevije";
-            btnRevije.Size = new Size(161, 30);
-            btnRevije.TabIndex = 6;
-            btnRevije.Text = "Revije";
-            btnRevije.UseVisualStyleBackColor = true;
-            btnRevije.Click += btnRevije_Click;
+            colKonfBroj.DisplayIndex = 9;
+            colKonfBroj.Text = "Konfekcijski broj";
+            colKonfBroj.TextAlign = HorizontalAlignment.Center;
+            colKonfBroj.Width = 100;
             // 
-            // btnIzadji
+            // colZaposlen
             // 
-            btnIzadji.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnIzadji.Location = new Point(694, 408);
-            btnIzadji.Name = "btnIzadji";
-            btnIzadji.Size = new Size(161, 30);
-            btnIzadji.TabIndex = 7;
-            btnIzadji.Text = "Izađi";
-            btnIzadji.UseVisualStyleBackColor = true;
-            btnIzadji.Click += btnIzadji_Click;
-            // 
-            // btnCasopisi
-            // 
-            btnCasopisi.Enabled = false;
-            btnCasopisi.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCasopisi.Location = new Point(694, 222);
-            btnCasopisi.Name = "btnCasopisi";
-            btnCasopisi.Size = new Size(161, 30);
-            btnCasopisi.TabIndex = 8;
-            btnCasopisi.Text = "Časopisi";
-            btnCasopisi.UseVisualStyleBackColor = true;
-            btnCasopisi.Click += btnCasopisi_Click;
+            colZaposlen.Text = "Zaposlen U";
+            colZaposlen.TextAlign = HorizontalAlignment.Center;
+            colZaposlen.Width = 150;
             // 
             // frmManekeni
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(867, 450);
+            ClientSize = new Size(1167, 450);
+            Controls.Add(lvManekeni);
             Controls.Add(btnCasopisi);
             Controls.Add(btnIzadji);
             Controls.Add(btnRevije);
             Controls.Add(btnObrisiManekena);
             Controls.Add(btnAzurirajManekena);
             Controls.Add(btnDodajManekena);
-            Controls.Add(lvManekeni);
             Controls.Add(lblListaManekena);
             Name = "frmManekeni";
             Text = "MANEKENI";
@@ -193,18 +242,23 @@
         #endregion
 
         private Label lblListaManekena;
-        private ListView lvManekeni;
-        private ColumnHeader colMBR;
-        private ColumnHeader colLicnoIme;
-        private ColumnHeader colPrezime;
-        private ColumnHeader colDatumRodjenja;
-        private ColumnHeader colPol;
-        private ColumnHeader colAgencija;
         private Button btnDodajManekena;
         private Button btnAzurirajManekena;
         private Button btnObrisiManekena;
         private Button btnRevije;
         private Button btnIzadji;
         private Button btnCasopisi;
+        private ListView lvManekeni;
+        private ColumnHeader colMBR;
+        private ColumnHeader colLicnoIme;
+        private ColumnHeader colPrezime;
+        private ColumnHeader colDatumRodjenja;
+        private ColumnHeader colPol;
+        private ColumnHeader colZaposlen;
+        private ColumnHeader colVisina;
+        private ColumnHeader colTezina;
+        private ColumnHeader colBojaOciju;
+        private ColumnHeader colBojaKose;
+        private ColumnHeader colKonfBroj;
     }
 }

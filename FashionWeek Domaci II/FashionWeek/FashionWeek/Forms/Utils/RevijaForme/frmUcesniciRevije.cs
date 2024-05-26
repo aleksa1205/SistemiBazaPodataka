@@ -17,7 +17,7 @@ public partial class frmUcesniciRevije : Form
         IList<ManekenPregled> manekeni = await DTOManager.VratiManekeneModneRevije(_revija.RBR);
         foreach (var maneken in manekeni)
         {
-            ListViewItem item = new ListViewItem(new string[] { maneken.MBR, maneken.Ime.LicnoIme, maneken.Ime.Prezime, maneken.DatumRodjenja.ToShortDateString(), maneken.Pol.ToString() });
+            ListViewItem item = new ListViewItem(new string[] { maneken.MBR!, maneken.Ime?.LicnoIme!, maneken.Ime?.Prezime!, maneken.DatumRodjenja.ToShortDateString(), maneken.Pol.ToString(), maneken.RadiU, maneken.Visina.ToString(), maneken.Tezina.ToString(), maneken.BojaOciju, maneken.BojaKose, maneken.KonfekcijskiBroj });
             lvManekeni.Items.Add(item);
         }
         lvManekeni.Refresh();

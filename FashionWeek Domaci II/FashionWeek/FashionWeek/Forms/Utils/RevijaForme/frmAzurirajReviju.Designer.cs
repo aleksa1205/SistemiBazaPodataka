@@ -53,22 +53,26 @@ partial class frmAzurirajReviju
         // 
         // btnOdustani
         // 
+        btnOdustani.BackColor = SystemColors.MenuHighlight;
+        btnOdustani.ForeColor = Color.White;
         btnOdustani.Location = new Point(300, 147);
         btnOdustani.Name = "btnOdustani";
         btnOdustani.Size = new Size(75, 23);
         btnOdustani.TabIndex = 78;
         btnOdustani.Text = "Odustani";
-        btnOdustani.UseVisualStyleBackColor = true;
+        btnOdustani.UseVisualStyleBackColor = false;
         btnOdustani.Click += btnOdustani_Click;
         // 
         // btnAzuriraj
         // 
+        btnAzuriraj.BackColor = SystemColors.MenuHighlight;
+        btnAzuriraj.ForeColor = Color.White;
         btnAzuriraj.Location = new Point(300, 121);
         btnAzuriraj.Name = "btnAzuriraj";
         btnAzuriraj.Size = new Size(75, 23);
         btnAzuriraj.TabIndex = 77;
         btnAzuriraj.Text = "Ažuriraj";
-        btnAzuriraj.UseVisualStyleBackColor = true;
+        btnAzuriraj.UseVisualStyleBackColor = false;
         btnAzuriraj.Click += btnAzuriraj_Click;
         // 
         // txtGrad

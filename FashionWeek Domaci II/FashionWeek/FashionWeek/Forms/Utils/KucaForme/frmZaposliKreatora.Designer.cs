@@ -87,24 +87,28 @@
             // 
             // btnZaposli
             // 
+            btnZaposli.BackColor = SystemColors.MenuHighlight;
             btnZaposli.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnZaposli.ForeColor = Color.White;
             btnZaposli.Location = new Point(543, 12);
             btnZaposli.Name = "btnZaposli";
             btnZaposli.Size = new Size(161, 30);
             btnZaposli.TabIndex = 19;
             btnZaposli.Text = "Zaposli";
-            btnZaposli.UseVisualStyleBackColor = true;
+            btnZaposli.UseVisualStyleBackColor = false;
             btnZaposli.Click += btnZaposli_Click;
             // 
             // btnOdustani
             // 
+            btnOdustani.BackColor = SystemColors.MenuHighlight;
             btnOdustani.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnOdustani.ForeColor = Color.White;
             btnOdustani.Location = new Point(543, 387);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(161, 30);
             btnOdustani.TabIndex = 20;
             btnOdustani.Text = "Odustani";
-            btnOdustani.UseVisualStyleBackColor = true;
+            btnOdustani.UseVisualStyleBackColor = false;
             btnOdustani.Click += btnOdustani_Click;
             // 
             // frmZaposliKreatora
