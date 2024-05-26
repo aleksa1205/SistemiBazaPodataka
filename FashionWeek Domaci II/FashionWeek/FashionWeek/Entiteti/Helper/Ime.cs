@@ -1,4 +1,6 @@
-﻿namespace FashionWeek.Entiteti.Helper;
+﻿using FluentNHibernate.Automapping.Steps;
+
+namespace FashionWeek.Entiteti.Helper;
 
 public class Ime
 {
@@ -20,6 +22,19 @@ public class Ime
     #endregion
 
     #region Overrides
+    public override bool Equals(object? obj)
+    {
+        if(obj==null)
+        {
+            return false;
+        }
+        if (ReferenceEquals(this, obj))
+        {
+            return true;
+        }
+        Ime compare = (obj as Ime)!;
+        return LicnoIme == compare.LicnoIme && Prezime == compare.Prezime;
+    }
     public override string ToString()
     {
         return LicnoIme + ' ' + Prezime;

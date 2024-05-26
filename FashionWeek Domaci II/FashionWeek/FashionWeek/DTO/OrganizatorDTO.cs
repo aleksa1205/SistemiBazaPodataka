@@ -3,7 +3,7 @@ public class OrganizatorPregled
 {
     public int Id { get; set; }
     public char PrvaRevija { get; set; }
-    public string InformacijeOKolekciji { get; set; }
+    public string? InformacijeOKolekciji { get; set; }
 
     #region Constructors
     public OrganizatorPregled(int id, char prvaRevija, string infoOKolekciji)
@@ -11,6 +11,12 @@ public class OrganizatorPregled
         Id = id;
         PrvaRevija = prvaRevija;
         InformacijeOKolekciji = infoOKolekciji;
+    }
+    public OrganizatorPregled(Organizator organizator)
+    {
+        Id = organizator.Id;
+        PrvaRevija = organizator.PrvaRevija;
+        InformacijeOKolekciji = organizator.InformacijeOKolekciji;
     }
     #endregion
 }

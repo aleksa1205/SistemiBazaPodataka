@@ -33,7 +33,7 @@
             btnObrisiKreatora = new Button();
             btnAzurirajKreatora = new Button();
             btnDodajKreatora = new Button();
-            lvKreatori = new ListView();
+            lvOrganizatori = new ListView();
             colMBR = new ColumnHeader();
             colLicnoIme = new ColumnHeader();
             colPrezime = new ColumnHeader();
@@ -41,7 +41,7 @@
             colPol = new ColumnHeader();
             colZemljaPorekla = new ColumnHeader();
             colRadiU = new ColumnHeader();
-            lblListaKreatora = new Label();
+            lblListaOrganizatora = new Label();
             SuspendLayout();
             // 
             // btnIzadji
@@ -102,16 +102,16 @@
             btnDodajKreatora.UseVisualStyleBackColor = true;
             btnDodajKreatora.Click += btnDodajKreatora_Click;
             // 
-            // lvKreatori
+            // lvOrganizatori
             // 
-            lvKreatori.Columns.AddRange(new ColumnHeader[] { colMBR, colLicnoIme, colPrezime, colDatumRodjenja, colPol, colZemljaPorekla, colRadiU });
-            lvKreatori.Location = new Point(12, 33);
-            lvKreatori.Name = "lvKreatori";
-            lvKreatori.Size = new Size(708, 405);
-            lvKreatori.TabIndex = 10;
-            lvKreatori.UseCompatibleStateImageBehavior = false;
-            lvKreatori.View = View.Details;
-            lvKreatori.SelectedIndexChanged += lvKreatori_SelectedIndexChanged;
+            lvOrganizatori.Columns.AddRange(new ColumnHeader[] { colMBR, colLicnoIme, colPrezime, colDatumRodjenja, colPol, colZemljaPorekla, colRadiU });
+            lvOrganizatori.Location = new Point(12, 33);
+            lvOrganizatori.Name = "lvOrganizatori";
+            lvOrganizatori.Size = new Size(708, 405);
+            lvOrganizatori.TabIndex = 10;
+            lvOrganizatori.UseCompatibleStateImageBehavior = false;
+            lvOrganizatori.View = View.Details;
+            lvOrganizatori.SelectedIndexChanged += lvKreatori_SelectedIndexChanged;
             // 
             // colMBR
             // 
@@ -154,15 +154,15 @@
             colRadiU.TextAlign = HorizontalAlignment.Center;
             colRadiU.Width = 180;
             // 
-            // lblListaKreatora
+            // lblListaOrganizatora
             // 
-            lblListaKreatora.AutoSize = true;
-            lblListaKreatora.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblListaKreatora.Location = new Point(11, 9);
-            lblListaKreatora.Name = "lblListaKreatora";
-            lblListaKreatora.Size = new Size(107, 21);
-            lblListaKreatora.TabIndex = 9;
-            lblListaKreatora.Text = "Lista kreatora:";
+            lblListaOrganizatora.AutoSize = true;
+            lblListaOrganizatora.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblListaOrganizatora.Location = new Point(11, 9);
+            lblListaOrganizatora.Name = "lblListaOrganizatora";
+            lblListaOrganizatora.Size = new Size(137, 21);
+            lblListaOrganizatora.TabIndex = 9;
+            lblListaOrganizatora.Text = "Lista organizatora:";
             // 
             // frmKreatori
             // 
@@ -174,8 +174,8 @@
             Controls.Add(btnObrisiKreatora);
             Controls.Add(btnAzurirajKreatora);
             Controls.Add(btnDodajKreatora);
-            Controls.Add(lvKreatori);
-            Controls.Add(lblListaKreatora);
+            Controls.Add(lvOrganizatori);
+            Controls.Add(lblListaOrganizatora);
             Name = "frmKreatori";
             Text = "KREATOR";
             Load += frmKreatori_Load;
@@ -189,14 +189,14 @@
         private Button btnObrisiKreatora;
         private Button btnAzurirajKreatora;
         private Button btnDodajKreatora;
-        private ListView lvKreatori;
+        private ListView lvOrganizatori;
         private ColumnHeader colMBR;
         private ColumnHeader colLicnoIme;
         private ColumnHeader colPrezime;
         private ColumnHeader colDatumRodjenja;
         private ColumnHeader colPol;
         private ColumnHeader colZemljaPorekla;
-        private Label lblListaKreatora;
+        private Label lblListaOrganizatora;
         private ColumnHeader colRadiU;
     }
 }

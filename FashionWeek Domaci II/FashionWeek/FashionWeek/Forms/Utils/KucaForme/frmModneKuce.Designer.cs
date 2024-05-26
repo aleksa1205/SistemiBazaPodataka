@@ -51,6 +51,7 @@
             btnVlasnici.TabIndex = 16;
             btnVlasnici.Text = "Vlasnici";
             btnVlasnici.UseVisualStyleBackColor = true;
+            btnVlasnici.Click += btnVlasnici_Click;
             // 
             // btnIzadji
             // 

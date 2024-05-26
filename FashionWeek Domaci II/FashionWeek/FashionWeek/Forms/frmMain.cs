@@ -52,4 +52,10 @@ public partial class frmMain : Form
         frmModneKuce frmModneKuce = new frmModneKuce();
         frmModneKuce.ShowDialog();
     }
+
+    private void btnOrganizatori_Click(object sender, EventArgs e)
+    {
+        frmOrganizatori frmOrganizatori = new frmOrganizatori();
+        frmOrganizatori.ShowDialog();
+    }
 }

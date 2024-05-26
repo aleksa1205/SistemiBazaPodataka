@@ -45,7 +45,10 @@ public partial class frmKreatoriRevije : Form
 
     private void btnDodajKreatora_Click(object sender, EventArgs e)
     {
-
+        frmDodajKreatoraReviji frmDodajKreatora = new frmDodajKreatoraReviji(_revija);
+        frmDodajKreatora.ShowDialog();
+        UcitajPodatke();
+        lvKreatori.SelectedItems.Clear();
     }
 
     private async void btnObrisiKreatora_Click(object sender, EventArgs e)

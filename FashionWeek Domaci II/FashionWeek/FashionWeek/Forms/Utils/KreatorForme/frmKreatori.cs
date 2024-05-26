@@ -26,14 +26,14 @@ public partial class frmKreatori : Form
 
     private async void UcitajPodatke()
     {
-        lvKreatori.Items.Clear();
+        lvOrganizatori.Items.Clear();
         IList<ModniKreatorPregled> kreatori = await DTOManager.VratiModneKreatore();
         foreach (var kreator in kreatori)
         {
             ListViewItem item = new ListViewItem(new string[] { kreator.MBR, kreator.Ime.LicnoIme, kreator.Ime.Prezime, kreator.DatumRodjenja.ToShortDateString(), kreator.Pol.ToString(), kreator.ZemljaPorekla, kreator.RadiU });
-            lvKreatori.Items.Add(item);
+            lvOrganizatori.Items.Add(item);
         }
-        lvKreatori.Refresh();
+        lvOrganizatori.Refresh();
     }
     #endregion
 
@@ -44,9 +44,9 @@ public partial class frmKreatori : Form
 
     private async void lvKreatori_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (lvKreatori.SelectedItems.Count > 0)
+        if (lvOrganizatori.SelectedItems.Count > 0)
         {
-            _kreator = await DTOManager.VratiModnogKreatora(lvKreatori.SelectedItems[0].Text);
+            _kreator = await DTOManager.VratiModnogKreatora(lvOrganizatori.SelectedItems[0].Text);
             EnableButtons();
         }
         else
@@ -60,7 +60,7 @@ public partial class frmKreatori : Form
         frmDodajKreatora frmDodajKreatora = new frmDodajKreatora();
         frmDodajKreatora.ShowDialog();
         UcitajPodatke();
-        lvKreatori.SelectedItems.Clear();
+        lvOrganizatori.SelectedItems.Clear();
     }
 
     private void btnAzurirajKreatora_Click(object sender, EventArgs e)
@@ -68,7 +68,7 @@ public partial class frmKreatori : Form
         frmAzurirajKreatora frmAzuriraj = new frmAzurirajKreatora(_kreator);
         frmAzuriraj.ShowDialog();
         UcitajPodatke();
-        lvKreatori.SelectedItems.Clear();
+        lvOrganizatori.SelectedItems.Clear();
     }
 
     private async void btnObrisiKreatora_Click(object sender, EventArgs e)
@@ -78,7 +78,7 @@ public partial class frmKreatori : Form
             MessageBox.Show("Uspešno obrisan modni kreator!");
             UcitajPodatke();
             _kreator = null;
-            lvKreatori.SelectedItems.Clear();
+            lvOrganizatori.SelectedItems.Clear();
         }
     }
 
@@ -86,7 +86,7 @@ public partial class frmKreatori : Form
     {
         frmRevijeKreatora frmRevije = new frmRevijeKreatora(_kreator);
         frmRevije.ShowDialog();
-        lvKreatori.SelectedItems.Clear();
+        lvOrganizatori.SelectedItems.Clear();
     }
 
     private void btnIzadji_Click(object sender, EventArgs e)

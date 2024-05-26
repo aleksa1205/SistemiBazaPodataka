@@ -45,7 +45,7 @@ public partial class frmZaposliKreatora : Form
     {
         if(await DTOManager.DodajModnuKucuModnomKreatoru(lvKreatori.SelectedItems[0].Text, _nazivKuce))
         {
-            MessageBox.Show($"Uspešno zapošljen modni kreator {lvKreatori.SelectedItems[0].SubItems[1].Text} {lvKreatori.SelectedItems[0].SubItems[1].Text}!");
+            MessageBox.Show($"Uspešno zapošljen modni kreator {lvKreatori.SelectedItems[0].SubItems[1].Text} {lvKreatori.SelectedItems[0].SubItems[2].Text}!");
             lvKreatori.SelectedItems.Clear();
             UcitajPodatke();
         }

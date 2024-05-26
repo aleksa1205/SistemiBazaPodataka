@@ -50,9 +50,11 @@
             btnIzadji.TabIndex = 27;
             btnIzadji.Text = "Izađi";
             btnIzadji.UseVisualStyleBackColor = true;
+            btnIzadji.Click += btnIzadji_Click;
             // 
             // btnDodajKreatora
             // 
+            btnDodajKreatora.Enabled = false;
             btnDodajKreatora.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnDodajKreatora.Location = new Point(726, 33);
             btnDodajKreatora.Name = "btnDodajKreatora";
@@ -60,6 +62,7 @@
             btnDodajKreatora.TabIndex = 25;
             btnDodajKreatora.Text = "Dodaj kreatora";
             btnDodajKreatora.UseVisualStyleBackColor = true;
+            btnDodajKreatora.Click += btnDodajKreatora_Click;
             // 
             // lvKreatori
             // 
@@ -70,6 +73,7 @@
             lvKreatori.TabIndex = 24;
             lvKreatori.UseCompatibleStateImageBehavior = false;
             lvKreatori.View = View.Details;
+            lvKreatori.SelectedIndexChanged += lvKreatori_SelectedIndexChanged;
             // 
             // colMBR
             // 
@@ -132,7 +136,8 @@
             Controls.Add(lvKreatori);
             Controls.Add(lblListaKreatora);
             Name = "frmDodajKreatoraReviji";
-            Text = "frmDodajKreatoraReviji";
+            Text = "REVIJA - Dodeli kreatora";
+            Load += frmDodajKreatoraReviji_Load;
             ResumeLayout(false);
             PerformLayout();
         }

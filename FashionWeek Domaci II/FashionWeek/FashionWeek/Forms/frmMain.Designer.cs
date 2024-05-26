@@ -33,6 +33,7 @@
             btnRevije = new Button();
             btnKreatori = new Button();
             btnModneKuce = new Button();
+            btnOrganizatori = new Button();
             SuspendLayout();
             // 
             // btnAgencije
@@ -96,11 +97,23 @@
             btnModneKuce.UseVisualStyleBackColor = true;
             btnModneKuce.Click += btnModneKuce_Click;
             // 
+            // btnOrganizatori
+            // 
+            btnOrganizatori.Font = new Font("Segoe UI", 18F);
+            btnOrganizatori.Location = new Point(168, 190);
+            btnOrganizatori.Name = "btnOrganizatori";
+            btnOrganizatori.Size = new Size(150, 80);
+            btnOrganizatori.TabIndex = 5;
+            btnOrganizatori.Text = "ORGANIZATORI";
+            btnOrganizatori.UseVisualStyleBackColor = true;
+            btnOrganizatori.Click += btnOrganizatori_Click;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnOrganizatori);
             Controls.Add(btnModneKuce);
             Controls.Add(btnKreatori);
             Controls.Add(btnRevije);
@@ -118,5 +131,6 @@
         private Button btnRevije;
         private Button btnKreatori;
         private Button btnModneKuce;
+        private Button btnOrganizatori;
     }
 }

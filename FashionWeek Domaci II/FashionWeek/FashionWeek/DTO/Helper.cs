@@ -130,4 +130,22 @@ public static class Helper
         kuca.Sediste = updateKuca.Sediste;
     }
     #endregion
+
+    #region Organizator
+    public static Organizator NewOrganizator(OrganizatorBasic organizator)
+    {
+        Organizator newOrganizator = new Organizator
+        {
+            PrvaRevija = organizator.PrvaRevija,
+            InformacijeOKolekciji = organizator.InformacijeOKolekciji
+        };
+        return newOrganizator;
+    }
+
+    public static void UpdateOrganizator(Organizator organizator, OrganizatorBasic updateOrganizator)
+    {
+        organizator.PrvaRevija = updateOrganizator.PrvaRevija;
+        organizator.InformacijeOKolekciji = updateOrganizator.InformacijeOKolekciji;
+    }
+    #endregion
 }

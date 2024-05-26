@@ -87,6 +87,12 @@ public partial class frmModneKuce : Form
         frmKreatori.ShowDialog();
     }
 
+    private void btnVlasnici_Click(object sender, EventArgs e)
+    {
+        frmVlasnici frmVlasnici = new frmVlasnici(_kuca);
+        frmVlasnici.ShowDialog();
+    }
+
     private void btnIzadji_Click(object sender, EventArgs e)
     {
         Close();

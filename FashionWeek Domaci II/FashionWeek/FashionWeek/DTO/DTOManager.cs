@@ -1,10 +1,12 @@
-﻿namespace FashionWeek.DTO;
+﻿using NHibernate.Param;
+using NHibernate.Transform;
+using Remotion.Linq.Parsing.Structure.IntermediateModel;
+
+namespace FashionWeek.DTO;
 
 public class DTOManager
 {
-
     #region Maneken
-
     public static async Task<ManekenBasic?> VratiManekenaBasic(string mbr)
     {
         ISession? session = null;
@@ -640,6 +642,35 @@ public class DTOManager
             }
             throw new Exception("Greška pri povezivanju sa bazom!");
 
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return listaKreatora;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
+
+    public static async Task<IList<ModniKreatorPregled>> VratiModneKreatoreKojiNisuNaModnojReviji(int rbrRevije)
+    {
+        ISession? session = null;
+        List<ModniKreatorPregled> listaKreatora = [];
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                string strQuery = "select mk from ModniKreator mk where mk.MBR not in (select mk2.MBR from ModniKreator mk2 join mk2.Revije r where r.RBR= :rbrRevije)";
+                IQuery query = session.CreateQuery(strQuery);
+                query.SetParameter("rbrRevije", rbrRevije);
+                IList<ModniKreator> kreatori = await query.ListAsync<ModniKreator>();
+                listaKreatora.AddRange(kreatori.Select(kreator => new ModniKreatorPregled(kreator)));
+                return listaKreatora;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
         }
         catch (Exception ex)
         {
@@ -1293,6 +1324,89 @@ public class DTOManager
             session?.Close();
         }
     }
+
+    public static async Task<IList<ModnaRevijaPregled>> VratiModneRevijeBezOrganizatora()
+    {
+        ISession? session = null;
+        List<ModnaRevijaPregled> listaRevija = new List<ModnaRevijaPregled>();
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                ISQLQuery query = session.CreateSQLQuery("SELECT * FROM MODNA_REVIJA WHERE ORGANIZATOR_ID IS NULL");
+                query.AddEntity(typeof(ModnaRevija));
+                IList<ModnaRevija> revije = await query.ListAsync<ModnaRevija>();
+                listaRevija.AddRange(revije.Select(revija => new ModnaRevijaPregled(revija)));
+                return listaRevija;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return listaRevija;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
+
+    public static async Task<bool> DodajOrganizatoraModnojReviji(int rbrRevije, int idOrganizatora)
+    {
+        ISession? session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                ModnaRevija revija = await session.LoadAsync<ModnaRevija>(rbrRevije);
+                Organizator organizator = await session.LoadAsync<Organizator>(idOrganizatora);
+                revija.Organizator = organizator;
+                await session.UpdateAsync(revija);
+                await session.FlushAsync();
+                return true;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return false;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
+
+    public static async Task<bool> ObrisiOrganizatoraModnojReviji(int rbrRevije)
+    {
+        ISession? session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                ModnaRevija revija = await session.LoadAsync<ModnaRevija>(rbrRevije);
+                revija.Organizator = null;
+                await session.UpdateAsync(revija);
+                await session.FlushAsync();
+                return true;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return false;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
     #endregion
 
     #region ModnaKuca
@@ -1457,5 +1571,274 @@ public class DTOManager
         }
     }
 
+    #endregion
+
+    #region ImeVlasnika
+    public static async Task<bool> DodajImeVlasnika(string modnaKucaNaziv, Ime ime)
+    {
+        ISession? session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                ModnaKuca modnaKuca = await session.LoadAsync<ModnaKuca>(modnaKucaNaziv);
+                ImeVlasnika imeVlasnika = new()
+                {
+                    Id = new()
+                    {
+                        ModnaKuca = modnaKuca,
+                        LicnoIme = ime.LicnoIme,
+                        Prezime = ime.Prezime
+                    }
+                };
+                await session.SaveAsync(imeVlasnika);
+                await session.FlushAsync();
+                return true;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return false;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
+
+    public static async Task<bool> ObrisiImeVlasnika(string modnaKucaNaziv, Ime ime)
+    {
+        ISession? session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                ModnaKuca kuca = await session.LoadAsync<ModnaKuca>(modnaKucaNaziv);
+                ImeVlasnika vlasnik = new()
+                {
+                    Id = new()
+                    {
+                        ModnaKuca = kuca,
+                        LicnoIme = ime.LicnoIme,
+                        Prezime=ime.Prezime
+                    }
+                };
+                await session.DeleteAsync(vlasnik);
+                await session.FlushAsync();
+                return true;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return false;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
+
+    public static async Task<IList<Ime>> VratiImenaVlasnika(string nazivKuce)
+    {
+        ISession? session = null;
+        List<Ime> listaVlasnika = [];
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                IQuery query = session.CreateSQLQuery($"SELECT LICNO_IME AS LicnoIme, PREZIME AS Prezime FROM IMENA_VLASNIKA WHERE NAZIV_KUCE= :nazivKuce")
+                                         .SetParameter("nazivKuce", nazivKuce)
+                                         .SetResultTransformer(Transformers.AliasToBean(typeof(Ime)));
+                var lista = await query.ListAsync();
+                foreach(Ime ime in lista)
+                {
+                    listaVlasnika.Add(ime);
+                }
+                return listaVlasnika;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch(Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return listaVlasnika;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
+    #endregion
+
+    #region Organizator
+    public static async Task<OrganizatorBasic?> VratiOrganizatora(int id)
+    {
+        ISession? session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                Organizator organizator = await session.GetAsync<Organizator>(id);
+                return organizator != null ? new(organizator) : null;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch(Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return null;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
+
+    public static async Task<bool> DodajOrganizatora(OrganizatorBasic organizator)
+    {
+        ISession? session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                Organizator newOrganizator = Helper.NewOrganizator(organizator);
+                await session.SaveAsync(newOrganizator);
+                await session.FlushAsync();
+                return true;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return false;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
+
+    public static async Task<bool> AzurirajOrganizatora(OrganizatorBasic updateOrganizator)
+    {
+        ISession? session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                Organizator organizator = await session.LoadAsync<Organizator>(updateOrganizator.Id);
+                Helper.UpdateOrganizator(organizator, updateOrganizator);
+                await session.UpdateAsync(organizator);
+                await session.FlushAsync();
+                return true;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return false;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
+    
+    public static async Task<bool> ObrisiOrganizatora(int id)
+    {
+        ISession? session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                Organizator organizator = await session.LoadAsync<Organizator>(id);
+                await session.DeleteAsync(organizator);
+                await session.FlushAsync();
+                return true;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return false;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
+
+    public static async Task<IList<OrganizatorPregled>> VratiOrganizatore()
+    {
+        ISession? session = null;
+        List<OrganizatorPregled> listaOrganizatora = [];
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                ISQLQuery query = session.CreateSQLQuery("SELECT * FROM ORGANIZATOR");
+                query.AddEntity(typeof(Organizator));
+                var organizatori = await query.ListAsync<Organizator>();
+                listaOrganizatora.AddRange(organizatori.Select(organizator => new OrganizatorPregled(organizator)));
+                return listaOrganizatora;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return listaOrganizatora;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
+
+    public static async Task<IList<ModnaRevijaPregled>> VratiModneRevijeOrganizatora(int id)
+    {
+        ISession? session = null;
+        List<ModnaRevijaPregled> listaRevija = [];
+        try
+        {
+            session = DataLayer.GetSession();
+            if (session != null)
+            {
+                string strQuery = "select r from ModnaRevija r join r.Organizator o where o.Id= :organizatorId";
+                IQuery query = session.CreateQuery(strQuery);
+                query.SetParameter("organizatorId", id);
+                IList<ModnaRevija> revije = await query.ListAsync<ModnaRevija>();
+                listaRevija.AddRange(revije.Select(revija => new ModnaRevijaPregled(revija)));
+                return listaRevija;
+            }
+            throw new Exception("Greška pri povezivanju sa bazom!");
+        }
+        catch(Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+            return listaRevija;
+        }
+        finally
+        {
+            session?.Close();
+        }
+    }
+    #endregion
+
+    #region SpecijalanGost
     #endregion
 }
