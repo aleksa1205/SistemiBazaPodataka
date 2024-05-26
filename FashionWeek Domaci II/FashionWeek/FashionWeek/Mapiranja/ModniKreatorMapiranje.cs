@@ -1,13 +1,4 @@
-﻿using FashionWeek.Entiteti;
-using FluentNHibernate.Mapping;
-using NHibernate.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FashionWeek.Mapiranja;
+﻿namespace FashionWeek.Mapiranja;
 
 public class ModniKreatorMapiranje : SubclassMap<ModniKreator>
 {
@@ -25,6 +16,6 @@ public class ModniKreatorMapiranje : SubclassMap<ModniKreator>
             .ChildKeyColumn("RBR_REVIJE")
             .Cascade.All().Inverse();
         References(x => x.Organizator).Column("ORGANIZATOR_ID");
-        HasMany(x => x.SpecijalniGosti).KeyColumn("MBR_KREATORA");
+        HasMany(x => x.SpecijalniGosti).KeyColumn("MBR_KREATORA").Cascade.AllDeleteOrphan();
     }
 }

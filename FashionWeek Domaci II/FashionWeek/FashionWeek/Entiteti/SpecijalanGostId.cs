@@ -19,7 +19,7 @@ public class SpecijalanGostId
         }
 
         SpecijalanGostId compare = (obj as SpecijalanGostId)!;
-        return ModnaRevija.RBR == compare.ModnaRevija.RBR && ModniKreator.MBR == compare.ModniKreator.MBR && Organizator.Id == compare.Organizator.Id;
+        return ModnaRevija == compare.ModnaRevija && ModniKreator == compare.ModniKreator && Organizator == compare.Organizator;
     }
 
     public override int GetHashCode()

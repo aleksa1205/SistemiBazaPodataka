@@ -40,6 +40,7 @@
             btnDodajReviju = new Button();
             btnUcesnici = new Button();
             btnKreatori = new Button();
+            btnSpecijalniGosti = new Button();
             SuspendLayout();
             // 
             // lvRevije
@@ -157,11 +158,24 @@
             btnKreatori.UseVisualStyleBackColor = true;
             btnKreatori.Click += btnKreatori_Click;
             // 
+            // btnSpecijalniGosti
+            // 
+            btnSpecijalniGosti.Enabled = false;
+            btnSpecijalniGosti.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSpecijalniGosti.Location = new Point(592, 249);
+            btnSpecijalniGosti.Name = "btnSpecijalniGosti";
+            btnSpecijalniGosti.Size = new Size(161, 30);
+            btnSpecijalniGosti.TabIndex = 12;
+            btnSpecijalniGosti.Text = "Specijalni gosti";
+            btnSpecijalniGosti.UseVisualStyleBackColor = true;
+            btnSpecijalniGosti.Click += btnSpecijalniGosti_Click;
+            // 
             // frmRevije
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(761, 413);
+            Controls.Add(btnSpecijalniGosti);
             Controls.Add(btnKreatori);
             Controls.Add(btnUcesnici);
             Controls.Add(btnDodajReviju);
@@ -191,5 +205,6 @@
         private Button btnDodajReviju;
         private Button btnUcesnici;
         private Button btnKreatori;
+        private Button btnSpecijalniGosti;
     }
 }

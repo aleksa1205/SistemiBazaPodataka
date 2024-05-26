@@ -1,4 +1,6 @@
-﻿namespace FashionWeek.DTO;
+﻿using System.Windows.Forms.VisualStyles;
+
+namespace FashionWeek.DTO;
 
 public class ManekenPregled
 {
@@ -100,6 +102,7 @@ public class ManekenBasic
         BojaKose = maneken.BojaKose;
         KonfekcijskiBroj = maneken.KonfekcijskiBroj;
         Zanimanje = maneken.Zanimanje;
+        RadiUAgenciji = maneken.RadiUAgenciji != null ? new(maneken.RadiUAgenciji) : null;
     }
     #endregion
 }

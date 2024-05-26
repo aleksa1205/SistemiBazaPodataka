@@ -61,6 +61,8 @@ public class ModniKreatorBasic
         DatumRodjenja = kreator.DatumRodjenja;
         Pol = kreator.Pol;
         ZemljaPorekla = kreator.ZemljaPorekla;
+        RadiU = kreator.RadiU != null ? new(kreator.RadiU) : null;
+        Organizator = kreator.Organizator != null ? new(kreator.Organizator) : null;
     }
     #endregion
 }

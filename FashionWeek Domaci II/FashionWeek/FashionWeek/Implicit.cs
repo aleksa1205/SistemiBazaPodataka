@@ -11,9 +11,11 @@ global using FashionWeek.Forms.Utils.RevijaForme;
 global using FashionWeek.Forms.Utils.AgencijaForme;
 global using FashionWeek.Forms.Utils.Revija;
 global using FashionWeek.Forms.Utils.OrganizatorForme;
+global using FashionWeek.Mapiranja;
+
 
 global using NHibernate;
 global using FluentNHibernate.Automapping;
-global using FashionWeek.Mapiranja;
 global using FluentNHibernate.Cfg;
 global using FluentNHibernate.Cfg.Db;
+global using FluentNHibernate.Mapping;

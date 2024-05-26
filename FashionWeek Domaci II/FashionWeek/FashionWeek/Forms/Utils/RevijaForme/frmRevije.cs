@@ -16,6 +16,10 @@ public partial class frmRevije : Form
         btnObrisiReviju.Enabled = true;
         btnUcesnici.Enabled = true;
         btnKreatori.Enabled = true;
+        if (_revija.Organizator != null)
+        {
+            btnSpecijalniGosti.Enabled = true;
+        }
     }
 
     private void DisableButtons()
@@ -24,6 +28,7 @@ public partial class frmRevije : Form
         btnObrisiReviju.Enabled = false;
         btnUcesnici.Enabled = false;
         btnKreatori.Enabled = false;
+        btnSpecijalniGosti.Enabled = false;
     }
 
     private async void UcitajPodatke()
@@ -99,9 +104,15 @@ public partial class frmRevije : Form
         lvRevije.SelectedItems.Clear();
     }
 
+    private void btnSpecijalniGosti_Click(object sender, EventArgs e)
+    {
+        frmSpecijalniGosti frmSpecijalniGosti = new frmSpecijalniGosti(_revija);
+        frmSpecijalniGosti.ShowDialog();
+        lvRevije.SelectedItems.Clear();
+    }
+
     private void btnIzadji_Click(object sender, EventArgs e)
     {
         Close();
     }
-
 }

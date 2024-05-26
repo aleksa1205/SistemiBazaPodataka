@@ -53,6 +53,7 @@ public class ModnaRevijaBasic
         Naziv = revija.Naziv;
         Mesto = revija.Mesto;
         Termin = revija.Termin;
+        Organizator = revija.Organizator != null ? new(revija.Organizator) : null;
     }
     #endregion
 }

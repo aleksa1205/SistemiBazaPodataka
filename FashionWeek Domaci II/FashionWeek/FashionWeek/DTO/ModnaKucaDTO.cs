@@ -44,6 +44,7 @@ public class ModnaKucaBasic
         Naziv = modnaKuca.Naziv;
         Osnivac = modnaKuca.Osnivac;
         Sediste = modnaKuca.Sediste;
+        Organizator = modnaKuca.Organizator != null ? new(modnaKuca.Organizator) : null;
     }
     #endregion
 }
