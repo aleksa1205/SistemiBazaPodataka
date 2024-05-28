@@ -1,0 +1,159 @@
+INSERT INTO MODNA_AGENCIJA
+    VALUES('14074731', 'Sigma Model Management', 'N', 'Srbija', 'Beograd', 'Save Tekelije 5', '12-Oct-2010');
+INSERT INTO MODNA_AGENCIJA
+    VALUES('77141507', 'Demons Model Managment', 'Y','Srbija', 'Beograd', '', '05-May-2000');
+INSERT INTO NAZIVI_ZEMALJA
+    VALUES('77141507', 'Nemacka');
+INSERT INTO NAZIVI_ZEMALJA
+    VALUES('77141507', 'Kina');
+INSERT INTO NAZIVI_ZEMALJA
+    VALUES('77141507', 'Austrija');
+INSERT INTO MODNA_AGENCIJA
+    VALUES('29186528', 'Models 1', 'N', 'Velika Britanija', 'London', '12 Macklin Street', '01-Jan-1968');
+INSERT INTO NAZIVI_ZEMALJA
+    VALUES('29186528', 'Francuska');
+INSERT INTO NAZIVI_ZEMALJA
+    VALUES('29186528', 'SAD');
+INSERT INTO NAZIVI_ZEMALJA
+    VALUES('29186528', 'Japan');
+INSERT INTO NAZIVI_ZEMALJA
+    VALUES('29186528', 'Italija');
+INSERT INTO MODNA_AGENCIJA
+    VALUES('83996934', 'Orea Model Managment', 'N','Srbija', 'Novi Sad', '', '19-Feb-2019');
+INSERT INTO MODNA_AGENCIJA
+    VALUES('78978569', 'Stardust Promotion Co. Ltd', 'Y', 'Japan', 'Tokio', 'Shibuya', '01-Feb-1979');
+INSERT INTO NAZIVI_ZEMALJA
+    VALUES('78978569', 'Malezija');
+INSERT INTO NAZIVI_ZEMALJA
+    VALUES('78978569', 'Spanija');
+INSERT INTO NAZIVI_ZEMALJA
+    VALUES('78978569', 'Italija');    
+INSERT INTO MODNA_AGENCIJA
+    VALUES('37672893', 'Select', 'N', 'Srbija', 'Nis', '', '05-July-2015');
+INSERT INTO MODNA_AGENCIJA
+    VALUES('83011159', 'The Lions Managment', 'Y','SAD', 'Nju Jork', '', '01-Jan-2014');
+INSERT INTO NAZIVI_ZEMALJA
+    VALUES('83011159', 'Portugal');
+INSERT INTO NAZIVI_ZEMALJA
+    VALUES('83011159', 'Nemacka');
+INSERT INTO NAZIVI_ZEMALJA
+    VALUES('83011159', 'Australija'); 
+INSERT INTO MODNA_AGENCIJA
+    VALUES('60557343', 'YG Kplus', 'Y', 'Juzna Koreja', 'Seul', 'Myeongdong 256', '20-Nov-2008');
+INSERT INTO NAZIVI_ZEMALJA
+    VALUES('60557343', 'Japan');
+INSERT INTO NAZIVI_ZEMALJA
+    VALUES('60557343', 'Kina');
+    
+INSERT INTO MANEKEN
+    VALUES('1507995583702', 'Milan', 'Ponjevic', '15-July-1995', 'M', 178, 65, 'Braon', 'Braon', 'S', 'Biznismen', '83011159');
+INSERT INTO MANEKEN
+    VALUES('1805000567932', 'Milena', 'Jovanovic', '18-May-2000', 'Z', 160, 58, 'Zelena', 'Crna', 'M', 'Frizer', '77141507');
+INSERT INTO MANEKEN
+    VALUES('1204999538921', 'Sasaki', 'Midori', '12-Apr-1999', 'Z', 158, 45, 'Zelena', 'Braon', 'XS', 'Student', '78978569');
+INSERT INTO MANEKEN
+    VALUES('1008000784369', 'Jay', 'Gardner', '10-Aug-2000', 'M', 190, 75, 'Crna', 'Crna', 'L', 'Inzenjer', '29186528');
+INSERT INTO MANEKEN
+    VALUES('0812993781023', 'Giordano', 'Romano', '08-Dec-1993', 'M', 183, 71, 'Zelena', 'Crna', 'M', 'Pekar', '83996934');
+    
+INSERT INTO ORGANIZATOR(PRVA_REVIJA, INFORMACIJE_O_KOLEKCIJI)
+    VALUES('T', 'Nova moderna i lepa kolekcija.');
+INSERT INTO MODNA_KUCA
+    VALUES('Batman Fashion', 'Mihajlo', 'Paunovic', 'Srbija', 'Nis', 'Aleksandra Medvedeva 158', 1);
+INSERT INTO MODNA_REVIJA(NAZIV, DRZAVA, GRAD, ULICA, TERMIN_ODRZAVANJA, ORGANIZATOR_ID)
+    VALUES('Prva velika revija', 'Srbija', 'Nis', 'Alekse Santica 19', '23-Oct-2024 12:45:00', 1);
+INSERT INTO MODNI_KREATOR
+    VALUES('1904001783462', 'Nikola', 'Vasic', '19-Apr-2001', 'M', 'Srbija', null, 'Batman Fashion');
+    
+INSERT INTO ORGANIZATOR(PRVA_REVIJA, INFORMACIJE_O_KOLEKCIJI)
+    VALUES('F', 'Nova kolekcija inspirana vremenom iz 90-tih.');
+INSERT INTO MODNA_KUCA
+    VALUES('Moda 90-tih', 'Milena', 'Markovic', 'Hrvatska', 'Zagreb', 'Varsavska ulica 15', null);
+INSERT INTO MODNA_REVIJA(NAZIV, DRZAVA, GRAD, ULICA, TERMIN_ODRZAVANJA, ORGANIZATOR_ID)
+    VALUES('Revija 90-ti', 'Hrvatska', 'Zagreb', 'Zagreb Trg 123', '03-Jan-2025 10:00:00', 2);
+INSERT INTO MODNI_KREATOR
+    VALUES('1005970748392', 'Martin', 'Vasiljevic', '10-May-1970', 'M', 'Hrvatska', 2, 'Moda 90-tih');
+    
+INSERT INTO ORGANIZATOR(PRVA_REVIJA, INFORMACIJE_O_KOLEKCIJI)
+    VALUES('F', 'Kolekcija inspirisana azijskom kulturom.');
+INSERT INTO MODNA_KUCA
+    VALUES('Europe Fashion Ltd.', 'Mark', 'Traversy', 'Ujedinjeno Kraljevstvo', 'London', '', null);
+INSERT INTO MODNA_REVIJA(NAZIV, DRZAVA, GRAD, ULICA, TERMIN_ODRZAVANJA, ORGANIZATOR_ID)
+    VALUES('Revija inspirisana Azijom', 'Slovenija', 'Ljubljana', 'Celovska Cesta 264', '05-Jan-2025 11:15:00', 3);
+INSERT INTO MODNI_KREATOR
+    VALUES('1912998754554', 'Carlita', 'Consoli', '19-Dec-1998', 'Z', 'Italija', 3, 'Europe Fashion Ltd.');
+    
+INSERT INTO ORGANIZATOR(PRVA_REVIJA, INFORMACIJE_O_KOLEKCIJI)
+    VALUES('T', 'Nova unikatna kolekcija.');
+INSERT INTO MODNA_KUCA
+    VALUES('Nice Fashion', 'Emma', 'Watson', 'Francuska', 'Pariz', '', 4);
+INSERT INTO MODNA_REVIJA(NAZIV, DRZAVA, GRAD, ULICA, TERMIN_ODRZAVANJA, ORGANIZATOR_ID)
+    VALUES('Nova kolekcija za 2025', 'Francuska', 'Pariz', 'Ajfelov Toranj 12', '05-Oct-2024 12:00:00', 4);
+INSERT INTO MODNI_KREATOR
+    VALUES('1501993576746', 'Ysabel', 'Camerino', '15-Jan-1993', 'Z', 'Spanija', null, 'Nice Fashion');
+    
+INSERT INTO ORGANIZATOR(PRVA_REVIJA, INFORMACIJE_O_KOLEKCIJI)
+    VALUES('F', 'Kolekcija inspirisana istorijom.');
+INSERT INTO MODNA_KUCA
+    VALUES('American Old Fashion', 'Nicole', 'Kennedy', 'SAD', 'Nju Jork', '', null);
+INSERT INTO MODNA_REVIJA(NAZIV, DRZAVA, GRAD, ULICA, TERMIN_ODRZAVANJA, ORGANIZATOR_ID)
+    VALUES('Povratak u istoriju', 'SAD', 'Los Andjeles', 'Fifth Avenue 12', '23-Dec-2024 9:00:00', 5);
+INSERT INTO MODNI_KREATOR
+    VALUES('1108980587321', 'Mark', 'Obama', '11-Aug-1980', 'M', 'SAD', 5, 'American Old Fashion');
+
+INSERT INTO IMENA_VLASNIKA
+    VALUES('American Old Fashion', 'Reece', 'Jackson');
+INSERT INTO IMENA_VLASNIKA
+    VALUES('American Old Fashion', 'Madison', 'Walsh');
+INSERT INTO IMENA_VLASNIKA
+    VALUES('Nice Fashion', 'Blanche', 'Deschamps');
+INSERT INTO IMENA_VLASNIKA
+    VALUES('Nice Fashion', 'Michele', 'Arthur');
+INSERT INTO IMENA_VLASNIKA
+    VALUES('Nice Fashion', 'Dianne', 'Sourd');
+
+INSERT INTO NASTUPA_U
+    VALUES('1507995583702', 5);
+INSERT INTO NASTUPA_U
+    VALUES('1204999538921', 4);
+INSERT INTO NASTUPA_U
+    VALUES('1008000784369', 2);
+INSERT INTO NASTUPA_U
+    VALUES('1204999538921', 1);
+INSERT INTO NASTUPA_U
+    VALUES('1008000784369', 5);
+INSERT INTO NASTUPA_U
+    VALUES('1507995583702', 3);
+    
+INSERT INTO NAZIVI_CASOPISA
+    VALUES('1507995583702', 'Fashion Week L 254');
+INSERT INTO NAZIVI_CASOPISA
+    VALUES('1204999538921', 'Traditional Fashion');
+INSERT INTO NAZIVI_CASOPISA
+    VALUES('1008000784369', 'Moda');
+INSERT INTO NAZIVI_CASOPISA
+    VALUES('1507995583702', 'Future Fashion');
+INSERT INTO NAZIVI_CASOPISA
+    VALUES('1008000784369', 'Traditional Fashion');
+
+INSERT INTO PREDSTAVLJA
+    VALUES('1904001783462', 3);
+INSERT INTO PREDSTAVLJA
+    VALUES('1005970748392', 4);
+INSERT INTO PREDSTAVLJA
+    VALUES('1912998754554', 5);
+INSERT INTO PREDSTAVLJA
+    VALUES('1501993576746', 1);
+INSERT INTO PREDSTAVLJA
+    VALUES('1108980587321', 2);
+	
+INSERT INTO SPECIJALNI_GOSTI
+    VALUES('1904001783462', 5, 1);
+INSERT INTO SPECIJALNI_GOSTI
+    VALUES('1501993576746', 5, 1);
+INSERT INTO SPECIJALNI_GOSTI
+    VALUES('1501993576746', 1, 3);
+INSERT INTO SPECIJALNI_GOSTI
+    VALUES('1501993576746', 3, 5);
+INSERT INTO SPECIJALNI_GOSTI
+    VALUES('1904001783462', 3, 5);
