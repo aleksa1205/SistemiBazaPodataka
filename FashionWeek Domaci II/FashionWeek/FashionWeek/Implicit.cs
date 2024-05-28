@@ -19,3 +19,5 @@ global using FluentNHibernate.Automapping;
 global using FluentNHibernate.Cfg;
 global using FluentNHibernate.Cfg.Db;
 global using FluentNHibernate.Mapping;
+global using NHibernate.Transform;
+

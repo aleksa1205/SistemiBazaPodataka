@@ -38,6 +38,8 @@
             lblPrvaRevija = new Label();
             lblID = new Label();
             txtID = new TextBox();
+            lblIdentifikator = new Label();
+            txtIdentifikator = new TextBox();
             gpRevija.SuspendLayout();
             SuspendLayout();
             // 
@@ -46,7 +48,7 @@
             btnOdustani.BackColor = SystemColors.MenuHighlight;
             btnOdustani.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnOdustani.ForeColor = Color.White;
-            btnOdustani.Location = new Point(316, 170);
+            btnOdustani.Location = new Point(316, 207);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(164, 30);
             btnOdustani.TabIndex = 24;
@@ -59,7 +61,7 @@
             btnAzuriraj.BackColor = SystemColors.MenuHighlight;
             btnAzuriraj.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAzuriraj.ForeColor = Color.White;
-            btnAzuriraj.Location = new Point(0, 170);
+            btnAzuriraj.Location = new Point(12, 207);
             btnAzuriraj.Name = "btnAzuriraj";
             btnAzuriraj.Size = new Size(164, 30);
             btnAzuriraj.TabIndex = 23;
@@ -71,7 +73,7 @@
             // 
             gpRevija.Controls.Add(rbNo);
             gpRevija.Controls.Add(rbYes);
-            gpRevija.Location = new Point(82, 35);
+            gpRevija.Location = new Point(85, 86);
             gpRevija.Name = "gpRevija";
             gpRevija.Size = new Size(91, 42);
             gpRevija.TabIndex = 22;
@@ -101,7 +103,7 @@
             // 
             // txtInfo
             // 
-            txtInfo.Location = new Point(144, 83);
+            txtInfo.Location = new Point(155, 134);
             txtInfo.Multiline = true;
             txtInfo.Name = "txtInfo";
             txtInfo.Size = new Size(325, 67);
@@ -111,7 +113,7 @@
             // 
             lblnfoOKolekciji.AutoSize = true;
             lblnfoOKolekciji.BackColor = Color.Transparent;
-            lblnfoOKolekciji.Location = new Point(12, 115);
+            lblnfoOKolekciji.Location = new Point(12, 167);
             lblnfoOKolekciji.Name = "lblnfoOKolekciji";
             lblnfoOKolekciji.Size = new Size(126, 15);
             lblnfoOKolekciji.TabIndex = 20;
@@ -122,7 +124,7 @@
             // 
             lblPrvaRevija.AutoSize = true;
             lblPrvaRevija.BackColor = Color.Transparent;
-            lblPrvaRevija.Location = new Point(12, 56);
+            lblPrvaRevija.Location = new Point(12, 107);
             lblPrvaRevija.Name = "lblPrvaRevija";
             lblPrvaRevija.Size = new Size(64, 15);
             lblPrvaRevija.TabIndex = 19;
@@ -148,11 +150,30 @@
             txtID.Size = new Size(62, 23);
             txtID.TabIndex = 26;
             // 
+            // lblIdentifikator
+            // 
+            lblIdentifikator.AutoSize = true;
+            lblIdentifikator.Location = new Point(12, 52);
+            lblIdentifikator.Name = "lblIdentifikator";
+            lblIdentifikator.Size = new Size(74, 15);
+            lblIdentifikator.TabIndex = 27;
+            lblIdentifikator.Text = "Identifikator:";
+            // 
+            // txtIdentifikator
+            // 
+            txtIdentifikator.Enabled = false;
+            txtIdentifikator.Location = new Point(92, 49);
+            txtIdentifikator.Name = "txtIdentifikator";
+            txtIdentifikator.Size = new Size(246, 23);
+            txtIdentifikator.TabIndex = 28;
+            // 
             // frmAzurirajOrganizatora
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(492, 215);
+            ClientSize = new Size(492, 249);
+            Controls.Add(txtIdentifikator);
+            Controls.Add(lblIdentifikator);
             Controls.Add(txtID);
             Controls.Add(lblID);
             Controls.Add(btnOdustani);
@@ -182,5 +203,7 @@
         private Label lblPrvaRevija;
         private Label lblID;
         private TextBox txtID;
+        private Label lblIdentifikator;
+        private TextBox txtIdentifikator;
     }
 }

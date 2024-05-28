@@ -32,9 +32,10 @@ public partial class frmAzurirajOrganizatora : Form
     #endregion
 
 
-    private void frmAzurirajOrganizatora_Load(object sender, EventArgs e)
+    private async void frmAzurirajOrganizatora_Load(object sender, EventArgs e)
     {
         Ucitaj();
+        txtIdentifikator.Text = await DTOManager.VratiPodatkeOOrganizatoru(_organizator.Id);
     }
 
     private async void btnAzuriraj_Click(object sender, EventArgs e)
