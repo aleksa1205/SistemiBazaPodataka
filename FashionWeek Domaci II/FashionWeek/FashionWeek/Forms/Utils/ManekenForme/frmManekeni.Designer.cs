@@ -41,12 +41,12 @@
             colPrezime = new ColumnHeader();
             colDatumRodjenja = new ColumnHeader();
             colPol = new ColumnHeader();
+            colZaposlen = new ColumnHeader();
             colVisina = new ColumnHeader();
             colTezina = new ColumnHeader();
             colBojaOciju = new ColumnHeader();
             colBojaKose = new ColumnHeader();
             colKonfBroj = new ColumnHeader();
-            colZaposlen = new ColumnHeader();
             SuspendLayout();
             // 
             // lblListaManekena
@@ -150,6 +150,7 @@
             lvManekeni.TabIndex = 9;
             lvManekeni.UseCompatibleStateImageBehavior = false;
             lvManekeni.View = View.Details;
+            lvManekeni.SelectedIndexChanged += lvManekeni_SelectedIndexChanged_1;
             // 
             // colMBR
             // 
@@ -180,44 +181,39 @@
             colPol.TextAlign = HorizontalAlignment.Center;
             colPol.Width = 30;
             // 
+            // colZaposlen
+            // 
+            colZaposlen.Text = "Zaposlen U";
+            colZaposlen.TextAlign = HorizontalAlignment.Center;
+            colZaposlen.Width = 150;
+            // 
             // colVisina
             // 
-            colVisina.DisplayIndex = 5;
             colVisina.Text = "Visina";
             colVisina.TextAlign = HorizontalAlignment.Center;
             // 
             // colTezina
             // 
-            colTezina.DisplayIndex = 6;
             colTezina.Text = "Težina";
             colTezina.TextAlign = HorizontalAlignment.Center;
             // 
             // colBojaOciju
             // 
-            colBojaOciju.DisplayIndex = 7;
             colBojaOciju.Text = "Boja očiju";
             colBojaOciju.TextAlign = HorizontalAlignment.Center;
             colBojaOciju.Width = 80;
             // 
             // colBojaKose
             // 
-            colBojaKose.DisplayIndex = 8;
             colBojaKose.Text = "Boja kose";
             colBojaKose.TextAlign = HorizontalAlignment.Center;
             colBojaKose.Width = 80;
             // 
             // colKonfBroj
             // 
-            colKonfBroj.DisplayIndex = 9;
             colKonfBroj.Text = "Konfekcijski broj";
             colKonfBroj.TextAlign = HorizontalAlignment.Center;
             colKonfBroj.Width = 100;
-            // 
-            // colZaposlen
-            // 
-            colZaposlen.Text = "Zaposlen U";
-            colZaposlen.TextAlign = HorizontalAlignment.Center;
-            colZaposlen.Width = 150;
             // 
             // frmManekeni
             // 

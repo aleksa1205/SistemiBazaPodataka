@@ -25,6 +25,26 @@ public class ModnaRevijaPregled
         Termin = revija.Termin;
     }
     #endregion
+
+    #region Overrides
+    public override bool Equals(object? obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+        if (ReferenceEquals(this, obj))
+        {
+            return true;
+        }
+        ModnaRevijaPregled compare = obj as ModnaRevijaPregled;
+        return RBR == compare.RBR;
+    }
+    public override int GetHashCode()
+    {
+        return RBR.GetHashCode();
+    }
+    #endregion
 }
 
 public class ModnaRevijaBasic

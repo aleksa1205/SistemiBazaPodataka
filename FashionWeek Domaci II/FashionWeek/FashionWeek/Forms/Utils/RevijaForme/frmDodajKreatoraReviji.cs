@@ -14,7 +14,7 @@ public partial class frmDodajKreatoraReviji : Form
     private async void UcitajPodatke()
     {
         lvKreatori.Items.Clear();
-        var kreatori = await DTOManager.VratiModneKreatoreKojiNisuNaModnojReviji(_revija.RBR);
+        var kreatori = await DTOManager.VratiModneKreatoreKojiNisuPovezaniSaRevijom(_revija.RBR);
         foreach (var kreator in kreatori)
         {
             ListViewItem item = new ListViewItem(new string[] { kreator.MBR, kreator.Ime.LicnoIme, kreator.Ime.Prezime, kreator.DatumRodjenja.ToShortDateString(), kreator.Pol.ToString(), kreator.ZemljaPorekla, kreator.RadiU });

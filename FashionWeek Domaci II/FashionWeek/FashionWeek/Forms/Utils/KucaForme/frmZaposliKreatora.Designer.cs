@@ -88,6 +88,7 @@
             // btnZaposli
             // 
             btnZaposli.BackColor = SystemColors.MenuHighlight;
+            btnZaposli.Enabled = false;
             btnZaposli.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnZaposli.ForeColor = Color.White;
             btnZaposli.Location = new Point(543, 12);

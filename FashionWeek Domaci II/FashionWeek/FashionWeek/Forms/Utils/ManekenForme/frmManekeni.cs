@@ -44,24 +44,6 @@ public partial class frmManekeni : Form
         UcitajPodatke();
     }
 
-    private async void lvManekeni_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (lvManekeni.SelectedItems.Count > 0)
-        {
-            _maneken = await DTOManager.VratiManekenaBasic(lvManekeni.SelectedItems[0].Text);
-            if (_maneken == null)
-            {
-                MessageBox.Show("Greška pri pribavljanju manekena!");
-                return;
-            }
-            EnableButtons();
-        }
-        else
-        {
-            DisableButtons();
-        }
-    }
-
     private void btnDodajManekena_Click(object sender, EventArgs e)
     {
         frmDodajManekena frmDodaj = new frmDodajManekena();
@@ -85,8 +67,8 @@ public partial class frmManekeni : Form
             MessageBox.Show($"Uspešno obrisan maneken {_maneken.Ime.ToString()}!");
             _maneken = null;
             UcitajPodatke();
-            lvManekeni.SelectedItems.Clear();
         }
+        lvManekeni.SelectedItems.Clear();
     }
 
     private void btnRevije_Click(object sender, EventArgs e)
@@ -104,5 +86,23 @@ public partial class frmManekeni : Form
     private void btnIzadji_Click(object sender, EventArgs e)
     {
         Close();
+    }
+
+    private async void lvManekeni_SelectedIndexChanged_1(object sender, EventArgs e)
+    {
+        if (lvManekeni.SelectedItems.Count > 0)
+        {
+            _maneken = await DTOManager.VratiManekenaBasic(lvManekeni.SelectedItems[0].Text);
+            if (_maneken == null)
+            {
+                MessageBox.Show("Greška pri pribavljanju manekena!");
+                return;
+            }
+            EnableButtons();
+        }
+        else
+        {
+            DisableButtons();
+        }
     }
 }
