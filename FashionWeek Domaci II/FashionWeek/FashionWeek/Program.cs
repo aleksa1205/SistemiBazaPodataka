@@ -1,5 +1,3 @@
-using FashionWeek.Forms;
-
 namespace FashionWeek
 {
     internal static class Program

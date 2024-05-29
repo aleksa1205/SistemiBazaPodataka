@@ -1,20 +1,4 @@
-﻿using FashionWeek.Forms.Utils.ManekenForme;
-using FashionWeek.Forms.Utils.RevijaForme;
-using FashionWeek.Forms.Utils.AgencijaForme;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using FashionWeek.Forms.Utils.Revija;
-using FashionWeek.Forms.Utils.KreatorForme;
-using FashionWeek.Forms.Utils.KucaForme;
-
-namespace FashionWeek.Forms;
+﻿namespace FashionWeek.Forms;
 
 public partial class frmMain : Form
 {
