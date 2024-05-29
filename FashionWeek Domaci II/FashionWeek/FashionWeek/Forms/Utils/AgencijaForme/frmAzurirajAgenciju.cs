@@ -54,7 +54,7 @@ public partial class frmAzurirajAgenciju : Form
         Procitaj();
         if(await DTOManager.AzurirajModnuAgenciju(_agencija))
         {
-            MessageBox.Show("Uspešno ažurirana modna agencija!");
+            MessageBox.Show($"Uspešno ažurirana modna agencija {_agencija.Naziv}!");
             Close();
         }
     }

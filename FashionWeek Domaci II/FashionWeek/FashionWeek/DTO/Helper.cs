@@ -16,7 +16,7 @@ public static class Helper
             BojaOciju = maneken.BojaOciju,
             BojaKose = maneken.BojaKose,
             KonfekcijskiBroj = maneken.KonfekcijskiBroj,
-            Zanimanje = maneken.Zanimanje,
+            Zanimanje = maneken.Zanimanje
         };
         return newManeken;
     }

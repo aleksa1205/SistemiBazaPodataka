@@ -17,7 +17,7 @@ public partial class frmNezaposleniManekeni : Form
         IList<ManekenNezaposlenPregled> manekeni = await DTOManager.VratiNezaposleneManeken();
         foreach (var maneken in manekeni)
         {
-            ListViewItem item = new ListViewItem(new string[] { maneken.MBR, maneken.Ime.LicnoIme, maneken.Ime.Prezime, maneken.DatumRodjenja.ToShortDateString(), maneken.Pol.ToString(), maneken.Zanimanje });
+            ListViewItem item = new ListViewItem(new string[] { maneken.MBR, maneken.Ime.LicnoIme, maneken.Ime.Prezime, maneken.DatumRodjenja.ToShortDateString(), maneken.Pol.ToString(), maneken.Visina.ToString(), maneken.Tezina.ToString(), maneken.BojaOciju, maneken.BojaKose, maneken.KonfekcijskiBroj, maneken.Zanimanje });
             lvManekeni.Items.Add(item);
         }
         lvManekeni.Refresh();
@@ -27,19 +27,6 @@ public partial class frmNezaposleniManekeni : Form
     private void frmNezaposleniManekeni_Load(object sender, EventArgs e)
     {
         UcitajPodatke();
-    }
-
-    private void lvManekeni_SelectedIndexChanged(object sender, EventArgs e)
-
-    {
-        if (lvManekeni.SelectedItems.Count > 0)
-        {
-            btnZaposli.Enabled = true;
-        }
-        else
-        {
-            btnZaposli.Enabled = false;
-        }
     }
 
     private async void btnZaposli_Click(object sender, EventArgs e)
@@ -55,5 +42,17 @@ public partial class frmNezaposleniManekeni : Form
     private void btnOdustani_Click(object sender, EventArgs e)
     {
         Close();
+    }
+
+    private void lvManekeni_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (lvManekeni.SelectedItems.Count > 0)
+        {
+            btnZaposli.Enabled = true;
+        }
+        else
+        {
+            btnZaposli.Enabled = false;
+        }
     }
 }
