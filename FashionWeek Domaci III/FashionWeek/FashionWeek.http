@@ -1,0 +1,6 @@
+@FashionWeek_HostAddress = http://localhost:5014
+
+GET {{FashionWeek_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
