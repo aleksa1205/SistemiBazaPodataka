@@ -1,5 +1,6 @@
 ﻿namespace FashionWeek_Library;
 
+// klasa
 public static class DataLayer
 {
     private static ISessionFactory? _factory = null;
