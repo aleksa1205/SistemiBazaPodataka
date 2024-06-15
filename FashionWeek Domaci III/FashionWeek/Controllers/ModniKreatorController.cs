@@ -31,4 +31,18 @@ public class ModniKreatorController : ControllerBase
         }
         return Ok(kreator.Data);
     }
+
+    [HttpGet("VratiModneKreatoreModneKuce/{naziv}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    public async Task<IActionResult> GetByModnaKuca(string naziv)
+    {
+        var kreatori = await DataProvider.VratiModneKreatoreModneKuce(naziv);
+        if (kreatori.IsError)
+        {
+            return StatusCode(kreatori.Error.StatusCode, kreatori.Error.Message);
+        }
+        return Ok(kreatori.Data);
+    }
 }

@@ -52,6 +52,33 @@ public static class DataProvider
             session?.Dispose();
         }
     }
+
+    public static async Task<Result<List<ManekenView>, ErrorMessage>> VratiManekeneModneAgencije(string pib)
+    {
+        List<ManekenView> data = new();
+        ISession? session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            if(!(session?.IsConnected ?? false))
+            {
+                return "Nemoguće otvoriti sesiju!".ToError(403);
+            }
+            data = (await session.QueryOver<Maneken>().ListAsync())
+                                .Where(x => x.RadiUAgenciji?.PIB == pib)
+                                .Select(x => new ManekenView(x)).ToList();
+            return data;
+        }
+        catch (Exception)
+        {
+            return $"Došlo je do greške pri prikupljanju informacija o manekenima modne agencije sa PIB-om {pib}!".ToError(400);
+        }
+        finally
+        {
+            session?.Close();
+            session?.Dispose();
+        }
+    }
     #endregion
 
     #region ModniKreator
@@ -97,6 +124,33 @@ public static class DataProvider
         catch (Exception)
         {
             return $"Došlo je do greške pri prikupljanju informacija o modnom kreatoru sa MBR-om {mbr}!".ToError(400);
+        }
+        finally
+        {
+            session?.Close();
+            session?.Dispose();
+        }
+    }
+
+    public static async Task<Result<List<ModniKreatorView>, ErrorMessage>> VratiModneKreatoreModneKuce(string naziv)
+    {
+        List<ModniKreatorView> data = new();
+        ISession? session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            if (!(session?.IsConnected ?? false))
+            {
+                return "Nemoguće otvoriti sesiju!".ToError(403);
+            }
+            data = (await session.QueryOver<ModniKreator>().ListAsync())
+                            .Where(x => x.RadiU?.Naziv == naziv)
+                            .Select(kreator => new ModniKreatorView(kreator)).ToList();
+            return data;
+        }
+        catch (Exception)
+        {
+            return $"Došlo je do greške pri prikupljanu informacija o modnim kreatorima modne kuće {naziv}!".ToError(400);
         }
         finally
         {
@@ -253,6 +307,64 @@ public static class DataProvider
         catch (Exception)
         {
             return $"Došlo je do greške pri prikupljanju informacija o modnoj agenciji sa PIB-om {pib}!".ToError(400);
+        }
+        finally
+        {
+            session?.Close();
+            session?.Dispose();
+        }
+    }
+    #endregion
+
+    #region Casopis
+    public static async Task<Result<List<string>,ErrorMessage>> VratiCasopiseManekena(string mbr)
+    {
+        List<string> data = new();
+        ISession? session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            if(!(session?.IsConnected ?? false))
+            {
+                return "Nemoguće otvoriti sesiju!".ToError(403);
+            }
+            data = (await session.QueryOver<Casopis>().ListAsync())
+                                .Where(x => x.Id.Maneken.MBR == mbr)
+                                .Select(x => x.Id.NazivCasopisa).ToList()!;
+            return data;
+        }
+        catch (Exception)
+        {
+            return $"Došlo je do greške pri prikupljanju informacija o casopisima u kojima se pojavljuje maneken sa MBR-om {mbr}!".ToError(400);
+        }
+        finally
+        {
+            session?.Close();
+            session?.Dispose();
+        }
+    }
+    #endregion
+
+    #region ImeVlasnika
+    public static async Task<Result<List<Ime>, ErrorMessage>> VratiImenaVlasnikaModneKuce(string naziv)
+    {
+        List<Ime> data = new();
+        ISession? session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            if (!(session?.IsConnected ?? false))
+            {
+                return "Nemoguće otvoriti sesiju!".ToError(403);
+            }
+            data = (await session.QueryOver<ImeVlasnika>().ListAsync())
+                                        .Where(x => x.Id.ModnaKuca.Naziv == naziv)
+                                        .Select(x => new Ime(x.Id.LicnoIme, x.Id.Prezime)).ToList();
+            return data;
+        }
+        catch (Exception)
+        {
+            return $"Došlo je do greške pri prikupljanju informacija o vlasnicima modne kuće {naziv}!".ToError(400);
         }
         finally
         {

@@ -2,6 +2,7 @@
 
 public class ModniKreatorView : OsobaView
 {
+    public string? ZemljaPorekla { get; set; }
     //radiu
     //organizator
 
@@ -13,6 +14,7 @@ public class ModniKreatorView : OsobaView
         Ime = kreator.Ime;
         DatumRodjenja = kreator.DatumRodjenja;
         Pol = kreator.Pol;
+        ZemljaPorekla = kreator.ZemljaPorekla;
     }
     #endregion
 
