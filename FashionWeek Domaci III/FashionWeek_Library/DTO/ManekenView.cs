@@ -11,7 +11,6 @@ public class ManekenView : OsobaView
     public string? KonfekcijskiBroj { get; set; }
     public string? Zanimanje { get; set; }
     public ModnaAgencijaView? RadiUAgenciji { get; set; } = null;
-    //public string? NazivAgencije { get; set; }
     public virtual IList<ModnaRevijaView> Revije { get; set; } = [];
     public virtual IList<CasopisView> Casopisi { get; set; } = [];
 
