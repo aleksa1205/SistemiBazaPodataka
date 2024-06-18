@@ -9,7 +9,7 @@ internal class Maneken : Osoba
     internal protected virtual string? KonfekcijskiBroj { get; set; }
     internal protected virtual string? Zanimanje { get; set; }
 
-    internal protected virtual ModnaAgencija? RadiUAgenciji { get; set; }
+    internal protected virtual ModnaAgencija? RadiUAgenciji { get; set; } = null;
     internal protected virtual IList<ModnaRevija> Revije { get; set; } = [];
     internal protected virtual IList<Casopis> Casopisi { get; set; } = [];
 }

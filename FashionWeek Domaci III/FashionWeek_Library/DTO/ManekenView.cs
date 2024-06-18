@@ -1,4 +1,6 @@
-﻿namespace FashionWeek_Library.DTO;
+﻿using System.Text.Json.Serialization;
+
+namespace FashionWeek_Library.DTO;
 
 public class ManekenView : OsobaView
 {
@@ -8,7 +10,10 @@ public class ManekenView : OsobaView
     public string? BojaKose { get; set; }
     public string? KonfekcijskiBroj { get; set; }
     public string? Zanimanje { get; set; }
-    //public ModnaAgencijaView? RadiUAgenciji { get; set; }
+    public ModnaAgencijaView? RadiUAgenciji { get; set; } = null;
+    //public string? NazivAgencije { get; set; }
+    public virtual IList<ModnaRevijaView> Revije { get; set; } = [];
+    public virtual IList<CasopisView> Casopisi { get; set; } = [];
 
     public ManekenView() { }
     internal ManekenView(Maneken maneken)
@@ -23,7 +28,8 @@ public class ManekenView : OsobaView
         BojaKose = maneken.BojaKose;
         KonfekcijskiBroj = maneken.KonfekcijskiBroj;
         Zanimanje = maneken.Zanimanje;
-        //radi u agenciji
+        RadiUAgenciji = maneken.RadiUAgenciji != null ? new(maneken.RadiUAgenciji) : null;
+        //NazivAgencije = maneken.RadiUAgenciji != null ? maneken.RadiUAgenciji.Naziv : null;
     }
 
     public override string ToString()

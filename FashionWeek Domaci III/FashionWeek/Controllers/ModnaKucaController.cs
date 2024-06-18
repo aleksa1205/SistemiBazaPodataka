@@ -22,6 +22,7 @@ public class ModnaKucaController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetByNaziv(string naziv)
     {
         var modnaKuca = await DataProvider.VratiModnuKucu(naziv);
@@ -30,5 +31,51 @@ public class ModnaKucaController : ControllerBase
             return StatusCode(modnaKuca.Error.StatusCode, modnaKuca.Error.Message);
         }
         return Ok(modnaKuca.Data);
+    }
+
+    [HttpPost("DodajModnuKucu")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
+    public async Task<IActionResult> AddModnaKuca([FromBody] ModnaKucaView modnaKuca)
+    {
+        var check = await DataProvider.DodajModnuKucu(modnaKuca);
+        if (check.IsError)
+        {
+            return StatusCode(check.Error.StatusCode, check.Error.Message);
+        }
+        return Ok($"Uspešno dodata modna kuća {modnaKuca.Naziv}!");
+    }
+
+    [HttpPut("AzurirajModnuKucu")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
+    public async Task<IActionResult> UpdateModnaKuca([FromBody] ModnaKucaView modnaKuca)
+    {
+        var check = await DataProvider.AzurirajModnuKucu(modnaKuca);
+        if (check.IsError)
+        {
+            return StatusCode(check.Error.StatusCode, check.Error.Message);
+        }
+        return Ok($"Uspešno ažuriran modna kuća {modnaKuca.Naziv}!");
+    }
+
+    [HttpDelete("ObrisiModnuKucu/{naziv}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> RemoveModnaKuca(string naziv)
+    {
+        var check = await DataProvider.ObrisiModnuKucu(naziv);
+        if (check.IsError)
+        {
+            return StatusCode(check.Error.StatusCode, check.Error.Message);
+        }
+        return Ok($"Uspešno obrisana modna kuća sa nazivom {naziv}!");
     }
 }

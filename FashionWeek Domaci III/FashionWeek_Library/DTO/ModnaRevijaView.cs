@@ -6,10 +6,10 @@ public class ModnaRevijaView
     public string? Naziv { get; set; }
     public Adresa? Mesto { get; set; }
     public DateTime Termin { get; set; }
-    //manekeni
-    //kreatori
-    //organizator
-    //specijalnigosti
+    public virtual IList<ManekenView> Manekeni { get; set; } = [];
+    public virtual IList<ModniKreatorView> Kreatori { get; set; } = [];
+    public virtual OrganizatorView? Organizator { get; set; } = null;
+    public virtual IList<SpecijalanGostView> SpecijalniGosti { get; set; } = [];
 
     public ModnaRevijaView() { }
     internal ModnaRevijaView(ModnaRevija revija)

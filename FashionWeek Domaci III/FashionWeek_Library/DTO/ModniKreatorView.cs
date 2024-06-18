@@ -3,8 +3,12 @@
 public class ModniKreatorView : OsobaView
 {
     public string? ZemljaPorekla { get; set; }
-    //radiu
+    public ModnaKucaView? RadiU { get; set; } = null;
+    public virtual IList<ModnaRevijaView> Revije { get; set; } = [];
+    public virtual OrganizatorView? Organizator { get; set; } = null;
+    public virtual IList<SpecijalanGostView> SpecijalniGosti { get; set; } = [];
     //organizator
+    //specijalni gosti
 
     #region Constructors
     public ModniKreatorView() { }

@@ -3,9 +3,9 @@
 internal class ModniKreator : Osoba
 {
     internal protected virtual string? ZemljaPorekla { get; set; }
-    internal protected virtual ModnaKuca? RadiU { get; set; }
+    internal protected virtual ModnaKuca? RadiU { get; set; } = null;
     internal protected virtual IList<ModnaRevija> Revije { get; set; } = [];
-    internal protected virtual Organizator? Organizator { get; set; }
+    internal protected virtual Organizator? Organizator { get; set; } = null;
     internal protected virtual IList<SpecijalanGost> SpecijalniGosti { get; set; } = [];
 
     #region Overrides

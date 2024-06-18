@@ -9,7 +9,7 @@ public class ImeVlasnikaIdView
     public ImeVlasnikaIdView() { }
     internal ImeVlasnikaIdView(ImeVlasnikaId Id)
     {
-        ModnaKuca = new ModnaKucaView(Id.ModnaKuca);
+        ModnaKuca = new (Id.ModnaKuca);
         LicnoIme = Id.LicnoIme;
         Prezime = Id.Prezime;
     }
