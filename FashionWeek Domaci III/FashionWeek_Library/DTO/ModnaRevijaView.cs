@@ -18,5 +18,6 @@ public class ModnaRevijaView
         Naziv = revija.Naziv;
         Mesto = revija.Mesto;
         Termin = revija.Termin;
+        Organizator = revija.Organizator != null ? new OrganizatorView(revija.Organizator) : null;
     }
 }
