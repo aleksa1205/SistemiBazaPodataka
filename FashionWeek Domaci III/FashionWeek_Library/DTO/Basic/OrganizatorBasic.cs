@@ -8,7 +8,6 @@ namespace FashionWeek_Library.DTO.Basic
 {
     public class OrganizatorBasic
     {
-        public int Id { get; set; }
         public char PrvaRevija { get; set; }
         public string InformacijeOKolekciji { get; set; }
     }

@@ -1488,7 +1488,7 @@ public static class DataProvider
             
             if(organizator.PrvaRevija!='Y' && organizator.PrvaRevija != 'N')
             {
-                return "Mora se izabrati da li je prva revija YES ili NO!".ToError(400);
+                return "Mora se izabrati da li je prva revija Y ili N!".ToError(400);
             }
             Organizator newOrganizator = new Organizator
             {
