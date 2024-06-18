@@ -1,4 +1,6 @@
-﻿namespace FashionWeek.Controllers;
+﻿using FashionWeek_Library.DTO.Basic;
+
+namespace FashionWeek.Controllers;
 
 [ApiController]
 [Route("[controller]")]
@@ -38,7 +40,7 @@ public class OrganizatorController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
-    public async Task<IActionResult> AddOrganizator([FromBody] OrganizatorView organizator)
+    public async Task<IActionResult> AddOrganizator([FromBody] OrganizatorBasic organizator)
     {
         var check = await DataProvider.DodajOrganizatora(organizator);
         if (check.IsError)

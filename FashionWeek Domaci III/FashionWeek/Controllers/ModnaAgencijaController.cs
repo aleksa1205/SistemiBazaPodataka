@@ -71,9 +71,9 @@ public class ModnaAgencijaController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> RemoveModnaKuca(string pib)
+    public async Task<IActionResult> RemoveModnaAgencija(string pib)
     {
-        var check = await DataProvider.ObrisiModnuKucu(pib);
+        var check = await DataProvider.ObrisiModnuAgenciju(pib);
         if (check.IsError)
         {
             return StatusCode(check.Error.StatusCode, check.Error.Message);

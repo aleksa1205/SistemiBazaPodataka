@@ -134,9 +134,9 @@ public static class DataProvider
             {
                 return "Morate da unesete ime i prezime!".ToError(400);
             }
-            if (maneken.Pol is not 'M' or 'Z')
+            if (maneken.Pol is not 'M' || maneken.Pol is not 'Z')
             {
-                return "Morate izabrati odgovarajući pol!".ToError(400);
+                return "Morate izabrati odgovarajući pol! M ili Z".ToError(400);
             }
             if (maneken.KonfekcijskiBroj.Length > 4)
             {
@@ -203,9 +203,9 @@ public static class DataProvider
             {
                 return "Morate da unesete ime i prezime!".ToError(400);
             }
-            if (maneken.Pol is not 'M' or 'Z')
+            if (maneken.Pol is not 'M' || maneken.Pol is not 'Z')
             {
-                return "Morate izabrati odgovarajući pol!".ToError(400);
+                return "Morate izabrati odgovarajući pol M ili Z!".ToError(400);
             }
             if (maneken.KonfekcijskiBroj.Length > 4)
             {
@@ -1305,7 +1305,7 @@ public static class DataProvider
             }
             if(agencija.Inostrana != 'Y' && agencija.Inostrana !='N')
             {
-                return "Morate izabrati YES ili NO za inostranu agenciju!".ToError(400);
+                return "Morate izabrati Y ili N za inostranu agenciju!".ToError(400);
             }
 
             ModnaAgencija tmpAgencija = await session.GetAsync<ModnaAgencija>(agencija.PIB);
@@ -1475,7 +1475,7 @@ public static class DataProvider
         }
     }
 
-    public static async Task<Result<bool, ErrorMessage>> DodajOrganizatora(OrganizatorView organizator)
+    public static async Task<Result<bool, ErrorMessage>> DodajOrganizatora(OrganizatorBasic organizator)
     {
         ISession? session = null;
         try

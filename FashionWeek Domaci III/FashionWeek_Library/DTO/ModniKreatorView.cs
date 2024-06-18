@@ -17,6 +17,7 @@ public class ModniKreatorView : OsobaView
         DatumRodjenja = kreator.DatumRodjenja;
         Pol = kreator.Pol;
         ZemljaPorekla = kreator.ZemljaPorekla;
+        RadiU = kreator.RadiU != null ? new ModnaKucaView(kreator.RadiU) : null;
     }
     #endregion
 
