@@ -1,4 +1,6 @@
-﻿namespace FashionWeek.Controllers;
+﻿using FashionWeek_Library.DTO.Basic;
+
+namespace FashionWeek.Controllers;
 
 [ApiController]
 [Route("[controller]")]
@@ -80,7 +82,7 @@ public class ModniKreatorController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
-    public async Task<IActionResult> AddModniKreator([FromBody] ModniKreatorView kreator)
+    public async Task<IActionResult> AddModniKreator([FromBody] ModniKreatorBasic kreator)
     {
         var check = await DataProvider.DodajModnogKreatora(kreator);
         if (check.IsError)
@@ -96,7 +98,7 @@ public class ModniKreatorController : ControllerBase
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
-    public async Task<IActionResult> UpdateModniKreator([FromBody] ModniKreatorView kreator)
+    public async Task<IActionResult> UpdateModniKreator([FromBody] ModniKreatorBasic kreator)
     {
         var check = await DataProvider.AzurirajModnogKreatora(kreator);
         if (check.IsError)

@@ -7,8 +7,6 @@ public class ModniKreatorView : OsobaView
     public virtual IList<ModnaRevijaView> Revije { get; set; } = [];
     public virtual OrganizatorView? Organizator { get; set; } = null;
     public virtual IList<SpecijalanGostView> SpecijalniGosti { get; set; } = [];
-    //organizator
-    //specijalni gosti
 
     #region Constructors
     public ModniKreatorView() { }

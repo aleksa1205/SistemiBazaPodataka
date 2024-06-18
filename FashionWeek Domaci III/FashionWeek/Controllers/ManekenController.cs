@@ -1,4 +1,6 @@
-﻿namespace FashionWeek.Controllers;
+﻿using FashionWeek_Library.DTO.Basic;
+
+namespace FashionWeek.Controllers;
 
 [ApiController]
 [Route("[controller]")]
@@ -81,7 +83,7 @@ public class ManekenController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
-    public async Task<IActionResult> AddManeken([FromBody] ManekenView maneken)
+    public async Task<IActionResult> AddManeken([FromBody] ManekenBasic maneken)
     {
         var check = await DataProvider.DodajManekena(maneken);
         if (check.IsError)
@@ -97,7 +99,7 @@ public class ManekenController : ControllerBase
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
-    public async Task<IActionResult> UpdateManeken([FromBody] ManekenView maneken)
+    public async Task<IActionResult> UpdateManeken([FromBody] ManekenBasic maneken)
     {
         var check = await DataProvider.AzurirajManekena(maneken);
         if (check.IsError)

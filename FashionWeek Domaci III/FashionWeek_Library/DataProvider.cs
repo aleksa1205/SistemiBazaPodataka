@@ -1,4 +1,6 @@
-﻿namespace FashionWeek_Library;
+﻿using FashionWeek_Library.DTO.Basic;
+
+namespace FashionWeek_Library;
 
 public static class DataProvider
 {
@@ -113,7 +115,7 @@ public static class DataProvider
         }
     }
 
-    public static async Task<Result<bool, ErrorMessage>> DodajManekena(ManekenView maneken)
+    public static async Task<Result<bool, ErrorMessage>> DodajManekena(ManekenBasic maneken)
     {
         ISession? session = null;
         try
@@ -177,7 +179,7 @@ public static class DataProvider
         }
     }
 
-    public static async Task<Result<bool, ErrorMessage>> AzurirajManekena(ManekenView maneken)
+    public static async Task<Result<bool, ErrorMessage>> AzurirajManekena(ManekenBasic maneken)
     {
         ISession? session = null;
         try
@@ -537,7 +539,7 @@ public static class DataProvider
         }
     }
 
-    public static async Task<Result<bool, ErrorMessage>> DodajModnogKreatora(ModniKreatorView kreator)
+    public static async Task<Result<bool, ErrorMessage>> DodajModnogKreatora(ModniKreatorBasic kreator)
     {
         ISession? session = null;
         try
@@ -592,7 +594,7 @@ public static class DataProvider
         }
     }
 
-    public static async Task<Result<bool, ErrorMessage>> AzurirajModnogKreatora(ModniKreatorView kreator)
+    public static async Task<Result<bool, ErrorMessage>> AzurirajModnogKreatora(ModniKreatorBasic kreator)
     {
         ISession? session = null;
         try
@@ -887,7 +889,7 @@ public static class DataProvider
         }
     }
 
-    public static async Task<Result<bool, ErrorMessage>> DodajModnuKucu(ModnaKucaView kuca)
+    public static async Task<Result<bool, ErrorMessage>> DodajModnuKucu(ModnaKucaBasic kuca)
     {
         ISession? session = null;
         try
@@ -926,7 +928,7 @@ public static class DataProvider
         }
     }
 
-    public static async Task<Result<bool, ErrorMessage>> AzurirajModnuKucu(ModnaKucaView kuca)
+    public static async Task<Result<bool, ErrorMessage>> AzurirajModnuKucu(ModnaKucaBasic kuca)
     {
         ISession? session = null;
         try
@@ -1131,7 +1133,7 @@ public static class DataProvider
             session?.Dispose();
         }
     }
-    public static async Task<Result<bool, ErrorMessage>> DodajModnuReviju(ModnaRevijaView revija)
+    public static async Task<Result<bool, ErrorMessage>> DodajModnuReviju(ModnaRevijaBasic revija)
     {
         ISession? session = null;
         try
@@ -1164,7 +1166,7 @@ public static class DataProvider
         }
     }
 
-    public static async Task<Result<bool, ErrorMessage>> AzurirajModnuReviju(ModnaRevijaView revija)
+    public static async Task<Result<bool, ErrorMessage>> AzurirajModnuReviju(ModnaRevijaBasic revija)
     {
         ISession? session = null;
         try
@@ -1286,7 +1288,7 @@ public static class DataProvider
         }
     }
 
-    public static async Task<Result<bool, ErrorMessage>> DodajModnuAgenciju(ModnaAgencijaView agencija)
+    public static async Task<Result<bool, ErrorMessage>> DodajModnuAgenciju(ModnaAgencijaBasic agencija)
     {
         ISession? session = null;
         try
@@ -1351,7 +1353,7 @@ public static class DataProvider
         }
     }
 
-    public static async Task<Result<bool, ErrorMessage>> AzurirajModnuAgenciju(ModnaAgencijaView agencija)
+    public static async Task<Result<bool, ErrorMessage>> AzurirajModnuAgenciju(ModnaAgencijaBasic agencija)
     {
         ISession? session = null;
         try
