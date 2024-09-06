@@ -16,4 +16,4 @@ The main focuse of the third stage was on refining and extending the work from t
 ## Authors
 
 - [Jovan Cvetković](https://github.com/CJovan02) [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jovan-cvetkovic-6750bb255/)
-- [Aleksa Perić](https://github.com/aleksa1205)[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/aleksaperic02/)
+- [Aleksa Perić](https://github.com/aleksa1205) [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/aleksaperic02/)
