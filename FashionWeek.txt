@@ -1,0 +1,22 @@
+Zadatak 10 - Baza podataka FASHION WEEK
+Potrebno je projektovati relacionu bazu podataka koja će pamtiti sve informacije neophodne za
+održavanje manifestacije pod nazivom Fashion Week. U okviru ove manifestacije biće održan veći broj
+revija na kojima će modni kreatori prikazati svoje najnovije kolekcije. Za svakog modnog kreatora se pamti
+matični broj, ime, prezime, zermlja porekla, datum rođenja, pol i naziv modne kuće u kojoj rade ukoliko
+ona postoji. Za modne kuće se pamti jedinstveni naziv, ime osnivača, sedište modne kućei imena vlasnika
+ukoliko su poznata. Modni kreatori svoj rad predstavljaju na jednoj ili većem broju modnih revija koje se
+održavaju u okviru Fashion Week-a. Za svaku modnu reviju se pamti redni broj revije, naziv revije, mesto
+održavanja, datum i vreme održavanja. Organizator modne revije može biti modna kuća ili pojedinačni
+modni kreator. Ukoliko je organizator modna kuća onda se pamte informacije o kolekciji koju modna kuća
+predstavlja i o modnim kreatorima koji će izlagati na toj reviji. Ukoliko modnu reviju irganizuje modni
+kreaator, pamti se informacija da li mu je to prva modna revija i informacija o drugim kreatorima koje
+može da pozove kao specijalne goste. Za potrebe manifestacije održan je kasting izabran je veći broj
+manekena iz različitih modnih agencija. Na pojednim revijama u svojstvu manekena pojaviće se i specijalni
+gosti, tj. poznate ličnosti iz javnog života. Manekeni mogu nastupati na većem broju modnih revija u okviru
+manifestacije. Za svakog manekena treba evidentirati matični broj, ime, prezime, datum rođenja, pol,
+visina, težina, boja očiju, boja kose i konfekcijski broj i nazivi časopisa u kojima je maneken bio na naslovnoj
+strani. Ukoliko maneken pripada modnoj agenciji mora se znati o kojoj se modnoj agenciji radi. Za svaku
+modnu agenciju se pamti PIB, naziv agencije, sedište agencije, datum osnivanja agencija i da li se radi o
+domaćoj ili internacionalnoj agenciji. Ukoliko se radi o internacionalnoj agenciji potrebno je pamtiti i
+nazive zemalja u kojima je ta agencija aktivna. Za specijalne goste, koji nastupaju kao manekeni a nisu ni
+u jednoj modnoj agenciji, potrebno je evidentirati i zanimanje.
