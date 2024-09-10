@@ -1,6 +1,6 @@
 # Database systems (Sistemi baza podataka)
 
-## Build for univeristy project, graded 300 out of 300.
+## Built for univeristy project, graded 300 out of 300.
 
 Project consisted of three stages.
 
